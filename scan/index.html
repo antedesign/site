@@ -3,19 +3,549 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Concept Scan — Anté</title>
+<title>Anté — Free Concept Scan</title>
+<meta name="description" content="Describe your innovation idea and receive a structured analysis within 24 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:system-ui,sans-serif; background:#fff; color:#141b2d; min-height:100vh; display:flex; align-items:center; justify-content:center; }
-.center { text-align:center; padding:40px 24px; }
-h1 { font-size:22px; font-weight:700; margin-bottom:8px; }
-p { font-size:15px; color:#6e6b65; }
+:root {
+    --shadow-grey: #28292B;
+    --azure-mist: #F0FDFF;
+    --frosted-blue: #9CE3F8;
+    --blue-spruce: #206A5B;
+    --white: #FFFFFF;
+    --green: #22845e;
+    --error: #c9372c;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--azure-mist);
+    color: var(--shadow-grey);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+}
+
+.page { max-width: 720px; margin: 0 auto; padding: 0 24px; min-height: 100vh; }
+
+/* NAV */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--shadow-grey);
+    text-decoration: none;
+    font-style: italic;
+    letter-spacing: -2px;
+}
+.nav-tag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--blue-spruce);
+    padding: 6px 14px;
+    background: rgba(156, 227, 248, 0.3);
+    border-radius: 8px;
+}
+
+/* SCREENS */
+.screen { display: none; padding: 64px 0 80px; animation: enter 0.5s ease forwards; }
+.screen.active { display: block; }
+@keyframes enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+/* TYPOGRAPHY */
+h1 {
+    font-size: clamp(2.5rem, 5.5vw, 3.5rem);
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+}
+h1 .accent { color: var(--blue-spruce); }
+h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+}
+h2 .accent { color: var(--blue-spruce); }
+.subtitle {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    opacity: 0.7;
+    max-width: 520px;
+}
+
+/* FORM ELEMENTS */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+}
+select {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--shadow-grey);
+    background: var(--white);
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2328292B' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    transition: border-color 0.2s;
+}
+select:focus { border-color: var(--frosted-blue); }
+
+.textarea-wrap { margin-top: 16px; position: relative; }
+textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--shadow-grey);
+    background: var(--white);
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+}
+textarea:focus { border-color: var(--frosted-blue); }
+textarea::placeholder { color: var(--shadow-grey); opacity: 0.35; }
+.char-count {
+    position: absolute;
+    bottom: 14px;
+    right: 18px;
+    font-size: 0.75rem;
+    opacity: 0.4;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+}
+.btn-primary {
+    background: var(--blue-spruce);
+    color: var(--white);
+    padding: 16px 36px;
+    margin-top: 32px;
+    box-shadow: 0 10px 20px rgba(32, 106, 91, 0.2);
+}
+.btn-primary:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(32, 106, 91, 0.3);
+}
+.btn-primary:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+.btn-accent {
+    background: var(--frosted-blue);
+    color: var(--shadow-grey);
+    padding: 16px 36px;
+}
+.btn-accent:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(156, 227, 248, 0.4);
+}
+
+/* SUBMIT SCREEN */
+.submit-center {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.submit-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(156, 227, 248, 0.3);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 32px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--shadow-grey);
+    background: var(--white);
+    border: 1.5px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.input-field:focus { border-color: var(--frosted-blue); }
+.input-field::placeholder { color: var(--shadow-grey); opacity: 0.35; }
+
+.name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 520px;
+    margin-bottom: 12px;
+}
+.email-form {
+    display: flex;
+    gap: 12px;
+    max-width: 520px;
+}
+
+.process-note {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+.process-note-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.4;
+    margin-bottom: 20px;
+}
+.steps-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.steps-list li {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 16px;
+    align-items: start;
+}
+.step-num {
+    width: 36px;
+    height: 36px;
+    background: rgba(156, 227, 248, 0.3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--blue-spruce);
+    flex-shrink: 0;
+}
+.step-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.7;
+    padding-top: 7px;
+}
+.step-text strong { color: var(--shadow-grey); font-weight: 600; opacity: 1; }
+
+/* CONFIRMATION SCREEN */
+.confirm-center {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.confirm-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--blue-spruce);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 32px;
+}
+.confirm-center .subtitle {
+    max-width: 440px;
+    margin: 0 auto 32px;
+}
+.confirm-detail {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px 32px;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+}
+.confirm-detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.confirm-detail-row:last-child { border-bottom: none; }
+.confirm-detail-label { opacity: 0.5; }
+.confirm-detail-value { font-weight: 700; }
+
+.footer {
+    padding: 32px 0;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    font-size: 0.8rem;
+    opacity: 0.5;
+    text-align: center;
+}
+.footer a {
+    color: var(--blue-spruce);
+    font-weight: 700;
+    text-decoration: none;
+    font-style: italic;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .name-row { grid-template-columns: 1fr; }
+    .email-form { flex-direction: column; }
+    h1 { font-size: 2.2rem; }
+}
 </style>
 </head>
 <body>
-<div class="center">
-<h1>Concept Scan</h1>
-<p>Coming soon.</p>
+
+<div class="page">
+
+    <!-- NAV -->
+    <nav>
+        <a href="/" class="brand">anté</a>
+        <div class="nav-tag">Free concept scan</div>
+    </nav>
+
+    <!-- ==================== SCREEN 1: INPUT ==================== -->
+    <div class="screen active" id="screen-input">
+
+        <h1>Paste your idea.<br><span class="accent">We'll structure it.</span></h1>
+        <p class="subtitle">
+            Describe what you want to build or change. We'll analyse your concept, map three possible directions and surface the blind spots — delivered to your inbox within 24 hours.
+        </p>
+
+        <div class="form-row">
+            <select id="sector-select">
+                <option value="" disabled selected>Industry</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="tech">Tech & Software</option>
+                <option value="food">Food & Agriculture</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="services">B2B Services</option>
+                <option value="other">Other</option>
+            </select>
+            <select id="size-select">
+                <option value="" disabled selected>Company size</option>
+                <option value="1-25">1 – 25 employees</option>
+                <option value="25-100">25 – 100 employees</option>
+                <option value="100-250">100 – 250 employees</option>
+                <option value="250+">250+ employees</option>
+            </select>
+        </div>
+
+        <div class="textarea-wrap">
+            <textarea id="idea-input" placeholder="Describe your innovation idea, problem or ambition. Write it the way you'd explain it to a colleague — no perfect wording needed." oninput="updateCount()"></textarea>
+            <div class="char-count"><span id="char-count">0</span> characters</div>
+        </div>
+
+        <button class="btn btn-primary" id="continue-btn" onclick="goToSubmit()" disabled>
+            Continue →
+        </button>
+
+    </div>
+
+    <!-- ==================== SCREEN 2: SUBMIT ==================== -->
+    <div class="screen" id="screen-submit">
+        <div class="submit-center">
+
+            <div class="submit-icon">📨</div>
+            <h2>Almost there.<br><span class="accent">Where do we send it?</span></h2>
+            <p class="subtitle" style="margin-bottom: 32px;">
+                We'll review your concept and send you a structured analysis within 24 hours — including three possible directions and the blind spots in your current approach.
+            </p>
+
+            <div class="name-row">
+                <input class="input-field" type="text" id="name-input" placeholder="Your name">
+                <input class="input-field" type="text" id="company-input" placeholder="Company name">
+            </div>
+            <div class="email-form">
+                <input class="input-field" type="email" id="email-input" placeholder="Work email">
+                <button class="btn btn-accent" id="submit-btn" onclick="submitScan()" style="margin-top: 0; white-space: nowrap;">Send my scan →</button>
+            </div>
+
+            <div class="process-note">
+                <div class="process-note-title">How it works</div>
+                <ul class="steps-list">
+                    <li>
+                        <div class="step-num">1</div>
+                        <div class="step-text"><strong>You describe your idea</strong> — in your own words, no perfect brief needed.</div>
+                    </li>
+                    <li>
+                        <div class="step-num">2</div>
+                        <div class="step-text"><strong>We structure and analyse it</strong> — our team reviews your concept and identifies the key gaps.</div>
+                    </li>
+                    <li>
+                        <div class="step-num">3</div>
+                        <div class="step-text"><strong>You receive a PDF within 24 hours</strong> — with your idea restructured, three concept directions, and the blind spots that could derail your project.</div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 3: CONFIRMATION ==================== -->
+    <div class="screen" id="screen-confirm">
+        <div class="confirm-center">
+
+            <div class="confirm-icon">✓</div>
+            <h2>We're on it.</h2>
+            <p class="subtitle">
+                Your concept scan is being prepared. You'll receive a structured analysis in your inbox within 24 hours.
+            </p>
+
+            <div class="confirm-detail">
+                <div class="confirm-detail-row">
+                    <span class="confirm-detail-label">Sent to</span>
+                    <span class="confirm-detail-value" id="confirm-email">—</span>
+                </div>
+                <div class="confirm-detail-row">
+                    <span class="confirm-detail-label">Expected delivery</span>
+                    <span class="confirm-detail-value" id="confirm-time">—</span>
+                </div>
+                <div class="confirm-detail-row">
+                    <span class="confirm-detail-label">Format</span>
+                    <span class="confirm-detail-value">PDF report</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <a href="/">anté</a> — Certainty in Innovation.
+        </div>
+    </div>
+
 </div>
+
+<script>
+/* ===== GOOGLE FORMS CONFIG ===== */
+var FORM_CONFIG = {
+    url: 'PLACEHOLDER_FORM_URL',
+    fields: {
+        name:        'PLACEHOLDER_ENTRY_NAME',
+        company:     'PLACEHOLDER_ENTRY_COMPANY',
+        email:       'PLACEHOLDER_ENTRY_EMAIL',
+        sector:      'PLACEHOLDER_ENTRY_SECTOR',
+        companySize: 'PLACEHOLDER_ENTRY_SIZE',
+        idea:        'PLACEHOLDER_ENTRY_IDEA',
+        timestamp:   'PLACEHOLDER_ENTRY_TIMESTAMP'
+    }
+};
+
+/* ===== CHARACTER COUNT & VALIDATION ===== */
+function updateCount() {
+    var len = document.getElementById('idea-input').value.length;
+    document.getElementById('char-count').textContent = len;
+    document.getElementById('continue-btn').disabled = len < 30;
+}
+
+/* ===== GO TO SUBMIT SCREEN ===== */
+function goToSubmit() {
+    var idea = document.getElementById('idea-input').value.trim();
+    if (idea.length < 30) return;
+    showScreen('screen-submit');
+}
+
+/* ===== SUBMIT SCAN ===== */
+function submitScan() {
+    var email = document.getElementById('email-input').value.trim();
+    var name = document.getElementById('name-input').value.trim();
+    var company = document.getElementById('company-input').value.trim();
+
+    if (!email || !email.includes('@')) {
+        document.getElementById('email-input').style.borderColor = '#c9372c';
+        return;
+    }
+
+    var data = {
+        name:        name,
+        company:     company,
+        email:       email,
+        sector:      document.getElementById('sector-select').value,
+        companySize: document.getElementById('size-select').value,
+        idea:        document.getElementById('idea-input').value.trim(),
+        timestamp:   new Date().toISOString()
+    };
+
+    submitToGoogleForms(data);
+
+    document.getElementById('confirm-email').textContent = email;
+
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    var options = { weekday: 'long', month: 'long', day: 'numeric' };
+    document.getElementById('confirm-time').textContent = tomorrow.toLocaleDateString('en-US', options);
+
+    showScreen('screen-confirm');
+}
+
+/* ===== GOOGLE FORMS SUBMISSION ===== */
+function submitToGoogleForms(data) {
+    var fd = new FormData();
+    fd.append(FORM_CONFIG.fields.name, data.name);
+    fd.append(FORM_CONFIG.fields.company, data.company);
+    fd.append(FORM_CONFIG.fields.email, data.email);
+    fd.append(FORM_CONFIG.fields.sector, data.sector);
+    fd.append(FORM_CONFIG.fields.companySize, data.companySize);
+    fd.append(FORM_CONFIG.fields.idea, data.idea);
+    fd.append(FORM_CONFIG.fields.timestamp, data.timestamp);
+    fetch(FORM_CONFIG.url, { method: 'POST', body: fd, mode: 'no-cors' });
+}
+
+/* ===== SCREEN MANAGEMENT ===== */
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
 </body>
 </html>
