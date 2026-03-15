@@ -640,31 +640,36 @@
     </section>
 
     <!-- SIMPLE CONTACT PAGE -->
-    <section id="contact">
+       <section id="contact">
         <div class="container">
             <div class="reveal visible" style="margin-bottom: 4rem;">
                 <h1>Get in touch.</h1>
                 <p class="text-muted">Have a quick question or want to discuss a potential project? Send us a message.</p>
             </div>
 
-            <div class="glass-card reveal" style="max-width: 800px; margin: 0 auto;">
-                <form id="simple-contact-form">
-                    <div class="grid-2" style="gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" placeholder="John Doe" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" placeholder="john@company.com" required>
-                        </div>
+            <div class="glass-card reveal" style="max-width: 800px; margin: 0 auto;" id="contact-form-card">
+                <div class="grid-2" style="gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="contact-name" placeholder="John Doe">
                     </div>
                     <div class="form-group">
-                        <label>Your Message</label>
-                        <textarea placeholder="How can we help you?"></textarea>
+                        <label>Email Address</label>
+                        <input type="email" id="contact-email" placeholder="john@company.com">
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                </form>
+                </div>
+                <div class="form-group">
+                    <label>Your Message</label>
+                    <textarea id="contact-message" placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" style="width: 100%;" onclick="submitContact()">Send Message</button>
+            </div>
+
+            <div class="glass-card" style="max-width: 800px; margin: 0 auto; text-align: center; display: none;" id="contact-confirm-card">
+                <div style="background: var(--blue-spruce); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2.5rem; color: white; font-size: 2rem;">✓</div>
+                <h2 class="no-line">Message sent!</h2>
+                <p style="opacity: 0.6; margin: 1rem auto 2rem; max-width: 400px;">Thanks for reaching out. We'll get back to you within 24 hours.</p>
+                <button class="btn btn-outline" onclick="resetContactForm()">Send another message</button>
             </div>
         </div>
     </section>
@@ -908,6 +913,45 @@
             document.getElementById(id).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        var CONTACT_FORM_CONFIG = {
+    url: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdtnVjuuzhtoDLbvwAm8YM-nzFS2vIEAnMgO_MFhS1HqHtEvQ/formResponse',
+    fields: {
+        name:    'entry.1892390230',
+        email:   'entry.1237768883',
+        message: 'entry.1566169903'
+    }
+        };
+
+        function submitContact() {
+            var name    = document.getElementById('contact-name').value.trim();
+            var email   = document.getElementById('contact-email').value.trim();
+            var message = document.getElementById('contact-message').value.trim();
+
+            if (!name) { document.getElementById('contact-name').style.borderColor = '#c9372c'; return; }
+            if (!email || !email.includes('@')) { document.getElementById('contact-email').style.borderColor = '#c9372c'; return; }
+            if (!message) { document.getElementById('contact-message').style.borderColor = '#c9372c'; return; }
+
+            var fd = new FormData();
+            fd.append(CONTACT_FORM_CONFIG.fields.name, name);
+            fd.append(CONTACT_FORM_CONFIG.fields.email, email);
+            fd.append(CONTACT_FORM_CONFIG.fields.message, message);
+            fetch(CONTACT_FORM_CONFIG.url, { method: 'POST', body: fd, mode: 'no-cors' });
+
+            document.getElementById('contact-form-card').style.display = 'none';
+            document.getElementById('contact-confirm-card').style.display = 'block';
+        }
+
+        function resetContactForm() {
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+            document.getElementById('contact-name').style.borderColor = '';
+            document.getElementById('contact-email').style.borderColor = '';
+            document.getElementById('contact-message').style.borderColor = '';
+            document.getElementById('contact-confirm-card').style.display = 'none';
+            document.getElementById('contact-form-card').style.display = 'block';
+        }
+
     </script>
 </body>
 </html>
