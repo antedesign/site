@@ -3,74 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anté | Decide before you build</title>
-    <meta name="description" content="We turn vague ideas into validated concepts. Anté helps SME's eliminate investment risk with a 21-day innovation sprint.">
+    <title>Anté | Certainty in Innovation</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --shadow-grey: #28292B;
             --azure-mist: #F0FDFF;
             --frosted-blue: #9CE3F8;
             --blue-spruce: #206A5B;
-            --white: #FFFFFF;
-            --glass-bg: rgba(240, 253, 255, 0.75);
-            --nav-height: 80px;
+            --spruce-gradient: linear-gradient(135deg, #206A5B 0%, #154239 100%);
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.08);
+            --section-padding-top: clamp(160px, 22vh, 240px);
+            --section-padding-bottom: clamp(100px, 12vh, 160px);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: var(--azure-mist);
             color: var(--shadow-grey);
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3 {
+        /* --- Typography --- */
+        h1, h2, h3, .heading-font {
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 800;
             font-style: italic;
             line-height: 1.1;
             letter-spacing: -0.03em;
-            text-transform: none;
+            color: var(--shadow-grey);
         }
 
-        p {
-            font-weight: 400;
-            opacity: 0.85;
+        h1 { font-size: clamp(3rem, 7vw, 4.8rem); margin-bottom: 2.5rem; }
+        h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 2.5rem; position: relative; }
+        h3 { font-size: clamp(1.4rem, 2vw, 1.8rem); margin-bottom: 1.2rem; }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--frosted-blue);
+            margin-top: 1rem;
+            border-radius: 2px;
         }
 
-        /* --- UI COMPONENTS --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .no-line::after {
+            content: none;
         }
 
+        p { font-size: 1.05rem; opacity: 0.75; max-width: 65ch; }
+        .accent-text { color: var(--blue-spruce); }
+        .highlight-text { color: var(--blue-spruce); }
+
+        /* --- Layout --- */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 2.5rem; }
+        section {
+            padding-top: var(--section-padding-top);
+            padding-bottom: var(--section-padding-bottom);
+            display: none;
+            min-height: 100vh;
+        }
+        section.active { display: block; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3.5rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+
+        /* --- UI Components --- */
         .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 2.5rem;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
             border: none;
-            text-align: center;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            gap: 10px;
         }
 
         .btn-primary {
-            background-color: var(--blue-spruce);
-            color: var(--white);
-            box-shadow: 0 10px 20px rgba(32, 106, 91, 0.2);
+            background: var(--blue-spruce);
+            color: white;
+            box-shadow: 0 10px 20px rgba(32, 106, 91, 0.15);
         }
 
         .btn-primary:hover {
@@ -78,15 +106,7 @@
             box-shadow: 0 15px 30px rgba(32, 106, 91, 0.3);
         }
 
-        .btn-accent {
-            background-color: var(--frosted-blue);
-            color: var(--shadow-grey);
-        }
-
-        .btn-accent:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(156, 227, 248, 0.4);
-        }
+        .btn-primary:disabled { opacity: 0.25; cursor: not-allowed; transform: none; box-shadow: none; }
 
         .btn-outline {
             border: 2px solid var(--blue-spruce);
@@ -94,1209 +114,800 @@
             background: transparent;
         }
 
-        .btn-outline:hover {
-            background: var(--blue-spruce);
-            color: var(--white);
-            transform: translateY(-4px);
-        }
+        .btn-outline:hover { background: rgba(32, 106, 91, 0.05); transform: translateY(-2px); }
 
-        /* --- NAVIGATION --- */
-        nav {
-            height: var(--nav-height);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+        .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 3.5rem;
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            height: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--frosted-blue);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 0;
+            z-index: 2000;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(240, 253, 255, 0.6);
+            backdrop-filter: blur(30px);
+            padding: 1.2rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
+        }
+
+        /* Layout update for centered nav links */
+        .nav-content { 
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
         }
 
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
+        .nav-left { display: flex; justify-content: flex-start; }
+        .nav-right { display: flex; justify-content: flex-end; }
 
         .logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.4rem;
             font-weight: 800;
-            font-size: 1.8rem;
-            color: var(--shadow-grey);
-            text-decoration: none;
             font-style: italic;
-            letter-spacing: -2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
             color: var(--shadow-grey);
-            font-weight: 600;
-            font-size: 0.9rem;
-            opacity: 0.7;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            letter-spacing: -3px;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            opacity: 1;
-            color: var(--blue-spruce);
+        .nav-links { display: flex; gap: 3rem; align-items: center; justify-content: center; }
+        .nav-links a { text-decoration: none; color: var(--shadow-grey); font-weight: 600; font-size: 0.95rem; transition: all 0.3s; }
+        .nav-links a:hover { color: var(--blue-spruce); }
+
+        .nav-right .btn-primary {
+            background: var(--frosted-blue);
+            color: var(--shadow-grey);
+            box-shadow: 0 8px 20px rgba(156, 227, 248, 0.2);
         }
 
-        .hamburger {
-            display: none;
+        .nav-right .btn-primary:hover {
+            box-shadow: 0 12px 25px rgba(156, 227, 248, 0.35);
+        }
+
+        /* --- Animations --- */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); 
+            will-change: opacity, transform;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Pricing Table --- */
+        .pricing-section { margin-top: 4rem; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: stretch; }
+        .pricing-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 4rem 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            display: flex;
             flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px;
+            position: relative;
         }
-
-        .hamburger span {
-            width: 24px;
-            height: 2px;
-            background: var(--shadow-grey);
-            border-radius: 2px;
-            transition: all 0.3s ease;
+        .pricing-card.featured {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(32, 106, 91, 0.15);
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.55);
+            border: 2px solid var(--frosted-blue);
         }
-
-        /* --- BACKGROUND DECOR --- */
-        .bg-blob {
-            position: fixed;
-            z-index: -1;
-            filter: blur(80px);
-            opacity: 0.4;
-            border-radius: 50%;
-            pointer-events: none;
+        .popular-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--frosted-blue);
+            color: var(--blue-spruce);
+            padding: 8px 24px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 10px 20px rgba(156, 227, 248, 0.3);
+            white-space: nowrap;
         }
-
-        .blob-1 { width: 500px; height: 500px; background: var(--frosted-blue); top: -200px; right: -100px; }
-        .blob-2 { width: 400px; height: 400px; background: var(--blue-spruce); bottom: -100px; left: -100px; opacity: 0.2; }
-
-        /* --- SECTIONS --- */
-        section {
-            padding: 10rem 0 6rem 0;
+        .tier-title { font-size: 1.8rem; color: var(--blue-spruce); margin-bottom: 0.5rem; }
+        .tier-price { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--shadow-grey); }
+        .tier-focus { font-size: 0.8rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2.5rem; }
+        
+        .feature-list { text-align: left; list-style: none; margin-bottom: 1.5rem; flex-grow: 1; }
+        .feature-item { 
+            display: flex; align-items: center; gap: 12px; padding: 0.8rem 0; 
+            border-bottom: 1px solid rgba(0,0,0,0.03); font-size: 0.9rem;
         }
+        .feature-item.extra { display: none; }
+        .feature-item.show { display: flex; animation: fadeInDown 0.3s ease forwards; }
 
-        .page {
-            display: none;
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .page.active {
-            display: block;
+        .show-more-btn {
+            background: transparent;
+            border: none;
+            color: var(--blue-spruce);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            text-decoration: underline;
+            opacity: 0.6;
         }
 
-        /* --- HERO --- */
-        .hero {
-            min-height: 85vh;
+        .icon-check { width: 18px; height: 18px; color: var(--frosted-blue); flex-shrink: 0; }
+        .icon-cross { width: 18px; height: 18px; color: #ccc; flex-shrink: 0; opacity: 0.8; }
+
+        /* --- Contact Page Specific Centering Fix --- */
+        #contact.active {
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            margin-bottom: 2rem;
-            max-width: 1000px;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            max-width: 650px;
-            margin-bottom: 3rem;
-            font-weight: 500;
-            opacity: 0.7;
-        }
-
-        .hero-cta-row {
-            display: flex;
             align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .free-tag {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--blue-spruce);
-            opacity: 0.7;
-        }
-
-        /* --- SOCIAL PROOF --- */
-        .social-proof {
-            margin-top: 5rem;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .social-proof-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            opacity: 0.4;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-proof-logos {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-            opacity: 0.2;
-        }
-
-        .logo-placeholder {
-            width: 100px;
-            height: 36px;
-            background: var(--shadow-grey);
-            border-radius: 8px;
-        }
-
-        /* --- PHASE SYSTEM --- */
-        .phase-intro {
-            margin-top: 8rem;
-            margin-bottom: 1rem;
-        }
-
-        .phase-intro .label {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--blue-spruce);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-        }
-
-        .phase-intro h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            max-width: 800px;
-        }
-
-        /* --- GRIDS & CARDS --- */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .modern-card {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 24px;
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modern-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .modern-card h3 {
-            color: var(--blue-spruce);
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .accent-bar {
-            width: 40px;
-            height: 4px;
-            background: var(--frosted-blue);
-            margin-bottom: 1.5rem;
-            border-radius: 2px;
-        }
-
-        /* --- GRADIENT SECTION / DYNAMIC BANNER --- */
-        .dynamic-banner {
-            background: linear-gradient(135deg, var(--blue-spruce) 0%, #1a4d43 100%);
-            color: var(--white);
-            border-radius: 40px;
-            padding: 6rem;
-            margin: 6rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dynamic-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(156, 227, 248, 0.2) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .dynamic-banner h2 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            margin-bottom: 1rem;
-            max-width: 800px;
-        }
-
-        .dynamic-banner .banner-sub {
-            font-size: 1.15rem;
-            opacity: 0.7;
-            margin-bottom: 3rem;
-            max-width: 600px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4rem;
-        }
-
-        .feature-item h4 {
-            color: var(--frosted-blue);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-            font-weight: 800;
-        }
-
-        .feature-item p {
-            opacity: 0.8;
-        }
-
-        /* --- REVIEWS PLACEHOLDER --- */
-        .reviews-section {
-            margin: 6rem 0;
-        }
-
-        .reviews-section h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 3rem;
-        }
-
-        .reviews-placeholder {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 4rem;
+            padding-top: clamp(140px, 15vh, 200px);
+            padding-bottom: 80px;
             text-align: center;
-            opacity: 0.5;
-            border: 2px dashed rgba(0,0,0,0.08);
         }
 
-        /* --- CTA SECTION --- */
-        .cta-section {
-            text-align: center;
-            margin: 6rem 0 2rem;
+        #contact h1::after {
+            margin: 1rem auto 0;
         }
 
-        .cta-section h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 2rem;
-        }
-
-        /* --- SOLUTIONS PAGE --- */
-        .solutions-hero {
-            padding-top: 10rem;
-            padding-bottom: 4rem;
-        }
-
-        .solutions-hero h1 {
-            font-size: clamp(3rem, 7vw, 4.5rem);
-        }
-
-        .solutions-hero p {
-            font-size: 1.4rem;
-            max-width: 700px;
-            margin: 2rem 0;
-            font-weight: 500;
-            opacity: 0.7;
-        }
-
-        .btn-row {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* How it works steps */
-        .steps-section {
-            margin: 6rem 0;
-        }
-
-        .steps-section h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 0.5rem;
-        }
-
-        .steps-section .steps-sub {
-            opacity: 0.6;
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .step-card {
-            background: var(--white);
-            padding: 2.5rem 2rem;
-            border-radius: 24px;
-            border: 1px solid rgba(0,0,0,0.03);
-            position: relative;
-        }
-
-        .step-num {
-            width: 40px;
-            height: 40px;
-            background: var(--frosted-blue);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1rem;
-            color: var(--shadow-grey);
-            margin-bottom: 1.5rem;
-        }
-
-        .step-card h4 {
-            font-weight: 800;
-            font-style: italic;
-            font-size: 1.15rem;
-            color: var(--blue-spruce);
-            margin-bottom: 0.75rem;
-        }
-
-        .step-card p {
-            font-size: 0.95rem;
-        }
-
-        /* --- PRICING --- */
-        .pricing-section {
-            margin: 6rem 0;
-        }
-
-        .pricing-section > h2 {
-            text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
-        }
-
-        .pricing-sub {
-            text-align: center;
-            opacity: 0.6;
-            margin-top: 1rem;
-            margin-bottom: 4rem;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            align-items: flex-start;
-        }
-
-        .tier-card {
-            background: var(--white);
-            padding: 3rem 2rem;
-            border-radius: 32px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
-            transition: all 0.3s ease;
-        }
-
-        .tier-card:hover { transform: translateY(-5px); }
-
-        .tier-card.featured {
-            background: var(--shadow-grey);
-            color: var(--white);
-            transform: scale(1.05);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
-
-        .tier-card.featured:hover { transform: scale(1.05) translateY(-5px); }
-
-        .tier-card.featured h3,
-        .tier-card.featured .tier-price {
-            color: var(--frosted-blue);
-        }
-
-        .tier-label {
-            font-weight: 800;
-            font-style: italic;
-            color: var(--blue-spruce);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tier-card.featured .tier-label {
-            color: var(--frosted-blue);
-        }
-
-        .tier-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .tier-tagline {
-            font-size: 0.9rem;
-            opacity: 0.6;
-            margin-bottom: 1rem;
-        }
-
-        .tier-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            font-style: italic;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.25rem;
-        }
-
-        .tier-timeline {
-            font-size: 0.9rem;
-            opacity: 0.6;
-            margin-bottom: 2rem;
-        }
-
-        .tier-features {
-            list-style: none;
-            margin: 0 0 2rem 0;
-            flex: 1;
-        }
-
-        .tier-features li {
-            padding: 0.75rem 0;
-            font-size: 0.9rem;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .tier-card.featured .tier-features li {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .tier-features li .check {
-            color: var(--blue-spruce);
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .tier-card.featured .tier-features li .check {
-            color: var(--frosted-blue);
-        }
-
-        .tier-features li .cross {
-            opacity: 0.25;
-            flex-shrink: 0;
-        }
-
-        /* --- WHO IS THIS FOR --- */
-        .audience-section {
-            margin: 6rem 0;
-        }
-
-        .audience-section h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 2rem;
-        }
-
-        .audience-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .audience-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 24px;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .audience-card p {
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        /* --- ABOUT & TEAM --- */
-        .about-hero {
-            padding-top: 10rem;
-        }
-
-        .about-hero h1 {
-            font-size: clamp(3rem, 7vw, 4.5rem);
-        }
-
-        .about-hero p {
-            font-size: 1.4rem;
-            max-width: 800px;
-            margin: 2rem 0;
-            font-weight: 500;
-            opacity: 0.7;
-        }
-
-        .team-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 6rem;
-        }
-
-        .member-box {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 24px;
-        }
-
-        .member-role {
-            font-weight: 800;
-            font-style: italic;
-            color: var(--blue-spruce);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .member-box h3 {
-            margin-bottom: 1rem;
-        }
-
-        .origin-block {
-            margin-top: 4rem;
-            background: var(--white);
-            border-radius: 24px;
-            padding: 3rem;
-            max-width: 700px;
-        }
-
-        .origin-block p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        /* --- CONTACT --- */
-        .contact-hero {
-            padding-top: 10rem;
-        }
-
-        .contact-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-        }
-
-        .contact-layout h1 {
-            font-size: clamp(3rem, 7vw, 4.5rem);
-        }
-
-        .contact-layout > div:first-child p {
-            font-size: 1.4rem;
-            margin: 2rem 0;
-            font-weight: 500;
-            opacity: 0.7;
-        }
-
-        .contact-email h4 {
-            font-style: italic;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-form {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 32px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--azure-mist);
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        textarea { min-height: 140px; resize: vertical; }
-
-        input:focus, textarea:focus { border-color: var(--frosted-blue); }
-
-        /* --- CASES --- */
-        .cases-hero {
-            text-align: center;
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-top: 10rem;
-        }
-
-        .cases-hero h1 {
-            font-size: 5rem;
-            opacity: 0.1;
-        }
-
-        .cases-hero p {
-            font-size: 1.2rem;
-            margin-top: -1rem;
-        }
-
-        /* --- CONSULT CTA CARD --- */
-        .consult-card {
-            background: var(--white);
-            border-radius: 32px;
-            padding: 4rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .consult-card p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
+        #contact p {
             margin-left: auto;
             margin-right: auto;
+            margin-bottom: 3rem;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            padding: 6rem 0 3rem 0;
-            margin-top: 4rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            font-weight: 500;
-            opacity: 0.5;
-            font-size: 0.9rem;
-        }
-
-        .footer-inner {
+        /* Founder specific cards */
+        .founder-card {
+            overflow: hidden;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .footer-links {
-            display: flex;
-            gap: 2rem;
+        .founder-image-container {
+            width: 100%;
+            aspect-ratio: 1920 / 1080;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(32, 106, 91, 0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
         }
 
-        .footer-links a {
-            color: inherit;
-            text-decoration: none;
-            transition: opacity 0.3s;
+        .founder-image-container img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .footer-links a:hover { opacity: 0.7; }
+        .founder-card:hover .founder-image-container img { transform: scale(1.05); }
 
-        /* --- MOBILE --- */
-        @media (max-width: 992px) {
-            .grid-3, .pricing-grid, .feature-grid, .team-section, .contact-layout, .audience-grid {
-                grid-template-columns: 1fr;
-            }
+        .founder-image-placeholder {
+            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            font-family: 'Plus Jakarta Sans', sans-serif; font-style: italic; font-weight: 700;
+            opacity: 0.2; text-transform: uppercase; letter-spacing: 2px;
+        }
 
-            .steps-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        /* --- Form Elements --- */
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        label { display: block; margin-bottom: 0.6rem; font-weight: 700; font-size: 0.8rem; color: var(--blue-spruce); text-transform: uppercase; }
+        input, select, textarea {
+            width: 100%; padding: 1.1rem; border-radius: 12px; border: 1.5px solid rgba(0,0,0,0.08);
+            background: white; font-size: 1rem; font-family: inherit; transition: all 0.2s; outline: none;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--frosted-blue); }
+        textarea { min-height: 180px; resize: vertical; }
 
-            .tier-card.featured { transform: none; }
-            .tier-card.featured:hover { transform: translateY(-5px); }
-            .dynamic-banner { padding: 3rem 2rem; border-radius: 24px; }
-            .dynamic-banner h2 { font-size: 2.5rem; }
-            .feature-grid { gap: 2rem; }
+        /* --- Concept Scan Tool Screens --- */
+        .screen { display: none; animation: enter 0.5s ease forwards; }
+        .screen.active { display: block; }
+        @keyframes enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .textarea-wrap { position: relative; }
+        .char-count { position: absolute; bottom: 14px; right: 18px; font-size: 0.75rem; opacity: 0.4; }
+        
+        .process-note { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.06); }
+        .steps-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+        .steps-list li { display: flex; gap: 16px; align-items: flex-start; }
+        .step-num { 
+            width: 32px; height: 32px; background: rgba(156, 227, 248, 0.3); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--blue-spruce); flex-shrink: 0;
+        }
 
+        /* --- Footer & Details --- */
+        .benefits-strip { background: var(--spruce-gradient); color: white; padding: 100px 0; margin: 100px 0; border-radius: 0; }
+        footer { background: #fff; padding: 6rem 0 3rem; border-top: 1px solid rgba(0,0,0,0.03); }
+
+        /* --- Responsive --- */
+        @media (max-width: 1100px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; gap: 4rem; }
+            .pricing-card.featured { transform: scale(1); }
+            .grid-3, .grid-2, .grid-4 { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-content { display: flex; justify-content: space-between; }
             .nav-links { display: none; }
-            .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: var(--nav-height);
-                left: 0;
-                right: 0;
-                background: var(--glass-bg);
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-                padding: 2rem;
-                gap: 1.5rem;
-                border-bottom: 1px solid rgba(255,255,255,0.3);
-            }
-
-            .hamburger { display: flex; }
-
-            section { padding: 8rem 0 4rem 0; }
-        }
-
-        @media (max-width: 600px) {
-            .steps-grid { grid-template-columns: 1fr; }
-            .hero h1, .solutions-hero h1, .about-hero h1, .contact-layout h1 { font-size: 2.8rem; }
-            .hero-cta-row { flex-direction: column; align-items: flex-start; }
+            section { padding-top: 160px; }
+            #contact.active { padding-top: 140px; padding-bottom: 80px; height: auto; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-blob blob-1"></div>
-    <div class="bg-blob blob-2"></div>
-
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="container nav-inner">
-            <a href="#" onclick="showPage('landing')" class="logo">anté</a>
-            <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
-            <div class="nav-links" id="navLinks">
-                <a href="#" id="link-solutions" onclick="showPage('solutions')">Solutions</a>
-                <a href="#" id="link-cases" onclick="showPage('cases')">Cases</a>
-                <a href="#" id="link-about" onclick="showPage('about')">About</a>
-                <a href="#" id="link-contact" onclick="showPage('contact')">Contact</a>
-                <a href="scan/" class="btn btn-accent" style="padding: 0.6rem 1.2rem; border-radius: 10px;">Free Audit</a>
+    <nav id="navbar">
+        <div class="container nav-content">
+            <div class="nav-left">
+                <a href="javascript:void(0)" class="logo" onclick="navigateTo('home')">anté</a>
+            </div>
+            <div class="nav-links">
+                <a href="javascript:void(0)" onclick="navigateTo('solutions')">Solutions</a>
+                <a href="javascript:void(0)" onclick="navigateTo('cases')">Cases</a>
+                <a href="javascript:void(0)" onclick="navigateTo('about')">About</a>
+                <a href="javascript:void(0)" onclick="navigateTo('contact')">Contact</a>
+            </div>
+            <div class="nav-right">
+                <a href="javascript:void(0)" class="btn btn-primary" style="padding: 0.7rem 1.8rem;" onclick="navigateTo('audit')">Get free audit</a>
             </div>
         </div>
     </nav>
 
-
-    <!-- ==================== LANDING PAGE ==================== -->
-    <div id="page-landing" class="page active">
-
-        <section class="hero container">
-            <h1>We turn vague ideas into validated concepts.</h1>
-            <p>We help SME's eliminate investment risk and move forward with total confidence by identifying the optimal solution: a product, service or system.</p>
-            <div class="hero-cta-row">
-                <a href="scan/" class="btn btn-primary">your idea/project - get free audit</a>
-                <span class="free-tag">Free concept audit</span>
-            </div>
-
-            <div class="social-proof">
-                <div class="social-proof-label">Trusted by firms across Belgium and the EU</div>
-                <div class="social-proof-logos">
-                    <div class="logo-placeholder"></div>
-                    <div class="logo-placeholder"></div>
-                    <div class="logo-placeholder"></div>
-                    <div class="logo-placeholder"></div>
+    <!-- LANDING PAGE -->
+    <section id="home" class="active">
+        <div class="container">
+            <div style="max-width: 950px;">
+                <h1 class="reveal visible">We turn vague ideas into <span class="highlight-text">validated</span> concepts.</h1>
+                <p class="reveal visible" style="font-size: 1.4rem; opacity: 0.6; margin-bottom: 4rem;">We help SME’s eliminate investment risk and move forward with total confidence by identifying the optimal solution: a product, service or system.</p>
+                <div class="reveal visible" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="navigateTo('audit')">Get free audit</button>
+                    <button class="btn btn-outline" onclick="navigateTo('contact')">Contact us</button>
                 </div>
             </div>
-        </section>
 
-        <section class="container">
-            <div class="phase-intro">
-                <div class="label">Our 3-phase system</div>
-                <h2>A fixed-price innovation sprint that delivers absolute certainty in exactly 21 business days.</h2>
-            </div>
-
-            <div class="grid-3">
-                <div class="modern-card">
-                    <div class="accent-bar"></div>
-                    <h3>3 visual concept directions</h3>
-                    <p>We translate stakeholder data into 3 fundamentally different scenarios to avoid tunnel vision and ensure all viable directions are considered.</p>
+            <div style="margin-top: 220px;">
+                <div class="reveal">
+                    <span style="font-weight: 700; color: var(--blue-spruce); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 1rem;">Our 3-phase system</span>
+                    <h2>A fixed-price sprint that delivers absolute certainty in exactly 21 business days.</h2>
                 </div>
-                <div class="modern-card">
-                    <div class="accent-bar"></div>
-                    <h3>The optimal solution</h3>
-                    <p>We identify the strongest concept through a validated, data-driven trade-off, providing the substantiated certainty required to move confidently into the development phase.</p>
-                </div>
-                <div class="modern-card">
-                    <div class="accent-bar"></div>
-                    <h3>Specific handover brief</h3>
-                    <p>We deliver a clear concept package and scope of requirements for a seamless handover, ensuring you enter the detailed engineering and development phase with total confidence.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="container">
-            <div class="dynamic-banner">
-                <h2>We ensure you build the right concept.</h2>
-                <p class="banner-sub">We don't build the concept. We ensure you build the right one.</p>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <h4>Ultimate risk reduction</h4>
-                        <p>A small investment, before the big commitment. Identify the winning concept first.</p>
+                <div class="grid-3" style="margin-top: 4rem;">
+                    <div class="glass-card reveal">
+                        <div style="color: var(--blue-spruce); font-family: 'Plus Jakarta Sans'; font-style: italic; font-weight: 800; font-size: 2.5rem; margin-bottom: 2rem;">01</div>
+                        <h3>3 visual concept directions</h3>
+                        <p class="text-muted">We translate stakeholder data into 3 fundamentally different scenarios to avoid tunnel vision and ensure all viable directions are considered.</p>
                     </div>
-                    <div class="feature-item">
-                        <h4>100% independent</h4>
-                        <p>We sell clarity, not engineering hours. Our only objective is your most profitable decision.</p>
+                    <div class="glass-card reveal">
+                        <div style="color: var(--blue-spruce); font-family: 'Plus Jakarta Sans'; font-style: italic; font-weight: 800; font-size: 2.5rem; margin-bottom: 2rem;">02</div>
+                        <h3>The optimal solution</h3>
+                        <p class="text-muted">We identify the strongest concept through a validated, data-driven trade-off, providing substantiated certainty for the development phase.</p>
                     </div>
-                    <div class="feature-item">
-                        <h4>Fast & focused</h4>
-                        <p>Forget months of vague consultancy. Get absolute certainty in less than 4 weeks.</p>
+                    <div class="glass-card reveal">
+                        <div style="color: var(--blue-spruce); font-family: 'Plus Jakarta Sans'; font-style: italic; font-weight: 800; font-size: 2.5rem; margin-bottom: 2rem;">03</div>
+                        <h3>Specific handover brief</h3>
+                        <p class="text-muted">We deliver a clear concept package and scope of requirements for a seamless handover, ensuring you enter engineering with total confidence.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="container reviews-section">
-            <h2>What our clients say.</h2>
-            <div class="reviews-placeholder">
-                <p>Client reviews coming soon.</p>
-            </div>
-        </section>
-
-        <section class="container cta-section">
-            <h2>Ready to start building with absolute certainty?</h2>
-            <a href="#" onclick="showPage('contact')" class="btn btn-primary">Get in touch</a>
-        </section>
-    </div>
-
-
-    <!-- ==================== SOLUTIONS PAGE ==================== -->
-    <div id="page-solutions" class="page">
-
-        <section class="container solutions-hero">
-            <h1>Decide before you build.</h1>
-            <p>Turn your vague idea into a concrete concept with our 21-day sprint to de-risk your next investment.</p>
-            <div class="btn-row">
-                <a href="#" onclick="showPage('contact')" class="btn btn-primary">get in touch</a>
-                <a href="scan/" class="btn btn-outline">free audit</a>
-            </div>
-        </section>
-
-        <!-- Problem / Fix -->
-        <section class="container">
-            <div class="grid-3" style="grid-template-columns: 1fr 1fr 1fr;">
-                <div class="modern-card">
-                    <h3>The problem</h3>
-                    <p>The decision right before a major investment is your most critical point. Without a sharp concept, teams get stuck and opinions clash. This leads to two costly outcomes: investing in the wrong direction or hesitating to decide. Both cost you money.</p>
-                </div>
-                <div class="modern-card">
-                    <h3>The fix</h3>
-                    <p>Anté builds the strategic foundation your idea is missing. We create a decision framework based on stakeholder data and translate this into visual concepts. We don't design on assumptions, we build on certainty. We secure your next step.</p>
-                </div>
-                <div class="modern-card" style="background: var(--frosted-blue);">
-                    <h3 style="color: var(--shadow-grey);">Our promise</h3>
-                    <p style="color: var(--shadow-grey); opacity: 1;">Proven framework. Custom result. We replace gut feeling with a data-driven trade-off.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- How it works -->
-        <section class="container steps-section">
-            <h2>How it works</h2>
-            <p class="steps-sub">Proven framework. Custom result.</p>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-num">1</div>
-                    <h4>Align</h4>
-                    <p>We synchronise all stakeholders and define strict concept boundaries.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">2</div>
-                    <h4>Explore</h4>
-                    <p>We translate the strategy into multiple visual directions and functional concepts.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">3</div>
-                    <h4>Validate</h4>
-                    <p>Our Anté-tool replaces gut feeling with a data-driven trade-off to identify the winning concept.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">4</div>
-                    <h4>Handoff</h4>
-                    <p>You receive a comprehensive blueprint to start the development phase with absolute certainty.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing -->
-        <section class="container pricing-section">
-            <h2>Choose your Sprint</h2>
-            <p class="pricing-sub">3 tiers. 1 goal. Certainty before you build.</p>
-
-            <div class="pricing-grid">
-                <!-- Alignment Sprint -->
-                <div class="tier-card">
-                    <div class="tier-label">Focus: Definition</div>
-                    <h3>Alignment Sprint</h3>
-                    <div class="tier-tagline">Quick feasibility check for early-stage ideas.</div>
-                    <div class="tier-price">€6.500</div>
-                    <div class="tier-timeline">Timeline: +/- 2 weeks</div>
-                    <ul class="tier-features">
-                        <li><span class="check">✓</span> 4 Stakeholder interviews (Internal)</li>
-                        <li><span class="check">✓</span> Leverage points system map</li>
-                        <li><span class="check">✓</span> 2D concept sketches</li>
-                        <li><span class="cross">-</span> Technical feasibility scan</li>
-                        <li><span class="cross">-</span> Online client platform</li>
-                        <li><span class="cross">-</span> 3D photorealistic renders</li>
-                        <li><span class="cross">-</span> Data-driven trade-off matrix</li>
-                        <li><span class="cross">-</span> Professional handover briefing</li>
-                    </ul>
-                    <a href="#" onclick="showPage('contact')" class="btn btn-outline" style="text-align: center;">Get started</a>
-                </div>
-
-                <!-- Decision Sprint (featured) -->
-                <div class="tier-card featured">
-                    <div class="tier-label">Focus: Validation</div>
-                    <h3>Decision Sprint</h3>
-                    <div class="tier-tagline">Our core product. 3 directions, 1 winning choice.</div>
-                    <div class="tier-price">€9.500</div>
-                    <div class="tier-timeline">Timeline: 21 days (our standard)</div>
-                    <ul class="tier-features">
-                        <li><span class="check">✓</span> 8 Stakeholder interviews (Market & internal)</li>
-                        <li><span class="check">✓</span> Leverage points system map</li>
-                        <li><span class="check">✓</span> 2D concept sketches</li>
-                        <li><span class="check">✓</span> Technical feasibility scan (basic check)</li>
-                        <li><span class="check">✓</span> Online client platform</li>
-                        <li><span class="check">✓</span> 3D photorealistic renders (3 directions)</li>
-                        <li><span class="check">✓</span> Data-driven trade-off matrix</li>
-                        <li><span class="check">✓</span> Professional handover briefing</li>
-                    </ul>
-                    <a href="#" onclick="showPage('contact')" class="btn btn-accent" style="text-align: center;">Select Decision Sprint</a>
-                </div>
-
-                <!-- Innovation Sprint -->
-                <div class="tier-card">
-                    <div class="tier-label">Focus: Implementation</div>
-                    <h3>Innovation Sprint</h3>
-                    <div class="tier-tagline">Deep de-risking for complex, high-stakes systems.</div>
-                    <div class="tier-price">€17.500</div>
-                    <div class="tier-timeline">Timeline: +/- 8 weeks</div>
-                    <ul class="tier-features">
-                        <li><span class="check">✓</span> 12+ Stakeholder interviews (Full ecosystem)</li>
-                        <li><span class="check">✓</span> Everything in Decision Sprint</li>
-                        <li><span class="check">✓</span> Technical feasibility scan (detailed check)</li>
-                        <li><span class="check">✓</span> 3D photorealistic renders (5+ directions)</li>
-                        <li><span class="check">✓</span> External user feedback</li>
-                        <li><span class="check">✓</span> Product animation / video</li>
-                        <li><span class="check">✓</span> Full implementation roadmap</li>
-                    </ul>
-                    <a href="#" onclick="showPage('contact')" class="btn btn-outline" style="text-align: center;">Get started</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Consult CTA -->
-        <section class="container">
-            <div class="consult-card">
-                <p>Unsure which sprint fits your idea? Let's find out in 30 minutes. No pressure, just an honest look at your current situation and exactly what you need to move forward.</p>
-                <a href="#" onclick="showPage('contact')" class="btn btn-outline">schedule a call</a>
-            </div>
-        </section>
-
-        <!-- Who is this for -->
-        <section class="container audience-section">
-            <h2>Who is this for?</h2>
-            <div class="audience-grid">
-                <div class="audience-card">
-                    <p>SME's that prioritise <strong>certainty, validation and speed</strong> - and want a proven framework before committing resources.</p>
-                </div>
-                <div class="audience-card">
-                    <p>Companies that want a <strong>validated concept before they start building</strong> - so every euro invested goes in the right direction.</p>
-                </div>
-                <div class="audience-card">
-                    <p>Teams that want to <strong>end internal debates</strong> and commit with confidence using visual proof and data-driven decisions.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Reviews -->
-        <section class="container reviews-section">
-            <h2>What our clients say.</h2>
-            <div class="reviews-placeholder">
-                <p>Client reviews coming soon.</p>
-            </div>
-        </section>
-
-        <!-- Bottom CTA -->
-        <section class="container cta-section">
-            <h2>Ready for absolute certainty?</h2>
-            <p style="opacity: 0.7; margin-bottom: 2rem; font-size: 1.1rem;">Let's discuss how to translate your idea into a validated concept.</p>
-            <div class="btn-row" style="justify-content: center;">
-                <a href="#" onclick="showPage('contact')" class="btn btn-primary">get in touch</a>
-                <a href="scan/" class="btn btn-outline">free audit</a>
-            </div>
-        </section>
-    </div>
-
-
-    <!-- ==================== ABOUT PAGE ==================== -->
-    <div id="page-about" class="page">
-        <section class="container about-hero">
-            <h1>Anté creates certainty in innovation</h1>
-            <p>We are a young team on a mission to make innovation radically more validated and efficient. We ensure you know exactly what you are building before the first expensive engineering hour begins.</p>
-
-            <div class="btn-row" style="margin-top: 2rem;">
-                <a href="#" onclick="showPage('contact')" class="btn btn-primary">Contact us</a>
-                <a href="#teamSection" class="btn btn-outline" onclick="document.getElementById('teamSection').scrollIntoView({behavior:'smooth'})">Explore the team</a>
-            </div>
-
-            <div id="teamSection" style="margin-top: 6rem;">
-                <div class="phase-intro" style="margin-bottom: 2rem;">
-                    <div class="label">The team</div>
-                </div>
-
-                <div class="origin-block" style="margin-bottom: 3rem;">
-                    <p>Anté was founded by two product developers who saw a recurring problem: great ideas failing because of a weak foundation.</p>
-                </div>
-
-                <div class="team-section" style="margin-top: 0;">
-                    <div class="member-box">
-                        <div class="member-role">Justin Lefebvre - Co-founder</div>
-                        <h3>Visual Reality</h3>
-                        <p style="margin-top: 1rem;">Justin is the bridge between abstract strategy and visual reality. With his conceptual thinking he translates abstract ideas and human needs into visual concepts.</p>
+        <div class="benefits-strip reveal">
+            <div class="container">
+                <h2 style="margin-bottom: 6rem; color: white;">We ensure you build the <span style="color: var(--frosted-blue)">right</span> concept.</h2>
+                <div class="grid-3">
+                    <div class="glass-card reveal" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: white;">
+                        <h4 class="heading-font" style="margin-bottom: 1.5rem; font-size: 1.4rem; color: var(--frosted-blue);">Ultimate risk reduction</h4>
+                        <p style="opacity: 0.8; font-size: 0.95rem;">A small investment before the big commitment. Identify the winning concept first before spending thousands on detailed engineering.</p>
                     </div>
-                    <div class="member-box">
-                        <div class="member-role">Jolan Dijkmans - Co-founder</div>
-                        <h3>Technical Logic</h3>
-                        <p style="margin-top: 1rem;">Jolan brings technical logic and strategic depth. He ensures every concept is technically feasible and deeply rooted in data-driven proof.</p>
+                    <div class="glass-card reveal" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: white;">
+                        <h4 class="heading-font" style="margin-bottom: 1.5rem; font-size: 1.4rem; color: var(--frosted-blue);">100% independent</h4>
+                        <p style="opacity: 0.8; font-size: 0.95rem;">We sell clarity, not engineering hours. Our only objective is your most profitable decision, not a long-term development contract.</p>
+                    </div>
+                    <div class="glass-card reveal" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: white;">
+                        <h4 class="heading-font" style="margin-bottom: 1.5rem; font-size: 1.4rem; color: var(--frosted-blue);">Fast & focused</h4>
+                        <p style="opacity: 0.8; font-size: 0.95rem;">Forget months of vague consultancy. Get absolute certainty and a visual roadmap in exactly 21 business days.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS PAGE -->
+    <section id="solutions">
+        <div class="container">
+            <div class="reveal visible">
+                <h1>Decide before you build.</h1>
+                <p style="font-size: 1.4rem; opacity: 0.6; margin-bottom: 4rem;">Turn your vague idea into a concrete concept with our 21-day sprint to de-risk your next investment.</p>
+                <div style="display: flex; gap: 1.5rem;">
+                    <button class="btn btn-primary" onclick="navigateTo('audit')">Get free audit</button>
+                    <button class="btn btn-outline" onclick="navigateTo('contact')">Get in touch</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-strip reveal">
+            <div class="container">
+                <div class="grid-2">
+                    <div class="glass-card reveal" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: white;">
+                        <h4 class="heading-font" style="margin-bottom: 1.5rem; font-size: 1.4rem; color: var(--frosted-blue);">The problem</h4>
+                        <p style="opacity: 0.85; font-size: 0.95rem;">The decision right before a major investment is your most critical point. Without a sharp concept, teams get stuck and opinions clash. This leads to two costly outcomes: investing in the wrong direction or hesitating to decide. <strong>Both cost you money.</strong></p>
+                    </div>
+                    <div class="glass-card reveal" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: white;">
+                        <h4 class="heading-font" style="margin-bottom: 1.5rem; font-size: 1.4rem; color: var(--frosted-blue);">The fix</h4>
+                        <p style="opacity: 0.85; font-size: 0.95rem;">Anté builds the strategic foundation your idea is missing. We create a decision framework based on stakeholder data and translate this into visual concepts. We don’t design on assumptions, we build on certainty. <strong>We secure your next step.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="reveal" style="margin-bottom: 4rem; margin-top: 120px;">
+                <span style="font-weight: 700; color: var(--blue-spruce); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 1rem;">How it works</span>
+                <h2>Proven framework. Custom result.</h2>
+                <div class="grid-4" style="margin-top: 4rem; gap: 2rem;">
+                    <div class="glass-card reveal" style="padding: 2.5rem;">
+                        <div style="color: var(--blue-spruce); font-family: 'Plus Jakarta Sans'; font-style: italic; font-weight: 800; font-size: 2rem; margin-bottom: 1.5rem;">01</div>
+                        <h4 class="heading-font" style="font-size: 1.3rem; margin-bottom: 1rem; color: black;">Align</h4>
+                        <p style="font-size: 0.9rem; opacity: 0.75;">We synchronise all stakeholders and define strict concept boundaries.</p>
+                    </div>
+                    <div class="glass-card reveal" style="padding: 2.5rem;">
+                        <div style="color: var(--blue-spruce); font-family: 'Plus Jakarta Sans'; font-style: italic; font-weight: 800; font-size: 2rem; margin-bottom: 1.5rem;">02</div>
+                        <h4 class="heading-font" style="font-size: 1.3rem; margin-bottom: 1rem; color: black;">Explore</h4>
+                        <p style="font-size: 0.9rem; opacity: 0.75;">We translate strategy into multiple visual directions and functional concepts.</p>
+                    </div>
+                    <div class="glass-card reveal" style="padding: 2.5rem;">
+                        <div style="color: var(--blue-spruce); font-family: 'Plus Jakarta Sans'; font-style: italic; font-weight: 800; font-size: 2rem; margin-bottom: 1.5rem;">03</div>
+                        <h4 class="heading-font" style="font-size: 1.3rem; margin-bottom: 1rem; color: black;">Validate</h4>
+                        <p style="font-size: 0.9rem; opacity: 0.75;">Our Anté-tool replaces gut feeling with a data-driven trade-off matrix to identify the winning concept.</p>
+                    </div>
+                    <div class="glass-card reveal" style="padding: 2.5rem;">
+                        <div style="color: var(--blue-spruce); font-family: 'Plus Jakarta Sans'; font-style: italic; font-weight: 800; font-size: 2rem; margin-bottom: 1.5rem;">04</div>
+                        <h4 class="heading-font" style="font-size: 1.3rem; margin-bottom: 1rem; color: black;">Handoff</h4>
+                        <p style="font-size: 0.9rem; opacity: 0.75;">Receive a comprehensive blueprint to start the development phase with absolute certainty.</p>
                     </div>
                 </div>
             </div>
 
-            <div style="margin-top: 6rem; text-align: center;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Ready for total confidence?</h2>
-                <a href="#" onclick="showPage('contact')" class="btn btn-primary">Get in touch</a>
-            </div>
-        </section>
-    </div>
+            <div class="pricing-section reveal" style="margin-top: 12rem;">
+                <div style="text-align: left; margin-bottom: 6rem;">
+                    <h2>Choose your sprint</h2>
+                    <p class="text-muted">3 tiers. 1 goal. Certainty before you build.</p>
+                </div>
 
+                <div class="pricing-grid">
+                    <!-- Alignment Sprint -->
+                    <div class="pricing-card reveal">
+                        <h3 class="tier-title">Alignment Sprint</h3>
+                        <p class="tier-price">€6.500</p>
+                        <p class="tier-focus">Focus: Definition</p>
+                        <ul class="feature-list">
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Timeline: +/- 2 weeks</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 4 interviews (Internal)</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Leverage points system map</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 2D concept sketches</li>
+                            <li class="feature-item"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Technical feasibility scan</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Online client platform access</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> 3D photorealistic renders</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Data-driven trade-off matrix</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Professional handover briefing</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> External user feedback</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Product animation / video</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Full implementation roadmap</li>
+                        </ul>
+                        <button class="show-more-btn" onclick="toggleFeatures(this)">Show more</button>
+                        <button class="btn btn-outline" onclick="navigateTo('contact')">Select Sprint</button>
+                    </div>
 
-    <!-- ==================== CONTACT PAGE ==================== -->
-    <div id="page-contact" class="page">
-        <section class="container contact-hero">
-            <div class="contact-layout">
-                <div>
-                    <h1>Ready for total confidence?</h1>
-                    <p>Let's discuss how to translate your idea into a validated concept.</p>
+                    <!-- Decision Sprint -->
+                    <div class="pricing-card featured reveal">
+                        <div class="popular-badge">our most popular choice</div>
+                        <h3 class="tier-title">Decision Sprint</h3>
+                        <p class="tier-price">€9.500</p>
+                        <p class="tier-focus" style="color: var(--blue-spruce)">Focus: Validation</p>
+                        <ul class="feature-list">
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Timeline: 21 days (our standard)</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 8 stakeholder interviews (Market + internal)</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Leverage points system map</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 2D concept sketches</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Technical feasibility scan (basic check)</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Online client platform access</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 3D photorealistic renders (3 concept directions)</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Data-driven trade-off matrix</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Professional handover briefing</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> External user feedback</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Product animation / video</li>
+                            <li class="feature-item extra"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Full implementation roadmap</li>
+                        </ul>
+                        <button class="show-more-btn" onclick="toggleFeatures(this)">Show more</button>
+                        <button class="btn btn-primary" onclick="navigateTo('contact')">Select Sprint</button>
+                    </div>
 
-                    <div class="contact-email" style="margin-top: 4rem;">
-                        <h4>Email us</h4>
-                        <p><a href="mailto:hello@antedesign.be" style="color: var(--blue-spruce); text-decoration: none; font-weight: 600;">hello@antedesign.be</a></p>
+                    <!-- Innovation Sprint -->
+                    <div class="pricing-card reveal">
+                        <h3 class="tier-title">Innovation Sprint</h3>
+                        <p class="tier-price">€17.500</p>
+                        <p class="tier-focus">Focus: Implementation</p>
+                        <ul class="feature-list">
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Timeline: +/- 8 weeks</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 12+ interviews (full ecosystem)</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Leverage points system map</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 2D concept sketches</li>
+                            <li class="feature-item"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Technical feasibility scan (detailed check)</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Online client platform access</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 3D renders (5+ concept directions)</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Data-driven trade-off matrix</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Professional handover briefing</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> External user feedback</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Product animation / video</li>
+                            <li class="feature-item extra"><svg class="icon-check" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Full implementation roadmap</li>
+                        </ul>
+                        <button class="show-more-btn" onclick="toggleFeatures(this)">Show more</button>
+                        <button class="btn btn-outline" onclick="navigateTo('contact')">Select Sprint</button>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" placeholder="John Doe" id="contact-name">
+            </div>
+
+            <div class="glass-card reveal" style="margin-top: 8rem; text-align: center; border-color: var(--frosted-blue);">
+                <h2 class="no-line">Unsure which sprint fits your idea?</h2>
+                <p class="text-muted" style="margin: 2rem auto 3rem; font-size: 1.15rem; max-width: 45ch;">Let’s find out in 30 minutes. No pressure, just an honest look at your current situation and exactly what you need to move forward.</p>
+                <button class="btn btn-primary" onclick="navigateTo('contact')">Schedule a call</button>
+            </div>
+
+            <div class="reveal" style="margin-top: 120px;">
+                <span style="font-weight: 700; color: var(--blue-spruce); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 1rem;">Who is this for?</span>
+                <p style="font-size: 1.2rem; max-width: 950px; opacity: 0.7;">Our sprints work best for SME’s that prioritise certainty, validation and speed. You’re a fit if you want a validated concept before you start building. It is for you if you want to end internal debates and commit with confidence using visual proof and data-driven decisions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASES PAGE -->
+    <section id="cases">
+        <div class="container" style="text-align: center;">
+            <h1 class="reveal visible">Cases</h1>
+            <p class="reveal visible" style="text-align: center; margin: 0 auto 4rem; font-size: 1.4rem; opacity: 0.5;">coming soon!</p>
+            <button class="btn btn-outline reveal visible" onclick="navigateTo('home')">Back to home</button>
+        </div>
+    </section>
+
+    <!-- ABOUT PAGE -->
+    <section id="about">
+        <div class="container">
+            <div class="reveal visible" style="margin-bottom: 10rem;">
+                <h1>Anté creates certainty in innovation.</h1>
+                <p style="font-size: 1.4rem; opacity: 0.6; margin-bottom: 4rem;">We are a young team on a mission to make innovation radically more validated and efficient. We ensure you know exactly what you are building before the first expensive engineering hour begins.</p>
+                <div style="display: flex; gap: 1.5rem;">
+                    <button class="btn btn-primary" onclick="navigateTo('contact')">Contact us</button>
+                    <button class="btn btn-outline" onclick="scrollToFounders()">Explore the team</button>
+                </div>
+            </div>
+
+            <div class="reveal" style="margin-bottom: 6rem;" id="founders-section">
+                <h2>The founders</h2>
+                <p class="text-muted">Two product developers who saw a recurring problem: great ideas failing because of a weak foundation.</p>
+            </div>
+
+            <div class="grid-2 reveal">
+                <!-- Justin Lefebvre -->
+                <div class="glass-card reveal founder-card">
+                    <div class="founder-image-container">
+                        <div class="founder-image-placeholder">Justin Lefebvre</div>
+                    </div>
+                    <div>
+                        <h3>Justin Lefebvre</h3>
+                        <p style="color: var(--blue-spruce); font-weight: 700; margin-bottom: 1rem;">Co-founder</p>
+                        <p class="text-muted">Justin is the bridge between abstract strategy and visual reality. With his conceptual thinking he translates abstract ideas and human needs into visual concepts.</p>
+                    </div>
+                </div>
+                <!-- Jolan Dijkmans -->
+                <div class="glass-card reveal founder-card">
+                    <div class="founder-image-container">
+                        <div class="founder-image-placeholder">Jolan Dijkmans</div>
+                    </div>
+                    <div>
+                        <h3>Jolan Dijkmans</h3>
+                        <p style="color: var(--blue-spruce); font-weight: 700; margin-bottom: 1rem;">Co-founder</p>
+                        <p class="text-muted">Jolan brings technical logic and strategic depth. He ensures every concept is technically feasible and deeply rooted data-driven proof.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMPLE CONTACT PAGE -->
+    <section id="contact">
+        <div class="container">
+            <div class="reveal visible" style="margin-bottom: 4rem;">
+                <h1>Get in touch.</h1>
+                <p class="text-muted">Have a quick question or want to discuss a potential project? Send us a message.</p>
+            </div>
+
+            <div class="glass-card reveal" style="max-width: 800px; margin: 0 auto;">
+                <form id="simple-contact-form">
+                    <div class="grid-2" style="gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="john@company.com" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="john@company.com" id="contact-email">
+                        <label>Your Message</label>
+                        <textarea placeholder="How can we help you?"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea placeholder="Tell us about your project..." id="contact-message"></textarea>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FREE CONCEPT SCAN (AUDIT) PAGE -->
+    <section id="audit">
+        <div class="container" style="max-width: 800px; padding-top: 40px;">
+            <div class="screen active" id="screen-input">
+                <div class="reveal visible">
+                    <span class="highlight-text" style="font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 1rem;">Free Concept Scan</span>
+                    <h1>Paste your idea.<br><span class="highlight-text">We'll structure it.</span></h1>
+                    <p style="font-size: 1.1rem; opacity: 0.6; margin-bottom: 3rem;">Describe what you want to build or change. We'll analyse your concept, map three possible directions and surface the blind spots — delivered to your inbox within 24 hours.</p>
+                </div>
+
+                <div class="reveal visible">
+                    <div class="grid-2" style="gap: 1rem; margin-bottom: 1.5rem;">
+                        <select id="sector-select">
+                            <option value="" disabled selected>Industry</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="tech">Tech & Software</option>
+                            <option value="food">Food & Agriculture</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="services">B2B Services</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <select id="size-select">
+                            <option value="" disabled selected>Company size</option>
+                            <option value="1-25">1 – 25 employees</option>
+                            <option value="25-100">25 – 100 employees</option>
+                            <option value="100-250">100 – 250 employees</option>
+                            <option value="250+">250+ employees</option>
+                        </select>
                     </div>
-                    <button class="btn btn-primary" style="width: 100%;" onclick="sendContact()">Send Message</button>
+
+                    <div class="textarea-wrap">
+                        <textarea id="idea-input" placeholder="Describe your innovation idea, problem or ambition. Write it the way you'd explain it to a colleague — no perfect wording needed." oninput="updateCount()"></textarea>
+                        <div class="char-count"><span id="char-count">0</span> characters</div>
+                    </div>
+
+                    <button class="btn btn-primary" id="continue-btn" onclick="goToSubmit()" disabled style="margin-top: 2rem; width: 100%;">Continue →</button>
                 </div>
             </div>
-        </section>
-    </div>
 
+            <!-- Detail screens remain standard -->
+            <div class="screen" id="screen-submit">
+                <div style="font-size: 3rem; margin-bottom: 2rem;">📨</div>
+                <h2>Almost there.<br><span class="highlight-text">Where do we send it?</span></h2>
+                <p style="margin-bottom: 3rem; opacity: 0.6;">We'll review your concept and send you a structured analysis within 24 hours — including three possible directions and the blind spots in your current approach.</p>
 
-    <!-- ==================== CASES PAGE ==================== -->
-    <div id="page-cases" class="page">
-        <section class="container cases-hero">
-            <h1>COMING SOON</h1>
-            <p>We are currently documenting our most impactful sprints.</p>
-        </section>
-    </div>
+                <div class="grid-2" style="gap: 1rem; margin-bottom: 1rem;">
+                    <input class="input-field" type="text" id="name-input" placeholder="Your name">
+                    <input class="input-field" type="text" id="company-input" placeholder="Company name">
+                </div>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <input class="input-field" type="email" id="email-input" placeholder="Work email" style="flex: 1;">
+                    <button class="btn btn-primary" id="submit-btn" onclick="submitScan()" style="white-space: nowrap;">Send my scan →</button>
+                </div>
 
-
-    <!-- FOOTER -->
-    <div class="container">
-        <footer>
-            <div class="footer-inner">
-                <div>&copy; <script>document.write(new Date().getFullYear())</script> Anté. All rights reserved.</div>
-                <div class="footer-links">
-                    <a href="#">Officials</a>
-                    <a href="#" onclick="showPage('contact')">Contact</a>
-                    <a href="#">Legal</a>
+                <div class="process-note">
+                    <div style="font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.4; margin-bottom: 2rem;">How it works</div>
+                    <ul class="steps-list">
+                        <li><div class="step-num">1</div><div class="step-text"><strong>You describe your idea</strong> — in your own words, no perfect brief needed.</div></li>
+                        <li><div class="step-num">2</div><div class="step-text"><strong>We structure and analyse it</strong> — our team reviews your concept and identifies key gaps.</div></li>
+                        <li><div class="step-num">3</div><div class="step-text"><strong>You receive a PDF within 24 hours</strong> — with your idea restructured and concept directions.</div></li>
+                    </ul>
                 </div>
             </div>
-        </footer>
-    </div>
 
+            <div class="screen" id="screen-confirm">
+                <div style="text-align: center; padding: 4rem 0;">
+                    <div style="background: var(--blue-spruce); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2.5rem; color: white; font-size: 2rem;">✓</div>
+                    <h2>We're on it.</h2>
+                    <p style="font-size: 1.2rem; opacity: 0.6; margin-bottom: 3rem;">Your concept scan is being prepared. You'll receive a structured analysis in your inbox within 24 hours.</p>
+                    <div class="glass-card" style="padding: 2rem; text-align: left; max-width: 450px; margin: 0 auto;">
+                        <div style="display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                            <span style="opacity: 0.5;">Sent to</span><strong id="confirm-email">—</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding-top: 1rem;">
+                            <span style="opacity: 0.5;">Expected delivery</span><strong id="confirm-time">—</strong>
+                        </div>
+                    </div>
+                    <br><br>
+                    <button class="btn btn-outline" onclick="navigateTo('home')">Back to home</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4rem;">
+                <div style="flex: 1; min-width: 250px;">
+                    <a href="javascript:void(0)" class="logo" onclick="navigateTo('home')">anté</a>
+                    <p style="font-size: 0.95rem; margin-top: 1.5rem; color: #888;">From vague idea to validated concept</p>
+                </div>
+                <div style="display: flex; gap: 6rem;">
+                    <div>
+                        <p class="heading-font" style="font-size: 0.85rem; text-transform: uppercase; margin-bottom: 2rem; color: var(--blue-spruce); letter-spacing: 0.1em;">Sitemap</p>
+                        <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.95rem;">
+                            <a href="javascript:void(0)" onclick="navigateTo('solutions')" style="text-decoration: none; color: var(--shadow-grey); font-weight: 600; transition: color 0.3s;">Solutions</a>
+                            <a href="javascript:void(0)" onclick="navigateTo('cases')" style="text-decoration: none; color: var(--shadow-grey); font-weight: 600; transition: color 0.3s;">Cases</a>
+                            <a href="javascript:void(0)" onclick="navigateTo('about')" style="text-decoration: none; color: var(--shadow-grey); font-weight: 600; transition: color 0.3s;">About</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 6rem; padding-top: 2.5rem; border-top: 1px solid rgba(0,0,0,0.03); font-size: 0.85rem; color: #bbb;">
+                © <span id="year"></span> Anté. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
     <script>
-        /* ===== PAGE NAVIGATION ===== */
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-            document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
-
-            var target = document.getElementById('page-' + pageId);
-            if (target) {
+        // NAVIGATION LOGIC
+        function navigateTo(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(id);
+            if(target) {
                 target.classList.add('active');
-                var link = document.getElementById('link-' + pageId);
-                if (link) link.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Reset reveals on navigation
+                setTimeout(() => {
+                    document.querySelectorAll('.reveal').forEach(el => el.classList.remove('visible'));
+                    // Force top-most items to be visible
+                    const firstElements = target.querySelectorAll('.reveal');
+                    if(firstElements.length > 0) {
+                        target.querySelector('.reveal')?.classList.add('visible');
+                    }
+                    revealElements();
+                }, 50);
+                if (id === 'audit') showScanScreen('screen-input');
+            }
+        }
+
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.pageYOffset > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+            revealElements();
+        };
+
+        function revealElements() {
+            const reveals = document.querySelectorAll('.reveal:not(.visible)');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 60) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        // SCROLL TO FOUNDERS
+        function scrollToFounders() {
+            const foundersSec = document.getElementById('founders-section');
+            foundersSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // TOGGLE PRICE FEATURES
+        function toggleFeatures(btn) {
+            const card = btn.closest('.pricing-card');
+            const extras = card.querySelectorAll('.feature-item.extra');
+            const isShowing = extras[0].classList.contains('show');
+            
+            extras.forEach(item => {
+                if (isShowing) {
+                    item.classList.remove('show');
+                } else {
+                    item.classList.add('show');
+                }
+            });
+
+            btn.textContent = isShowing ? 'Show more' : 'Show less';
+        }
+
+        window.onload = () => {
+            document.getElementById('year').innerText = new Date().getFullYear();
+            revealElements();
+        };
+
+        // SCAN TOOL LOGIC
+        const FORM_CONFIG = {
+            url: 'https://docs.google.com/forms/d/e/1FAIpQLSclY-3cHDap2LK5cz92tsqzlNXj7Zci77TKQqDOdmON_4s0Cg/formResponse',
+            fields: {
+                name: 'entry.2096941858',
+                company: 'entry.1458090262',
+                email: 'entry.1516891937',
+                sector: 'entry.1857077440',
+                companySize: 'entry.76066832',
+                idea: 'entry.1220859788',
+                timestamp: 'entry.432859804'
+            }
+        };
+
+        function updateCount() {
+            const len = document.getElementById('idea-input').value.length;
+            document.getElementById('char-count').innerText = len;
+            document.getElementById('continue-btn').disabled = len < 30;
+        }
+
+        function goToSubmit() {
+            if (document.getElementById('idea-input').value.trim().length >= 30) {
+                showScanScreen('screen-submit');
+            }
+        }
+
+        function submitScan() {
+            const email = document.getElementById('email-input').value.trim();
+            const name = document.getElementById('name-input').value.trim();
+            const company = document.getElementById('company-input').value.trim();
+
+            if (!email || !email.includes('@')) {
+                document.getElementById('email-input').style.borderColor = '#c9372c';
+                return;
             }
 
-            // Close mobile menu
-            document.getElementById('navLinks').classList.remove('open');
+            const data = {
+                name: name,
+                company: company,
+                email: email,
+                sector: document.getElementById('sector-select').value,
+                companySize: document.getElementById('size-select').value,
+                idea: document.getElementById('idea-input').value.trim(),
+                timestamp: new Date().toISOString()
+            };
 
+            const fd = new FormData();
+            Object.keys(FORM_CONFIG.fields).forEach(k => fd.append(FORM_CONFIG.fields[k], data[k] || ""));
+            fetch(FORM_CONFIG.url, { method: 'POST', body: fd, mode: 'no-cors' });
+
+            document.getElementById('confirm-email').innerText = email;
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('confirm-time').innerText = tomorrow.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+            showScanScreen('screen-confirm');
+        }
+
+        function showScanScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Update hash
-            if (pageId !== 'landing') {
-                history.replaceState(null, '', '#' + pageId);
-            } else {
-                history.replaceState(null, '', window.location.pathname);
-            }
         }
-
-        /* ===== MOBILE MENU ===== */
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('open');
-        }
-
-        /* ===== CONTACT FORM (placeholder) ===== */
-        function sendContact() {
-            var name = document.getElementById('contact-name').value.trim();
-            var email = document.getElementById('contact-email').value.trim();
-            var message = document.getElementById('contact-message').value.trim();
-
-            if (!name || !email || !message) {
-                alert('Please fill in all fields.');
-                return;
-            }
-            if (!email.includes('@')) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-
-            // TODO: Hook up to Google Forms or other backend
-            alert('Thank you! We\'ll get back to you within 24 hours.');
-        }
-
-        /* ===== HASH ROUTING ===== */
-        window.addEventListener('load', function() {
-            var hash = window.location.hash.replace('#', '');
-            if (hash && ['solutions', 'cases', 'about', 'contact'].indexOf(hash) !== -1) {
-                showPage(hash);
-            }
-        });
     </script>
 </body>
 </html>
