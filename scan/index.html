@@ -1,550 +1,556 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anté — Free Concept Scan</title>
-<meta name="description" content="Describe your innovation idea and receive a structured analysis within 24 hours.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
-<style>
-:root {
-    --shadow-grey: #28292B;
-    --azure-mist: #F0FDFF;
-    --frosted-blue: #9CE3F8;
-    --blue-spruce: #206A5B;
-    --white: #FFFFFF;
-    --green: #22845e;
-    --error: #c9372c;
-}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Get a free concept audit from Anté — tell us about your idea and we'll respond within one working day.">
+  <title>Anté — Free Concept Audit</title>
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--azure-mist);
-    color: var(--shadow-grey);
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.6;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700;1,800&family=JetBrains+Mono:wght@400;500&display=swap">
 
-.page { max-width: 720px; margin: 0 auto; padding: 0 24px; min-height: 100vh; }
+  <style>
+    /* ============================================================
+       TOKENS — mirror shared.css exactly
+       ============================================================ */
+    :root {
+      --shadow:        #28292B;
+      --shadow-soft:   #3a3b3d;
+      --azure:         #F0FDFF;
+      --azure-deep:    #E4F8FB;
+      --frosted:       #9CE3F8;
+      --frosted-soft:  #C9EEF9;
+      --spruce:        #206A5B;
+      --spruce-ink:    #18514A;
+      --spruce-tint:   #E8F1EE;
+      --white:         #FFFFFF;
+      --rule:          rgba(40,41,43,0.12);
+      --rule-strong:   rgba(40,41,43,0.24);
+      --display: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --mono:    'JetBrains Mono', ui-monospace, monospace;
+      --radius-btn:  12px;
+      --radius-card: 24px;
+    }
 
-/* NAV */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-.brand {
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: var(--shadow-grey);
-    text-decoration: none;
-    font-style: italic;
-    letter-spacing: -2px;
-}
-.nav-tag {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--blue-spruce);
-    padding: 6px 14px;
-    background: rgba(156, 227, 248, 0.3);
-    border-radius: 8px;
-}
+    *, *::before, *::after { box-sizing: border-box; }
 
-/* SCREENS */
-.screen { display: none; padding: 64px 0 80px; animation: enter 0.5s ease forwards; }
-.screen.active { display: block; }
-@keyframes enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    html, body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--display);
+      background: var(--azure);
+      color: var(--shadow);
+      -webkit-font-smoothing: antialiased;
+    }
 
-/* TYPOGRAPHY */
-h1 {
-    font-size: clamp(2.5rem, 5.5vw, 3.5rem);
-    font-weight: 800;
-    font-style: italic;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    margin-bottom: 20px;
-}
-h1 .accent { color: var(--blue-spruce); }
-h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-    font-weight: 800;
-    font-style: italic;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    margin-bottom: 16px;
-}
-h2 .accent { color: var(--blue-spruce); }
-.subtitle {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    opacity: 0.7;
-    max-width: 520px;
-}
+    a { color: inherit; text-decoration: none; }
+    p { margin: 0; }
+    h1, h2, h3 {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin: 0;
+    }
 
-/* FORM ELEMENTS */
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 40px;
-}
-select {
-    width: 100%;
-    padding: 14px 16px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--shadow-grey);
-    background: var(--white);
-    border: 1.5px solid rgba(0,0,0,0.08);
-    border-radius: 12px;
-    cursor: pointer;
-    outline: none;
-    -webkit-appearance: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2328292B' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    transition: border-color 0.2s;
-}
-select:focus { border-color: var(--frosted-blue); }
+    /* ============================================================
+       NAV
+       ============================================================ */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px clamp(20px, 4vw, 48px);
+      background: var(--spruce);
+      border-bottom: 1px solid rgba(240,253,255,0.12);
+    }
 
-.textarea-wrap { margin-top: 16px; position: relative; }
-textarea {
-    width: 100%;
-    min-height: 180px;
-    padding: 20px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--shadow-grey);
-    background: var(--white);
-    border: 1.5px solid rgba(0,0,0,0.08);
-    border-radius: 12px;
-    resize: vertical;
-    outline: none;
-    transition: border-color 0.2s;
-}
-textarea:focus { border-color: var(--frosted-blue); }
-textarea::placeholder { color: var(--shadow-grey); opacity: 0.35; }
-.char-count {
-    position: absolute;
-    bottom: 14px;
-    right: 18px;
-    font-size: 0.75rem;
-    opacity: 0.4;
-}
+    .wordmark {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 26px;
+      color: var(--azure);
+      line-height: 1;
+    }
 
-/* BUTTONS */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    text-decoration: none;
-}
-.btn-primary {
-    background: var(--blue-spruce);
-    color: var(--white);
-    padding: 16px 36px;
-    margin-top: 32px;
-    box-shadow: 0 10px 20px rgba(32, 106, 91, 0.2);
-}
-.btn-primary:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 15px 30px rgba(32, 106, 91, 0.3);
-}
-.btn-primary:disabled {
-    opacity: 0.25;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
-}
-.btn-accent {
-    background: var(--frosted-blue);
-    color: var(--shadow-grey);
-    padding: 16px 36px;
-}
-.btn-accent:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(156, 227, 248, 0.4);
-}
+    .nav__back {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(240,253,255,0.7);
+      transition: color 0.15s;
+    }
+    .nav__back:hover { color: var(--frosted); }
 
-/* SUBMIT SCREEN */
-.submit-center {
-    min-height: 55vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.submit-icon {
-    width: 56px;
-    height: 56px;
-    background: rgba(156, 227, 248, 0.3);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-bottom: 32px;
-}
+    /* ============================================================
+       PAGE WRAPPER
+       ============================================================ */
+    .scan-wrap {
+      min-height: calc(100vh - 61px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px clamp(20px, 4vw, 40px);
+    }
 
-.input-field {
-    width: 100%;
-    padding: 14px 16px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--shadow-grey);
-    background: var(--white);
-    border: 1.5px solid rgba(0,0,0,0.08);
-    border-radius: 12px;
-    outline: none;
-    transition: border-color 0.2s;
-}
-.input-field:focus { border-color: var(--frosted-blue); }
-.input-field::placeholder { color: var(--shadow-grey); opacity: 0.35; }
+    .scan-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--rule);
+      padding: clamp(32px, 5vw, 56px);
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 4px 24px rgba(40,41,43,0.08);
+    }
 
-.name-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    max-width: 520px;
-    margin-bottom: 12px;
-}
-.email-form {
-    display: flex;
-    gap: 12px;
-    max-width: 520px;
-}
+    /* ============================================================
+       PROGRESS
+       ============================================================ */
+    .progress {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
 
-.process-note {
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 1px solid rgba(0,0,0,0.06);
-}
-.process-note-title {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    opacity: 0.4;
-    margin-bottom: 20px;
-}
-.steps-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-.steps-list li {
-    display: grid;
-    grid-template-columns: 36px 1fr;
-    gap: 16px;
-    align-items: start;
-}
-.step-num {
-    width: 36px;
-    height: 36px;
-    background: rgba(156, 227, 248, 0.3);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: var(--blue-spruce);
-    flex-shrink: 0;
-}
-.step-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    opacity: 0.7;
-    padding-top: 7px;
-}
-.step-text strong { color: var(--shadow-grey); font-weight: 600; opacity: 1; }
+    .progress__dot {
+      height: 4px;
+      flex: 1;
+      border-radius: 2px;
+      background: var(--rule);
+      transition: background 0.3s;
+    }
 
-/* CONFIRMATION SCREEN */
-.confirm-center {
-    min-height: 55vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-.confirm-icon {
-    width: 64px;
-    height: 64px;
-    background: var(--blue-spruce);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    color: var(--white);
-    margin-bottom: 32px;
-}
-.confirm-center .subtitle {
-    max-width: 440px;
-    margin: 0 auto 32px;
-}
-.confirm-detail {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 24px 32px;
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: left;
-}
-.confirm-detail-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    font-size: 0.9rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-.confirm-detail-row:last-child { border-bottom: none; }
-.confirm-detail-label { opacity: 0.5; }
-.confirm-detail-value { font-weight: 700; }
+    .progress__dot.active  { background: var(--spruce); }
+    .progress__dot.done    { background: var(--frosted); }
 
-.footer {
-    padding: 32px 0;
-    border-top: 1px solid rgba(0,0,0,0.06);
-    font-size: 0.8rem;
-    opacity: 0.5;
-    text-align: center;
-}
-.footer a {
-    color: var(--blue-spruce);
-    font-weight: 700;
-    text-decoration: none;
-    font-style: italic;
-}
+    /* ============================================================
+       SCREENS
+       ============================================================ */
+    .screen { display: none; }
+    .screen.active { display: block; }
 
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    .form-row { grid-template-columns: 1fr; }
-    .name-row { grid-template-columns: 1fr; }
-    .email-form { flex-direction: column; }
-    h1 { font-size: 2.2rem; }
-}
-</style>
+    .screen__eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--spruce);
+      margin-bottom: 12px;
+    }
+
+    .screen__title {
+      font-size: clamp(28px, 5vw, 40px);
+      color: var(--spruce);
+      margin-bottom: 8px;
+    }
+
+    .screen__sub {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--shadow-soft);
+      margin-bottom: 32px;
+    }
+
+    /* ============================================================
+       FORM ELEMENTS
+       ============================================================ */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      color: var(--shadow-soft);
+    }
+
+    .field select,
+    .field input,
+    .field textarea {
+      font-family: var(--display);
+      font-size: 15px;
+      color: var(--shadow);
+      background: var(--azure);
+      border: 1px solid var(--rule-strong);
+      border-radius: 10px;
+      padding: 12px 14px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      resize: vertical;
+    }
+
+    .field select:focus,
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--spruce);
+      box-shadow: 0 0 0 3px rgba(32,106,91,0.10);
+    }
+
+    .field textarea {
+      min-height: 120px;
+    }
+
+    .char-counter {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-align: right;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--shadow-soft);
+      margin-top: -12px;
+      transition: color 0.2s;
+    }
+
+    .char-counter.ready { color: var(--spruce); }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: var(--radius-btn);
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      width: 100%;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(40,41,43,0.12); }
+
+    .btn--primary { background: var(--spruce); color: var(--azure); }
+    .btn--primary:hover { background: var(--spruce-ink); }
+    .btn--primary:disabled { opacity: 0.45; transform: none; box-shadow: none; cursor: not-allowed; }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--shadow-soft);
+      border: 1px solid var(--rule-strong);
+      margin-bottom: 12px;
+    }
+
+    /* ============================================================
+       CONFIRMATION SCREEN
+       ============================================================ */
+    .confirm-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--spruce-tint);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .confirm-detail {
+      background: var(--azure);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      border: 1px solid var(--rule);
+    }
+
+    .confirm-detail__label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--shadow-soft);
+      margin-bottom: 4px;
+    }
+
+    .confirm-detail__value {
+      font-size: 15px;
+      color: var(--shadow);
+      font-weight: 600;
+    }
+
+    .confirm-date {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--spruce);
+      letter-spacing: -0.02em;
+    }
+  </style>
 </head>
 <body>
 
-<div class="page">
+<nav class="nav">
+  <a href="/" class="wordmark">anté</a>
+  <a href="/" class="nav__back">← Back to site</a>
+</nav>
 
-    <!-- NAV -->
-    <nav>
-        <a href="/" class="brand">anté</a>
-        <div class="nav-tag">Free concept scan</div>
-    </nav>
+<div class="scan-wrap">
+  <div class="scan-card">
 
-    <!-- ==================== SCREEN 1: INPUT ==================== -->
-    <div class="screen active" id="screen-input">
+    <!-- Progress dots -->
+    <div class="progress">
+      <div class="progress__dot active" id="dot-1"></div>
+      <div class="progress__dot"        id="dot-2"></div>
+      <div class="progress__dot"        id="dot-3"></div>
+    </div>
 
-        <h1>Paste your idea.<br><span class="accent">We'll structure it.</span></h1>
-        <p class="subtitle">
-            Describe what you want to build or change. We'll analyse your concept, map three possible directions and surface the blind spots — delivered to your inbox within 24 hours.
-        </p>
+    <!-- ====================================================
+         SCREEN 1: Your idea
+         ==================================================== -->
+    <div class="screen active" id="screen-1">
 
-        <div class="form-row">
-            <select id="sector-select">
-                <option value="" disabled selected>Industry</option>
-                <option value="manufacturing">Manufacturing</option>
-                <option value="tech">Tech & Software</option>
-                <option value="food">Food & Agriculture</option>
-                <option value="healthcare">Healthcare</option>
-                <option value="services">B2B Services</option>
-                <option value="other">Other</option>
-            </select>
-            <select id="size-select">
-                <option value="" disabled selected>Company size</option>
-                <option value="1-25">1 – 25 employees</option>
-                <option value="25-100">25 – 100 employees</option>
-                <option value="100-250">100 – 250 employees</option>
-                <option value="250+">250+ employees</option>
-            </select>
-        </div>
+      <div class="screen__eyebrow">Step 1 of 2</div>
+      <h2 class="screen__title">Tell us about your idea.</h2>
+      <p class="screen__sub">
+        Describe your concept or project — we'll review it and get back to you within one working day with an honest first read.
+      </p>
 
-        <div class="textarea-wrap">
-            <textarea id="idea-input" placeholder="Describe your innovation idea, problem or ambition. Write it the way you'd explain it to a colleague — no perfect wording needed." oninput="updateCount()"></textarea>
-            <div class="char-count"><span id="char-count">0</span> characters</div>
-        </div>
+      <div class="field">
+        <label for="s1-sector">Sector</label>
+        <select id="s1-sector">
+          <option value="">Select your sector…</option>
+          <option value="manufacturing">Manufacturing</option>
+          <option value="technology">Technology</option>
+          <option value="food">Food &amp; Agriculture</option>
+          <option value="healthcare">Healthcare &amp; Life Sciences</option>
+          <option value="services">Professional Services</option>
+          <option value="energy">Energy &amp; Cleantech</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
 
-        <button class="btn btn-primary" id="continue-btn" onclick="goToSubmit()" disabled>
-            Continue →
-        </button>
+      <div class="field">
+        <label for="s1-size">Company size</label>
+        <select id="s1-size">
+          <option value="">Select company size…</option>
+          <option value="1-25">1 – 25 employees</option>
+          <option value="25-100">25 – 100 employees</option>
+          <option value="100-250">100 – 250 employees</option>
+          <option value="250+">250+ employees</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="s1-idea">Your concept or project</label>
+        <textarea
+          id="s1-idea"
+          placeholder="Describe your idea, the problem you're trying to solve, or where you are in the process. The more context the better — minimum 30 characters."
+          oninput="updateCounter()"
+        ></textarea>
+        <div class="char-counter" id="char-counter">0 / 30 min</div>
+      </div>
+
+      <button class="btn btn--primary" id="btn-screen1" onclick="toScreen2()" disabled>
+        Continue →
+      </button>
 
     </div>
 
-    <!-- ==================== SCREEN 2: SUBMIT ==================== -->
-    <div class="screen" id="screen-submit">
-        <div class="submit-center">
+    <!-- ====================================================
+         SCREEN 2: Your details
+         ==================================================== -->
+    <div class="screen" id="screen-2">
 
-            <div class="submit-icon">📨</div>
-            <h2>Almost there.<br><span class="accent">Where do we send it?</span></h2>
-            <p class="subtitle" style="margin-bottom: 32px;">
-                We'll review your concept and send you a structured analysis within 24 hours — including three possible directions and the blind spots in your current approach.
-            </p>
+      <div class="screen__eyebrow">Step 2 of 2</div>
+      <h2 class="screen__title">Where should we send the audit?</h2>
+      <p class="screen__sub">
+        We'll review your idea and respond within one working day.
+      </p>
 
-            <div class="name-row">
-                <input class="input-field" type="text" id="name-input" placeholder="Your name">
-                <input class="input-field" type="text" id="company-input" placeholder="Company name">
-            </div>
-            <div class="email-form">
-                <input class="input-field" type="email" id="email-input" placeholder="Work email">
-                <button class="btn btn-accent" id="submit-btn" onclick="submitScan()" style="margin-top: 0; white-space: nowrap;">Send my scan →</button>
-            </div>
+      <div class="field">
+        <label for="s2-name">Your name</label>
+        <input type="text" id="s2-name" placeholder="First and last name">
+      </div>
 
-            <div class="process-note">
-                <div class="process-note-title">How it works</div>
-                <ul class="steps-list">
-                    <li>
-                        <div class="step-num">1</div>
-                        <div class="step-text"><strong>You describe your idea</strong> — in your own words, no perfect brief needed.</div>
-                    </li>
-                    <li>
-                        <div class="step-num">2</div>
-                        <div class="step-text"><strong>We structure and analyse it</strong> — our team reviews your concept and identifies the key gaps.</div>
-                    </li>
-                    <li>
-                        <div class="step-num">3</div>
-                        <div class="step-text"><strong>You receive a PDF within 24 hours</strong> — with your idea restructured, three concept directions, and the blind spots that could derail your project.</div>
-                    </li>
-                </ul>
-            </div>
+      <div class="field">
+        <label for="s2-company">Company</label>
+        <input type="text" id="s2-company" placeholder="Company name">
+      </div>
 
-        </div>
+      <div class="field">
+        <label for="s2-email">Email address</label>
+        <input type="email" id="s2-email" placeholder="your@company.com">
+      </div>
+
+      <button class="btn btn--primary" onclick="submitForm()" style="margin-bottom:12px;" id="btn-submit">
+        Send for free audit →
+      </button>
+
+      <button class="btn btn--ghost" onclick="toScreen1()">
+        ← Back
+      </button>
+
     </div>
 
-    <!-- ==================== SCREEN 3: CONFIRMATION ==================== -->
-    <div class="screen" id="screen-confirm">
-        <div class="confirm-center">
+    <!-- ====================================================
+         SCREEN 3: Confirmation
+         ==================================================== -->
+    <div class="screen" id="screen-3">
 
-            <div class="confirm-icon">✓</div>
-            <h2>We're on it.</h2>
-            <p class="subtitle">
-                Your concept scan is being prepared. You'll receive a structured analysis in your inbox within 24 hours.
-            </p>
+      <div class="confirm-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--spruce)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
 
-            <div class="confirm-detail">
-                <div class="confirm-detail-row">
-                    <span class="confirm-detail-label">Sent to</span>
-                    <span class="confirm-detail-value" id="confirm-email">—</span>
-                </div>
-                <div class="confirm-detail-row">
-                    <span class="confirm-detail-label">Expected delivery</span>
-                    <span class="confirm-detail-value" id="confirm-time">—</span>
-                </div>
-                <div class="confirm-detail-row">
-                    <span class="confirm-detail-label">Format</span>
-                    <span class="confirm-detail-value">PDF report</span>
-                </div>
-            </div>
+      <div class="screen__eyebrow">Submitted</div>
+      <h2 class="screen__title">We've got your idea.</h2>
+      <p class="screen__sub" style="margin-bottom:28px;">
+        You'll hear from us at the address below. We review every submission personally and respond within one working day.
+      </p>
 
-        </div>
+      <div class="confirm-detail">
+        <div class="confirm-detail__label">Sent to</div>
+        <div class="confirm-detail__value" id="confirm-email">—</div>
+      </div>
 
-        <div class="footer">
-            <a href="/">anté</a> — Certainty in Innovation.
-        </div>
+      <div class="confirm-detail">
+        <div class="confirm-detail__label">Expected response by</div>
+        <div class="confirm-date" id="confirm-date">—</div>
+      </div>
+
+      <a href="/" class="btn btn--primary" style="margin-top:8px; text-decoration:none;">Back to antedesign.be</a>
+
     </div>
 
+  </div><!-- /.scan-card -->
 </div>
 
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
 <script>
-/* ===== GOOGLE FORMS CONFIG ===== */
-var FORM_CONFIG = {
-    url: 'https://docs.google.com/forms/d/e/1FAIpQLSclY-3cHDap2LK5cz92tsqzlNXj7Zci77TKQqDOdmON_4s0Cg/formResponse',
-  fields: {
-    name:        'entry.2096941858',
-    company:     'entry.1458090262',
-    email:       'entry.1516891937',
-    sector:      'entry.1857077440',
-    companySize: 'entry.76066832',
-    idea:        'entry.1220859788',
-    timestamp:   'entry.432859804'
+  /* Google Forms config
+     Replace PLACEHOLDER values once your Form is published:
+       FORM_URL  → the formResponse URL from your Google Form
+       entry.*   → field IDs from the form source (inspect URL params)
+  */
+  var FORM_CONFIG = {
+    url: 'PLACEHOLDER_FORM_URL',   // e.g. https://docs.google.com/forms/u/0/d/e/XXXXX/formResponse
+    fields: {
+      name:    'PLACEHOLDER_ENTRY_NAME',    // entry.XXXXXXXXX
+      company: 'PLACEHOLDER_ENTRY_COMPANY',
+      email:   'PLACEHOLDER_ENTRY_EMAIL',
+      sector:  'PLACEHOLDER_ENTRY_SECTOR',
+      size:    'PLACEHOLDER_ENTRY_SIZE',
+      idea:    'PLACEHOLDER_ENTRY_IDEA',
+      ts:      'PLACEHOLDER_ENTRY_TIMESTAMP'
     }
-};
+  };
 
-/* ===== CHARACTER COUNT & VALIDATION ===== */
-function updateCount() {
-    var len = document.getElementById('idea-input').value.length;
-    document.getElementById('char-count').textContent = len;
-    document.getElementById('continue-btn').disabled = len < 30;
-}
+  /* ---- Progress dots ---- */
+  function setProgress(step) {
+    for (var i = 1; i <= 3; i++) {
+      var dot = document.getElementById('dot-' + i);
+      dot.className = 'progress__dot';
+      if (i < step)  dot.className += ' done';
+      if (i === step) dot.className += ' active';
+    }
+  }
 
-/* ===== GO TO SUBMIT SCREEN ===== */
-function goToSubmit() {
-    var idea = document.getElementById('idea-input').value.trim();
-    if (idea.length < 30) return;
-    showScreen('screen-submit');
-}
+  /* ---- Character counter ---- */
+  function updateCounter() {
+    var ta = document.getElementById('s1-idea');
+    var btn = document.getElementById('btn-screen1');
+    var counter = document.getElementById('char-counter');
+    var len = ta.value.trim().length;
+    counter.textContent = len + ' / 30 min';
+    var ready = len >= 30
+      && document.getElementById('s1-sector').value
+      && document.getElementById('s1-size').value;
+    counter.className = 'char-counter' + (len >= 30 ? ' ready' : '');
+    btn.disabled = !ready;
+  }
 
-/* ===== SUBMIT SCAN ===== */
-function submitScan() {
-    var email = document.getElementById('email-input').value.trim();
-    var name = document.getElementById('name-input').value.trim();
-    var company = document.getElementById('company-input').value.trim();
+  document.getElementById('s1-sector').addEventListener('change', updateCounter);
+  document.getElementById('s1-size').addEventListener('change', updateCounter);
 
-    if (!email || !email.includes('@')) {
-        document.getElementById('email-input').style.borderColor = '#c9372c';
-        return;
+  /* ---- Navigation ---- */
+  function showScreen(n) {
+    for (var i = 1; i <= 3; i++) {
+      document.getElementById('screen-' + i).classList.toggle('active', i === n);
+    }
+    setProgress(n);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function toScreen1() { showScreen(1); }
+
+  function toScreen2() {
+    var sector  = document.getElementById('s1-sector').value;
+    var size    = document.getElementById('s1-size').value;
+    var idea    = document.getElementById('s1-idea').value.trim();
+    if (!sector || !size || idea.length < 30) return;
+    showScreen(2);
+  }
+
+  /* ---- Tomorrow's date for confirmation ---- */
+  function getTomorrow() {
+    var d = new Date();
+    d.setDate(d.getDate() + 1);
+    // Skip weekends
+    if (d.getDay() === 6) d.setDate(d.getDate() + 2);
+    if (d.getDay() === 0) d.setDate(d.getDate() + 1);
+    return d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  }
+
+  /* ---- Submit ---- */
+  function submitForm() {
+    var name    = document.getElementById('s2-name').value.trim();
+    var company = document.getElementById('s2-company').value.trim();
+    var email   = document.getElementById('s2-email').value.trim();
+
+    if (!name || !email || !email.includes('@')) {
+      alert('Please fill in your name and a valid email address.');
+      return;
     }
 
-    var data = {
-        name:        name,
-        company:     company,
-        email:       email,
-        sector:      document.getElementById('sector-select').value,
-        companySize: document.getElementById('size-select').value,
-        idea:        document.getElementById('idea-input').value.trim(),
-        timestamp:   new Date().toISOString()
-    };
+    var sector  = document.getElementById('s1-sector').value;
+    var size    = document.getElementById('s1-size').value;
+    var idea    = document.getElementById('s1-idea').value.trim();
 
-    submitToGoogleForms(data);
+    var body = new URLSearchParams();
+    body.append(FORM_CONFIG.fields.name,    name);
+    body.append(FORM_CONFIG.fields.company, company);
+    body.append(FORM_CONFIG.fields.email,   email);
+    body.append(FORM_CONFIG.fields.sector,  sector);
+    body.append(FORM_CONFIG.fields.size,    size);
+    body.append(FORM_CONFIG.fields.idea,    idea);
+    body.append(FORM_CONFIG.fields.ts,      new Date().toISOString());
 
+    // Fire-and-forget — no-cors means we can't check response status
+    fetch(FORM_CONFIG.url, {
+      method: 'POST',
+      mode:   'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body:   body.toString()
+    }).catch(function() {
+      // Fail silently — still show confirmation (no-cors always "fails" from our perspective)
+    });
+
+    // Show confirmation regardless
     document.getElementById('confirm-email').textContent = email;
-
-    var tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    var options = { weekday: 'long', month: 'long', day: 'numeric' };
-    document.getElementById('confirm-time').textContent = tomorrow.toLocaleDateString('en-US', options);
-
-    showScreen('screen-confirm');
-}
-
-/* ===== GOOGLE FORMS SUBMISSION ===== */
-function submitToGoogleForms(data) {
-    var fd = new FormData();
-    fd.append(FORM_CONFIG.fields.name, data.name);
-    fd.append(FORM_CONFIG.fields.company, data.company);
-    fd.append(FORM_CONFIG.fields.email, data.email);
-    fd.append(FORM_CONFIG.fields.sector, data.sector);
-    fd.append(FORM_CONFIG.fields.companySize, data.companySize);
-    fd.append(FORM_CONFIG.fields.idea, data.idea);
-    fd.append(FORM_CONFIG.fields.timestamp, data.timestamp);
-    fetch(FORM_CONFIG.url, { method: 'POST', body: fd, mode: 'no-cors' });
-}
-
-/* ===== SCREEN MANAGEMENT ===== */
-function showScreen(id) {
-    document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
-    document.getElementById(id).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+    document.getElementById('confirm-date').textContent  = getTomorrow();
+    showScreen(3);
+  }
 </script>
 
 </body>
