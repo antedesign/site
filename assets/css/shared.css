@@ -233,7 +233,7 @@ ul { padding: 0; margin: 0; list-style: none; }
 
 /* Hero colophon row at the bottom of dark heroes */
 .hero-colophon {
-  margin-top: 96px;
+  margin-top: 120px; /*was 96 - nu 120*/
   padding-top: 22px;
   border-top: 1px solid var(--rule-light);
   display: flex;
@@ -440,7 +440,7 @@ ul { padding: 0; margin: 0; list-style: none; }
   text-transform: uppercase;
   font-size: var(--text-mono);
   letter-spacing: 0.08em;
-  margin-top: 18px;
+  margin-top: 36px; /*was 18*/
   color: var(--azure-60);
 }
 .site-footer__meta {
