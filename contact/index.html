@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anté · Contact</title>
+<meta name="description" content="Two ways to start: book a 30-minute intake or send us a message. We respond within one working day." />
+
+<link rel="icon" type="image/png" href="/assets/images/ante-logo.png" />
+<link rel="stylesheet" href="/assets/css/shared.css" />
+
+<style>
+  /* ---- Contact-only styles ---- */
+
+  .co-hero { padding: var(--space-section-y-sm) var(--space-pad-x) 110px; }
+  .co-hero__title { color: var(--azure); max-width: 14ch; }
+  .co-hero__lead  {
+    margin-top: var(--space-stack-lg);
+    font-size: var(--text-body-xl); line-height: 1.55;
+    color: var(--azure-88); max-width: 60ch;
+  }
+
+  /* Two paths grid */
+  .co-paths { padding: var(--space-section-y-md) var(--space-pad-x) 60px; background: var(--azure); }
+  .co-paths__grid {
+    display: grid; grid-template-columns: 1.6fr 1fr;
+    gap: 48px; align-items: stretch;
+  }
+  .co-paths__primary,
+  .co-paths__secondary {
+    border-radius: var(--radius-media);
+    padding: 56px 56px 48px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 360px;
+    text-decoration: none;
+    transition: transform var(--t-fast);
+  }
+  .co-paths__primary:hover,
+  .co-paths__secondary:hover { transform: translateY(-2px); }
+  .co-paths__primary {
+    background: var(--spruce); color: var(--azure);
+  }
+  .co-paths__primary-meta { color: var(--frosted); margin-bottom: var(--space-stack-sm); }
+  .co-paths__primary-title {
+    font-size: var(--text-display-sm); color: var(--azure);
+    letter-spacing: -0.035em; line-height: 0.95;
+    max-width: 14ch; margin-bottom: var(--space-stack-sm);
+  }
+  .co-paths__primary-copy {
+    font-size: var(--text-body); line-height: 1.6;
+    color: var(--azure-85); max-width: 44ch;
+  }
+  .co-paths__primary-cta {
+    margin-top: 32px;
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--mono); text-transform: uppercase;
+    font-size: 12px; letter-spacing: 0.06em; color: var(--frosted);
+  }
+  .co-paths__primary-arrow { font-size: 18px; }
+
+  .co-paths__secondary {
+    background: transparent;
+    border: 1px solid var(--rule-strong);
+    padding: 40px;
+    color: var(--shadow);
+  }
+  .co-paths__secondary-meta { color: var(--shadow-soft); margin-bottom: var(--space-stack-sm); }
+  .co-paths__secondary-title {
+    font-size: var(--text-h3-lg); color: var(--shadow);
+    letter-spacing: -0.025em; line-height: 1; margin-bottom: 20px;
+  }
+  .co-paths__secondary-copy {
+    font-size: 14.5px; line-height: 1.6; color: var(--shadow-soft);
+    max-width: 32ch;
+  }
+  .co-paths__secondary-cta {
+    margin-top: 32px;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); text-transform: uppercase;
+    font-size: var(--text-mono); letter-spacing: 0.06em;
+    color: var(--spruce);
+  }
+  .co-paths__secondary-arrow { font-size: 14px; }
+
+  /* Message form section */
+  .co-form { padding: 60px var(--space-pad-x) var(--space-section-y-md); background: var(--azure); }
+  .co-form__title {
+    color: var(--spruce); letter-spacing: -0.03em; line-height: 0.95;
+    margin-bottom: var(--space-stack-lg); max-width: 16ch;
+    font-size: var(--text-display-sm);
+  }
+
+  /* Direct contact */
+  .co-direct { padding: var(--space-section-y-md) var(--space-pad-x); }
+  .co-direct__split {
+    border-top: 1px solid var(--rule-strong);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .co-direct__cell { padding: 48px 48px 48px 0; border-right: 1px solid var(--rule); }
+  .co-direct__cell:last-child { padding: 48px 0 48px 48px; border-right: 0; }
+  .co-direct__label { color: var(--spruce); margin-bottom: 18px; }
+  .co-direct__email {
+    font-family: var(--display); font-style: italic; font-weight: 800;
+    color: var(--spruce); letter-spacing: -0.03em;
+    line-height: 1; text-decoration: none;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 8px; display: inline-block;
+    font-size: var(--text-h3-xl);
+    transition: color var(--t-med), border-color var(--t-med);
+  }
+  .co-direct__email:hover { color: var(--spruce-ink); border-bottom-color: var(--spruce-ink); }
+  .co-direct__where {
+    font-family: var(--display); font-style: italic; font-weight: 800;
+    color: var(--shadow); letter-spacing: -0.025em;
+    line-height: 1.15; max-width: 20ch; font-size: var(--text-h4);
+  }
+
+  .confirm-card-copy {
+    font-size: 16px; line-height: 1.65; color: var(--shadow);
+    max-width: 52ch;
+  }
+  .confirm-card-actions {
+    display: flex; gap: 14px; margin-top: 8px; flex-wrap: wrap;
+  }
+  .form-iframe-sink { display: none; }
+
+  /* Tablet */
+  @media (max-width: 960px) {
+    .co-paths__grid { grid-template-columns: 1fr; gap: 24px; }
+    .co-paths__primary, .co-paths__secondary { padding: 40px; min-height: 0; }
+    .co-paths__primary-title { font-size: 44px; }
+    .co-direct__split { grid-template-columns: 1fr; }
+    .co-direct__cell { padding: 32px 0; border-right: 0; border-bottom: 1px solid var(--rule); }
+    .co-direct__cell:last-child { padding: 32px 0; border-bottom: 0; }
+    .co-direct__email { font-size: 32px; }
+  }
+  @media (max-width: 640px) {
+    .co-paths__primary-title { font-size: 36px; }
+    .co-direct__email { font-size: 26px; word-break: break-all; }
+  }
+</style>
+</head>
+
+<body>
+<div class="ante-page">
+
+<!-- ============ NAV ============ -->
+<nav class="site-nav" aria-label="Primary">
+  <a href="/" class="site-nav__brand">anté</a>
+
+  <button class="site-nav__toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+    <span class="site-nav__toggle-bar"></span>
+    <span class="site-nav__toggle-bar"></span>
+    <span class="site-nav__toggle-bar"></span>
+  </button>
+
+  <div class="site-nav__links" id="primary-nav">
+    <a href="/approach/" class="site-nav__link">Approach</a>
+    <a href="/about/"    class="site-nav__link">About</a>
+    <a href="/contact/"  class="site-nav__link site-nav__link--active">Contact</a>
+    <a href="/scorecard/" class="btn btn-frosted btn-mini">
+      Take the diagnostic <span class="btn-mini__meta">4 MIN</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="section section--spruce co-hero">
+  <div class="hero-head">
+    <span class="eyebrow eyebrow--frosted">Contact</span>
+    <span class="eyebrow eyebrow--azure-55">FILE · 04 / CONTACT · BELGIUM</span>
+  </div>
+
+  <h1 class="h-display-xl co-hero__title">Talk to us.</h1>
+
+  <p class="co-hero__lead">
+    Two ways to start: book a 30-minute intake to discuss a specific project, or send us a message and we'll respond within one working day.
+  </p>
+</section>
+
+<!-- ============ § 01 TWO PATHS ============ -->
+<section class="co-paths" data-screen-label="Two paths">
+  <div class="section-meta">
+    <span class="eyebrow">§ 01 · Two paths</span>
+    <span class="eyebrow eyebrow--muted">One faster · one slower</span>
+  </div>
+
+  <div class="co-paths__grid">
+    <a class="co-paths__primary" href="https://cal.com/ante-design/30min" target="_blank" rel="noopener noreferrer">
+      <div>
+        <div class="eyebrow co-paths__primary-meta">Primary · 30 minutes</div>
+        <h2 class="co-paths__primary-title">Book a 30-min intake.</h2>
+        <p class="co-paths__primary-copy">A short call to map your project context against our methodology. We'll tell you whether a Decision Sprint, a Pre-Investment Audit, or neither is the right next step.</p>
+      </div>
+      <span class="co-paths__primary-cta">
+        Open Cal.com
+        <span class="co-paths__primary-arrow">→</span>
+      </span>
+    </a>
+
+    <a class="co-paths__secondary" href="#message">
+      <div>
+        <div class="eyebrow co-paths__secondary-meta">Secondary · async</div>
+        <h2 class="co-paths__secondary-title">Send a message.</h2>
+        <p class="co-paths__secondary-copy">Three fields. We respond within one working day.</p>
+      </div>
+      <span class="co-paths__secondary-cta">
+        Jump to form
+        <span class="co-paths__secondary-arrow">↓</span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ § 02 MESSAGE FORM ============ -->
+<section class="co-form" data-screen-label="Message form">
+  <div class="section-meta">
+    <span class="eyebrow">§ 02 · Send a message</span>
+    <span class="eyebrow eyebrow--muted">Three fields · async</span>
+  </div>
+
+  <h2 class="co-form__title">Or just write.</h2>
+
+  <!-- Hidden iframe — Google Forms posts here so the page doesn't navigate. -->
+  <iframe name="ante-contact-iframe" title="contact form sink" class="form-iframe-sink" aria-hidden="true"></iframe>
+
+  <form
+    id="message"
+    class="form"
+    method="POST"
+    target="ante-contact-iframe"
+    action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdtnVjuuzhtoDLbvwAm8YM-nzFS2vIEAnMgO_MFhS1HqHtEvQ/formResponse"
+    novalidate>
+
+    <div class="form-row-2">
+      <label class="form-field">
+        <span class="form-field__label">Name</span>
+        <input class="form-field__input" type="text" name="entry.1892390230" required autocomplete="name" />
+      </label>
+      <label class="form-field">
+        <span class="form-field__label">Email</span>
+        <input class="form-field__input" type="email" name="entry.1237768883" required autocomplete="email" />
+      </label>
+    </div>
+
+    <label class="form-field">
+      <span class="form-field__label">Message</span>
+      <textarea class="form-field__textarea" name="entry.1566169903" rows="6" required></textarea>
+    </label>
+
+    <div class="form-foot">
+      <span class="form-meta" id="form-status">Three fields · we reply within one working day.</span>
+      <button type="submit" class="btn btn-primary" id="form-submit">Send message →</button>
+    </div>
+  </form>
+
+  <!-- Confirmation card, shown after successful submit -->
+  <div id="form-confirm" class="confirm-card" hidden>
+    <div class="eyebrow">Message received</div>
+    <h3 class="confirm-card__title">Thanks. We'll be in touch within one working day.</h3>
+    <p class="confirm-card-copy">
+      Your note landed in our inbox. If you'd rather speak directly, you can also book a 30-minute intake on Cal.com.
+    </p>
+    <div class="confirm-card-actions">
+      <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener" class="btn btn-primary">Book a 30-min intake →</a>
+      <button type="button" class="btn btn-ghost-spruce" id="form-reset">Send another message</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ § 03 DIRECT CONTACT ============ -->
+<section class="section--tint co-direct" data-screen-label="Direct contact">
+  <div class="section-meta">
+    <span class="eyebrow">§ 03 · Direct contact</span>
+    <span class="eyebrow eyebrow--muted">For everything else</span>
+  </div>
+
+  <div class="co-direct__split">
+    <div class="co-direct__cell">
+      <div class="eyebrow co-direct__label">E-mail</div>
+      <a href="mailto:hello@antedesign.be" class="co-direct__email">hello@antedesign.be</a>
+    </div>
+    <div class="co-direct__cell">
+      <div class="eyebrow co-direct__label">Where</div>
+      <p class="co-direct__where">Based in Belgium. Working across BeNeLux.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div>
+    <div class="site-footer__brand">anté</div>
+    <div class="site-footer__tagline">Independent concept validation · Belgium · 2026</div>
+  </div>
+  <div class="site-footer__meta">
+    <span>© 2026 Anté</span>
+    <span>hello@antedesign.be</span>
+    <span class="accent">Decide before you build</span>
+  </div>
+</footer>
+
+</div><!-- /.ante-page -->
+
+<script>
+  // Mobile burger toggle
+  (function () {
+    var nav = document.querySelector('.site-nav');
+    var btn = nav && nav.querySelector('.site-nav__toggle');
+    if (!nav || !btn) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    nav.querySelectorAll('.site-nav__link, .site-nav__links .btn').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+
+  // Smooth anchor jump from "Jump to form" with focus on first input
+  (function () {
+    var jump = document.querySelector('.co-paths__secondary');
+    if (!jump) return;
+    jump.addEventListener('click', function (e) {
+      var el = document.getElementById('message');
+      if (!el) return;
+      e.preventDefault();
+      var top = el.getBoundingClientRect().top + window.scrollY - 24;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      var first = el.querySelector('input, textarea');
+      if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 350);
+    });
+  })();
+
+  // Contact form: post to Google Forms via hidden iframe; show confirmation on success.
+  (function () {
+    var form = document.getElementById('message');
+    if (!form) return;
+    var status  = document.getElementById('form-status');
+    var submit  = document.getElementById('form-submit');
+    var confirm = document.getElementById('form-confirm');
+    var reset   = document.getElementById('form-reset');
+    var sending = false;
+
+    form.addEventListener('submit', function (e) {
+      // Validate locally.
+      var name    = form.querySelector('input[type="text"]').value.trim();
+      var email   = form.querySelector('input[type="email"]').value.trim();
+      var message = form.querySelector('textarea').value.trim();
+      if (!name || !email || !message) {
+        e.preventDefault();
+        status.textContent = 'All three fields are required.';
+        status.classList.add('is-error');
+        return;
+      }
+      if (sending) { e.preventDefault(); return; }
+      sending = true;
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+      status.classList.remove('is-error');
+      status.textContent = 'Sending your message…';
+
+      // Google Forms blocks reading the iframe response cross-origin; we optimistically
+      // mark it sent after a short delay. The iframe absorbs the redirect.
+      setTimeout(function () {
+        form.hidden = true;
+        confirm.hidden = false;
+      }, 900);
+    });
+
+    if (reset) {
+      reset.addEventListener('click', function () {
+        form.reset();
+        sending = false;
+        submit.disabled = false;
+        submit.textContent = 'Send message →';
+        status.textContent = 'Three fields · we reply within one working day.';
+        status.classList.remove('is-error');
+        confirm.hidden = true;
+        form.hidden = false;
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

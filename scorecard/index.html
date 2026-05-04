@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A 4-minute diagnostic to surface the gaps in your innovation concept before you invest. Five dimensions, fifteen questions, honest output.">
+  <title>Anté — Diagnostic</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — match shared site stylesheet exactly
+       ============================================================ */
+    :root {
+      --shadow: #28292B;
+      --shadow-soft: #3a3b3d;
+      --azure: #F0FDFF;
+      --azure-deep: #E4F8FB;
+      --frosted: #9CE3F8;
+      --frosted-soft: #C9EEF9;
+      --spruce: #206A5B;
+      --spruce-ink: #18514A;
+      --spruce-tint: #E8F1EE;
+      --spruce-tint-2: #DCE8E4;
+      --rule: rgba(40,41,43,0.12);
+      --rule-strong: rgba(40,41,43,0.24);
+
+      /* Status colors — distinct enough for color blindness */
+      --status-green: #2D7A5F;
+      --status-amber: #C77900;
+      --status-red:   #B23A3A;
+
+      --display: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --body:    'Poppins', system-ui, sans-serif;
+      --mono:    'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--azure);
+      color: var(--shadow);
+      font-family: var(--body);
+      font-weight: 400;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "ss01", "kern";
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      padding: 28px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .wordmark {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--shadow);
+    }
+
+    .topbar-back {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--shadow);
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .topbar-back:hover { opacity: 1; }
+
+    .stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 32px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+    }
+    .container.wide { max-width: 920px; }
+
+    /* ============================================================
+       SHARED ELEMENTS
+       ============================================================ */
+    .eyebrow {
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--spruce);
+    }
+
+    .h-display {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 0.98;
+    }
+
+    .lead {
+      color: var(--shadow-soft);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .hr-rule {
+      height: 1px;
+      background: var(--rule);
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-family: var(--body);
+      font-weight: 500;
+      font-size: 15px;
+      border: 1px solid transparent;
+      transition: transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary { background: var(--spruce); color: var(--azure); }
+    .btn-primary:hover { background: var(--spruce-ink); }
+    .btn-primary:disabled {
+      background: var(--spruce-tint);
+      color: var(--shadow-soft);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--shadow);
+      border-color: var(--rule-strong);
+    }
+    .btn-secondary:hover { border-color: var(--shadow); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--spruce);
+      padding: 10px 0;
+    }
+    .btn-ghost:hover { color: var(--spruce-ink); }
+
+    /* ============================================================
+       SCREEN: INTRO
+       ============================================================ */
+    .intro {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .intro.active { display: block; }
+
+    .intro-eyebrow { margin-bottom: 24px; }
+    .intro-title {
+      font-size: clamp(40px, 6vw, 64px);
+      margin-bottom: 24px;
+    }
+    .intro-lead {
+      font-size: 18px;
+      max-width: 60ch;
+      margin-bottom: 40px;
+    }
+
+    .intro-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 40px;
+    }
+    .intro-meta-item {
+      padding: 24px 0;
+      border-right: 1px solid var(--rule);
+    }
+    .intro-meta-item:last-child { border-right: none; }
+    .intro-meta-item .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--shadow-soft);
+      margin-bottom: 8px;
+    }
+    .intro-meta-item .value {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .intro-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .intro-note {
+      font-size: 13px;
+      color: var(--shadow-soft);
+      max-width: 50ch;
+    }
+
+    /* ============================================================
+       SCREEN: QUESTIONS
+       ============================================================ */
+    .questions {
+      display: none;
+    }
+    .questions.active { display: block; }
+
+    .progress-bar {
+      height: 2px;
+      background: var(--rule);
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--spruce);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 32px;
+    }
+    .question-counter {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--shadow-soft);
+    }
+    .question-dimension {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--spruce);
+    }
+
+    .question-text {
+      font-size: clamp(22px, 3.2vw, 30px);
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--shadow);
+      margin-bottom: 40px;
+      letter-spacing: -0.01em;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 24px;
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 16px;
+      color: var(--shadow);
+      text-align: left;
+      width: 100%;
+      font-family: inherit;
+    }
+    .option:hover {
+      border-color: var(--shadow);
+      transform: translateX(2px);
+    }
+    .option.selected {
+      background: var(--spruce);
+      color: var(--azure);
+      border-color: var(--spruce);
+    }
+    .option .key {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      opacity: 0.6;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .option.selected .key { opacity: 0.7; }
+
+    .question-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ============================================================
+       SCREEN: RESULT
+       ============================================================ */
+    .result {
+      display: none;
+    }
+    .result.active { display: block; }
+
+    .result-header {
+      margin-bottom: 48px;
+    }
+    .result-eyebrow { margin-bottom: 20px; }
+    .result-title {
+      font-size: clamp(36px, 5.5vw, 56px);
+      margin-bottom: 20px;
+    }
+    .result-lead {
+      font-size: 17px;
+      max-width: 60ch;
+      color: var(--shadow-soft);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      margin-bottom: 56px;
+      align-items: start;
+    }
+
+    /* Radar chart container */
+    .radar-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .radar-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Dimension breakdown */
+    .dims {
+      display: flex;
+      flex-direction: column;
+    }
+    .dim-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .dim-row:first-child { padding-top: 0; }
+    .dim-row:last-child { border-bottom: none; }
+
+    .dim-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--shadow);
+    }
+    .dim-pct {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0;
+      color: var(--shadow-soft);
+      min-width: 38px;
+      text-align: right;
+    }
+    .dim-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: 1px solid currentColor;
+    }
+    .dim-tag .dot { width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+    .dim-tag.solid    { color: var(--status-green); }
+    .dim-tag.attention { color: var(--status-amber); }
+    .dim-tag.gap      { color: var(--status-red); }
+
+    /* Recommendation block */
+    .recommendation {
+      padding: 32px;
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      margin-bottom: 40px;
+    }
+    .recommendation-head {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--spruce);
+      margin-bottom: 16px;
+    }
+    .recommendation-title {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 26px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .recommendation-body {
+      font-size: 16px;
+      color: var(--shadow);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .recommendation-body + .recommendation-body { margin-top: 12px; }
+
+    /* CTA section */
+    .ctas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .ctas .btn { justify-content: center; padding: 18px 24px; }
+
+    /* Email capture */
+    .capture {
+      padding: 32px;
+      background: var(--spruce-tint);
+      border: 1px solid rgba(32,106,91,0.15);
+      border-radius: 16px;
+      margin-bottom: 32px;
+    }
+    .capture.collapsed .capture-body { display: none; }
+    .capture-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+    }
+    .capture-title {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 20px;
+      color: var(--shadow);
+    }
+    .capture-icon {
+      font-family: var(--mono);
+      font-size: 18px;
+      color: var(--spruce);
+      transition: transform 0.2s;
+    }
+    .capture.collapsed .capture-icon { transform: rotate(-90deg); }
+
+    .capture-body {
+      margin-top: 24px;
+    }
+    .capture-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .capture-fields .full { grid-column: 1 / -1; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+    .field label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--shadow-soft);
+      margin-bottom: 6px;
+    }
+    .field input {
+      padding: 12px 14px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 10px;
+      background: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--shadow);
+      transition: border-color 0.2s;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--spruce);
+    }
+    .field input.error { border-color: var(--status-red); }
+
+    .capture-submit {
+      margin-top: 16px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .capture-confirm {
+      display: none;
+      text-align: center;
+      padding: 8px 0;
+    }
+    .capture-confirm.shown { display: block; }
+    .capture-confirm-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: var(--spruce);
+      color: var(--azure);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--shadow-soft);
+      padding: 32px 0;
+      max-width: 50ch;
+      margin: 0 auto;
+    }
+    .footer-note a { color: var(--spruce); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ============================================================
+       ANIMATIONS
+       ============================================================ */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .question-screen { animation: fadeIn 0.3s ease; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 720px) {
+      .topbar { padding: 20px 20px; }
+      .stage { padding: 32px 20px; }
+      .intro-meta { grid-template-columns: 1fr; }
+      .intro-meta-item { border-right: none; border-bottom: 1px solid var(--rule); }
+      .intro-meta-item:last-child { border-bottom: none; }
+      .result-grid { grid-template-columns: 1fr; gap: 40px; }
+      .ctas { grid-template-columns: 1fr; }
+      .capture-fields { grid-template-columns: 1fr; }
+      .question-nav { gap: 12px; }
+    }
+
+    /* Honor reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============================================================
+       TOPBAR
+       ============================================================ -->
+  <header class="topbar">
+    <a href="/" class="wordmark">anté</a>
+    <a href="/" class="topbar-back">← Back to site</a>
+  </header>
+
+  <!-- ============================================================
+       STAGE — holds all three screens
+       ============================================================ -->
+  <main class="stage">
+
+    <!-- ===== INTRO SCREEN ===== -->
+    <section class="container intro active" id="screen-intro">
+      <div class="eyebrow intro-eyebrow">Diagnostic</div>
+      <h1 class="h-display intro-title">Where do you actually stand?</h1>
+      <p class="lead intro-lead">
+        Most innovation projects fail not at execution but at the decision underneath.
+        This diagnostic surfaces the gaps in your concept before you invest. Honest output, no email required to see your result.
+      </p>
+
+      <div class="intro-meta">
+        <div class="intro-meta-item">
+          <div class="label">Dimensions</div>
+          <div class="value">5</div>
+        </div>
+        <div class="intro-meta-item">
+          <div class="label">Questions</div>
+          <div class="value">15</div>
+        </div>
+        <div class="intro-meta-item">
+          <div class="label">Time needed</div>
+          <div class="value">~4 min</div>
+        </div>
+      </div>
+
+      <div class="intro-actions">
+        <button class="btn btn-primary" id="btn-start">Start the diagnostic →</button>
+        <a href="/" class="btn btn-ghost">Not now</a>
+      </div>
+
+      <p class="intro-note">
+        Your answers are stored only when you reach the result screen. We use anonymised aggregate data to improve the diagnostic over time.
+      </p>
+    </section>
+
+    <!-- ===== QUESTIONS SCREEN ===== -->
+    <section class="container questions" id="screen-questions">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <div class="question-screen" style="padding-top: 48px;">
+        <div class="question-meta">
+          <span class="question-counter" id="q-counter">Question 1 of 15</span>
+          <span class="question-dimension" id="q-dimension">Stakeholder alignment</span>
+        </div>
+
+        <h2 class="question-text" id="q-text">—</h2>
+
+        <div class="options" id="q-options"></div>
+
+        <div class="question-nav">
+          <button class="btn btn-ghost" id="btn-back">← Back</button>
+          <button class="btn btn-primary" id="btn-next" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RESULT SCREEN ===== -->
+    <section class="container wide result" id="screen-result">
+      <header class="result-header">
+        <div class="eyebrow result-eyebrow" id="result-date">Your result · 03 May 2026</div>
+        <h1 class="h-display result-title" id="result-title">—</h1>
+        <p class="result-lead" id="result-lead">—</p>
+      </header>
+
+      <div class="result-grid">
+        <div>
+          <div class="radar-wrap">
+            <svg class="radar-svg" id="radar" viewBox="0 0 360 360" aria-label="Radar chart of your scores"></svg>
+          </div>
+        </div>
+
+        <div class="dims" id="dim-list"></div>
+      </div>
+
+      <div class="recommendation">
+        <div class="recommendation-head">Recommendation</div>
+        <h3 class="recommendation-title" id="rec-title">—</h3>
+        <p class="recommendation-body" id="rec-body">—</p>
+        <p class="recommendation-body" id="rec-body-2"></p>
+      </div>
+
+      <div class="ctas">
+        <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener" class="btn btn-primary">Book a 30-min intake →</a>
+        <a href="/approach" class="btn btn-secondary">See the methodology</a>
+      </div>
+
+      <div class="capture collapsed" id="capture">
+        <button class="capture-toggle" id="capture-toggle" type="button">
+          <span class="capture-title">Want a copy by email?</span>
+          <span class="capture-icon">▼</span>
+        </button>
+        <div class="capture-body">
+          <p class="lead" style="font-size: 15px; margin-bottom: 20px;">Optional. We'll send you a clean PDF version of this result, and that's it. No marketing automation, no sequences.</p>
+          <div class="capture-fields">
+            <div class="field">
+              <label for="cap-name">Name</label>
+              <input type="text" id="cap-name" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="cap-email">Email</label>
+              <input type="email" id="cap-email" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="cap-company">Company</label>
+              <input type="text" id="cap-company" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="cap-role">Role <span style="opacity:0.5">(optional)</span></label>
+              <input type="text" id="cap-role" autocomplete="organization-title">
+            </div>
+          </div>
+          <button class="btn btn-primary capture-submit" id="capture-submit">Send me the PDF</button>
+        </div>
+        <div class="capture-confirm" id="capture-confirm">
+          <div class="capture-confirm-icon">✓</div>
+          <p class="lead" style="font-size: 15px;">Got it. We'll send the PDF within one working day.</p>
+        </div>
+      </div>
+
+      <p class="footer-note">
+        Want to take it again? <a href="#" id="btn-restart">Restart the diagnostic</a>.
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<script>
+/* ============================================================
+   QUESTIONS DATA — edit freely, structure is preserved
+   ============================================================
+   Each question:
+   - id:        1..15
+   - dim:       'stakeholder' | 'market' | 'concept' | 'technical' | 'resource'
+   - text:      the question shown on screen
+   - options:   exactly 3 answer options, ordered weakest → strongest
+                each scored 1, 2, 3 — do not change scoring scale
+   ============================================================ */
+
+const DIMENSIONS = {
+  stakeholder: { name: 'Stakeholder alignment',  order: 1 },
+  market:      { name: 'Market evidence',        order: 2 },
+  concept:     { name: 'Concept clarity',        order: 3 },
+  technical:   { name: 'Technical feasibility',  order: 4 },
+  resource:    { name: 'Resource readiness',     order: 5 }
+};
+
+const QUESTIONS = [
+  // ---- Stakeholder alignment ----
+  {
+    id: 1, dim: 'stakeholder',
+    text: 'Do all co-founders or leadership give the same answer to "what problem are we solving?"',
+    options: [
+      { label: 'Not really — there are clear differences',          score: 1 },
+      { label: 'Mostly aligned, with some open questions',          score: 2 },
+      { label: 'Yes — explicitly aligned in writing',               score: 3 }
+    ]
+  },
+  {
+    id: 2, dim: 'stakeholder',
+    text: 'Is there a written document that defines scope and objectives for this project?',
+    options: [
+      { label: 'No document exists',                                score: 1 },
+      { label: 'Informal notes, not formally shared',               score: 2 },
+      { label: 'A formal document, signed off by leadership',       score: 3 }
+    ]
+  },
+  {
+    id: 3, dim: 'stakeholder',
+    text: 'Does every team member have the same picture of what makes this project successful?',
+    options: [
+      { label: 'No — there are competing definitions of success',   score: 1 },
+      { label: 'Discussed, but not fully resolved',                 score: 2 },
+      { label: 'Yes — explicitly agreed and documented',            score: 3 }
+    ]
+  },
+
+  // ---- Market evidence ----
+  {
+    id: 4, dim: 'market',
+    text: 'Have at least 5 potential customers specifically indicated what they would pay for your solution?',
+    options: [
+      { label: 'None have',                                         score: 1 },
+      { label: 'Between 1 and 4 have',                              score: 2 },
+      { label: '5 or more have',                                    score: 3 }
+    ]
+  },
+  {
+    id: 5, dim: 'market',
+    text: 'Do you know which alternatives your audience currently uses, and why those fall short?',
+    options: [
+      { label: 'Mostly assumptions',                                score: 1 },
+      { label: 'Some research, partial picture',                    score: 2 },
+      { label: 'Hard evidence from primary research',               score: 3 }
+    ]
+  },
+  {
+    id: 6, dim: 'market',
+    text: 'Do you have data — not assumptions — on how your audience currently solves this problem?',
+    options: [
+      { label: 'No data available',                                 score: 1 },
+      { label: 'Qualitative interviews',                            score: 2 },
+      { label: 'Quantitative data + interviews',                    score: 3 }
+    ]
+  },
+
+  // ---- Concept clarity ----
+  {
+    id: 7, dim: 'concept',
+    text: 'Can you explain in one sentence what your product does — and does everyone who explains it give the same answer?',
+    options: [
+      { label: 'No — it varies a lot',                              score: 1 },
+      { label: 'Sometimes consistent, sometimes not',               score: 2 },
+      { label: 'Consistently the same answer',                      score: 3 }
+    ]
+  },
+  {
+    id: 8, dim: 'concept',
+    text: 'Have you actively considered alternative concept directions, or are you committed to one solution?',
+    options: [
+      { label: 'Committed to one direction from the start',         score: 1 },
+      { label: 'Briefly considered alternatives',                   score: 2 },
+      { label: 'Actively weighed three or more directions',         score: 3 }
+    ]
+  },
+  {
+    id: 9, dim: 'concept',
+    text: 'Do you have a specification an external builder could pick up without follow-up questions?',
+    options: [
+      { label: 'No specification yet',                              score: 1 },
+      { label: 'High-level outline only',                           score: 2 },
+      { label: 'Detailed specification ready',                      score: 3 }
+    ]
+  },
+
+  // ---- Technical feasibility ----
+  {
+    id: 10, dim: 'technical',
+    text: 'Does your solution already work outside a lab or demo environment?',
+    options: [
+      { label: 'Lab or demo only',                                  score: 1 },
+      { label: 'Tested at one pilot site',                          score: 2 },
+      { label: 'Working in a real customer context',                score: 3 }
+    ]
+  },
+  {
+    id: 11, dim: 'technical',
+    text: 'Do you know the unit cost at production volume — and is it validated?',
+    options: [
+      { label: 'Estimate only',                                     score: 1 },
+      { label: 'Calculated internally',                             score: 2 },
+      { label: 'Validated by a manufacturer',                       score: 3 }
+    ]
+  },
+  {
+    id: 12, dim: 'technical',
+    text: 'Are there technical unknowns that could block the project?',
+    options: [
+      { label: 'Multiple significant unknowns',                     score: 1 },
+      { label: 'One or two unknowns remain',                        score: 2 },
+      { label: 'No major unknowns',                                 score: 3 }
+    ]
+  },
+
+  // ---- Resource readiness ----
+  {
+    id: 13, dim: 'resource',
+    text: 'Do you have budget for the full development phase, including a 30% buffer?',
+    options: [
+      { label: 'No budget secured yet',                             score: 1 },
+      { label: 'Partial budget',                                    score: 2 },
+      { label: 'Full budget plus buffer',                           score: 3 }
+    ]
+  },
+  {
+    id: 14, dim: 'resource',
+    text: 'Do you have a timeline with milestones validated by someone with experience?',
+    options: [
+      { label: 'No real timeline yet',                              score: 1 },
+      { label: 'Internal timeline only',                            score: 2 },
+      { label: 'Externally validated timeline',                     score: 3 }
+    ]
+  },
+  {
+    id: 15, dim: 'resource',
+    text: 'Do you internally have the mix of technical and commercial expertise the next phase requires?',
+    options: [
+      { label: 'Only one of the two, partially',                    score: 1 },
+      { label: 'Both, but limited capacity',                        score: 2 },
+      { label: 'Both fully present',                                score: 3 }
+    ]
+  }
+];
+
+/* ============================================================
+   FORM CONFIG — Google Forms POST
+   ============================================================
+   Mapping is based on field order in the form HTML.
+   To verify: open the live form, count fields top to bottom,
+   confirm field N matches the description below.
+   ============================================================ */
+
+const FORM = {
+  url: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSf8jVH0Y5GwWBxXihC_UZBtcY2yh67NIrb-Wx0d67-k4aLXwQ/formResponse',
+  fields: {
+    name:           'entry.131106955',
+    email:          'entry.205990449',
+    company:        'entry.325408822',
+    role:           'entry.1887558479',
+    score_dim1:     'entry.1494198823',  // Stakeholder alignment %
+    score_dim2:     'entry.1607329409',  // Market evidence %
+    score_dim3:     'entry.356848380',   // Concept clarity %
+    score_dim4:     'entry.1522122487',  // Technical feasibility %
+    score_dim5:     'entry.1099316096',  // Resource readiness %
+    recommendation: 'entry.2002325766',  // 'sprint' | 'audit' | 'ready'
+    json_full:      'entry.1799940450',  // full JSON dump
+    timestamp:      'entry.1493189294',
+    q1:  'entry.1095442194',  q2:  'entry.1834962316',  q3:  'entry.700381610',
+    q4:  'entry.1155958780',  q5:  'entry.1102940623',  q6:  'entry.1539968426',
+    q7:  'entry.1216573716',  q8:  'entry.1467593057',  q9:  'entry.417598660',
+    q10: 'entry.1542662774',  q11: 'entry.1857474019',  q12: 'entry.297126728',
+    q13: 'entry.1784133361',  q14: 'entry.1744574558',  q15: 'entry.1408275124'
+  }
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+
+let state = {
+  currentQ: 0,
+  answers: {},          // { 1: 2, 2: 3, ... } — questionId → score
+  answerLabels: {},     // { 1: 'Mostly aligned', ... } — for form submission
+  scores: null,
+  recommendation: null,
+  sessionId: null,
+  primarySubmitted: false
+};
+
+/* ============================================================
+   ELEMENT REFS
+   ============================================================ */
+
+const $ = (id) => document.getElementById(id);
+
+const screens = {
+  intro:     $('screen-intro'),
+  questions: $('screen-questions'),
+  result:    $('screen-result')
+};
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+function showScreen(name) {
+  Object.values(screens).forEach(s => s.classList.remove('active'));
+  screens[name].classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ============================================================
+   QUESTION RENDERING
+   ============================================================ */
+
+function renderQuestion() {
+  const q = QUESTIONS[state.currentQ];
+  const dimName = DIMENSIONS[q.dim].name;
+
+  $('q-counter').textContent = `Question ${state.currentQ + 1} of ${QUESTIONS.length}`;
+  $('q-dimension').textContent = dimName;
+  $('q-text').textContent = q.text;
+
+  $('progress-fill').style.width = `${((state.currentQ) / QUESTIONS.length) * 100}%`;
+
+  const optionsContainer = $('q-options');
+  optionsContainer.innerHTML = '';
+
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.type = 'button';
+    btn.innerHTML = `<span class="key">${String.fromCharCode(65 + idx)}</span><span>${opt.label}</span>`;
+
+    if (state.answers[q.id] === opt.score) btn.classList.add('selected');
+
+    btn.addEventListener('click', () => {
+      state.answers[q.id] = opt.score;
+      state.answerLabels[q.id] = opt.label;
+      optionsContainer.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      btn.classList.add('selected');
+      $('btn-next').disabled = false;
+    });
+
+    optionsContainer.appendChild(btn);
+  });
+
+  $('btn-next').disabled = !state.answers[q.id];
+  $('btn-back').style.visibility = state.currentQ === 0 ? 'hidden' : 'visible';
+  $('btn-next').textContent = state.currentQ === QUESTIONS.length - 1 ? 'See result →' : 'Continue →';
+
+  // Re-trigger the fade animation
+  const card = document.querySelector('.question-screen');
+  card.style.animation = 'none';
+  card.offsetHeight;
+  card.style.animation = '';
+}
+
+/* ============================================================
+   SCORING
+   ============================================================ */
+
+function calculateScores() {
+  const dimScores = {};
+
+  Object.keys(DIMENSIONS).forEach(dim => {
+    const qs = QUESTIONS.filter(q => q.dim === dim);
+    const total = qs.reduce((sum, q) => sum + (state.answers[q.id] || 0), 0);
+    const max = qs.length * 3;
+    const pct = Math.round((total / max) * 100);
+
+    let status;
+    if (pct >= 76) status = 'solid';
+    else if (pct >= 51) status = 'attention';
+    else status = 'gap';
+
+    dimScores[dim] = { pct, status, raw: total, max };
+  });
+
+  // Determine recommendation
+  const greenCount = Object.values(dimScores).filter(d => d.status === 'solid').length;
+  const redCount   = Object.values(dimScores).filter(d => d.status === 'gap').length;
+
+  let rec;
+  if (greenCount >= 4) {
+    rec = 'ready';
+  } else if (greenCount >= 2 && redCount <= 1) {
+    rec = 'audit';
+  } else {
+    rec = 'sprint';
+  }
+
+  return { dims: dimScores, recommendation: rec };
+}
+
+/* ============================================================
+   RESULT RENDERING
+   ============================================================ */
+
+const RESULT_COPY = {
+  ready: {
+    title: "You're ready to build.",
+    lead: "Your concept has the structural support a major investment needs. We'd push you toward execution rather than another validation phase.",
+    recTitle: "Save the budget for building.",
+    recBody: "Based on your answers, you don't need a Decision Sprint right now. Your weakest dimensions are still in solid territory — the gaps that remain are usually best closed during early development, not before.",
+    recBody2: "If you'd like a second opinion before committing the full investment, our Pre-Investment Audit is a low-cost sanity check. Otherwise, we'd genuinely tell you to start building."
+  },
+  audit: {
+    title: "There are gaps to address.",
+    lead: "Some dimensions are solid, but others would create real risk if you committed your full development budget right now.",
+    recTitle: "Pre-Investment Audit recommended.",
+    recBody: "A focused 5-day audit at €2.500 closes the highest-risk gaps before you invest. It's the level of work your situation calls for — not a full sprint, but more than internal alignment alone.",
+    recBody2: "If the audit reveals deeper issues, the cost is credited toward a Decision Sprint within 90 days."
+  },
+  sprint: {
+    title: "This needs structured work.",
+    lead: "Multiple foundational dimensions show critical gaps. Committing significant capital from this position is where most innovation projects fail — not in execution, but at this exact moment.",
+    recTitle: "Decision Sprint needed.",
+    recBody: "A 21-day sprint at €12.500 surfaces the evidence your concept is missing across all five dimensions, builds three concept directions, and ends with a defensible decision your team can sign off on.",
+    recBody2: "We recommend an intake call first to confirm whether the timing and scope fit your situation."
+  }
+};
+
+function renderResult(result) {
+  const copy = RESULT_COPY[result.recommendation];
+
+  // Header
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+  $('result-date').textContent = `Your result · ${dateStr}`;
+  $('result-title').textContent = copy.title;
+  $('result-lead').textContent = copy.lead;
+
+  // Recommendation block
+  $('rec-title').textContent = copy.recTitle;
+  $('rec-body').textContent = copy.recBody;
+  $('rec-body-2').textContent = copy.recBody2;
+
+  // Dimension list
+  const dimList = $('dim-list');
+  dimList.innerHTML = '';
+  Object.keys(DIMENSIONS).forEach(dim => {
+    const d = result.dims[dim];
+    const tagLabel = d.status === 'solid' ? 'Solid' : d.status === 'attention' ? 'Attention' : 'Gap';
+    const row = document.createElement('div');
+    row.className = 'dim-row';
+    row.innerHTML = `
+      <div class="dim-name">${DIMENSIONS[dim].name}</div>
+      <div class="dim-pct">${d.pct}%</div>
+      <div class="dim-tag ${d.status}"><span class="dot"></span>${tagLabel}</div>
+    `;
+    dimList.appendChild(row);
+  });
+
+  // Radar chart
+  renderRadar(result.dims);
+}
+
+/* ============================================================
+   RADAR CHART (pure SVG, no dependencies)
+   ============================================================ */
+
+function renderRadar(dims) {
+  const svg = $('radar');
+  const size = 360;
+  const cx = size / 2;
+  const cy = size / 2;
+  const radius = 130;
+  const dimKeys = Object.keys(DIMENSIONS);
+  const N = dimKeys.length;
+
+  svg.innerHTML = '';
+
+  // Grid rings (4 levels at 25%, 50%, 75%, 100%)
+  for (let i = 1; i <= 4; i++) {
+    const r = (radius * i) / 4;
+    const points = [];
+    for (let j = 0; j < N; j++) {
+      const angle = (Math.PI * 2 * j) / N - Math.PI / 2;
+      const x = cx + r * Math.cos(angle);
+      const y = cy + r * Math.sin(angle);
+      points.push(`${x},${y}`);
+    }
+    const ring = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    ring.setAttribute('points', points.join(' '));
+    ring.setAttribute('fill', i === 4 ? 'rgba(40,41,43,0.02)' : 'none');
+    ring.setAttribute('stroke', 'rgba(40,41,43,0.10)');
+    ring.setAttribute('stroke-width', '1');
+    svg.appendChild(ring);
+  }
+
+  // Axis lines + labels
+  for (let j = 0; j < N; j++) {
+    const angle = (Math.PI * 2 * j) / N - Math.PI / 2;
+    const x = cx + radius * Math.cos(angle);
+    const y = cy + radius * Math.sin(angle);
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', cx);
+    line.setAttribute('y1', cy);
+    line.setAttribute('x2', x);
+    line.setAttribute('y2', y);
+    line.setAttribute('stroke', 'rgba(40,41,43,0.10)');
+    line.setAttribute('stroke-width', '1');
+    svg.appendChild(line);
+
+    // Labels — short forms for fitting
+    const labelMap = {
+      stakeholder: 'Stakeholder',
+      market:      'Market',
+      concept:     'Concept',
+      technical:   'Technical',
+      resource:    'Resource'
+    };
+    const labelDist = radius + 26;
+    const lx = cx + labelDist * Math.cos(angle);
+    const ly = cy + labelDist * Math.sin(angle);
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', lx);
+    text.setAttribute('y', ly);
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('dominant-baseline', 'middle');
+    text.setAttribute('font-family', 'JetBrains Mono, monospace');
+    text.setAttribute('font-size', '10');
+    text.setAttribute('letter-spacing', '0.5');
+    text.setAttribute('fill', '#28292B');
+    text.textContent = labelMap[dimKeys[j]].toUpperCase();
+    svg.appendChild(text);
+  }
+
+  // Data polygon
+  const dataPoints = [];
+  dimKeys.forEach((dim, j) => {
+    const angle = (Math.PI * 2 * j) / N - Math.PI / 2;
+    const r = radius * (dims[dim].pct / 100);
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    dataPoints.push({ x, y, status: dims[dim].status });
+  });
+
+  const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  polygon.setAttribute('points', dataPoints.map(p => `${p.x},${p.y}`).join(' '));
+  polygon.setAttribute('fill', 'rgba(32,106,91,0.20)');
+  polygon.setAttribute('stroke', '#206A5B');
+  polygon.setAttribute('stroke-width', '2');
+  polygon.setAttribute('stroke-linejoin', 'round');
+  svg.appendChild(polygon);
+
+  // Data points
+  dataPoints.forEach(p => {
+    const colorMap = {
+      solid:     '#2D7A5F',
+      attention: '#C77900',
+      gap:       '#B23A3A'
+    };
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', p.x);
+    dot.setAttribute('cy', p.y);
+    dot.setAttribute('r', 4);
+    dot.setAttribute('fill', colorMap[p.status]);
+    dot.setAttribute('stroke', '#F0FDFF');
+    dot.setAttribute('stroke-width', '2');
+    svg.appendChild(dot);
+  });
+}
+
+/* ============================================================
+   FORM SUBMISSION (fire-and-forget Google Forms POST)
+   ============================================================ */
+
+function submitToForm(includeContact = false) {
+  if (!state.scores) return;
+
+  const fd = new FormData();
+
+  // Contact info — only if explicitly provided
+  if (includeContact) {
+    fd.append(FORM.fields.name,    $('cap-name').value.trim());
+    fd.append(FORM.fields.email,   $('cap-email').value.trim());
+    fd.append(FORM.fields.company, $('cap-company').value.trim());
+    fd.append(FORM.fields.role,    $('cap-role').value.trim());
+  } else {
+    fd.append(FORM.fields.name,    '');
+    fd.append(FORM.fields.email,   '');
+    fd.append(FORM.fields.company, '');
+    fd.append(FORM.fields.role,    '');
+  }
+
+  // Dimension scores as percentages
+  const dimKeys = Object.keys(DIMENSIONS);
+  fd.append(FORM.fields.score_dim1, state.scores.dims[dimKeys[0]].pct);
+  fd.append(FORM.fields.score_dim2, state.scores.dims[dimKeys[1]].pct);
+  fd.append(FORM.fields.score_dim3, state.scores.dims[dimKeys[2]].pct);
+  fd.append(FORM.fields.score_dim4, state.scores.dims[dimKeys[3]].pct);
+  fd.append(FORM.fields.score_dim5, state.scores.dims[dimKeys[4]].pct);
+
+  // Recommendation as keyword
+  fd.append(FORM.fields.recommendation, state.scores.recommendation);
+
+  // Individual question answers — text labels for readability in Google Sheet
+  for (let i = 1; i <= 15; i++) {
+    fd.append(FORM.fields[`q${i}`], state.answerLabels[i] || '');
+  }
+
+  // Full JSON dump as backup
+  fd.append(FORM.fields.json_full, JSON.stringify({
+    sessionId: state.sessionId,
+    answers: state.answers,
+    answerLabels: state.answerLabels,
+    scores: state.scores,
+    submitted: includeContact ? 'with-contact' : 'anonymous',
+    userAgent: navigator.userAgent
+  }));
+
+  fd.append(FORM.fields.timestamp, new Date().toISOString());
+
+  // Fire and forget — Google Forms doesn't return a response we can read
+  fetch(FORM.url, { method: 'POST', body: fd, mode: 'no-cors' })
+    .catch(err => console.warn('Submission error (non-fatal):', err));
+}
+
+/* ============================================================
+   EVENT WIRING
+   ============================================================ */
+
+$('btn-start').addEventListener('click', () => {
+  state.currentQ = 0;
+  state.sessionId = `s_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  showScreen('questions');
+  renderQuestion();
+});
+
+$('btn-next').addEventListener('click', () => {
+  if (state.currentQ < QUESTIONS.length - 1) {
+    state.currentQ += 1;
+    renderQuestion();
+  } else {
+    // Last question — calculate and show result
+    state.scores = calculateScores();
+    renderResult(state.scores);
+    showScreen('result');
+
+    // Fire anonymous submission
+    if (!state.primarySubmitted) {
+      submitToForm(false);
+      state.primarySubmitted = true;
+    }
+  }
+});
+
+$('btn-back').addEventListener('click', () => {
+  if (state.currentQ > 0) {
+    state.currentQ -= 1;
+    renderQuestion();
+  }
+});
+
+$('capture-toggle').addEventListener('click', () => {
+  $('capture').classList.toggle('collapsed');
+});
+
+$('capture-submit').addEventListener('click', () => {
+  const name = $('cap-name').value.trim();
+  const email = $('cap-email').value.trim();
+  const company = $('cap-company').value.trim();
+
+  // Reset error states
+  ['cap-name', 'cap-email', 'cap-company'].forEach(id => $(id).classList.remove('error'));
+
+  let valid = true;
+  if (!name)    { $('cap-name').classList.add('error'); valid = false; }
+  if (!email || !email.includes('@')) { $('cap-email').classList.add('error'); valid = false; }
+  if (!company) { $('cap-company').classList.add('error'); valid = false; }
+  if (!valid) return;
+
+  submitToForm(true);
+
+  // Show confirmation
+  document.querySelector('.capture-body').style.display = 'none';
+  $('capture-confirm').classList.add('shown');
+});
+
+$('btn-restart').addEventListener('click', (e) => {
+  e.preventDefault();
+  state = {
+    currentQ: 0,
+    answers: {},
+    answerLabels: {},
+    scores: null,
+    recommendation: null,
+    sessionId: null,
+    primarySubmitted: false
+  };
+  // Reset capture UI
+  ['cap-name', 'cap-email', 'cap-company', 'cap-role'].forEach(id => $(id).value = '');
+  document.querySelector('.capture-body').style.display = '';
+  $('capture-confirm').classList.remove('shown');
+  $('capture').classList.add('collapsed');
+  showScreen('intro');
+});
+
+// Keyboard shortcuts during questions
+document.addEventListener('keydown', (e) => {
+  if (!screens.questions.classList.contains('active')) return;
+  if (e.key === 'Enter' && !$('btn-next').disabled) {
+    $('btn-next').click();
+  } else if (e.key === 'ArrowLeft' && state.currentQ > 0) {
+    $('btn-back').click();
+  } else if (['1', '2', '3', 'a', 'A', 'b', 'B', 'c', 'C'].includes(e.key)) {
+    const idxMap = { '1': 0, 'a': 0, 'A': 0, '2': 1, 'b': 1, 'B': 1, '3': 2, 'c': 2, 'C': 2 };
+    const idx = idxMap[e.key];
+    const options = document.querySelectorAll('#q-options .option');
+    if (options[idx]) options[idx].click();
+  }
+});
+
+</script>
+</body>
+</html>

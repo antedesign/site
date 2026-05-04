@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anté · Approach</title>
+<meta name="description" content="A structured way to decide. The Anté methodology, in seven phases, with one living analysis map and three concept archetypes." />
+
+<link rel="icon" type="image/png" href="/assets/images/ante-logo.png" />
+<link rel="stylesheet" href="/assets/css/shared.css" />
+
+<style>
+  /* ---- Approach-only styles ---- */
+
+  /* Hero — large display headline anchored to top of page */
+  .ap-hero {
+    padding: 120px var(--space-pad-x) 130px;
+  }
+  .ap-hero__title {
+    color: var(--azure);
+    max-width: 14ch;
+    margin-top: var(--space-block);
+  }
+  .ap-hero__body {
+    margin-top: 72px;
+    align-items: end;
+  }
+  .ap-hero__cta {
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  /* Methodology — phase list with continuous left rule */
+  .ap-method__title { color: var(--spruce); margin-bottom: 40px; }
+  .ap-method__intro {
+    font-size: var(--text-body-xl);
+    max-width: 70ch;
+    line-height: 1.55;
+    color: var(--shadow);
+    margin-bottom: 96px;
+  }
+  .ap-method__note {
+    margin-top: var(--space-stack-lg);
+    max-width: 78ch;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--shadow-soft);
+    font-style: italic;
+  }
+
+  /* Map section — dark ground with kumu placeholder */
+  .ap-map__title {
+    color: var(--frosted);
+    max-width: 18ch;
+    margin-bottom: var(--space-block);
+  }
+  .ap-map__body-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .ap-map__canvas {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-media);
+    overflow: hidden;
+    border: 1px solid var(--rule-light);
+    background:
+      radial-gradient(circle at 30% 40%, rgba(156,227,248,0.10), transparent 60%),
+      radial-gradient(circle at 70% 60%, rgba(156,227,248,0.08), transparent 55%),
+      repeating-linear-gradient(0deg,  rgba(240,253,255,0.04) 0 1px, transparent 1px 22px),
+      repeating-linear-gradient(90deg, rgba(240,253,255,0.04) 0 1px, transparent 1px 22px),
+      var(--spruce);
+    display: flex;
+    align-items: flex-end;
+    padding: 18px;
+  }
+  .ap-map__chip {
+    padding: 6px 10px;
+    border-radius: var(--radius-pill);
+    background: rgba(240,253,255,0.10);
+    color: var(--frosted);
+    border: 1px solid rgba(240,253,255,0.22);
+  }
+  .ap-map__copy {
+    display: grid;
+    gap: 28px;
+  }
+  .ap-map__copy-lead {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--azure-88);
+  }
+  .ap-map__copy-sub {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--azure-75);
+  }
+  .ap-map__pull {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: var(--text-pull);
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--frosted);
+  }
+  .ap-map__timeline {
+    margin-top: 96px;
+    border-top: 1px solid var(--rule-light);
+    padding-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+  }
+  .ap-map__timeline-cell {
+    padding: 20px 18px 0 0;
+    border-right: 1px solid var(--rule-light);
+  }
+  .ap-map__timeline-cell:last-child { border-right: 0; }
+  .ap-map__timeline-eyebrow { margin-bottom: 8px; }
+  .ap-map__timeline-label {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: var(--text-body);
+    line-height: 1.25;
+    color: var(--azure);
+    letter-spacing: -0.01em;
+  }
+
+  /* Archetypes — 3 card grid */
+  .ap-arch__title {
+    color: var(--spruce);
+    margin-bottom: 40px;
+  }
+  .ap-arch__intro {
+    font-size: var(--text-body-lg);
+    max-width: 62ch;
+    color: var(--shadow);
+    margin-bottom: var(--space-block);
+    line-height: 1.55;
+  }
+  .ap-arch__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .ap-arch__card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .ap-arch__card-media { padding: 18px 18px 0; }
+  .ap-arch__card-body  {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+  .ap-arch__card-title {
+    font-size: var(--text-h3-md);
+    color: var(--shadow);
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+  .ap-arch__card-copy {
+    font-size: var(--text-body-xs);
+    line-height: 1.65;
+    color: var(--shadow-soft);
+  }
+
+  /* Negatives — full-width numbered list (no trailing decoration) */
+  .ap-neg__title { color: var(--spruce); margin-bottom: 40px; }
+  .ap-neg__intro {
+    font-size: var(--text-body-lg);
+    max-width: 62ch;
+    color: var(--shadow);
+    margin-bottom: 64px;
+    line-height: 1.55;
+  }
+  .ap-neg__list { border-top: 1px solid var(--rule-strong); }
+  .ap-neg__row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+    column-gap: 24px;
+  }
+  .ap-neg__num  { color: var(--shadow-soft); }
+  .ap-neg__line {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: var(--text-h4);
+    color: var(--spruce);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  /* Pricing footer line */
+  .ap-pricing__title { color: var(--spruce); margin-bottom: var(--space-stack-lg); }
+  .ap-pricing__foot {
+    margin-top: var(--space-stack-sm);
+    color: var(--shadow-soft);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    font-size: var(--text-mono);
+    letter-spacing: 0.06em;
+  }
+
+  /* Availability */
+  .ap-avail__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-block);
+    align-items: start;
+  }
+  .ap-avail__title {
+    color: var(--spruce);
+    margin-bottom: 32px;
+  }
+  .ap-avail__body  { font-size: 18px; line-height: 1.55; color: var(--shadow); max-width: 52ch; }
+  .ap-avail__sub   { margin-top: 18px; font-size: var(--text-body-sm); line-height: 1.65; color: var(--shadow-soft); max-width: 52ch; }
+  .ap-avail__cta   { margin-top: 32px; }
+  .ap-avail__list-label { margin-bottom: 18px; }
+  .ap-avail__list  { border-top: 1px solid var(--rule-strong); }
+  .ap-avail__foot  { margin-top: 18px; color: var(--shadow-soft); }
+
+  /* Final CTA */
+  .ap-final__title {
+    line-height: 0.92;
+    color: var(--azure);
+    letter-spacing: -0.045em;
+    max-width: 16ch;
+    margin-bottom: var(--space-stack-lg);
+    font-size: var(--text-display-md);
+  }
+  .ap-final__body-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-block);
+    align-items: end;
+  }
+  .ap-final__copy {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--azure-85);
+    max-width: 58ch;
+  }
+  .ap-final__cta {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* Tablet adjustments specific to Approach */
+  @media (max-width: 960px) {
+    .ap-arch__grid { grid-template-columns: 1fr; }
+    .ap-map__body-grid { grid-template-columns: 1fr; gap: 40px; }
+    .ap-map__timeline { grid-template-columns: repeat(2, 1fr); margin-top: 56px; }
+    .ap-map__timeline-cell { border-right: 0; padding-bottom: 16px; }
+    .ap-avail__grid { grid-template-columns: 1fr; }
+    .ap-final__body-grid { grid-template-columns: 1fr; }
+    .ap-final__cta { justify-content: flex-start; }
+    .ap-hero__body { align-items: start; }
+    .ap-hero__cta { justify-content: flex-start; }
+    .ap-method__intro { margin-bottom: 56px; }
+  }
+  @media (max-width: 640px) {
+    .ap-map__timeline { grid-template-columns: 1fr; }
+    .ap-neg__row { grid-template-columns: 32px 1fr; column-gap: 16px; }
+  }
+</style>
+</head>
+
+<body>
+<div class="ante-page">
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="site-nav" aria-label="Primary">
+  <a href="/" class="site-nav__brand">anté</a>
+
+  <button class="site-nav__toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+    <span class="site-nav__toggle-bar"></span>
+    <span class="site-nav__toggle-bar"></span>
+    <span class="site-nav__toggle-bar"></span>
+  </button>
+
+  <div class="site-nav__links" id="primary-nav">
+    <a href="/approach/" class="site-nav__link site-nav__link--active">Approach</a>
+    <a href="/about/"    class="site-nav__link">About</a>
+    <a href="/contact/"  class="site-nav__link">Contact</a>
+    <a href="/scorecard/" class="btn btn-frosted btn-mini">
+      Take the diagnostic <span class="btn-mini__meta">4 MIN</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="section section--spruce ap-hero">
+  <div class="hero-head">
+    <span class="eyebrow eyebrow--frosted">The methodology</span>
+    <span class="eyebrow eyebrow--azure-55">FILE · 02 / APPROACH · BELGIUM</span>
+  </div>
+
+  <h1 class="h-display-xl ap-hero__title">A structured way to decide.</h1>
+
+  <div class="grid-2 ap-hero__body">
+    <p class="body-lead t-azure-88">
+      Anté is built around one principle: every concept evaluation criterion must trace back to specific evidence. No subjective scoring. No "I think." No design-by-loudest-voice. This page shows how that works, what you receive, and what it costs.
+    </p>
+    <div class="ap-hero__cta">
+      <a class="btn btn-frosted" href="#pricing">See pricing →</a>
+      <a class="btn btn-outline-light" href="#availability">Current availability</a>
+    </div>
+  </div>
+
+  <div class="hero-colophon">
+    <span>Seven phases · One living analysis map · Three concept archetypes</span>
+    <span class="accent">Decide before you build.</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     1. METHODOLOGY (7 phases)
+     ============================================================ -->
+<section class="section section--azure" data-screen-label="Methodology">
+  <div class="section-meta">
+    <span class="eyebrow">§ 01 · The methodology</span>
+    <span class="eyebrow eyebrow--muted">Seven phases · 1 decision</span>
+  </div>
+
+  <h2 class="h-display-md ap-method__title">Seven phases, one decision.</h2>
+
+  <p class="ap-method__intro">
+    Most innovation projects fail not because of execution, but because the foundation underneath was never made explicit. Anté's methodology is structured to surface that foundation phase by phase, with the client involved at every checkpoint.
+  </p>
+
+  <div class="phase-list">
+    <!-- Phase 1 -->
+    <article class="phase-row phase-row--first">
+      <div class="phase-disk">1</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 1</div>
+        <h3 class="phase-body__title">Preparation</h3>
+        <p class="phase-body__copy">
+          Before the sprint begins, we map the project context. Who the stakeholders are. What's been tried. What's already known. What scope of decision is on the table. The output is a structured project profile your team can sign off on before any interview happens.
+        </p>
+      </div>
+      <div class="phase-receive">
+        <div class="eyebrow phase-receive__label">What you receive</div>
+        <p class="phase-receive__text">A project briefing document and a calendar with confirmed interview slots.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/workshop-01-preparation.jpg" alt="Workshop, Phase 1: preparation kickoff" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+
+    <!-- Phase 2 -->
+    <article class="phase-row">
+      <div class="phase-disk">2</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 2</div>
+        <h3 class="phase-body__title">Analysis</h3>
+        <p class="phase-body__copy">
+          Eight stakeholder interviews. Internal team, external customers, technical experts, market voices. Every conversation is recorded, transcribed, and analysed individually, then synthesised across interviews to surface shared themes, contradictions, and pressure points. Desk research runs in parallel: market, competition, technology, regulation. All evidence enters the living analysis map.
+        </p>
+      </div>
+      <div class="phase-receive">
+        <div class="eyebrow phase-receive__label">What you receive</div>
+        <p class="phase-receive__text">A synthesis dossier, the first version of the analysis map, and a stakeholder alignment matrix.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/artifact-synthesis-dossier.jpg" alt="Artifact: synthesis dossier preview" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+
+    <!-- Phase 3 -->
+    <article class="phase-row">
+      <div class="phase-disk">3</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 3</div>
+        <h3 class="phase-body__title">Definition</h3>
+        <p class="phase-body__copy">
+          A structured workshop with your core team. We open with what we call the Insight Reveal: the moment where the patterns and contradictions from the analysis are made visible to the people who lived inside the situation. From there, the workshop narrows toward a sharp problem definition, the underlying sub-problems, and the criteria by which we will later evaluate concept directions. Critically: criteria weighting happens here, before any concept exists. Your priorities cannot be reverse-engineered to match a preferred outcome.
+        </p>
+      </div>
+      <div class="phase-receive">
+        <div class="eyebrow phase-receive__label">What you receive</div>
+        <p class="phase-receive__text">A defined problem statement, a structured set of sub-problems, and a weighted criteria framework.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/workshop-03-definition.jpg" alt="Workshop, Phase 3: definition workshop" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+
+    <!-- Phase 4 -->
+    <article class="phase-row">
+      <div class="phase-disk">4</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 4</div>
+        <h3 class="phase-body__title">Exploration</h3>
+        <p class="phase-body__copy">
+          A creative workshop. Three to five concept directions emerge, fundamentally different approaches to the same problem, each linked back to specific sub-problems. After the workshop we run a structured checkpoint: do the criteria still hold, are there new sub-problems, has anything shifted in the analysis map? Then we proceed.
+        </p>
+      </div>
+      <div class="phase-receive">
+        <div class="eyebrow phase-receive__label">What you receive</div>
+        <p class="phase-receive__text">A clustered set of concept directions with explicit links to the sub-problems they address.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/workshop-04-exploration.jpg" alt="Workshop, Phase 4: exploration sketches" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+
+    <!-- Phase 5 -->
+    <article class="phase-row">
+      <div class="phase-disk">5</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 5</div>
+        <h3 class="phase-body__title">Concept Development</h3>
+        <p class="phase-body__copy">
+          We narrow to three concepts and develop each one fully, visually, technically, and operationally. Depending on the project, this means product renders, service blueprints, or wireframes. Per concept, per criterion, we build an evidence dossier: every claim about feasibility or impact is traced back to interview quotes, research sources, or workshop input. Halfway through this phase we run a Concept Preview with your stakeholders: early, qualitative feedback that enters the analysis as an additional layer.
+        </p>
+      </div>
+      <div class="phase-receive">
+        <div class="eyebrow phase-receive__label">What you receive</div>
+        <p class="phase-receive__text">Three fully visualised concepts and an evidence dossier per concept.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/artifact-concept-render.jpg" alt="Artifact: concept render or service blueprint" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+
+    <!-- Phase 6 -->
+    <article class="phase-row">
+      <div class="phase-disk">6</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 6</div>
+        <h3 class="phase-body__title">Decision</h3>
+        <p class="phase-body__copy">
+          The trade-off. Not a scorecard but a layered evidence comparison. Every score is sourced. Every claim is auditable. We present the trade-off live with your team, including the option to shift criteria weighting in the moment to test how robust the recommendation is. The output is a defended choice, not an opinion.
+        </p>
+      </div>
+      <div class="phase-receive">
+        <div class="eyebrow phase-receive__label">What you receive</div>
+        <p class="phase-receive__text">A complete trade-off matrix, the recommended concept with full justification, and a risk profile per direction.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/artifact-tradeoff-matrix.jpg" alt="Artifact: trade-off matrix output" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+
+    <!-- Phase 7 -->
+    <article class="phase-row phase-row--last">
+      <div class="phase-disk">7</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 7</div>
+        <h3 class="phase-body__title">Handover</h3>
+        <p class="phase-body__copy">
+          The conclusion is two documents, not one. The Decision Brief, five pages, written for the person signing off, covering why this concept, what the strategic context is, what evidence supports the choice. The Implementation Spec, as detailed as needed, written for whoever builds: specifications, requirements, scope boundaries, acceptance criteria. Plus the final analysis map, fully traceable from first interview to final decision.
+        </p>
+      </div>
+      <div class="phase-receive">
+        <div class="eyebrow phase-receive__label">What you receive</div>
+        <p class="phase-receive__text">Two handover documents and the complete project archive.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/artifact-handover-docs.jpg" alt="Artifact: handover documents" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+  </div>
+
+  <p class="ap-method__note">
+    A note on numbering: this is structured as seven phases because Preparation is genuinely a phase. If you prefer "six phases" as the public number to match the project plan v2, Preparation merges into the project intake and the methodology starts at Analysis. Either works. The work is identical.
+  </p>
+</section>
+
+<!-- ============================================================
+     2. LIVING ANALYSIS MAP
+     ============================================================ -->
+<section class="section section--ink" data-screen-label="Living analysis map">
+  <div class="section-meta">
+    <span class="eyebrow eyebrow--frosted">§ 02 · The living analysis map</span>
+    <span class="eyebrow eyebrow--azure-55">Built in Kumu · auditable</span>
+  </div>
+
+  <h2 class="h-display-md ap-map__title">One map, growing through every phase.</h2>
+
+  <div class="ap-map__body-grid">
+    <div class="ap-map__canvas">
+      <span class="mono ap-map__chip">[ Kumu screenshot · element types &amp; connections ]</span>
+    </div>
+
+    <div class="ap-map__copy">
+      <p class="ap-map__copy-lead">
+        Most consultancies hand over a deck at the end. Anté's primary deliverable is something different: a living map that grows phase by phase, where every element traces back to a specific source and every connection has visible evidence behind it.
+      </p>
+      <p class="ap-map__copy-sub">
+        At the start of the engagement the map holds your stakeholders. After Phase 2 it includes pain points, opportunities, and leverage points found in the interviews. After Phase 3, the sub-problems and criteria are added. After Phase 5, the concepts and their evidence layers. After Phase 6, the final decision sits on the map with every supporting source one click away.
+      </p>
+      <p class="ap-map__pull">
+        The map is the reason our trade-off can be defended. Not because we say so. Because every score in the final matrix points back to a specific quote, a specific source, or a specific workshop moment. Auditable evidence, not opinion.
+      </p>
+    </div>
+  </div>
+
+  <div class="ap-map__timeline">
+    <div class="ap-map__timeline-cell">
+      <div class="eyebrow eyebrow--frosted ap-map__timeline-eyebrow">P1</div>
+      <div class="ap-map__timeline-label">Stakeholders</div>
+    </div>
+    <div class="ap-map__timeline-cell">
+      <div class="eyebrow eyebrow--frosted ap-map__timeline-eyebrow">P2</div>
+      <div class="ap-map__timeline-label">Pain points · opportunities · leverage</div>
+    </div>
+    <div class="ap-map__timeline-cell">
+      <div class="eyebrow eyebrow--frosted ap-map__timeline-eyebrow">P3</div>
+      <div class="ap-map__timeline-label">Sub-problems · weighted criteria</div>
+    </div>
+    <div class="ap-map__timeline-cell">
+      <div class="eyebrow eyebrow--frosted ap-map__timeline-eyebrow">P5</div>
+      <div class="ap-map__timeline-label">Concepts · evidence layers</div>
+    </div>
+    <div class="ap-map__timeline-cell">
+      <div class="eyebrow eyebrow--frosted ap-map__timeline-eyebrow">P6</div>
+      <div class="ap-map__timeline-label">The decision · sources</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. THREE ARCHETYPES
+     ============================================================ -->
+<section class="section section--tint" data-screen-label="Concept archetypes">
+  <div class="section-meta">
+    <span class="eyebrow">§ 03 · Three concept archetypes</span>
+    <span class="eyebrow eyebrow--muted">Same methodology · adapted output</span>
+  </div>
+
+  <h2 class="h-display-sm ap-arch__title">One methodology, three concept paths.</h2>
+
+  <p class="ap-arch__intro">
+    A concept can be a physical product, a service, or a digital system. The methodology stays identical across all three. The visualisation language adapts.
+  </p>
+
+  <div class="ap-arch__grid">
+    <article class="ap-arch__card">
+      <div class="ap-arch__card-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/archetype-product.jpg" alt="Render example: physical product archetype" loading="lazy" />
+        </figure>
+      </div>
+      <div class="ap-arch__card-body">
+        <div class="eyebrow">01 · Archetype</div>
+        <h3 class="ap-arch__card-title">Physical product</h3>
+        <p class="ap-arch__card-copy">
+          When the concept is a product (hardware, equipment, an industrial component), we develop it through high-fidelity renders, materials specification, and production-feasibility analysis. The Implementation Spec includes technical drawings, materials list, and tolerances for downstream engineering.
+        </p>
+      </div>
+    </article>
+
+    <article class="ap-arch__card">
+      <div class="ap-arch__card-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/archetype-service.jpg" alt="Service blueprint example: service or experience archetype" loading="lazy" />
+        </figure>
+      </div>
+      <div class="ap-arch__card-body">
+        <div class="eyebrow">02 · Archetype</div>
+        <h3 class="ap-arch__card-title">Service or experience</h3>
+        <p class="ap-arch__card-copy">
+          When the concept is a service (a customer journey, a clinical workflow, an operational process), we develop it as a service blueprint, with touchpoints, customer journey maps, and process flows. The Implementation Spec includes service specifications, training material, and KPI frameworks.
+        </p>
+      </div>
+    </article>
+
+    <article class="ap-arch__card">
+      <div class="ap-arch__card-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/archetype-digital.jpg" alt="Wireframe example: digital system archetype" loading="lazy" />
+        </figure>
+      </div>
+      <div class="ap-arch__card-body">
+        <div class="eyebrow">03 · Archetype</div>
+        <h3 class="ap-arch__card-title">Digital system</h3>
+        <p class="ap-arch__card-copy">
+          When the concept is software, a platform, or a digital tool, we develop it as wireframes, user flows, and information architecture. The Implementation Spec includes functional requirements, user stories, and architectural recommendations for downstream development teams.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. WHAT WE DON'T DO
+     ============================================================ -->
+<section class="section section--azure" data-screen-label="What we don't do">
+  <div class="section-meta">
+    <span class="eyebrow">§ 04 · Boundaries</span>
+    <span class="eyebrow eyebrow--muted">Four declarative limits</span>
+  </div>
+
+  <h2 class="h-display-sm ap-neg__title">What we don't do.</h2>
+
+  <p class="ap-neg__intro">
+    Our methodology has explicit boundaries. They exist because they protect the value of what we deliver.
+  </p>
+
+  <div class="ap-neg__list">
+    <div class="ap-neg__row">
+      <span class="eyebrow ap-neg__num">01</span>
+      <span class="ap-neg__line">We don't build the concept we recommend. Engineering and development is your next partner, not us.</span>
+    </div>
+    <div class="ap-neg__row">
+      <span class="eyebrow ap-neg__num">02</span>
+      <span class="ap-neg__line">We don't introduce you to "preferred" development partners. We have no financial relationship with any agency, engineering firm, or contractor.</span>
+    </div>
+    <div class="ap-neg__row">
+      <span class="eyebrow ap-neg__num">03</span>
+      <span class="ap-neg__line">We don't take ongoing retainers. Each engagement is fixed-scope, fixed-price, fixed-time.</span>
+    </div>
+    <div class="ap-neg__row">
+      <span class="eyebrow ap-neg__num">04</span>
+      <span class="ap-neg__line">We don't make recommendations our methodology can't substantiate. If the evidence isn't there, we'll tell you the evidence isn't there.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. PRICING
+     ============================================================ -->
+<section id="pricing" class="section section--azure" data-screen-label="Pricing">
+  <div class="section-meta">
+    <span class="eyebrow">§ 05 · Pricing</span>
+    <span class="eyebrow eyebrow--muted">Fixed scope · fixed price · fixed time</span>
+  </div>
+
+  <h2 class="h-display-sm ap-pricing__title">Three ways in.</h2>
+
+  <div class="pricing-list">
+    <div class="pricing-row">
+      <div>
+        <h3 class="pricing-row__name">Pre-Investment Audit</h3>
+        <div class="eyebrow pricing-row__time">5 days</div>
+      </div>
+      <div class="pricing-row__price">€2.500</div>
+      <p class="pricing-row__copy">
+        A structured first read of your concept. Two stakeholder interviews, scope mapping, risk inventory, honest recommendation.
+      </p>
+      <div class="pricing-row__cta">
+        <a href="/contact/" class="link-underline-mono">Enquire →</a>
+      </div>
+    </div>
+
+    <div class="pricing-row">
+      <div>
+        <h3 class="pricing-row__name">Decision Sprint</h3>
+        <div class="eyebrow pricing-row__time">21 days</div>
+      </div>
+      <div class="pricing-row__price">€12.500</div>
+      <p class="pricing-row__copy">
+        Our core engagement. Full methodology, eight interviews, three concept directions, validation matrix, handover brief.
+      </p>
+      <div class="pricing-row__cta">
+        <a href="/contact/" class="link-underline-mono">Enquire →</a>
+      </div>
+    </div>
+
+    <div class="pricing-row">
+      <div>
+        <h3 class="pricing-row__name">Custom engagement</h3>
+        <div class="eyebrow pricing-row__time">Scoped</div>
+      </div>
+      <div class="pricing-row__price">On request</div>
+      <p class="pricing-row__copy">
+        For larger ecosystems, longer timelines, or projects requiring external user testing.
+      </p>
+      <div class="pricing-row__cta">
+        <a href="/contact/" class="link-underline-mono">Enquire →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ap-pricing__foot">
+    <span>All engagements include a written final recommendation.</span>
+    <span>VAT excl. · Belgium</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. AVAILABILITY
+     ============================================================ -->
+<section id="availability" class="section section--tint" data-screen-label="Current availability">
+  <div class="section-meta">
+    <span class="eyebrow">§ 06 · Current availability</span>
+    <span class="eyebrow eyebrow--muted">Two parallel sprints · max</span>
+  </div>
+
+  <div class="ap-avail__grid">
+    <div>
+      <h2 class="h-display-sm ap-avail__title">Quietly booked.</h2>
+      <p class="ap-avail__body">
+        We run a maximum of two Decision Sprints in parallel. Pre-Investment Audits run rolling, with a typical lead time of one to two weeks.
+      </p>
+      <p class="ap-avail__sub">
+        For projects targeting a specific deadline, book a 30-minute intake to map availability against your timeline.
+      </p>
+      <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener" class="btn btn-primary ap-avail__cta">
+        Book a 30-min intake →
+      </a>
+    </div>
+
+    <div>
+      <div class="eyebrow ap-avail__list-label">Next Decision Sprint start dates</div>
+      <div class="ap-avail__list">
+        <div class="slot-row">
+          <span class="slot-date">08 June 2026</span>
+          <span class="slot-state is-held">
+            <span class="dot"></span>Confirmed
+          </span>
+          <a class="link-underline-mono is-disabled" aria-disabled="true">Held</a>
+        </div>
+        <div class="slot-row">
+          <span class="slot-date">06 July 2026</span>
+          <span class="slot-state">
+            <span class="dot"></span>Open
+          </span>
+          <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener" class="link-underline-mono">Reserve →</a>
+        </div>
+        <div class="slot-row">
+          <span class="slot-date">31 August 2026</span>
+          <span class="slot-state">
+            <span class="dot"></span>Open
+          </span>
+          <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener" class="link-underline-mono">Reserve →</a>
+        </div>
+      </div>
+      <p class="eyebrow ap-avail__foot">Updated weekly · last refreshed 03 May 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. FINAL CTA
+     ============================================================ -->
+<section id="contact" class="section section--spruce" data-screen-label="Final CTA">
+  <div class="section-meta">
+    <span class="eyebrow eyebrow--frosted">§ 07 · Where to start</span>
+    <span class="eyebrow eyebrow--azure-60">Two doors · same building</span>
+  </div>
+
+  <h2 class="ap-final__title">Not sure which engagement fits?</h2>
+
+  <div class="ap-final__body-grid">
+    <p class="ap-final__copy">
+      Most teams start with a Pre-Investment Audit or a 30-minute intake call. Both clarify whether a full Decision Sprint is the right next step, or whether you're already further along than you thought.
+    </p>
+    <div class="ap-final__cta">
+      <a class="btn btn-frosted btn-large" href="https://cal.com/ante-design/30min" target="_blank" rel="noopener">
+        Book a 30-min intake →
+      </a>
+      <a class="btn btn-outline-light btn-large" href="/scorecard/">Take the diagnostic</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div>
+    <div class="site-footer__brand">anté</div>
+    <div class="site-footer__tagline">Independent concept validation · Belgium · 2026</div>
+  </div>
+  <div class="site-footer__meta">
+    <span>© 2026 Anté</span>
+    <span>hello@antedesign.be</span>
+    <span class="accent">Decide before you build</span>
+  </div>
+</footer>
+
+</div><!-- /.ante-page -->
+
+<script>
+  // Mobile burger toggle
+  (function () {
+    var nav = document.querySelector('.site-nav');
+    var btn = nav && nav.querySelector('.site-nav__toggle');
+    if (!nav || !btn) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    // Close burger when clicking any nav link
+    nav.querySelectorAll('.site-nav__link, .site-nav__links .btn').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

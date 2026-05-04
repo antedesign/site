@@ -1,170 +1,215 @@
-# Anté | Website
+# antedesign.be
 
-Static site for [antedesign.be](https://antedesign.be), hosted on GitHub Pages.
+Static site for Anté, an independent concept-validation practice based in Belgium.
+
+Hosted on **GitHub Pages** at the custom domain [antedesign.be](https://antedesign.be).
+
+No build step. No framework. Plain HTML and CSS that you can edit by hand and push to deploy.
 
 ---
 
 ## File structure
 
 ```
-studio-ante-website/
-├── index.html              ← Main site (all 5 tabs in one file)
-├── scan/
-│   └── index.html          ← Free concept audit / quickscan tool
+/
+├── index.html               Home
+├── approach/
+│   └── index.html           Approach (the methodology, pricing, availability)
+├── about/
+│   └── index.html           About (founders, independence contract)
+├── contact/
+│   └── index.html           Contact (booking + message form)
 ├── scorecard/
-│   └── index.html          ← Diagnostic tool (copy-as-is, do not edit)
+│   └── index.html           4-minute self-diagnostic (standalone)
 ├── assets/
 │   ├── css/
-│   │   └── shared.css      ← ⭐ Single source of truth for all styling
-│   └── images/
-│       ├── foto-justin.JPG
-│       ├── foto-jolan.JPG
-│       └── PNG_LOGO_Transparent_Black.png
-├── CNAME                   ← Contains: antedesign.be
-└── README.md               ← This file
+│   │   └── shared.css       Single source of truth for design tokens & components
+│   └── images/              Drop image files here, reference from HTML
+├── CNAME                    GitHub Pages → custom domain
+├── .gitattributes           Diff hygiene
+└── README.md                This file
 ```
 
 ---
 
-## How the site works
+## How to edit text content
 
-`index.html` is a single file with five "pages" (sections) that show/hide via JavaScript:
+Each page is a single self-contained HTML file:
 
-| Hash URL | Section |
+| To change | Open |
 |---|---|
-| `/` | Home (landing) |
-| `/#solutions` | Solutions & pricing |
-| `/#cases` | Cases (coming soon) |
-| `/#about` | About / team |
-| `/#contact` | Contact form |
+| Home page copy | `index.html` |
+| Methodology, phases, pricing, availability | `approach/index.html` |
+| About copy, founder bios | `about/index.html` |
+| Contact copy, form labels, direct contact block | `contact/index.html` |
+| Diagnostic questions, results | `scorecard/index.html` |
 
-Navigation links call `showPage('about')` etc. Browser back/forward works normally via `pushState`.
+Open the file in any text editor, change the text between the tags, save, push.
 
-`/scan/` and `/scorecard/` are separate files, not part of the SPA.
+Example. To change the home headline, find this line in `index.html`:
 
----
-
-## How to edit content
-
-**Page text:** Open `index.html`. Each section starts with a comment like:
 ```html
-<!-- PAGE: SOLUTIONS (#solutions) -->
+<h1 class="h-display-xl ho-hero__title">Decide before you build.</h1>
 ```
-Find the section you want, edit the text directly in the HTML. Save, commit, push.
 
-**Pricing:** In `index.html`, search for `pricing-grid`. Each `.pricing-card` is one tier. Edit the price, timeline, feature list, or tier name there.
-
-**Team bios:** In `index.html`, search for `§ 01 — The team`. The two `<article>` blocks are Justin and Jolan respectively.
-
-**Scan/quickscan copy:** Open `scan/index.html`. Screen titles, labels, and dropdown options are all plain text — edit directly.
+…and edit the text between `<h1>` and `</h1>`. Don't touch the class attribute.
 
 ---
 
-## How to add or replace an image
+## How to add an image
 
-1. Drop the file into `assets/images/` (lowercase, hyphens, no spaces — e.g. `foto-client-xyz.jpg`)
-2. Reference it in HTML: `<img src="/assets/images/foto-client-xyz.jpg" alt="Descriptive text" loading="lazy">`
+1. Drop the file into `assets/images/`.
+2. Reference it from HTML:
 
-**To replace a founder portrait:**
-- Drop `foto-justin.JPG` or `foto-jolan.JPG` into `assets/images/` (same filenames, same case)
-- The `<img>` tags in `index.html` already point to these paths — no HTML edit needed
+```html
+<img src="/assets/images/your-image.jpg" alt="Short description" loading="lazy" />
+```
 
-**To add phase/workshop photos (Approach section if added):**
-- Naming convention from JSX source: `workshop-01-preparation.jpg`, `artifact-synthesis-dossier.jpg`, etc.
-- Replace the `.photo-ph` placeholder divs with `<img class="portrait" src="/assets/images/[filename]" alt="[...]" loading="lazy">`
+The leading `/` is important — it's an absolute path from the site root, which is what GitHub Pages serves.
+
+### Filename rules
+
+- **lowercase only** — `foto-justin.jpg`, never `Foto-Justin.JPG`
+- **hyphens, not spaces** — `workshop-01-preparation.jpg`, never `workshop 01 preparation.jpg`
+- **no accented characters** — `cafe.jpg`, not `café.jpg`
+- **lowercase extension** — `.jpg`, not `.JPG`
+
+Browsers and Linux servers are case-sensitive. Following these rules keeps things from breaking when you push from macOS to GitHub.
+
+### Phase placeholders that are still wired up
+
+The Approach page references these filenames in image tags. Drop matching files into `assets/images/` and they will appear automatically. Until then, the layout reserves the space and shows a broken image icon — which is the intended cue to add the photo.
+
+| Path the HTML expects | Used on |
+|---|---|
+| `assets/images/workshop-01-preparation.jpg` | Approach · Phase 1 |
+| `assets/images/artifact-synthesis-dossier.jpg` | Approach · Phase 2 |
+| `assets/images/workshop-03-definition.jpg` | Approach · Phase 3 |
+| `assets/images/workshop-04-exploration.jpg` | Approach · Phase 4 |
+| `assets/images/artifact-concept-render.jpg` | Approach · Phase 5 |
+| `assets/images/artifact-tradeoff-matrix.jpg` | Approach · Phase 6 |
+| `assets/images/artifact-handover-docs.jpg` | Approach · Phase 7 |
+| `assets/images/archetype-product.jpg` | Approach · Archetype 1 |
+| `assets/images/archetype-service.jpg` | Approach · Archetype 2 |
+| `assets/images/archetype-digital.jpg` | Approach · Archetype 3 |
+| `assets/images/sprint-01-listen.jpg` | Home · Sprint phase 1 |
+| `assets/images/sprint-02-translate.jpg` | Home · Sprint phase 2 |
+| `assets/images/sprint-03-decide.jpg` | Home · Sprint phase 3 |
+| `assets/images/sprint-04-handover.jpg` | Home · Sprint phase 4 |
+| `assets/images/foto-justin.jpg` | About · founder portrait (already in repo) |
+| `assets/images/foto-jolan.jpg` | About · founder portrait (already in repo) |
+| `assets/images/ante-logo.png` | Favicon (already in repo) |
+
+### Optimising image size
+
+Phone users on 4G will thank you. Before uploading, run the file through [squoosh.app](https://squoosh.app/) or `cwebp` and aim for under ~300 KB per image. The two founder portraits are still 5+ MB and 2+ MB; if you ever want to reduce them in place, just drop in lighter versions with the same filenames and push.
 
 ---
 
-## How to change brand colours or typography
+## How to update brand colors, typography, spacing
 
-Open `assets/css/shared.css`. All design tokens are in the `:root` block at the top:
+**Single file: `assets/css/shared.css`**
+
+The top of the file has a `:root` block with every design token used across the site:
 
 ```css
 :root {
-  --spruce:   #206A5B;   /* primary green — CTAs, headings */
-  --frosted:  #9CE3F8;   /* accent blue — highlights, badges */
-  --azure:    #F0FDFF;   /* light background */
-  --shadow:   #28292B;   /* text / dark footer */
-  /* ... */
+  --shadow:  #28292B;     /* near-black */
+  --azure:   #F0FDFF;     /* page background */
+  --frosted: #9CE3F8;     /* light accent */
+  --spruce:  #206A5B;     /* primary brand green */
+  ...
 }
 ```
 
-- **Change primary colour:** edit `--spruce` and `--spruce-ink`
-- **Change body background:** edit `--azure`
-- **Increase heading size:** edit `--text-hero` or `--text-display-xl`
-- **More section breathing room:** edit `--section-y`
-- **Rounder/squarer buttons:** edit `--radius-btn`
+Change a value once, and every page updates.
 
-One edit in `:root` updates the whole site.
+| To change | Edit |
+|---|---|
+| Brand primary color | `--spruce` |
+| Brand accent | `--frosted` |
+| Page background | `--azure` |
+| All H1 sizes | `--text-display-xl` |
+| All H2 sizes | `--text-display-md` / `--text-display-sm` |
+| Spacing between sections | `--space-section-y` |
+| Spacing inside sections | `--space-block` |
+| Card corner radius | `--radius-card` |
+| Pill button radius | `--radius-pill` |
+| Maximum content width | `--container-max` |
+| Heading font | `--display` |
+| Body font | `--body` |
+| Mono font | `--mono` |
+
+Below `:root`, every reusable component has a named class:
+- `.btn-primary`, `.btn-frosted`, `.btn-outline-light` — buttons
+- `.eyebrow` — small mono uppercase label
+- `.card`, `.media`, `.numlist` — containers
+- `.phase-row`, `.pricing-row`, `.slot-row` — list rows
+- `.site-nav`, `.site-footer` — site chrome
+
+Edit a class once, every place it's used updates.
+
+### Page-specific styles
+
+A handful of styles are unique to one page and live in a `<style>` block at the top of that page's HTML (look at the `head` of `approach/index.html`, `about/index.html`, etc.). These are prefixed (`.ap-`, `.ho-`, `.ab-`, `.co-`) so they can't accidentally clash with shared styles.
 
 ---
 
-## How to push changes to GitHub Pages
+## How to push changes to live
 
 ```bash
 git add .
-git commit -m "update: [describe what you changed]"
-git push origin main
+git commit -m "Update phase 3 photo"
+git push
 ```
 
-Changes go live within ~30 seconds. No build step, no npm, no compilation needed.
+GitHub Pages picks up the push and re-publishes within a minute or two. The custom domain `antedesign.be` is wired through the `CNAME` file at the project root.
+
+If GitHub Pages stops serving the custom domain after a CNAME change, check **Settings → Pages → Custom domain** in the repository, click "Save" again, and wait. DNS propagation can take 30 minutes.
 
 ---
 
-## How to wire up the Quickscan Google Form
+## How to preview locally before pushing
 
-1. Create a Google Form with these fields:
-   - Name, Company, Email, Sector, Company size, Idea/project description, Timestamp
+You don't need npm. Python's built-in server works:
 
-2. Publish the form. View the form source or use the network tab to find:
-   - The **formResponse URL** (ends in `/formResponse`)
-   - The **entry IDs** for each field (format: `entry.XXXXXXXXX`)
-
-3. Open `scan/index.html` and update the `FORM_CONFIG` object near the bottom:
-
-```js
-var FORM_CONFIG = {
-  url: 'https://docs.google.com/forms/u/0/d/e/YOUR_FORM_ID/formResponse',
-  fields: {
-    name:    'entry.XXXXXXXXX',
-    company: 'entry.XXXXXXXXX',
-    email:   'entry.XXXXXXXXX',
-    sector:  'entry.XXXXXXXXX',
-    size:    'entry.XXXXXXXXX',
-    idea:    'entry.XXXXXXXXX',
-    ts:      'entry.XXXXXXXXX'
-  }
-};
+```bash
+cd /path/to/this/repo
+python3 -m http.server 8080
 ```
 
-The contact form on the main site (`index.html`) is already wired up — its `FORM_CONFIG` uses the existing Google Form URL and entry IDs from `contact.jsx`.
+Then open [http://localhost:8080](http://localhost:8080) in a browser.
+
+Why a server and not just `open index.html`? Because the pages use absolute paths (`/assets/css/shared.css`), which only resolve correctly when served from a root URL.
 
 ---
 
-## File naming conventions
+## How to change the booking link
 
-- Lowercase only: `foto-justin.jpg` not `Foto-Justin.jpg`
-- Hyphens, not spaces or underscores: `artifact-tradeoff-matrix.jpg`
-- No accented characters: `ante` not `anté` in filenames
-- Images: descriptive, prefixed by type — `foto-`, `artifact-`, `workshop-`
+The 30-minute intake link is `https://cal.com/ante-design/30min`. It appears on every page. To change it, search the repo for that URL and replace.
 
----
-
-## Scorecard / Diagnostic
-
-`scorecard/index.html` is a standalone file — **do not edit** the HTML structure. It has its own self-contained styles and logic. If you need to update it, replace the file entirely.
+```bash
+grep -rl "cal.com/ante-design/30min" .
+```
 
 ---
 
-## Quick reference
+## How to change the contact form behavior
 
-| Task | File | What to search for |
-|---|---|---|
-| Edit hero headline | `index.html` | `hero__h1` |
-| Edit pricing | `index.html` | `pricing-grid` |
-| Edit team bios | `index.html` | `§ 01 — The team` |
-| Change primary colour | `assets/css/shared.css` | `--spruce` |
-| Update nav links | `index.html` | `nav__links` |
-| Edit scan copy | `scan/index.html` | `screen__title` |
-| Add client logo | `index.html` | `trust-bar__logos` |
-| Add a case study | `index.html` | `id="cases"` |
+The contact form at `contact/index.html` posts to a Google Form via a hidden iframe (so the page doesn't navigate away). The Google Form ID and the three field IDs (`entry.1892390230` for Name, `entry.1237768883` for Email, `entry.1566169903` for Message) live in the form's `action` and `name` attributes. If you create a new Google Form, update those four IDs.
+
+The "thanks" confirmation card shows after a 900 ms delay — Google Forms' cross-origin redirect is unreadable from the page, so we optimistically assume success. If you want stricter confirmation, you'd need to switch from Google Forms to something like [Formspree](https://formspree.io/) or [Netlify Forms](https://docs.netlify.com/forms/setup/).
+
+---
+
+## A note on the scorecard
+
+`scorecard/index.html` is a self-contained interactive diagnostic with its own embedded CSS and JS. It does **not** use `shared.css`. Treat it as a standalone widget — if you change a token in `shared.css`, the scorecard won't follow. That's intentional; it makes the scorecard portable and resistant to design drift on the marketing pages.
+
+---
+
+## Browser support
+
+The site is plain HTML/CSS/vanilla JS, targeting evergreen browsers (Chrome, Safari, Firefox, Edge) from the last two years. CSS uses Grid, custom properties, `aspect-ratio`, and `scroll-behavior: smooth` — all stable since 2021.
+
+Internet Explorer is not supported and never will be.

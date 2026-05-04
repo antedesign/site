@@ -1,0 +1,967 @@
+/* ==========================================================================
+   Anté — shared.css
+   Single source of truth for design tokens, typography, and component styles.
+   Edit anything here and the whole site updates.
+   ========================================================================== */
+
+/* --- 1. Fonts ------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* --- 2. Design tokens ----------------------------------------------------- */
+:root {
+  /* Colors — brand palette */
+  --shadow:         #28292B;
+  --shadow-soft:    #3a3b3d;
+  --azure:          #F0FDFF;
+  --azure-deep:     #E4F8FB;
+  --frosted:        #9CE3F8;
+  --frosted-soft:   #C9EEF9;
+  --spruce:         #206A5B;
+  --spruce-ink:     #18514A;
+  --spruce-tint:    #E8F1EE;
+  --spruce-tint-2:  #DCE8E4;
+
+  /* Borders / rules */
+  --rule:           rgba(40,41,43,0.12);
+  --rule-strong:    rgba(40,41,43,0.24);
+  --rule-light:     rgba(240,253,255,0.18);
+  --rule-light-soft:rgba(240,253,255,0.10);
+
+  /* Translucent text-on-dark */
+  --azure-88:       rgba(240,253,255,0.88);
+  --azure-85:       rgba(240,253,255,0.85);
+  --azure-75:       rgba(240,253,255,0.75);
+  --azure-60:       rgba(240,253,255,0.60);
+  --azure-55:       rgba(240,253,255,0.55);
+
+  /* Typography families */
+  --display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --body:    'Poppins', system-ui, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Type scale — desktop */
+  --text-display-xl: 132px; /* hero headlines */
+  --text-display-lg: 110px; /* secondary hero (Final CTA) */
+  --text-display-md: 96px;  /* major section headers */
+  --text-display-sm: 64px;  /* standard section headers */
+  --text-h2-quote:   48px;  /* confirmation, blockquote-large */
+  --text-h3-xl:      44px;  /* phase title, founder name */
+  --text-h3-lg:      36px;  /* secondary card title, blockquote */
+  --text-h3-md:      32px;  /* archetype title */
+  --text-h3-sm:      30px;  /* failure mode title */
+  --text-h4:         28px;  /* negatives line, pricing tier */
+  --text-h5:         24px;  /* date label, price label */
+  --text-pull:       22px;  /* italic pull paragraph */
+  --text-body-xl:    20px;  /* hero supporting copy */
+  --text-body-lg:    19px;  /* large body, archetype intro */
+  --text-body-md:    17px;  /* section body */
+  --text-body:       16px;  /* standard body */
+  --text-body-sm:    15px;  /* card body, fine print */
+  --text-body-xs:    14.5px;
+  --text-meta:       13.5px;/* smallest body */
+  --text-mono:       11px;  /* eyebrows, meta */
+
+  /* Spacing scale */
+  --space-section-y:    140px; /* major section vertical padding */
+  --space-section-y-lg: 160px; /* About independence, About founders */
+  --space-section-y-md: 120px; /* lighter section */
+  --space-section-y-sm: 100px; /* contact hero */
+  --space-pad-x:        48px;  /* horizontal page padding */
+  --space-block:        80px;  /* gap between major blocks within a section */
+  --space-stack-lg:     56px;
+  --space-stack-md:     32px;
+  --space-stack-sm:     24px;
+  --space-stack-xs:     16px;
+  --space-gap-grid:     60px;  /* 2-col content grid gap */
+
+  /* Radii */
+  --radius-card:    16px;
+  --radius-media:   18px;
+  --radius-pill:    999px;
+  --radius-icon:    12px;
+  --radius-input:   8px;
+
+  /* Layout */
+  --container-max:     1320px;  /* wide editorial content */
+  --container-narrow:  62ch;    /* prose column */
+  --nav-pad-y:         20px;
+  --nav-pad-x:         48px;
+
+  /* Disk (numbered phase circle) */
+  --disk-size: 48px;
+
+  /* Transitions */
+  --t-fast: .15s ease;
+  --t-med:  .2s ease;
+}
+
+/* --- 3. Reset / base ------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--azure);
+  scroll-behavior: smooth;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+
+button { font-family: inherit; }
+
+a { color: inherit; text-decoration: none; }
+
+ul { padding: 0; margin: 0; list-style: none; }
+
+/* Page wrapper */
+.ante-page {
+  font-family: var(--body);
+  color: var(--shadow);
+  background: var(--azure);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "kern";
+  line-height: 1.55;
+}
+
+/* Display headings — italic extra-bold across the brand */
+.ante-page h1,
+.ante-page h2,
+.ante-page h3,
+.ante-page h4 {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  margin: 0;
+}
+.ante-page p { margin: 0; }
+
+/* --- 4. Typography helpers ------------------------------------------------ */
+.mono {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: var(--text-mono);
+}
+
+/* Eyebrow label — compact mono uppercase (used in section headers, meta lines) */
+.eyebrow {
+  font-family: var(--mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--text-mono);
+  color: var(--spruce);
+}
+.eyebrow--frosted { color: var(--frosted); }
+.eyebrow--ink     { color: var(--spruce-ink); }
+.eyebrow--muted   { color: var(--shadow-soft); }
+.eyebrow--azure-55{ color: var(--azure-55); }
+.eyebrow--azure-60{ color: var(--azure-60); }
+
+/* Brand wordmark — italic 800, kerning tight */
+.wordmark {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+/* Italic editorial paragraph (used inside phase rows, callouts) */
+.italic-pull {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: var(--text-body-lg);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--shadow);
+}
+
+/* --- 5. Layout primitives ------------------------------------------------- */
+
+/* Section frames */
+.section {
+  padding: var(--space-section-y) var(--space-pad-x);
+  background: var(--azure);
+  color: var(--shadow);
+}
+.section--lg     { padding: var(--space-section-y-lg) var(--space-pad-x); }
+.section--md     { padding: var(--space-section-y-md) var(--space-pad-x); }
+.section--azure  { background: var(--azure); }
+.section--tint   { background: var(--spruce-tint); }
+.section--spruce { background: var(--spruce);     color: var(--azure); }
+.section--ink    { background: var(--spruce-ink); color: var(--azure); }
+.section--shadow { background: var(--shadow);     color: var(--azure); }
+
+/* Section meta — top eyebrow row (tag § left, mini-meta right) */
+.section-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-stack-lg);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Standard 2-column body grid below a section header */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-gap-grid);
+}
+.grid-2--align-end { align-items: end; }
+.grid-2--align-start { align-items: start; }
+
+/* Hero head row (eyebrow left, file slug right) */
+.hero-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-block);
+  gap: 16px;
+}
+
+/* Hero colophon row at the bottom of dark heroes */
+.hero-colophon {
+  margin-top: 96px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-size: var(--text-mono);
+  letter-spacing: 0.06em;
+  color: var(--azure-60);
+}
+.hero-colophon .accent { color: var(--frosted); }
+
+/* --- 6. Headings --------------------------------------------------------- */
+.h-display-xl {
+  font-size: var(--text-display-xl);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  max-width: 14ch;
+}
+.h-display-lg {
+  font-size: var(--text-display-lg);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  max-width: 14ch;
+}
+.h-display-md {
+  font-size: var(--text-display-md);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  max-width: 16ch;
+}
+.h-display-sm {
+  font-size: var(--text-display-sm);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+}
+.h-headline { /* card / phase title */
+  font-size: var(--text-h3-xl);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+/* Body sizes */
+.body-lead     { font-size: var(--text-body-xl); line-height: 1.5;  max-width: 52ch; }
+.body-lead-md  { font-size: var(--text-body-lg); line-height: 1.55; max-width: 62ch; }
+.body-base     { font-size: var(--text-body-md); line-height: 1.65; max-width: 62ch; }
+.body-narrow   { font-size: var(--text-body);    line-height: 1.65; max-width: 44ch; }
+
+/* Color helpers (for body copy on dark grounds) */
+.t-azure-88 { color: var(--azure-88); }
+.t-azure-85 { color: var(--azure-85); }
+.t-azure-75 { color: var(--azure-75); }
+.t-shadow-soft { color: var(--shadow-soft); }
+.t-spruce { color: var(--spruce); }
+.t-spruce-ink { color: var(--spruce-ink); }
+.t-frosted { color: var(--frosted); }
+.t-azure { color: var(--azure); }
+.t-shadow { color: var(--shadow); }
+
+/* --- 7. Buttons ---------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: var(--radius-pill);
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 15px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--t-fast), background var(--t-med),
+              color var(--t-med), border-color var(--t-med);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn:hover { transform: translateY(-1px); }
+
+.btn-primary       { background: var(--spruce);  color: var(--azure); }
+.btn-primary:hover { background: var(--spruce-ink); }
+
+.btn-frosted       { background: var(--frosted); color: var(--spruce-ink); }
+.btn-frosted:hover { background: var(--frosted-soft); }
+
+.btn-outline-light       { background: transparent; color: var(--azure); border-color: rgba(240,253,255,0.4); }
+.btn-outline-light:hover { border-color: var(--azure); }
+
+.btn-secondary       { background: transparent; color: var(--shadow); border-color: var(--rule-strong); }
+.btn-secondary:hover { border-color: var(--shadow); }
+
+.btn-ghost-spruce       { background: transparent; color: var(--spruce); border-color: var(--rule-strong); }
+.btn-ghost-spruce:hover { border-color: var(--spruce); }
+
+.btn-large { font-size: 17px; padding: 18px 28px; }
+.btn-mini  { padding: 10px 18px; font-size: 14px; }
+
+/* Diagnostic chip suffix inside primary nav button */
+.btn-mini__meta {
+  font-family: var(--mono);
+  font-size: var(--text-mono);
+  opacity: 0.7;
+}
+
+/* --- 8. Tag / chip ------------------------------------------------------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--rule-strong);
+  color: var(--shadow);
+  background: transparent;
+}
+.tag .dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--spruce); }
+
+/* --- 9. Site navigation -------------------------------------------------- */
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--nav-pad-y) var(--nav-pad-x);
+  background: var(--spruce);
+  color: var(--azure);
+  position: relative;
+}
+.site-nav__brand {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: 30px;
+  color: var(--azure);
+  line-height: 1;
+}
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 14px;
+}
+.site-nav__link {
+  color: var(--azure);
+  opacity: 0.85;
+  transition: opacity var(--t-med), color var(--t-med);
+}
+.site-nav__link:hover { opacity: 1; }
+.site-nav__link--active {
+  color: var(--frosted);
+  opacity: 1;
+}
+
+/* Mobile burger toggle — hidden on desktop */
+.site-nav__toggle {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 10px;
+  margin: -10px;
+  color: var(--azure);
+}
+.site-nav__toggle-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--t-med), opacity var(--t-med);
+}
+.site-nav__toggle-bar + .site-nav__toggle-bar { margin-top: 6px; }
+
+/* --- 10. Site footer ----------------------------------------------------- */
+.site-footer {
+  padding: 60px var(--space-pad-x);
+  background: var(--shadow);
+  color: var(--azure);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.site-footer__brand {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 96px;
+  color: var(--frosted);
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+}
+.site-footer__tagline {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-size: var(--text-mono);
+  letter-spacing: 0.08em;
+  margin-top: 18px;
+  color: var(--azure-60);
+}
+.site-footer__meta {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-size: var(--text-mono);
+  letter-spacing: 0.08em;
+  display: grid;
+  gap: 6px;
+  text-align: right;
+  color: var(--azure-60);
+}
+.site-footer__meta .accent { color: var(--frosted); }
+
+/* --- 11. Cards ----------------------------------------------------------- */
+.card {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--rule);
+  background: #fff;
+  padding: 28px;
+}
+.card-tint {
+  background: var(--spruce-tint);
+  border-color: rgba(32,106,91,0.15);
+}
+
+/* --- 12. Media (image wrappers) ------------------------------------------ */
+.media {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-media);
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--spruce-tint);
+}
+.media--ratio-43     { aspect-ratio: 4 / 3; }
+.media--ratio-square { aspect-ratio: 1 / 1; }
+.media--ratio-16-10  { aspect-ratio: 16 / 10; }
+.media__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hairline rule */
+.hr-rule {
+  height: 1px;
+  background: var(--rule);
+  width: 100%;
+  border: 0;
+}
+
+/* --- 13. Numbered phase row (used on Approach + Home Sprint) ------------- */
+.phase-list {
+  position: relative;
+}
+.phase-list::before { /* continuous left rule */
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 23px;
+  width: 1px;
+  background: var(--rule-strong);
+}
+.phase-list--light::before { background: var(--rule-light); }
+
+.phase-row {
+  display: grid;
+  grid-template-columns: var(--disk-size) minmax(0, 1.05fr) minmax(0, 0.8fr) minmax(0, 1fr);
+  column-gap: 40px;
+  padding-top: 28px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  align-items: start;
+}
+.phase-row--first { padding-top: 0; }
+.phase-row--last  { border-bottom: none; }
+
+/* Sprint variant on Home: 3 cols (disk · text · photo) */
+.phase-row-3 {
+  grid-template-columns: var(--disk-size) 1fr 1.2fr;
+  column-gap: 40px;
+}
+
+.phase-disk {
+  width: var(--disk-size);
+  height: var(--disk-size);
+  border-radius: var(--radius-pill);
+  background: var(--spruce);
+  color: var(--azure);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.phase-body {
+  /* container for eyebrow + title + body */
+}
+.phase-body__eyebrow { margin-bottom: 12px; color: var(--spruce-ink); }
+.phase-body__title {
+  font-size: var(--text-h3-xl);
+  color: var(--spruce);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin-bottom: 20px;
+}
+.phase-body__copy {
+  font-size: var(--text-body);
+  line-height: 1.65;
+  color: var(--shadow);
+  max-width: 44ch;
+}
+
+.phase-receive {
+  border-left: 1px solid var(--rule);
+  padding-left: 28px;
+}
+.phase-receive__label { color: var(--spruce); margin-bottom: 14px; }
+.phase-receive__text {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: var(--text-body-lg);
+  line-height: 1.35;
+  color: var(--shadow);
+  letter-spacing: -0.01em;
+}
+
+/* --- 14. Numbered declaration list (Independence Contract / Negatives) --- */
+.numlist {
+  border-top: 1px solid var(--rule-strong);
+}
+.numlist--light { border-top-color: var(--rule-light); }
+
+.numlist__row {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+  column-gap: 24px;
+}
+.numlist--light .numlist__row { border-bottom-color: var(--rule-light); }
+
+.numlist__num   { color: var(--shadow-soft); }
+.numlist--light .numlist__num { color: var(--azure-55); }
+
+.numlist__line {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: var(--text-h4);
+  color: var(--spruce);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.numlist--light .numlist__line { color: var(--azure); }
+
+.numlist__check { color: var(--spruce); text-align: right; }
+.numlist--light .numlist__check { color: var(--frosted); }
+
+/* --- 15. Pricing rows ---------------------------------------------------- */
+.pricing-list { border-top: 1px solid var(--rule-strong); }
+.pricing-row {
+  display: grid;
+  grid-template-columns: minmax(200px, 1.2fr) 160px 1.4fr 160px;
+  gap: 32px;
+  align-items: baseline;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.pricing-row__name {
+  font-size: var(--text-h4);
+  color: var(--shadow);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+}
+.pricing-row__time { color: var(--spruce); }
+.pricing-row__price {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  color: var(--spruce);
+  letter-spacing: -0.03em;
+  font-size: var(--text-h5);
+}
+.pricing-row__copy {
+  font-size: var(--text-body-sm);
+  line-height: 1.55;
+  color: var(--shadow-soft);
+  max-width: 44ch;
+}
+.pricing-row__cta { text-align: right; }
+
+/* Underlined mono link (used in pricing rows, availability slots) */
+.link-underline-mono {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-size: var(--text-mono);
+  letter-spacing: 0.08em;
+  color: var(--spruce);
+  border-bottom: 1px solid var(--spruce);
+  padding-bottom: 2px;
+  transition: color var(--t-med), border-color var(--t-med);
+}
+.link-underline-mono:hover { color: var(--spruce-ink); border-bottom-color: var(--spruce-ink); }
+.link-underline-mono.is-disabled {
+  color: var(--shadow-soft);
+  border-bottom-color: transparent;
+  pointer-events: none;
+}
+
+/* --- 16. Availability slots ---------------------------------------------- */
+.slot-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 24px;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.slot-date {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  color: var(--shadow);
+  letter-spacing: -0.02em;
+  font-size: var(--text-h5);
+}
+.slot-state {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-size: var(--text-mono);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--spruce);
+}
+.slot-state .dot {
+  width: 8px; height: 8px; border-radius: var(--radius-pill);
+  background: var(--spruce);
+  display: inline-block;
+}
+.slot-state.is-held { color: var(--shadow-soft); }
+.slot-state.is-held .dot { background: var(--shadow-soft); opacity: 0.5; }
+
+/* --- 17. Workshop / artifact placeholder backgrounds (reused after image) - */
+/* Image wrapper that uses real img; falls back to striped pattern if image missing */
+.workshop-img,
+.artifact-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- 18. Forms (contact) ------------------------------------------------- */
+.form {
+  display: grid;
+  gap: 32px;
+  max-width: 72ch;
+}
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.form-field { display: grid; gap: 6px; }
+.form-field__label {
+  font-family: var(--mono);
+  font-size: var(--text-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--spruce);
+  margin-bottom: 4px;
+}
+.form-field__input,
+.form-field__textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 16px 0 14px;
+  font-family: var(--body);
+  font-size: 17px;
+  color: var(--shadow);
+  outline: none;
+  resize: none;
+  transition: border-color var(--t-med);
+}
+.form-field__input:focus,
+.form-field__textarea:focus { border-bottom-color: var(--spruce); }
+.form-field__textarea { min-height: 140px; line-height: 1.55; }
+
+.form-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.form-meta { color: var(--shadow-soft); font-family: var(--mono); font-size: var(--text-mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.form-meta.is-error { color: #a44; }
+
+/* Confirmation card (after submit) */
+.confirm-card {
+  background: var(--spruce-tint);
+  border-radius: var(--radius-media);
+  border: 1px solid var(--rule);
+  padding: 64px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 62ch;
+}
+.confirm-card[hidden] { display: none; }
+.confirm-card__title {
+  font-size: var(--text-h2-quote);
+  color: var(--spruce);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* --- 19. Quote / blockquote --------------------------------------------- */
+.pullquote {
+  margin: 0 -64px var(--space-block);
+  padding: 48px 64px;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  background: transparent;
+  position: relative;
+}
+.pullquote__mark {
+  position: absolute;
+  left: 18px; top: 18px;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 96px;
+  line-height: 1;
+  color: var(--frosted);
+  letter-spacing: -0.04em;
+  user-select: none;
+  pointer-events: none;
+}
+.pullquote__text {
+  margin: 0;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: var(--text-h3-lg);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--spruce);
+}
+
+/* --- 20. Responsive ------------------------------------------------------ */
+
+/* Tablet — stack grids, scale hero a notch */
+@media (max-width: 960px) {
+  :root {
+    --space-pad-x:        32px;
+    --space-section-y:    96px;
+    --space-section-y-lg: 110px;
+    --space-section-y-md: 80px;
+    --space-section-y-sm: 72px;
+    --space-block:        56px;
+    --space-stack-lg:     40px;
+    --space-gap-grid:     40px;
+    --nav-pad-x:          24px;
+
+    --text-display-xl: 80px;
+    --text-display-lg: 72px;
+    --text-display-md: 60px;
+    --text-display-sm: 48px;
+    --text-h3-xl:      36px;
+    --text-h3-lg:      30px;
+    --text-h3-md:      26px;
+    --text-h3-sm:      24px;
+    --text-h4:         22px;
+    --text-pull:       19px;
+    --text-body-xl:    18px;
+    --text-body-lg:    17px;
+  }
+
+  .grid-2,
+  .form-row-2 {
+    grid-template-columns: 1fr;
+    gap: var(--space-stack-md);
+  }
+
+  .pricing-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 28px 0;
+  }
+  .pricing-row__cta { text-align: left; }
+
+  .phase-row {
+    grid-template-columns: var(--disk-size) 1fr;
+    grid-template-areas:
+      "disk body"
+      ".    receive"
+      ".    media";
+    column-gap: 24px;
+    row-gap: 24px;
+    padding-bottom: 48px;
+  }
+  .phase-row > .phase-disk     { grid-area: disk; }
+  .phase-row > .phase-body     { grid-area: body; }
+  .phase-row > .phase-receive  { grid-area: receive; border-left: 0; padding-left: 0; }
+  .phase-row > .phase-media    { grid-area: media; }
+
+  .phase-row-3 {
+    grid-template-columns: var(--disk-size) 1fr;
+    grid-template-areas:
+      "disk body"
+      ".    media";
+    column-gap: 24px;
+    row-gap: 20px;
+  }
+  .phase-row-3 > .phase-body  { grid-area: body; }
+  .phase-row-3 > .phase-media { grid-area: media; }
+
+  .pullquote { margin: 0 -16px var(--space-block); padding: 32px 16px; }
+  .pullquote__mark { font-size: 64px; left: 8px; top: 8px; }
+
+  .site-footer__brand { font-size: 64px; }
+
+  /* Hide desktop links, show burger */
+  .site-nav__toggle { display: flex; }
+  .site-nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px var(--nav-pad-x) 24px;
+    background: var(--spruce);
+    border-top: 1px solid var(--rule-light);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+    z-index: 50;
+    /* Hidden by default, opened by .is-open */
+    display: none;
+  }
+  .site-nav.is-open .site-nav__links { display: flex; }
+  .site-nav__link {
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid var(--rule-light);
+    opacity: 0.95;
+  }
+  .site-nav__link:last-child { border-bottom: 0; }
+  .btn-mini { width: max-content; margin-top: 8px; }
+
+  /* Section meta header — keep a single line on tablet, but allow wrap */
+  .section-meta { gap: 12px; }
+
+  /* Hero head / colophon on tablet — wrap to 2 lines */
+  .hero-head,
+  .hero-colophon {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Numlist padding tighter on tablet */
+  .numlist__row { grid-template-columns: 40px 1fr 40px; padding: 20px 0; column-gap: 16px; }
+}
+
+/* Phone — single column, scaled headlines, larger touch targets */
+@media (max-width: 640px) {
+  :root {
+    --space-pad-x:        20px;
+    --space-section-y:    72px;
+    --space-section-y-lg: 88px;
+    --space-section-y-md: 64px;
+    --space-section-y-sm: 56px;
+    --space-block:        40px;
+    --space-stack-lg:     32px;
+    --space-gap-grid:     28px;
+    --nav-pad-x:          20px;
+
+    --text-display-xl: 56px;
+    --text-display-lg: 52px;
+    --text-display-md: 44px;
+    --text-display-sm: 36px;
+    --text-h3-xl:      28px;
+    --text-h3-lg:      24px;
+    --text-h3-md:      22px;
+    --text-h3-sm:      20px;
+    --text-h4:         20px;
+    --text-h5:         20px;
+    --text-pull:       17px;
+    --text-body-xl:    16px;
+    --text-body-lg:    16px;
+    --text-body-md:    15px;
+    --text-body:       15px;
+  }
+
+  .h-display-xl,
+  .h-display-lg,
+  .h-display-md,
+  .h-display-sm { max-width: 100%; }
+
+  .site-nav__brand { font-size: 26px; }
+  .site-footer { padding: 40px var(--space-pad-x); flex-direction: column; align-items: flex-start; }
+  .site-footer__brand { font-size: 56px; }
+  .site-footer__meta { text-align: left; }
+
+  /* Numlist — drop the trailing checkmark column on phone */
+  .numlist__row { grid-template-columns: 32px 1fr; }
+  .numlist__check { display: none; }
+
+  .slot-row { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; }
+
+  .confirm-card { padding: 32px 24px; }
+  .pullquote { padding: 24px 12px; }
+  .pullquote__mark { font-size: 52px; }
+}

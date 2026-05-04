@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anté · About</title>
+<meta name="description" content="Anté was founded by two product developers to insert a missing step in innovation projects: a structured, evidence-based decision moment before the big investment." />
+
+<link rel="icon" type="image/png" href="/assets/images/ante-logo.png" />
+<link rel="stylesheet" href="/assets/css/shared.css" />
+
+<style>
+  /* ---- About-only styles ---- */
+
+  /* Hero */
+  .ab-hero { padding: 120px var(--space-pad-x) 140px; }
+  .ab-hero__title  { color: var(--azure); max-width: 16ch; margin-top: 96px; }
+  .ab-hero__body   { margin-top: 96px; }
+  .ab-hero__body p { font-size: var(--text-body-xl); line-height: 1.55; color: var(--azure-88); max-width: 52ch; }
+
+  /* Independence section — narrower editorial feel */
+  .ab-indep { padding: 160px var(--space-pad-x); }
+  .ab-indep__title { color: var(--spruce); max-width: 16ch; margin-bottom: var(--space-block); font-size: var(--text-display-md); line-height: 0.95; letter-spacing: -0.035em; }
+  .ab-indep__prose { max-width: 72ch; }
+  .ab-indep__prose p {
+    font-size: 19px; line-height: 1.7; color: var(--shadow);
+  }
+  .ab-indep__prose p + p { margin-top: var(--space-stack-md); }
+  .ab-indep__prose .gap-after { margin-bottom: 64px; }
+
+  .ab-indep__contract-label {
+    color: var(--spruce); margin-bottom: var(--space-stack-sm);
+    margin-top: 32px;
+  }
+  .ab-indep__pdf-row {
+    margin-top: 40px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: var(--space-stack-sm);
+  }
+  .ab-indep__pdf-note {
+    font-size: var(--text-body-sm); line-height: 1.6;
+    color: var(--shadow-soft); max-width: 52ch;
+  }
+
+  /* Founders */
+  .ab-found { padding: 160px var(--space-pad-x); }
+  .ab-found__title { color: var(--spruce); max-width: 16ch; margin-bottom: var(--space-block); font-size: var(--text-display-md); line-height: 0.95; letter-spacing: -0.035em; }
+  .ab-found__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .ab-found__card { display: flex; flex-direction: column; gap: var(--space-stack-md); }
+  .ab-found__role { color: var(--spruce); margin-bottom: 14px; }
+  .ab-found__name { color: var(--spruce); letter-spacing: -0.03em; line-height: 1; margin-bottom: 18px; font-size: var(--text-h3-xl); }
+  .ab-found__copy { font-size: 16.5px; line-height: 1.65; color: var(--shadow); max-width: 44ch; }
+
+  /* Where */
+  .ab-where__divider { border-top: 1px solid var(--rule-strong); padding-top: 40px; }
+  .ab-where__line {
+    font-size: var(--text-h4); line-height: 1.5;
+    color: var(--shadow); max-width: 62ch;
+    font-family: var(--body); font-weight: 400; letter-spacing: -0.005em;
+    font-style: normal;
+  }
+
+  /* Final CTA */
+  .ab-final__title { line-height: 0.92; color: var(--azure); letter-spacing: -0.045em; max-width: 14ch; margin-bottom: 64px; font-size: var(--text-display-md); }
+  .ab-final__grid  { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-block); align-items: end; }
+  .ab-final__copy  { font-size: 19px; line-height: 1.6; color: var(--azure-85); max-width: 56ch; }
+  .ab-final__cta   { display: flex; justify-content: flex-end; gap: 14px; flex-wrap: wrap; }
+
+  /* Tablet */
+  @media (max-width: 960px) {
+    .ab-indep, .ab-found { padding: 110px var(--space-pad-x); }
+    .ab-found__grid { grid-template-columns: 1fr; gap: var(--space-block); }
+    .ab-final__grid { grid-template-columns: 1fr; }
+    .ab-final__cta  { justify-content: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .ab-indep, .ab-found { padding: 72px var(--space-pad-x); }
+    .ab-where__line { font-size: var(--text-body-xl); }
+  }
+</style>
+</head>
+
+<body>
+<div class="ante-page">
+
+<!-- ============ NAV ============ -->
+<nav class="site-nav" aria-label="Primary">
+  <a href="/" class="site-nav__brand">anté</a>
+
+  <button class="site-nav__toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+    <span class="site-nav__toggle-bar"></span>
+    <span class="site-nav__toggle-bar"></span>
+    <span class="site-nav__toggle-bar"></span>
+  </button>
+
+  <div class="site-nav__links" id="primary-nav">
+    <a href="/approach/" class="site-nav__link">Approach</a>
+    <a href="/about/"    class="site-nav__link site-nav__link--active">About</a>
+    <a href="/contact/"  class="site-nav__link">Contact</a>
+    <a href="/scorecard/" class="btn btn-frosted btn-mini">
+      Take the diagnostic <span class="btn-mini__meta">4 MIN</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="section section--spruce ab-hero">
+  <div class="hero-head">
+    <span class="eyebrow eyebrow--frosted">About Anté</span>
+    <span class="eyebrow eyebrow--azure-55">FILE · 03 / ABOUT · BELGIUM</span>
+  </div>
+
+  <h1 class="h-display-xl ab-hero__title">We sell the decision, not the build.</h1>
+
+  <div class="grid-2 ab-hero__body">
+    <p>Anté was founded by two product developers who watched the same pattern repeat across dozens of innovation projects: strong technical execution, weak conceptual foundation. The result was always the same: a product that worked, technically, but didn't solve the problem the team thought it was solving.</p>
+    <p>We started Anté to fix that pattern by inserting one missing step: a structured, evidence-based decision moment before the big investment.</p>
+  </div>
+
+  <div class="hero-colophon">
+    <span>An independent practice, based in Belgium, working across Europe.</span>
+    <span class="accent">Decide before you build.</span>
+  </div>
+</section>
+
+<!-- ============ § 01 INDEPENDENCE ============ -->
+<section class="section section--azure ab-indep" data-screen-label="Why independence">
+  <div class="section-meta">
+    <span class="eyebrow">§ 01 · The position</span>
+    <span class="eyebrow eyebrow--muted">The Independence Contract</span>
+  </div>
+
+  <h2 class="ab-indep__title">Why independence matters.</h2>
+
+  <div class="ab-indep__prose">
+    <p>Most consultancies, design agencies, and engineering firms make their money once a build is decided. That creates a structural bias: keep the project moving, even when the concept underneath isn't ready.</p>
+    <p class="gap-after">We chose a different model. Anté gets paid for the decision, not the project that follows.</p>
+
+    <figure class="pullquote">
+      <span class="pullquote__mark" aria-hidden="true">“</span>
+      <blockquote class="pullquote__text">
+        That alignment isn't optional. It's the entire reason the methodology can work.
+      </blockquote>
+    </figure>
+
+    <p>The moment we'd take referral fees, hold equity, or position ourselves as a preferred development partner, our recommendations become unreliable. So we've structurally ruled it out.</p>
+  </div>
+
+  <div class="eyebrow ab-indep__contract-label">The Independence Contract · five commitments</div>
+
+  <div class="numlist">
+    <div class="numlist__row">
+      <span class="eyebrow numlist__num">01</span>
+      <span class="numlist__line">We don't build what we recommend.</span>
+      <span class="numlist__check">✓</span>
+    </div>
+    <div class="numlist__row">
+      <span class="eyebrow numlist__num">02</span>
+      <span class="numlist__line">We don't take referral fees from development partners.</span>
+      <span class="numlist__check">✓</span>
+    </div>
+    <div class="numlist__row">
+      <span class="eyebrow numlist__num">03</span>
+      <span class="numlist__line">We don't hold equity in your company.</span>
+      <span class="numlist__check">✓</span>
+    </div>
+    <div class="numlist__row">
+      <span class="eyebrow numlist__num">04</span>
+      <span class="numlist__line">We don't have affiliated builders, agencies, or engineering firms.</span>
+      <span class="numlist__check">✓</span>
+    </div>
+    <div class="numlist__row">
+      <span class="eyebrow numlist__num">05</span>
+      <span class="numlist__line">We have no financial stake in what you decide to build.</span>
+      <span class="numlist__check">✓</span>
+    </div>
+  </div>
+
+  <div class="ab-indep__pdf-row">
+    <p class="ab-indep__pdf-note">If you'd like a one-page version of this for procurement or your board, the manifest is available as a PDF.</p>
+    <a href="#" class="btn btn-primary">↓ Download as PDF</a>
+  </div>
+</section>
+
+<!-- ============ § 02 FOUNDERS ============ -->
+<section class="section section--tint ab-found" data-screen-label="Founders">
+  <div class="section-meta">
+    <span class="eyebrow">§ 02 · The founders</span>
+    <span class="eyebrow eyebrow--muted">Two practitioners · University of Antwerp</span>
+  </div>
+
+  <h2 class="ab-found__title">Built by people who build.</h2>
+
+  <div class="ab-found__grid">
+    <article class="ab-found__card">
+      <figure class="media media--ratio-square">
+        <img class="media__img" src="/assets/images/foto-justin.jpg" alt="Justin Lefebvre, co-founder of Anté" loading="lazy" />
+      </figure>
+      <div>
+        <div class="eyebrow ab-found__role">Co-founder</div>
+        <h3 class="ab-found__name">Justin Lefebvre</h3>
+        <p class="ab-found__copy">Justin is the bridge between abstract strategy and visual reality. With his conceptual thinking he translates abstract ideas and human needs into visual concepts. Background in product development at the University of Antwerp.</p>
+      </div>
+    </article>
+
+    <article class="ab-found__card">
+      <figure class="media media--ratio-square">
+        <img class="media__img" src="/assets/images/foto-jolan.jpg" alt="Jolan Dijkmans, co-founder of Anté" loading="lazy" />
+      </figure>
+      <div>
+        <div class="eyebrow ab-found__role">Co-founder</div>
+        <h3 class="ab-found__name">Jolan Dijkmans</h3>
+        <p class="ab-found__copy">Jolan brings technical logic and strategic depth. He ensures every concept is technically feasible and deeply rooted in data-driven proof. Background in product development at the University of Antwerp.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ § 03 WHERE WE WORK FROM ============ -->
+<section class="section section--md section--azure" data-screen-label="Where we work from">
+  <div class="section-meta">
+    <span class="eyebrow">§ 03 · Where we work from</span>
+    <span class="eyebrow eyebrow--muted">Antwerp · Belgium</span>
+  </div>
+
+  <div class="ab-where__divider">
+    <p class="ab-where__line">
+      Anté is based in Antwerp, Belgium. Workshops happen on-site at your office or ours; interviews and analysis run remote. We work in English and Dutch, primarily across Belgium, the Netherlands, and Germany.
+    </p>
+  </div>
+</section>
+
+<!-- ============ § 04 FINAL CTA ============ -->
+<section class="section section--spruce" data-screen-label="About final CTA">
+  <div class="section-meta">
+    <span class="eyebrow eyebrow--frosted">§ 04 · Two paths</span>
+    <span class="eyebrow eyebrow--azure-60">hello@antedesign.be</span>
+  </div>
+
+  <h2 class="ab-final__title">Two ways to start.</h2>
+
+  <div class="ab-final__grid">
+    <p class="ab-final__copy">
+      A 30-minute intake clarifies whether a Decision Sprint is the right next step for your project. The diagnostic gives you a structured read of where your concept currently stands, without speaking to us at all.
+    </p>
+    <div class="ab-final__cta">
+      <a class="btn btn-frosted btn-large" href="https://cal.com/ante-design/30min" target="_blank" rel="noopener">
+        Book a 30-min intake →
+      </a>
+      <a class="btn btn-outline-light btn-large" href="/scorecard/">Take the diagnostic</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div>
+    <div class="site-footer__brand">anté</div>
+    <div class="site-footer__tagline">Independent concept validation · Belgium · 2026</div>
+  </div>
+  <div class="site-footer__meta">
+    <span>© 2026 Anté</span>
+    <span>hello@antedesign.be</span>
+    <span class="accent">Decide before you build</span>
+  </div>
+</footer>
+
+</div><!-- /.ante-page -->
+
+<script>
+  (function () {
+    var nav = document.querySelector('.site-nav');
+    var btn = nav && nav.querySelector('.site-nav__toggle');
+    if (!nav || !btn) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    nav.querySelectorAll('.site-nav__link, .site-nav__links .btn').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

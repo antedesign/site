@@ -1,736 +1,632 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Anté helps SMEs turn vague ideas into validated concepts before the big investment — in 21 business days.">
-  <title>Anté — Certainty in Innovation</title>
-  <link rel="stylesheet" href="/assets/css/shared.css">
-  <!-- Favicon placeholder — add /assets/images/favicon.ico when ready -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anté · Independent concept validation</title>
+<meta name="description" content="Decide before you build. Anté turns your biggest development decision into a structured choice in 21 days, backed by stakeholder evidence." />
+
+<link rel="icon" type="image/png" href="/assets/images/ante-logo.png" />
+<link rel="stylesheet" href="/assets/css/shared.css" />
+
+<style>
+  /* ---- Home-only styles ---- */
+
+  /* Hero */
+  .ho-hero { padding: 120px var(--space-pad-x) 130px; position: relative; }
+  .ho-hero__title  { color: var(--azure); max-width: 12ch; margin-top: var(--space-block); }
+  .ho-hero__body   { margin-top: 72px; align-items: end; }
+  .ho-hero__lead   { font-size: var(--text-body-xl); line-height: 1.5; color: var(--azure-88); max-width: 48ch; }
+  .ho-hero__cta    { display: flex; gap: 14px; justify-content: flex-end; flex-wrap: wrap; }
+
+  /* Independence — long dark editorial */
+  .ho-indep { padding: 160px var(--space-pad-x); }
+  .ho-indep__inner { max-width: 1100px; margin: 0 auto; }
+  .ho-indep__title { color: var(--frosted); max-width: 16ch; margin-bottom: var(--space-block); font-size: var(--text-display-md); line-height: 0.95; letter-spacing: -0.04em; }
+  .ho-indep__body  { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-block); margin-bottom: 100px; }
+  .ho-indep__body p { font-size: var(--text-body-xl); line-height: 1.55; color: var(--azure-88); }
+  .ho-indep__contract-label { color: var(--frosted); margin-bottom: var(--space-stack-sm); }
+  .ho-indep__cta { margin-top: 40px; }
+
+  /* Problem — 3 failure modes */
+  .ho-problem__title { color: var(--spruce); max-width: 18ch; margin-bottom: 48px; }
+  .ho-problem__intro {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-gap-grid);
+    margin-bottom: var(--space-block); align-items: start;
+  }
+  .ho-problem__intro p { font-size: var(--text-body-md); line-height: 1.65; }
+  .ho-problem__grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .ho-problem__cell {
+    padding: 36px 32px;
+    border-right: 1px solid var(--rule);
+  }
+  .ho-problem__cell:last-child { border-right: 0; }
+  .ho-problem__cell-mode { color: var(--spruce); margin-bottom: 18px; }
+  .ho-problem__cell-title { font-size: var(--text-h3-sm); line-height: 1.05; margin-bottom: 16px; color: var(--spruce); letter-spacing: -0.025em; }
+  .ho-problem__cell-body  { font-size: var(--text-body-sm); line-height: 1.6; color: var(--shadow); }
+  .ho-problem__pull {
+    margin-top: 48px;
+    font-size: var(--text-pull); color: var(--spruce);
+    font-family: var(--display); font-style: italic; font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  /* Sprint — 4 phases on tint background */
+  .ho-sprint__title { color: var(--spruce); max-width: 14ch; margin-bottom: 32px; }
+  .ho-sprint__intro { font-size: var(--text-body-xl); max-width: 62ch; margin-bottom: var(--space-block); color: var(--shadow); }
+
+  /* Deliverables */
+  .ho-deliv__title { color: var(--spruce); max-width: 20ch; margin-bottom: 64px; letter-spacing: -0.025em; font-size: var(--text-display-sm); line-height: 0.95; }
+  .ho-deliv__grid  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .ho-deliv__card  {
+    background: #fff; border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    padding: 28px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 360px;
+  }
+  .ho-deliv__icon  {
+    width: 96px; height: 96px;
+    border-radius: var(--radius-icon);
+    background: var(--azure-deep);
+    color: var(--spruce);
+    padding: 18px;
+    border: 1px solid var(--rule);
+    margin-bottom: var(--space-stack-sm);
+  }
+  .ho-deliv__icon svg { width: 100%; height: 100%; display: block; }
+  .ho-deliv__meta  { color: var(--spruce); margin-bottom: 10px; }
+  .ho-deliv__name  { font-size: var(--text-h5); margin-bottom: 12px; letter-spacing: -0.02em; color: var(--shadow); }
+  .ho-deliv__copy  { font-size: var(--text-meta); line-height: 1.6; color: var(--shadow-soft); }
+
+  /* Audiences */
+  .ho-aud__title { color: var(--spruce); max-width: 18ch; margin-bottom: 64px; line-height: 0.98; font-size: var(--text-display-sm); letter-spacing: -0.03em; }
+  .ho-aud__grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule-strong);
+    border: 1px solid var(--rule-strong);
+  }
+  .ho-aud__cell  { background: var(--spruce-tint); padding: 36px; }
+  .ho-aud__tag   { color: var(--spruce); margin-bottom: var(--space-stack-sm); }
+  .ho-aud__line  { font-size: 44px; line-height: 1; color: var(--shadow); margin-bottom: var(--space-stack-sm); letter-spacing: -0.03em; }
+  .ho-aud__copy  { font-size: var(--text-body-sm); line-height: 1.6; color: var(--shadow-soft); }
+
+  /* Pricing — header pair */
+  .ho-pricing__title { color: var(--spruce); margin-bottom: var(--space-stack-lg); }
+  .ho-pricing__see   { color: var(--spruce); }
+
+  /* Selected work / cases */
+  .ho-work__title { color: var(--spruce); max-width: 20ch; margin-bottom: 32px; letter-spacing: -0.03em; font-size: var(--text-display-sm); }
+  .ho-work__intro { font-size: var(--text-body-md); max-width: 62ch; margin-bottom: var(--space-stack-lg); line-height: 1.6; }
+  .ho-work__grid  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .ho-work__case  {
+    border: 1px solid rgba(32,106,91,0.25);
+    border-radius: var(--radius-card);
+    padding: 28px;
+    aspect-ratio: 1 / 1.05;
+    background: var(--spruce);
+    color: var(--azure);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .ho-work__case--empty {
+    border: 1px dashed var(--spruce);
+    background: transparent;
+    color: var(--shadow);
+  }
+  .ho-work__case-meta  { color: var(--frosted); }
+  .ho-work__case--empty .ho-work__case-meta { color: var(--spruce); }
+  .ho-work__case-mid   {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 12px 0;
+  }
+  .ho-work__case-logo  {
+    font-family: var(--display); font-style: italic; font-weight: 800;
+    font-size: 48px; letter-spacing: -0.045em;
+    color: rgba(240,253,255,0.5);
+    text-align: center;
+  }
+  .ho-work__case--empty .ho-work__case-logo {
+    font-size: 56px; color: var(--spruce);
+  }
+  .ho-work__case-sector{ color: var(--azure-55); }
+  .ho-work__case--empty .ho-work__case-sector { color: var(--shadow-soft); }
+
+  /* Final CTA / diagnostic */
+  .ho-final__title  {
+    line-height: 0.92; color: var(--azure); letter-spacing: -0.045em;
+    max-width: 14ch; margin-bottom: var(--space-stack-lg);
+    font-size: var(--text-display-lg);
+  }
+  .ho-final__grid   { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-block); align-items: end; }
+  .ho-final__copy   { font-size: 19px; line-height: 1.6; color: var(--azure-85); max-width: 52ch; }
+  .ho-final__cta    { display: flex; justify-content: flex-end; }
+
+  /* Tablet */
+  @media (max-width: 960px) {
+    .ho-hero__body { align-items: start; }
+    .ho-hero__cta  { justify-content: flex-start; }
+    .ho-indep      { padding: 110px var(--space-pad-x); }
+    .ho-indep__body, .ho-problem__intro, .ho-final__grid { grid-template-columns: 1fr; gap: var(--space-stack-md); }
+    .ho-problem__grid { grid-template-columns: 1fr; }
+    .ho-problem__cell { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .ho-problem__cell:last-child { border-bottom: 0; }
+    .ho-deliv__grid, .ho-aud__grid, .ho-work__grid { grid-template-columns: repeat(2, 1fr); }
+    .ho-aud__line  { font-size: 32px; }
+    .ho-final__cta { justify-content: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .ho-deliv__grid, .ho-aud__grid, .ho-work__grid { grid-template-columns: 1fr; }
+    .ho-deliv__card { min-height: 0; }
+    .ho-work__case  { aspect-ratio: auto; min-height: 200px; }
+  }
+</style>
 </head>
+
 <body>
+<div class="ante-page">
 
-<!-- ================================================================
-     NAVIGATION
-     ================================================================ -->
+<!-- ============ NAV ============ -->
+<nav class="site-nav" aria-label="Primary">
+  <a href="/" class="site-nav__brand">anté</a>
 
-<nav class="nav" id="main-nav">
-  <a href="/" onclick="showPage('home'); return false;" class="wordmark nav__logo" style="font-size:28px;">anté</a>
-  <div class="nav__links">
-    <span class="nav__link" id="nav-link-solutions" onclick="showPage('solutions')">Solutions</span>
-    <span class="nav__link" id="nav-link-cases"     onclick="showPage('cases')">Cases</span>
-    <span class="nav__link" id="nav-link-about"     onclick="showPage('about')">About</span>
-    <span class="nav__link" id="nav-link-contact"   onclick="showPage('contact')">Contact</span>
-    <a href="/scan/" class="btn btn--primary btn--sm">
-      Free concept audit
+  <button class="site-nav__toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+    <span class="site-nav__toggle-bar"></span>
+    <span class="site-nav__toggle-bar"></span>
+    <span class="site-nav__toggle-bar"></span>
+  </button>
+
+  <div class="site-nav__links" id="primary-nav">
+    <a href="/approach/" class="site-nav__link">Approach</a>
+    <a href="/about/"    class="site-nav__link">About</a>
+    <a href="/contact/"  class="site-nav__link">Contact</a>
+    <a href="/scorecard/" class="btn btn-frosted btn-mini">
+      Take the diagnostic <span class="btn-mini__meta">4 MIN</span>
     </a>
   </div>
 </nav>
 
-
-<!-- ================================================================
-     PAGE: HOME (landing)
-     ================================================================ -->
-
-<section id="home" class="page active">
-
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero__colophon">
-      <span class="eyebrow eyebrow--frosted">— Independent concept validation</span>
-      <span class="eyebrow eyebrow--muted">FILE · 01 / HOME · BELGIUM</span>
-    </div>
-
-    <h1 class="hero__h1">We turn vague ideas into validated concepts.</h1>
-
-    <div class="hero__body">
-      <p class="hero__text">
-        We help SMEs eliminate investment risk and move forward with total confidence — by identifying the optimal solution: a product, service, or system. In exactly 21 business days.
-      </p>
-      <div class="hero__actions">
-        <a href="/scan/" class="btn btn--frosted btn--lg">
-          Start free concept audit →
-        </a>
-        <span class="mono-label eyebrow--dim" style="font-size:11px; letter-spacing:0.06em; text-transform:uppercase; font-family:var(--mono); color:rgba(240,253,255,0.55);">Free concept audit</span>
-      </div>
-    </div>
-
-    <div class="hero__footer">
-      <span>An independent practice — based in Belgium, working across Europe.</span>
-      <span style="color:var(--frosted);">Paid the same, either way.</span>
-    </div>
+<!-- ============ HERO ============ -->
+<section class="section section--spruce ho-hero">
+  <div class="hero-head">
+    <span class="eyebrow eyebrow--frosted">Independent concept validation</span>
+    <span class="eyebrow eyebrow--azure-55">FILE · 01 / HOME · BELGIUM</span>
   </div>
 
-  <!-- Trust bar -->
-  <div class="trust-bar">
-    <span class="trust-bar__label">Trusted by firms across Belgium and the EU</span>
-    <div class="trust-bar__logos">
-      <!-- Add client logos here as <img> tags once approved for public use -->
-      <span class="trust-bar__client">UAntwerpen</span>
-      <span class="trust-bar__client">UP NXT</span>
-      <span class="trust-bar__client" style="opacity:0.4;">More soon</span>
-    </div>
-  </div>
-
-  <!-- 3-phase system -->
-  <div class="section bg-azure">
-    <div class="section-row">
-      <p style="font-size:var(--text-body-xl); color:var(--shadow); max-width:56ch; line-height:1.5; font-style:italic; font-weight:800; font-family:var(--display); letter-spacing:-0.02em;">
-        A fixed-price innovation sprint that delivers absolute certainty in exactly 21 business days.
-      </p>
-      <span class="eyebrow eyebrow--shadow">Three deliverables</span>
-    </div>
-
-    <div class="phase-cards">
-
-      <div class="phase-card">
-        <div class="phase-card__number">01</div>
-        <div class="card__accent-bar"></div>
-        <h3 class="phase-card__title">3 visual concept directions</h3>
-        <p class="phase-card__body">
-          Stakeholder data translated into three fundamentally different scenarios — each fully visualised, named, and made concrete enough to debate.
-        </p>
-      </div>
-
-      <div class="phase-card">
-        <div class="phase-card__number">02</div>
-        <div class="card__accent-bar"></div>
-        <h3 class="phase-card__title">The optimal solution</h3>
-        <p class="phase-card__body">
-          The strongest concept identified through a validated, data-driven trade-off matrix. Every score traceable to specific stakeholder evidence — no gut feeling.
-        </p>
-      </div>
-
-      <div class="phase-card">
-        <div class="phase-card__number">03</div>
-        <div class="card__accent-bar"></div>
-        <h3 class="phase-card__title">Specific handover brief</h3>
-        <p class="phase-card__body">
-          A clear concept package and full scope of requirements, ready for seamless handover to any engineering team or development partner.
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- USP banner -->
-  <div class="section bg-azure" style="padding-top:0; padding-bottom:var(--section-y);">
-    <div class="usp-banner">
-      <h2 style="font-size:var(--text-display-lg); color:var(--azure); max-width:18ch;">We ensure you build the right concept.</h2>
-      <p style="font-size:var(--text-body-xl); color:rgba(240,253,255,0.75); margin-top:16px;">We don't build the concept. We ensure you build the right one.</p>
-
-      <div class="usp-banner__grid">
-        <div></div><!-- spacer -->
-
-        <div>
-          <div class="usp-item__label">Ultimate risk reduction</div>
-          <p class="usp-item__text">A small, fixed investment before the large, irreversible commitment. Certainty worth many times its cost.</p>
-        </div>
-
-        <div>
-          <div class="usp-item__label">100% independent</div>
-          <p class="usp-item__text">We sell clarity — not engineering hours. No referral fees, no affiliated builders, no financial stake in what you decide.</p>
-        </div>
-
-        <div>
-          <div class="usp-item__label">Fast &amp; focused</div>
-          <p class="usp-item__text">Fixed timeline, fixed price. Absolute certainty in less than four weeks.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Reviews placeholder -->
-  <div class="reviews-placeholder">
-    <div class="reviews-placeholder__inner">
-      <span class="eyebrow" style="display:block; margin-bottom:20px;">What our clients say</span>
-      <p style="font-size:var(--text-body-md); color:var(--shadow-soft); line-height:1.65;">
-        Our first paid engagements are running. Client testimonials will be published once projects close and disclosure is approved. If you'd like to speak with a current client, we can arrange a referral conversation.
-      </p>
-    </div>
-  </div>
-
-  <!-- Final CTA -->
-  <div class="section bg-spruce" style="text-align:center; padding-top:clamp(64px,8vw,120px); padding-bottom:clamp(64px,8vw,120px);">
-    <h2 style="font-size:var(--text-display-lg); color:var(--azure); max-width:20ch; margin:0 auto 32px;">Ready to start building with absolute certainty?</h2>
-    <span onclick="showPage('contact')" class="btn btn--frosted btn--lg" style="cursor:pointer;">Get in touch →</span>
-  </div>
-
-  <footer class="footer">
-    <div>
-      <div class="wordmark footer__wordmark">anté</div>
-      <div class="footer__tagline">Independent concept validation · Belgium · 2026</div>
-    </div>
-    <div class="footer__meta">
-      <span>© 2026 Anté</span>
-      <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
-      <span class="footer__meta-accent">Decide before you build</span>
-    </div>
-  </footer>
-
-</section><!-- /#home -->
-
-
-<!-- ================================================================
-     PAGE: SOLUTIONS (#solutions)
-     ================================================================ -->
-
-<section id="solutions" class="page">
-
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero__colophon">
-      <span class="eyebrow eyebrow--frosted">— Solutions &amp; pricing</span>
-      <span class="eyebrow eyebrow--muted">FILE · 02 / SOLUTIONS · BELGIUM</span>
-    </div>
-    <h1 class="hero__h1">Decide before you build.</h1>
-    <div class="hero__body">
-      <p class="hero__text">
-        Turn your vague idea into a concrete concept with our 21-day sprint — and de-risk your next investment before a single euro of build budget is committed.
-      </p>
-      <div class="hero__actions">
-        <span onclick="showPage('contact')" class="btn btn--frosted btn--lg" style="cursor:pointer;">Get in touch →</span>
-        <a href="/scan/" class="btn btn--ghost-light btn--lg">Free audit</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Problem / Solution -->
-  <div class="section bg-azure">
-    <div class="section-row">
-      <span class="eyebrow">§ 01 — The challenge</span>
-      <span class="eyebrow eyebrow--shadow">Problem &amp; fix</span>
-    </div>
-
-    <div class="problem-solution">
-      <div class="ps-card ps-card--problem">
-        <div class="ps-card__label">The problem</div>
-        <h3 class="ps-card__title">The decision just before the big investment is the riskiest moment.</h3>
-        <p class="ps-card__body">
-          Without a sharp, validated concept you end up building in the wrong direction — or worse, paralysed by indecision. Both cost money. The concept stage is where innovation projects fail, long before the build begins.
-        </p>
-      </div>
-
-      <div class="ps-card ps-card--solution">
-        <div class="ps-card__label">The fix</div>
-        <h3 class="ps-card__title">Anté builds the strategic foundation your decision needs.</h3>
-        <p class="ps-card__body">
-          A decision framework grounded in real stakeholder data, translated into visual concepts your team can debate and compare. No assumptions. No gut feel. Certainty — sourced and auditable.
-        </p>
-      </div>
-    </div>
-
-    <!-- How it works -->
-    <div class="section-row" style="margin-top:0;">
-      <span class="eyebrow">§ 02 — How it works</span>
-      <span class="eyebrow eyebrow--shadow">4 phases · 21 days</span>
-    </div>
-
-    <div style="display:grid; grid-template-columns:1fr 1.4fr; gap:64px; align-items:start;">
-      <div class="steps">
-
-        <div class="step">
-          <div class="step__number">1</div>
-          <div>
-            <h3 class="step__title">Align</h3>
-            <p class="step__body">Synchronise all stakeholders, map existing knowledge, and define the strict concept boundaries before any direction is explored.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step__number">2</div>
-          <div>
-            <h3 class="step__title">Explore</h3>
-            <p class="step__body">Translate the validated strategy into multiple visual directions and functional concepts — each linked to specific sub-problems.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step__number">3</div>
-          <div>
-            <h3 class="step__title">Validate</h3>
-            <p class="step__body">The Anté tool replaces gut feeling with a data-driven trade-off. Every score is sourced. Every claim is auditable.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step__number">4</div>
-          <div>
-            <h3 class="step__title">Handoff</h3>
-            <p class="step__body">A complete blueprint for the build phase: specifications, scope, open questions, and a quote-ready spec any engineering partner can pick up.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Artifact placeholder — replace with real image when available -->
-      <div class="photo-ph" style="aspect-ratio:4/3; min-height:400px;">
-        <span class="photo-ph__label">Artifact · methodology overview</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pricing -->
-  <div class="section bg-tint">
-    <div class="section-row">
-      <span class="eyebrow">§ 03 — Pricing</span>
-      <span class="eyebrow eyebrow--shadow">Three tiers · fixed price</span>
-    </div>
-
-    <h2 style="font-size:var(--text-display-lg); color:var(--spruce); margin-bottom:48px; max-width:18ch;">Three ways in.</h2>
-
-    <div class="pricing-grid">
-
-      <!-- Tier 1: Alignment Sprint -->
-      <div class="pricing-card">
-        <div>
-          <div class="pricing-card__name">Concept Starter</div>
-          <div class="pricing-card__tagline">Quick feasibility check for early-stage ideas</div>
-        </div>
-        <div>
-          <div class="pricing-card__price">€6.500</div>
-          <div class="pricing-card__timeline">+/- 2 weeks</div>
-        </div>
-        <div class="pricing-card__divider"></div>
-        <ul class="pricing-card__features">
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> 4 stakeholder interviews (internal)</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Leverage points system map</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> 2D concept sketches</li>
-          <li class="pricing-feature"><span class="pricing-feature__cross">—</span> Technical feasibility scan</li>
-          <li class="pricing-feature"><span class="pricing-feature__cross">—</span> 3D photorealistic renders</li>
-          <li class="pricing-feature"><span class="pricing-feature__cross">—</span> Data-driven trade-off matrix</li>
-          <li class="pricing-feature"><span class="pricing-feature__cross">—</span> Professional handover briefing</li>
-        </ul>
-        <span onclick="showPage('contact')" class="btn btn--ghost-dark" style="cursor:pointer; width:100%; justify-content:center;">Enquire →</span>
-      </div>
-
-      <!-- Tier 2: Decision Sprint (featured) -->
-      <div class="pricing-card pricing-card--featured">
-        <div>
-          <span class="pricing-card__badge">Core product</span>
-          <div class="pricing-card__name">Strategic Choice</div>
-          <div class="pricing-card__tagline">3 directions, 1 winning choice</div>
-        </div>
-        <div>
-          <div class="pricing-card__price">€9.500</div>
-          <div class="pricing-card__timeline">21 days · fixed</div>
-        </div>
-        <div class="pricing-card__divider"></div>
-        <ul class="pricing-card__features">
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> 8 stakeholder interviews (market &amp; internal)</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Leverage points system map</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> 2D concept sketches</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Technical feasibility scan (basic)</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Online client platform</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> 3D photorealistic renders (3 directions)</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Data-driven trade-off matrix</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Professional handover briefing</li>
-        </ul>
-        <span onclick="showPage('contact')" class="btn btn--frosted" style="cursor:pointer; width:100%; justify-content:center;">Start a sprint →</span>
-      </div>
-
-      <!-- Tier 3: Innovation Sprint -->
-      <div class="pricing-card">
-        <div>
-          <div class="pricing-card__name">Innovation Platform</div>
-          <div class="pricing-card__tagline">Deep de-risking for complex, high-stakes systems</div>
-        </div>
-        <div>
-          <div class="pricing-card__price">€17.500</div>
-          <div class="pricing-card__timeline">+/- 8 weeks</div>
-        </div>
-        <div class="pricing-card__divider"></div>
-        <ul class="pricing-card__features">
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> 12+ stakeholder interviews (full ecosystem)</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Leverage points system map</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> 2D concept sketches</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Technical feasibility scan (detailed)</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Online client platform</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> 3D renders (5+ directions)</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Data-driven trade-off matrix</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Professional handover briefing</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> External user feedback</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Product animation / video</li>
-          <li class="pricing-feature"><span class="pricing-feature__check">✓</span> Full implementation roadmap</li>
-        </ul>
-        <span onclick="showPage('contact')" class="btn btn--ghost-dark" style="cursor:pointer; width:100%; justify-content:center;">Enquire →</span>
-      </div>
-
-    </div>
-
-    <!-- Who is this for -->
-    <div style="margin-top:80px;">
-      <div class="section-row">
-        <span class="eyebrow">§ 04 — Who this is for</span>
-        <span class="eyebrow eyebrow--shadow">SMEs doing innovation</span>
-      </div>
-
-      <div class="grid-3">
-
-        <div class="card card--tint">
-          <div class="card__accent-bar"></div>
-          <h3 style="font-size:var(--text-display-sm); color:var(--spruce); margin-bottom:14px;">Certainty first.</h3>
-          <p style="font-size:var(--text-body-md); line-height:1.65; color:var(--shadow-soft);">
-            SMEs that prioritise certainty, validation, and speed — and want a solid concept before committing to a build.
-          </p>
-        </div>
-
-        <div class="card card--tint">
-          <div class="card__accent-bar"></div>
-          <h3 style="font-size:var(--text-display-sm); color:var(--spruce); margin-bottom:14px;">Validate before you build.</h3>
-          <p style="font-size:var(--text-body-md); line-height:1.65; color:var(--shadow-soft);">
-            Companies that want a validated concept before entering the build phase — not assumptions.
-          </p>
-        </div>
-
-        <div class="card card--tint">
-          <div class="card__accent-bar"></div>
-          <h3 style="font-size:var(--text-display-sm); color:var(--spruce); margin-bottom:14px;">Evidence, not argument.</h3>
-          <p style="font-size:var(--text-body-md); line-height:1.65; color:var(--shadow-soft);">
-            Teams that need to end internal debates with visual evidence and a data-driven decision their board can sign off on.
-          </p>
-        </div>
-
-      </div>
-
-      <div style="margin-top:48px; text-align:center;">
-        <p style="font-size:var(--text-body-xl); color:var(--shadow); margin-bottom:24px; font-style:italic;">Unsure which sprint fits your idea? Let's find out in 30 minutes.</p>
-        <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Book a free 30-min call →</a>
-      </div>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div>
-      <div class="wordmark footer__wordmark">anté</div>
-      <div class="footer__tagline">Independent concept validation · Belgium · 2026</div>
-    </div>
-    <div class="footer__meta">
-      <span>© 2026 Anté</span>
-      <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
-      <span class="footer__meta-accent">Decide before you build</span>
-    </div>
-  </footer>
-
-</section><!-- /#solutions -->
-
-
-<!-- ================================================================
-     PAGE: CASES (#cases)
-     ================================================================ -->
-
-<section id="cases" class="page">
-
-  <div class="hero" style="min-height:50vh; display:flex; flex-direction:column; justify-content:center;">
-    <div class="hero__colophon">
-      <span class="eyebrow eyebrow--frosted">— Cases</span>
-      <span class="eyebrow eyebrow--muted">FILE · 03 / CASES · BELGIUM</span>
-    </div>
-    <h1 class="hero__h1" style="margin-top:64px;">Cases.</h1>
-  </div>
-
-  <div class="coming-soon bg-azure">
-    <div class="reviews-placeholder__inner">
-      <span class="eyebrow" style="display:block; margin-bottom:24px;">Coming soon</span>
-      <h2 style="font-size:var(--text-display-lg); color:var(--spruce); margin-bottom:24px; max-width:16ch;">Work in progress.</h2>
-      <p style="font-size:var(--text-body-xl); color:var(--shadow-soft); line-height:1.65; margin-bottom:40px;">
-        We are currently documenting our most impactful sprints. Public case studies will be published once results are validated and clients have approved disclosure.
-      </p>
-      <span onclick="showPage('contact')" class="btn btn--primary btn--lg" style="cursor:pointer;">Speak with us →</span>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div>
-      <div class="wordmark footer__wordmark">anté</div>
-      <div class="footer__tagline">Independent concept validation · Belgium · 2026</div>
-    </div>
-    <div class="footer__meta">
-      <span>© 2026 Anté</span>
-      <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
-      <span class="footer__meta-accent">Decide before you build</span>
-    </div>
-  </footer>
-
-</section><!-- /#cases -->
-
-
-<!-- ================================================================
-     PAGE: ABOUT (#about)
-     ================================================================ -->
-
-<section id="about" class="page">
-
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero__colophon">
-      <span class="eyebrow eyebrow--frosted">— About Anté</span>
-      <span class="eyebrow eyebrow--muted">FILE · 04 / ABOUT · BELGIUM</span>
-    </div>
-    <h1 class="hero__h1" style="margin-top:64px;">Anté creates certainty in innovation.</h1>
-    <div class="hero__body" style="margin-top:64px;">
-      <p class="hero__text">
-        A young team on a mission to make innovation radically more validated and efficient — one concept at a time. Founded by two product developers who watched the same pattern repeat across dozens of projects.
-      </p>
-      <p class="hero__text" style="opacity:0.75;">
-        Strong technical execution. Weak conceptual foundation. The result was always the same — a product that worked, technically, but didn't solve the problem the team thought it was solving.
-      </p>
-    </div>
-    <div class="hero__footer">
-      <span>An independent practice — based in Belgium, working across Europe.</span>
-      <span style="color:var(--frosted);">Decide before you build.</span>
-    </div>
-  </div>
-
-  <!-- Team -->
-  <div class="section bg-tint">
-    <div class="section-row">
-      <span class="eyebrow">§ 01 — The team</span>
-      <span class="eyebrow eyebrow--shadow">Two practitioners</span>
-    </div>
-
-    <h2 style="font-size:var(--text-display-xl); color:var(--spruce); margin-bottom:64px; max-width:16ch;">Built by people who build.</h2>
-
-    <div class="grid-2">
-
-      <!-- Justin -->
-      <article style="display:flex; flex-direction:column; gap:28px;">
-        <img
-          src="/assets/images/foto-justin.JPG"
-          alt="Justin Lefebvre — Co-founder of Anté"
-          class="portrait"
-          loading="lazy"
-        >
-        <div>
-          <div class="eyebrow" style="margin-bottom:12px;">Co-founder</div>
-          <h3 style="font-size:var(--text-display-md); color:var(--spruce); margin-bottom:16px;">Justin Lefebvre</h3>
-          <p style="font-size:var(--text-body-lg); line-height:1.65; color:var(--shadow); max-width:44ch;">
-            Justin is the bridge between abstract strategy and visual reality. With his conceptual thinking he translates abstract ideas and human needs into visual concepts. Background in product development at the University of Antwerp.
-          </p>
-        </div>
-      </article>
-
-      <!-- Jolan -->
-      <article style="display:flex; flex-direction:column; gap:28px;">
-        <img
-          src="/assets/images/foto-jolan.JPG"
-          alt="Jolan Dijkmans — Co-founder of Anté"
-          class="portrait"
-          loading="lazy"
-        >
-        <div>
-          <div class="eyebrow" style="margin-bottom:12px;">Co-founder</div>
-          <h3 style="font-size:var(--text-display-md); color:var(--spruce); margin-bottom:16px;">Jolan Dijkmans</h3>
-          <p style="font-size:var(--text-body-lg); line-height:1.65; color:var(--shadow); max-width:44ch;">
-            Jolan brings technical logic and strategic depth. He ensures every concept is technically feasible and deeply rooted in data-driven proof. Background in product development at the University of Antwerp.
-          </p>
-        </div>
-      </article>
-
-    </div>
-  </div>
-
-  <!-- Final CTA -->
-  <div class="section bg-spruce" style="text-align:center; padding-top:clamp(64px,8vw,120px); padding-bottom:clamp(64px,8vw,120px);">
-    <h2 style="font-size:var(--text-display-lg); color:var(--azure); max-width:18ch; margin:0 auto 32px;">Ready for total confidence?</h2>
-    <span onclick="showPage('contact')" class="btn btn--frosted btn--lg" style="cursor:pointer;">Get in touch →</span>
-  </div>
-
-  <footer class="footer">
-    <div>
-      <div class="wordmark footer__wordmark">anté</div>
-      <div class="footer__tagline">Independent concept validation · Belgium · 2026</div>
-    </div>
-    <div class="footer__meta">
-      <span>© 2026 Anté</span>
-      <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
-      <span class="footer__meta-accent">Decide before you build</span>
-    </div>
-  </footer>
-
-</section><!-- /#about -->
-
-
-<!-- ================================================================
-     PAGE: CONTACT (#contact)
-     ================================================================ -->
-
-<section id="contact" class="page">
-
-  <!-- Hero -->
-  <div class="hero" style="padding-bottom:clamp(60px,8vw,100px);">
-    <div class="hero__colophon">
-      <span class="eyebrow eyebrow--frosted">— Contact</span>
-      <span class="eyebrow eyebrow--muted">FILE · 05 / CONTACT · BELGIUM</span>
-    </div>
-    <h1 class="hero__h1" style="margin-top:64px;">Ready for total confidence?</h1>
-    <p class="hero__text" style="margin-top:48px; max-width:56ch;">
-      Let's discuss how to translate your idea into a validated concept. Two ways to start: book a 30-minute call, or send us a message and we'll respond within one working day.
+  <h1 class="h-display-xl ho-hero__title">Decide before you build.</h1>
+
+  <div class="grid-2 ho-hero__body">
+    <p class="ho-hero__lead">
+      Spending €300k on the wrong direction is the most expensive mistake in product development. We make sure you don't. In 21 days, Anté turns your biggest development decision into a structured choice, backed by stakeholder evidence, not gut feeling.
     </p>
+    <div class="ho-hero__cta">
+      <a class="btn btn-frosted" href="/scorecard/">Take the 4-minute diagnostic →</a>
+      <a class="btn btn-outline-light" href="/contact/">Book a 30-min intake</a>
+    </div>
   </div>
 
-  <!-- Two paths -->
-  <div class="section bg-azure">
-    <div class="section-row">
-      <span class="eyebrow">§ 01 — Two paths</span>
-      <span class="eyebrow eyebrow--shadow">One faster · one slower</span>
+  <div class="hero-colophon">
+    <span>An independent practice, based in Belgium, working across Europe.</span>
+    <span class="accent">Paid the same, either way.</span>
+  </div>
+</section>
+
+<!-- ============ § 02 INDEPENDENCE ============ -->
+<section class="section section--ink ho-indep" data-screen-label="Why we exist">
+  <div class="ho-indep__inner">
+    <div class="section-meta">
+      <span class="eyebrow eyebrow--frosted">§ 02 · Why we exist</span>
+      <span class="eyebrow eyebrow--azure-55">The Independence Contract</span>
     </div>
 
-    <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:24px; align-items:start;">
+    <h2 class="ho-indep__title">We sell the decision, not the build.</h2>
 
-      <!-- Calendly — primary -->
-      <a
-        href="https://cal.com/ante-design/30min"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="background:var(--spruce); color:var(--azure); border-radius:var(--radius-card); padding:clamp(32px,4vw,56px); display:flex; flex-direction:column; justify-content:space-between; min-height:360px; text-decoration:none; transition:transform var(--transition), box-shadow var(--transition);"
-        onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 16px 40px rgba(40,41,43,0.18)';"
-        onmouseout="this.style.transform=''; this.style.boxShadow='';"
-      >
-        <div>
-          <div class="eyebrow eyebrow--frosted" style="margin-bottom:20px;">Primary · 30 minutes</div>
-          <h2 style="font-size:var(--text-display-lg); color:var(--azure); max-width:14ch; margin-bottom:20px; letter-spacing:-0.035em; line-height:0.95;">Book a 30-min intake.</h2>
-          <p style="font-size:var(--text-body-md); line-height:1.65; color:rgba(240,253,255,0.82); max-width:44ch;">
-            A short call to map your project context against our methodology. We'll tell you whether a sprint is the right next step — or not. Paid the same either way.
-          </p>
-        </div>
-        <span style="margin-top:28px; font-family:var(--mono); font-size:var(--text-mono); text-transform:uppercase; letter-spacing:0.08em; color:var(--frosted);">
-          Open calendar →
-        </span>
-      </a>
+    <div class="ho-indep__body">
+      <p>Every other party in your innovation chain makes money when you start building. Engineering firms bill hours. Design agencies want the contract. Strategic consultancies want the follow-up. Even your internal team has reasons to push forward.</p>
+      <p>Anté has none of those. That changes what we tell you. Sometimes the answer is "your concept is solid, start building." Sometimes it's "this won't work, here's why." We're paid the same either way.</p>
+    </div>
 
-      <!-- Contact form — secondary -->
-      <div class="contact-form">
-        <div class="eyebrow" style="margin-bottom:24px;">Send a message</div>
+    <div class="eyebrow eyebrow--frosted ho-indep__contract-label">The Independence Contract · five commitments</div>
 
-        <form id="contact-form" novalidate>
-          <div class="form-field">
-            <label class="form-label" for="cf-name">Name</label>
-            <input class="form-input" type="text" id="cf-name" name="name" placeholder="Your name" required>
-          </div>
-          <div class="form-field">
-            <label class="form-label" for="cf-email">Email</label>
-            <input class="form-input" type="email" id="cf-email" name="email" placeholder="your@email.com" required>
-          </div>
-          <div class="form-field" style="margin-bottom:20px;">
-            <label class="form-label" for="cf-message">Message</label>
-            <textarea class="form-textarea" id="cf-message" name="message" placeholder="Tell us about your project or idea…" required></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary" style="width:100%; justify-content:center;">Send message →</button>
-        </form>
-
-        <div id="form-success" class="form-status form-status--success">
-          Message sent — we'll be in touch within one working day.
-        </div>
-        <div id="form-error" class="form-status form-status--error">
-          Something went wrong. Email us directly at hello@antedesign.be
-        </div>
+    <div class="numlist numlist--light">
+      <div class="numlist__row">
+        <span class="eyebrow numlist__num">01</span>
+        <span class="numlist__line">We don't build what we recommend.</span>
+        <span class="numlist__check">✓</span>
       </div>
-
+      <div class="numlist__row">
+        <span class="eyebrow numlist__num">02</span>
+        <span class="numlist__line">We don't take referral fees from development partners.</span>
+        <span class="numlist__check">✓</span>
+      </div>
+      <div class="numlist__row">
+        <span class="eyebrow numlist__num">03</span>
+        <span class="numlist__line">We don't hold equity in your company.</span>
+        <span class="numlist__check">✓</span>
+      </div>
+      <div class="numlist__row">
+        <span class="eyebrow numlist__num">04</span>
+        <span class="numlist__line">We don't have affiliated builders, agencies, or engineering firms.</span>
+        <span class="numlist__check">✓</span>
+      </div>
+      <div class="numlist__row">
+        <span class="eyebrow numlist__num">05</span>
+        <span class="numlist__line">We have no financial stake in what you decide to build.</span>
+        <span class="numlist__check">✓</span>
+      </div>
     </div>
 
-    <!-- Direct email -->
-    <div style="margin-top:64px; border-top:1px solid var(--rule); padding-top:40px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+    <a href="#" class="btn btn-frosted ho-indep__cta">↓ Download the one-pager (PDF)</a>
+  </div>
+</section>
+
+<!-- ============ § 03 PROBLEM ============ -->
+<section class="section section--md section--azure" data-screen-label="The problem">
+  <div class="section-meta">
+    <span class="eyebrow">§ 03 · The problem</span>
+    <span class="eyebrow eyebrow--muted">Three failure modes</span>
+  </div>
+
+  <h2 class="h-display-sm ho-problem__title">The decision before the build is where projects fail.</h2>
+
+  <div class="ho-problem__intro">
+    <p>The riskiest moment in any innovation project isn't the build phase. It's the moment just before, when the concept is still vague, the team is split between three directions, and the budget is about to be committed.</p>
+    <p>At that moment most teams choose by enthusiasm, by who argues loudest, or by avoiding the choice altogether. The cost of that becomes visible six months later, after €100–500k has been spent.</p>
+  </div>
+
+  <div class="ho-problem__grid">
+    <div class="ho-problem__cell">
+      <div class="eyebrow ho-problem__cell-mode">Failure mode 01</div>
+      <h3 class="ho-problem__cell-title">Building the wrong thing</h3>
+      <p class="ho-problem__cell-body">The team commits to one direction, ignores two others that would have worked better, and discovers it after the prototype is done.</p>
+    </div>
+    <div class="ho-problem__cell">
+      <div class="eyebrow ho-problem__cell-mode">Failure mode 02</div>
+      <h3 class="ho-problem__cell-title">Building the right thing wrong</h3>
+      <p class="ho-problem__cell-body">The concept is sound but the specification is fuzzy. Engineering takes its best guess. The result solves a different problem than the one that mattered.</p>
+    </div>
+    <div class="ho-problem__cell">
+      <div class="eyebrow ho-problem__cell-mode">Failure mode 03</div>
+      <h3 class="ho-problem__cell-title">Hesitating until it's too late</h3>
+      <p class="ho-problem__cell-body">The team can't agree, the decision keeps slipping, and a competitor moves first.</p>
+    </div>
+  </div>
+
+  <p class="ho-problem__pull">All three are decision problems, not build problems. Anté solves the decision.</p>
+</section>
+
+<!-- ============ § 04 SPRINT ============ -->
+<section class="section section--tint" data-screen-label="The methodology">
+  <div class="section-meta">
+    <span class="eyebrow">§ 04 · The methodology</span>
+    <span class="eyebrow eyebrow--ink">21 days · €12.500 · fixed</span>
+  </div>
+
+  <h2 class="h-display-sm ho-sprint__title">The 21-day Decision Sprint.</h2>
+
+  <p class="ho-sprint__intro">
+    Four phases, fixed timeline, fixed price. From your vague idea to a substantiated choice your whole team can stand behind.
+  </p>
+
+  <div class="phase-list">
+    <article class="phase-row phase-row-3 phase-row--first">
+      <div class="phase-disk">1</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 1 · Days 1–5</div>
+        <h3 class="phase-body__title">Listen</h3>
+        <p class="phase-body__copy">We interview your stakeholders and the people you're building for. Eight conversations, structured, recorded, mapped. The output is a synthesis dossier: every assumption you currently hold, mapped against actual evidence.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/sprint-01-listen.jpg" alt="Workshop photo, Sprint phase 1: Listen" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+
+    <article class="phase-row phase-row-3">
+      <div class="phase-disk">2</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 2 · Days 6–12</div>
+        <h3 class="phase-body__title">Translate</h3>
+        <p class="phase-body__copy">We turn the dossier into three fundamentally different concept directions. Visualised. Named. Made tangible enough to argue about. This is where most teams collapse to one direction prematurely. We resist that.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/sprint-02-translate.jpg" alt="Workshop photo, Sprint phase 2: Translate" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+
+    <article class="phase-row phase-row-3">
+      <div class="phase-disk">3</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 3 · Days 13–17</div>
+        <h3 class="phase-body__title">Decide</h3>
+        <p class="phase-body__copy">The trade-off matrix. Each direction scored on feasibility, business impact, and user value, every score traceable to specific evidence from phase one. No subjective ratings, no gut feeling, no "I think." A defensible decision your board can sign off on.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/sprint-03-decide.jpg" alt="Workshop photo, Sprint phase 3: Decide" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+
+    <article class="phase-row phase-row-3 phase-row--last">
+      <div class="phase-disk">4</div>
+      <div class="phase-body">
+        <div class="eyebrow phase-body__eyebrow">Phase 4 · Days 18–21</div>
+        <h3 class="phase-body__title">Hand over</h3>
+        <p class="phase-body__copy">A handover brief that any engineering firm or development team can pick up tomorrow. Specifications, scope, requirements, open questions. You enter the build phase knowing exactly what you're building and why.</p>
+      </div>
+      <div class="phase-media">
+        <figure class="media media--ratio-43">
+          <img class="media__img" src="/assets/images/sprint-04-handover.jpg" alt="Workshop photo, Sprint phase 4: Hand over" loading="lazy" />
+        </figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ § 05 DELIVERABLES ============ -->
+<section class="section section--md section--azure" data-screen-label="Deliverables">
+  <div class="section-meta">
+    <span class="eyebrow">§ 05 · Deliverables</span>
+    <span class="eyebrow eyebrow--muted">Four documents</span>
+  </div>
+
+  <h2 class="ho-deliv__title">Four documents that turn the decision into evidence.</h2>
+
+  <div class="ho-deliv__grid">
+    <article class="ho-deliv__card">
+      <div class="ho-deliv__icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25">
+          <path d="M6 10 H30 V24 H18 L12 30 V24 H6 Z" />
+          <path d="M58 22 H34 V36 H46 L52 42 V36 H58 Z" />
+          <line x1="11" y1="15" x2="25" y2="15" />
+          <line x1="11" y1="19" x2="22" y2="19" />
+          <line x1="39" y1="27" x2="53" y2="27" />
+          <line x1="39" y1="31" x2="48" y2="31" />
+          <circle cx="14" cy="50" r="3" />
+          <circle cx="32" cy="48" r="3" />
+          <circle cx="50" cy="54" r="3" />
+          <circle cx="40" cy="42" r="2" fill="currentColor" />
+          <line x1="17" y1="50" x2="29" y2="48" />
+          <line x1="35" y1="48" x2="47" y2="54" />
+          <line x1="32" y1="45" x2="40" y2="42" stroke-dasharray="2 2" />
+          <line x1="40" y1="42" x2="50" y2="51" stroke-dasharray="2 2" />
+        </svg>
+      </div>
       <div>
-        <div class="eyebrow" style="margin-bottom:8px;">Direct email</div>
-        <a href="mailto:hello@antedesign.be" style="font-family:var(--display); font-style:italic; font-weight:800; font-size:var(--text-display-sm); color:var(--spruce); letter-spacing:-0.025em;">hello@antedesign.be</a>
+        <div class="eyebrow ho-deliv__meta">01 · 30–50 pages</div>
+        <h3 class="ho-deliv__name">Synthesis Dossier</h3>
+        <p class="ho-deliv__copy">Every interview, every key insight, every contradiction found in your stakeholder field. Mapped, themed, prioritised.</p>
       </div>
-      <p style="font-size:var(--text-body-md); color:var(--shadow-soft); max-width:44ch; line-height:1.65;">
-        We're based in Antwerp, Belgium. We work in English and Dutch, across Belgium, the Netherlands, and Germany.
-      </p>
-    </div>
+    </article>
+
+    <article class="ho-deliv__card">
+      <div class="ho-deliv__icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25">
+          <rect x="6" y="14" width="16" height="36" rx="2" />
+          <rect x="24" y="14" width="16" height="36" rx="2" />
+          <rect x="42" y="14" width="16" height="36" rx="2" />
+          <line x1="10" y1="22" x2="18" y2="22" />
+          <line x1="28" y1="22" x2="36" y2="22" />
+          <line x1="46" y1="22" x2="54" y2="22" />
+          <circle cx="14" cy="38" r="3" />
+          <path d="M28 36 L36 44 M36 36 L28 44" />
+          <path d="M46 36 L54 36 L50 32 Z" fill="currentColor" />
+        </svg>
+      </div>
+      <div>
+        <div class="eyebrow ho-deliv__meta">02 · 3 directions</div>
+        <h3 class="ho-deliv__name">Concept Trio</h3>
+        <p class="ho-deliv__copy">Three visualised concept directions. Sketches, renders, and functional descriptions. Comparable side-by-side, each with an explicit trade-off profile.</p>
+      </div>
+    </article>
+
+    <article class="ho-deliv__card">
+      <div class="ho-deliv__icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25">
+          <rect x="8" y="8" width="48" height="48" rx="2" />
+          <line x1="8" y1="22" x2="56" y2="22" />
+          <line x1="8" y1="36" x2="56" y2="36" />
+          <line x1="8" y1="50" x2="56" y2="50" />
+          <line x1="22" y1="8" x2="22" y2="56" />
+          <line x1="36" y1="8" x2="36" y2="56" />
+          <circle cx="29" cy="29" r="2" fill="currentColor" />
+          <circle cx="43" cy="29" r="2" fill="currentColor" />
+          <circle cx="29" cy="43" r="2" fill="currentColor" />
+          <circle cx="43" cy="43" r="2" fill="currentColor" />
+          <circle cx="15" cy="43" r="2" />
+        </svg>
+      </div>
+      <div>
+        <div class="eyebrow ho-deliv__meta">03 · Scored, sourced</div>
+        <h3 class="ho-deliv__name">Validation Matrix</h3>
+        <p class="ho-deliv__copy">The structured comparison. Every criterion scored, every score sourced. The artifact your team can argue with, and the one your investors can verify.</p>
+      </div>
+    </article>
+
+    <article class="ho-deliv__card">
+      <div class="ho-deliv__icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25">
+          <path d="M14 12 L40 12 L50 22 L50 52 L14 52 Z" />
+          <path d="M40 12 L40 22 L50 22" />
+          <line x1="20" y1="32" x2="44" y2="32" />
+          <line x1="20" y1="40" x2="44" y2="40" />
+          <line x1="20" y1="46" x2="36" y2="46" />
+        </svg>
+      </div>
+      <div>
+        <div class="eyebrow ho-deliv__meta">04 · Quote-ready spec</div>
+        <h3 class="ho-deliv__name">Handover Brief</h3>
+        <p class="ho-deliv__copy">The specification document. Scope, requirements, open questions, recommended next phase. Built so a development partner can quote against it without ambiguity.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ § 06 AUDIENCES ============ -->
+<section class="section section--md section--tint" data-screen-label="Who this is for">
+  <div class="section-meta">
+    <span class="eyebrow">§ 06 · Who this is for</span>
+    <span class="eyebrow eyebrow--muted">Three concrete situations</span>
   </div>
 
-  <footer class="footer">
-    <div>
-      <div class="wordmark footer__wordmark">anté</div>
-      <div class="footer__tagline">Independent concept validation · Belgium · 2026</div>
+  <h2 class="ho-aud__title">Built for the moment before the big investment.</h2>
+
+  <div class="ho-aud__grid">
+    <div class="ho-aud__cell">
+      <div class="eyebrow ho-aud__tag">01 · Deeptech founder</div>
+      <h3 class="ho-aud__line">Lab to market.</h3>
+      <p class="ho-aud__copy">The technology works in controlled conditions. The product strategy, what you actually sell, to whom, how, is still forming. Seed capital is in the bank, but the wrong product decision now means burning runway you can't get back.</p>
     </div>
-    <div class="footer__meta">
-      <span>© 2026 Anté</span>
-      <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
-      <span class="footer__meta-accent">Decide before you build</span>
+    <div class="ho-aud__cell">
+      <div class="eyebrow ho-aud__tag">02 · Industrial SME</div>
+      <h3 class="ho-aud__line">Major R&amp;D investment.</h3>
+      <p class="ho-aud__copy">The development project is mapped out internally. Maybe a Vlaio application is being prepared, or board approval is pending. What's missing is the concept-level rigor that separates a fundable proposal from a vague intention.</p>
     </div>
-  </footer>
+    <div class="ho-aud__cell">
+      <div class="eyebrow ho-aud__tag">03 · Innovation lead</div>
+      <h3 class="ho-aud__line">Mid-sized tech bet.</h3>
+      <p class="ho-aud__copy">The budget is approved. The team is ready. But three directions are on the table and the wrong choice will eat 9–18 months of your team's capacity. You need a decision your CTO can defend and your engineering team can execute.</p>
+    </div>
+  </div>
+</section>
 
-</section><!-- /#contact -->
+<!-- ============ § 07 PRICING ============ -->
+<section class="section section--md section--azure" data-screen-label="Pricing">
+  <div class="section-meta">
+    <span class="eyebrow">§ 07 · Pricing</span>
+    <a href="/approach/#pricing" class="eyebrow ho-pricing__see">See full pricing →</a>
+  </div>
 
+  <h2 class="h-display-sm ho-pricing__title">Three ways in.</h2>
 
-<!-- ================================================================
-     JAVASCRIPT — navigation + contact form
-     ================================================================ -->
+  <div class="pricing-list">
+    <div class="pricing-row">
+      <div>
+        <h3 class="pricing-row__name">Pre-Investment Audit</h3>
+        <div class="eyebrow pricing-row__time">5 days</div>
+      </div>
+      <div class="pricing-row__price">€2.500</div>
+      <p class="pricing-row__copy">A structured first read of your concept. Two stakeholder interviews, scope mapping, risk inventory, honest recommendation.</p>
+      <div class="pricing-row__cta"><a href="/contact/" class="link-underline-mono">Enquire →</a></div>
+    </div>
+    <div class="pricing-row">
+      <div>
+        <h3 class="pricing-row__name">Decision Sprint</h3>
+        <div class="eyebrow pricing-row__time">21 days</div>
+      </div>
+      <div class="pricing-row__price">€12.500</div>
+      <p class="pricing-row__copy">Our core engagement. Full methodology, eight interviews, three concept directions, validation matrix, handover brief.</p>
+      <div class="pricing-row__cta"><a href="/contact/" class="link-underline-mono">Enquire →</a></div>
+    </div>
+    <div class="pricing-row">
+      <div>
+        <h3 class="pricing-row__name">Custom engagement</h3>
+        <div class="eyebrow pricing-row__time">Scoped</div>
+      </div>
+      <div class="pricing-row__price">On request</div>
+      <p class="pricing-row__copy">For larger ecosystems, longer timelines, or projects requiring external user testing.</p>
+      <div class="pricing-row__cta"><a href="/contact/" class="link-underline-mono">Enquire →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ § 08 SELECTED WORK ============ -->
+<section class="section section--md section--azure" data-screen-label="Selected work">
+  <div class="section-meta">
+    <span class="eyebrow">§ 08 · Selected work</span>
+    <span class="eyebrow eyebrow--muted">Currently under NDA</span>
+  </div>
+
+  <h2 class="ho-work__title">First engagements are running. Public cases follow.</h2>
+
+  <p class="ho-work__intro">
+    Our first paid engagements are running with university research groups and industrial partners. Public case studies will be published once results are validated and clients have approved disclosure. If you're considering a sprint and want to speak with a current client, we can arrange a referral conversation under NDA.
+  </p>
+
+  <div class="ho-work__grid">
+    <div class="ho-work__case">
+      <div class="eyebrow ho-work__case-meta">Case 01</div>
+      <div class="ho-work__case-mid"><span class="ho-work__case-logo">PHX</span></div>
+      <div class="eyebrow ho-work__case-sector">Deeptech · Photonics</div>
+    </div>
+    <div class="ho-work__case">
+      <div class="eyebrow ho-work__case-meta">Case 02</div>
+      <div class="ho-work__case-mid"><span class="ho-work__case-logo">kerno</span></div>
+      <div class="eyebrow ho-work__case-sector">Industrial SME · Energy</div>
+    </div>
+    <div class="ho-work__case">
+      <div class="eyebrow ho-work__case-meta">Case 03</div>
+      <div class="ho-work__case-mid"><span class="ho-work__case-logo">◈ atlas</span></div>
+      <div class="eyebrow ho-work__case-sector">Mid-cap · Mobility</div>
+    </div>
+    <div class="ho-work__case ho-work__case--empty">
+      <div class="eyebrow ho-work__case-meta">Case 04</div>
+      <div class="ho-work__case-mid"><span class="ho-work__case-logo">You?</span></div>
+      <div class="eyebrow ho-work__case-sector">Your sector</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ § 09 FINAL CTA / DIAGNOSTIC ============ -->
+<section class="section section--spruce" data-screen-label="Diagnostic">
+  <div class="section-meta">
+    <span class="eyebrow eyebrow--frosted">§ 09 · Diagnostic</span>
+    <span class="eyebrow eyebrow--azure-60">4 minutes · 15 questions · no email</span>
+  </div>
+
+  <h2 class="ho-final__title">Where do you actually stand?</h2>
+
+  <div class="ho-final__grid">
+    <p class="ho-final__copy">
+      Take our 4-minute diagnostic to see where the gaps in your current concept sit. Five dimensions, fifteen questions, honest output. No email required to see your result.
+    </p>
+    <div class="ho-final__cta">
+      <a class="btn btn-frosted btn-large" href="/scorecard/">Take the diagnostic →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div>
+    <div class="site-footer__brand">anté</div>
+    <div class="site-footer__tagline">Independent concept validation · Belgium · 2026</div>
+  </div>
+  <div class="site-footer__meta">
+    <span>© 2026 Anté</span>
+    <span>hello@antedesign.be</span>
+    <span class="accent">Decide before you build</span>
+  </div>
+</footer>
+
+</div><!-- /.ante-page -->
+
 <script>
-  /* ---------- SPA navigation ---------- */
-  const PAGES = ['home', 'solutions', 'cases', 'about', 'contact'];
-
-  function showPage(id) {
-    if (!PAGES.includes(id)) id = 'home';
-
-    // Switch pages
-    PAGES.forEach(p => {
-      const el = document.getElementById(p);
-      if (el) el.classList.toggle('active', p === id);
+  (function () {
+    var nav = document.querySelector('.site-nav');
+    var btn = nav && nav.querySelector('.site-nav__toggle');
+    if (!nav || !btn) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
-
-    // Update nav link states
-    PAGES.forEach(p => {
-      const link = document.getElementById('nav-link-' + p);
-      if (link) link.classList.toggle('nav__link--active', p === id);
+    nav.querySelectorAll('.site-nav__link, .site-nav__links .btn').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
     });
-
-    // Update hash and scroll to top
-    history.pushState(null, '', id === 'home' ? '/' : '#' + id);
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }
-
-  // Read hash on load
-  (function init() {
-    const hash = window.location.hash.replace('#', '');
-    showPage(hash || 'home');
   })();
-
-  // Handle browser back/forward
-  window.addEventListener('popstate', function() {
-    const hash = window.location.hash.replace('#', '');
-    showPage(hash || 'home');
-  });
-
-  /* ---------- Contact form (Google Forms fire-and-forget) ---------- */
-  const FORM_CONFIG = {
-    url:    'https://docs.google.com/forms/u/0/d/e/1FAIpQLSdtnVjuuzhtoDLbvwAm8YM-nzFS2vIEAnMgO_MFhS1HqHtEvQ/formResponse',
-    fields: {
-      name:    'entry.1892390230',
-      email:   'entry.1237768883',
-      message: 'entry.1566169903'
-    }
-  };
-
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name    = document.getElementById('cf-name').value.trim();
-    const email   = document.getElementById('cf-email').value.trim();
-    const message = document.getElementById('cf-message').value.trim();
-
-    if (!name || !email || !message || !email.includes('@')) return;
-
-    const body = new URLSearchParams({
-      [FORM_CONFIG.fields.name]:    name,
-      [FORM_CONFIG.fields.email]:   email,
-      [FORM_CONFIG.fields.message]: message
-    });
-
-    fetch(FORM_CONFIG.url, {
-      method: 'POST',
-      mode:   'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body:   body.toString()
-    }).then(function() {
-      document.getElementById('contact-form').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    }).catch(function() {
-      document.getElementById('form-error').style.display = 'block';
-    });
-  });
 </script>
 
 </body>
