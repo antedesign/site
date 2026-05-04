@@ -14,13 +14,13 @@
   --shadow-soft:    #3a3b3d;
   --azure:          #F0FDFF;
   --azure-deep:     #E4F8FB;
-  --frosted:        #9CE3F8;
-  --frosted-soft:   #C9EEF9;
+  --frosted:        #9CE3F8; /* was 9CE3F8*/
+  --frosted-soft:   #9CE3F8;
   --spruce:         #206A5B;
 
    --spruce-ink:     #206A5B;
   --spruce-tint:    #206A5B;
-  --spruce-tint-2:  #206A5B;
+  --spruce-tint-2:  #9CE3F8;
   /*--spruce-ink:     #18514A;*/
   /*--spruce-tint:    #E8F1EE;*/
   /*--spruce-tint-2:  #DCE8E4;*/
