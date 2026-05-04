@@ -73,10 +73,10 @@
   --space-section-y-sm: 100px; /* contact hero */
   --space-pad-x:        48px;  /* horizontal page padding */
   --space-block:        120px;  /* gap between major blocks within a section - was 80 nu 120a*/
-  --space-stack-lg:     56px;
-  --space-stack-md:     32px;
-  --space-stack-sm:     24px;
-  --space-stack-xs:     16px;
+  --space-stack-lg:     76px; /* allemaal +20px*/
+  --space-stack-md:     52px;
+  --space-stack-sm:     44px;
+  --space-stack-xs:     36px;
   --space-gap-grid:     60px;  /* 2-col content grid gap */
 
   /* Radii */
