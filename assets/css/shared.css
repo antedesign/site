@@ -17,9 +17,14 @@
   --frosted:        #9CE3F8;
   --frosted-soft:   #C9EEF9;
   --spruce:         #206A5B;
-  --spruce-ink:     #18514A;
-  --spruce-tint:    #E8F1EE;
-  --spruce-tint-2:  #DCE8E4;
+
+   --spruce-ink:     #206A5B;
+  --spruce-tint:    #206A5B;
+  --spruce-tint-2:  #206A5B;
+  /*--spruce-ink:     #18514A;*/
+  /*--spruce-tint:    #E8F1EE;*/
+  /*--spruce-tint-2:  #DCE8E4;*/
+
 
   /* Borders / rules */
   --rule:           rgba(40,41,43,0.12);
@@ -67,7 +72,7 @@
   --space-section-y-md: 120px; /* lighter section */
   --space-section-y-sm: 100px; /* contact hero */
   --space-pad-x:        48px;  /* horizontal page padding */
-  --space-block:        80px;  /* gap between major blocks within a section */
+  --space-block:        120px;  /* gap between major blocks within a section - was 80 nu 120a*/
   --space-stack-lg:     56px;
   --space-stack-md:     32px;
   --space-stack-sm:     24px;
