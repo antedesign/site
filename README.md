@@ -1,4 +1,4 @@
-# Anté — Website
+# Anté | Website
 
 Static site for [antedesign.be](https://antedesign.be), hosted on GitHub Pages.
 
