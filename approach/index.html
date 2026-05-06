@@ -33,7 +33,7 @@
   }
 
   /* Methodology — phase list with continuous left rule */
-  .ap-method__title { color: var(--spruce); margin-bottom: 40px; }
+  .ap-method__title { color: var(--spruce); }
   .ap-method__intro {
     font-size: var(--text-body-xl);
     max-width: 70ch;
@@ -46,7 +46,7 @@
     max-width: 78ch;
     font-size: 14px;
     line-height: 1.6;
-    color: var(--shadow-soft);
+    color: var(--shadow);
     font-style: italic;
   }
 
@@ -54,7 +54,6 @@
   .ap-map__title {
     color: var(--frosted);
     max-width: 18ch;
-    margin-bottom: var(--space-block);
   }
   .ap-map__body-grid {
     display: grid;
@@ -134,7 +133,6 @@
   /* Archetypes — 3 card grid */
   .ap-arch__title {
     color: var(--spruce);
-    margin-bottom: 40px;
   }
   .ap-arch__intro {
     font-size: var(--text-body-lg);
@@ -144,25 +142,21 @@
     line-height: 1.55;
   }
   .ap-arch__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    border-top: 1px solid var(--rule);
   }
   .ap-arch__card {
-    background: #fff;
-    border: 1px solid var(--rule);
-    border-radius: var(--radius-card);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 64px;
+    padding: 56px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
   }
-  .ap-arch__card-media { padding: 18px 18px 0; }
+  .ap-arch__card-media { /* no extra padding needed */ }
   .ap-arch__card-body  {
-    padding: 28px;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    flex: 1;
   }
   .ap-arch__card-title {
     font-size: var(--text-h3-md);
@@ -173,11 +167,11 @@
   .ap-arch__card-copy {
     font-size: var(--text-body-xs);
     line-height: 1.65;
-    color: var(--shadow-soft);
+    color: var(--shadow);
   }
 
   /* Negatives — full-width numbered list (no trailing decoration) */
-  .ap-neg__title { color: var(--spruce); margin-bottom: 40px; }
+  .ap-neg__title { color: var(--spruce); }
   .ap-neg__intro {
     font-size: var(--text-body-lg);
     max-width: 62ch;
@@ -194,7 +188,7 @@
     align-items: baseline;
     column-gap: 24px;
   }
-  .ap-neg__num  { color: var(--shadow-soft); }
+  .ap-neg__num  { color: var(--shadow); }
   .ap-neg__line {
     font-family: var(--display);
     font-style: italic;
@@ -206,10 +200,10 @@
   }
 
   /* Pricing footer line */
-  .ap-pricing__title { color: var(--spruce); margin-bottom: var(--space-stack-lg); }
+  .ap-pricing__title { color: var(--spruce); }
   .ap-pricing__foot {
     margin-top: var(--space-stack-sm);
-    color: var(--shadow-soft);
+    color: var(--shadow);
     display: flex;
     justify-content: space-between;
     gap: 16px;
@@ -229,14 +223,13 @@
   }
   .ap-avail__title {
     color: var(--spruce);
-    margin-bottom: 32px;
   }
   .ap-avail__body  { font-size: 18px; line-height: 1.55; color: var(--shadow); max-width: 52ch; }
-  .ap-avail__sub   { margin-top: 18px; font-size: var(--text-body-sm); line-height: 1.65; color: var(--shadow-soft); max-width: 52ch; }
+  .ap-avail__sub   { margin-top: 18px; font-size: var(--text-body-sm); line-height: 1.65; color: var(--shadow); max-width: 52ch; }
   .ap-avail__cta   { margin-top: 32px; }
   .ap-avail__list-label { margin-bottom: 18px; }
   .ap-avail__list  { border-top: 1px solid var(--rule-strong); }
-  .ap-avail__foot  { margin-top: 18px; color: var(--shadow-soft); }
+  .ap-avail__foot  { margin-top: 18px; color: var(--shadow); }
 
   /* Final CTA */
   .ap-final__title {
@@ -244,7 +237,6 @@
     color: var(--azure);
     letter-spacing: -0.045em;
     max-width: 16ch;
-    margin-bottom: var(--space-stack-lg);
     font-size: var(--text-display-md);
   }
   .ap-final__body-grid {
@@ -268,7 +260,7 @@
 
   /* Tablet adjustments specific to Approach */
   @media (max-width: 960px) {
-    .ap-arch__grid { grid-template-columns: 1fr; }
+    .ap-arch__card { grid-template-columns: 1fr; gap: 32px; padding: 40px 0; }
     .ap-map__body-grid { grid-template-columns: 1fr; gap: 40px; }
     .ap-map__timeline { grid-template-columns: repeat(2, 1fr); margin-top: 56px; }
     .ap-map__timeline-cell { border-right: 0; padding-bottom: 16px; }
@@ -563,7 +555,7 @@
 <!-- ============================================================
      3. THREE ARCHETYPES
      ============================================================ -->
-<section class="section section--tint" data-screen-label="Concept archetypes">
+<section class="section section--azure" data-screen-label="Concept archetypes">
   <div class="section-meta">
     <span class="eyebrow">§ 03 · Three concept archetypes</span>
     <span class="eyebrow eyebrow--muted">Same methodology · adapted output</span>
@@ -658,6 +650,15 @@
   </div>
 </section>
 
+<!-- ============ INTER-CTA: contact ============ -->
+<div class="inter-cta">
+  <p class="inter-cta__text">Want to talk about your project?</p>
+  <div class="inter-cta__action" style="display:flex;gap:12px;flex-wrap:wrap">
+    <a class="btn btn-primary" href="/contact/">Get in touch →</a>
+    <a class="btn btn-ghost-spruce" href="https://cal.com/ante-design/30min" target="_blank" rel="noopener">Book a 30-min intake →</a>
+  </div>
+</div>
+
 <!-- ============================================================
      5. PRICING
      ============================================================ -->
@@ -722,7 +723,7 @@
 <!-- ============================================================
      6. AVAILABILITY
      ============================================================ -->
-<section id="availability" class="section section--tint" data-screen-label="Current availability">
+<section id="availability" class="section section--azure" data-screen-label="Current availability">
   <div class="section-meta">
     <span class="eyebrow">§ 06 · Current availability</span>
     <span class="eyebrow eyebrow--muted">Two parallel sprints · max</span>

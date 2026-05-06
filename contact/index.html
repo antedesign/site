@@ -64,13 +64,13 @@
     padding: 40px;
     color: var(--shadow);
   }
-  .co-paths__secondary-meta { color: var(--shadow-soft); margin-bottom: var(--space-stack-sm); }
+  .co-paths__secondary-meta { color: var(--shadow); margin-bottom: var(--space-stack-sm); }
   .co-paths__secondary-title {
     font-size: var(--text-h3-lg); color: var(--shadow);
     letter-spacing: -0.025em; line-height: 1; margin-bottom: 20px;
   }
   .co-paths__secondary-copy {
-    font-size: 14.5px; line-height: 1.6; color: var(--shadow-soft);
+    font-size: 14.5px; line-height: 1.6; color: var(--shadow);
     max-width: 32ch;
   }
   .co-paths__secondary-cta {
@@ -86,9 +86,12 @@
   .co-form { padding: 60px var(--space-pad-x) var(--space-section-y-md); background: var(--azure); }
   .co-form__title {
     color: var(--spruce); letter-spacing: -0.03em; line-height: 0.95;
-    margin-bottom: var(--space-stack-lg); max-width: 16ch;
+    max-width: 16ch;
     font-size: var(--text-display-sm);
   }
+  /* Protect CTA card titles from global section h2 rule */
+  .co-paths__primary .co-paths__primary-title { margin-bottom: var(--space-stack-sm); }
+  .co-paths__secondary .co-paths__secondary-title { margin-bottom: 20px; }
 
   /* Direct contact */
   .co-direct { padding: var(--space-section-y-md) var(--space-pad-x); }
@@ -108,7 +111,7 @@
     font-size: var(--text-h3-xl);
     transition: color var(--t-med), border-color var(--t-med);
   }
-  .co-direct__email:hover { color: var(--spruce-ink); border-bottom-color: var(--spruce-ink); }
+  .co-direct__email:hover { color: var(--spruce); border-bottom-color: var(--spruce); }
   .co-direct__where {
     font-family: var(--display); font-style: italic; font-weight: 800;
     color: var(--shadow); letter-spacing: -0.025em;
@@ -269,7 +272,7 @@
 </section>
 
 <!-- ============ § 03 DIRECT CONTACT ============ -->
-<section class="section--tint co-direct" data-screen-label="Direct contact">
+<section class="co-direct" data-screen-label="Direct contact">
   <div class="section-meta">
     <span class="eyebrow">§ 03 · Direct contact</span>
     <span class="eyebrow eyebrow--muted">For everything else</span>
