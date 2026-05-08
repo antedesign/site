@@ -1,543 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Anté · Contact</title>
-<meta name="description" content="Two ways to start: book a 30-minute call to discuss your project, or send a message. Based in Belgium, working across BeNeLux." />
-
-<link rel="icon" type="image/png" href="/assets/images/ante-logo.png" />
-<link rel="stylesheet" href="/assets/css/shared.css" />
-
-<style>
-  /* ================================================================
-     Contact-only styles
-     ================================================================ */
-
-  /* ---- Header ---- */
-  .co-header {
-    padding: 136px var(--space-pad-x) var(--space-block);
-  }
-  .co-header__wrap { max-width: var(--container-max); margin: 0 auto; }
-  .co-header__title {
-    font-size: var(--text-display-xl);
-    line-height: 0.93;
-    letter-spacing: -0.04em;
-    color: var(--charcoal);
-    margin-top: 20px;
-    max-width: 16ch;
-    margin-bottom: 24px;
-  }
-  .co-header__lead {
-    font-size: var(--text-body-lg);
-    line-height: 1.6;
-    color: var(--ink-soft);
-    max-width: 52ch;
-  }
-
-  /* ---- Two paths ---- */
-  .co-paths {
-    padding: var(--space-block) var(--space-pad-x) var(--space-section);
-  }
-  .co-paths__wrap { max-width: var(--container-max); margin: 0 auto; }
-  .co-paths__grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 24px;
-    align-items: stretch;
-  }
-
-  /* Primary path — book a call (spruce card) */
-  .co-paths__primary {
-    background: var(--spruce);
-    border-radius: var(--radius-card);
-    padding: clamp(32px, 5vw, 56px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-decoration: none;
-    color: var(--on-dark);
-    transition: transform var(--t-med), box-shadow var(--t-med);
-    min-height: 360px;
-  }
-  .co-paths__primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(32,106,91,0.30);
-  }
-  .co-paths__primary-eyebrow {
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--frosted);
-    margin-bottom: 20px;
-  }
-  .co-paths__primary-title {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 800;
-    font-size: clamp(28px, 4vw, 48px);
-    letter-spacing: -0.035em;
-    line-height: 1;
-    color: var(--white);
-    margin-bottom: 16px;
-    max-width: 16ch;
-  }
-  .co-paths__primary-desc {
-    font-size: var(--text-body-sm);
-    line-height: 1.7;
-    color: var(--on-dark-muted);
-    max-width: 42ch;
-    flex: 1;
-  }
-  .co-paths__primary-cta {
-    margin-top: 32px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--frosted);
-    transition: gap var(--t-fast);
-  }
-  .co-paths__primary:hover .co-paths__primary-cta { gap: 14px; }
-
-  /* Secondary path — send a message (outlined card) */
-  .co-paths__secondary {
-    background: transparent;
-    border: 1.5px solid var(--rule-strong);
-    border-radius: var(--radius-card);
-    padding: clamp(28px, 4vw, 40px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-decoration: none;
-    color: var(--charcoal);
-    transition: border-color var(--t-med), transform var(--t-med);
-    cursor: pointer;
-  }
-  .co-paths__secondary:hover {
-    border-color: var(--charcoal);
-    transform: translateY(-2px);
-  }
-  .co-paths__secondary-eyebrow {
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-    margin-bottom: 20px;
-  }
-  .co-paths__secondary-title {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 800;
-    font-size: clamp(24px, 3vw, 36px);
-    letter-spacing: -0.025em;
-    line-height: 1;
-    color: var(--charcoal);
-    margin-bottom: 12px;
-  }
-  .co-paths__secondary-desc {
-    font-size: var(--text-body-sm);
-    line-height: 1.7;
-    color: var(--ink-soft);
-    max-width: 30ch;
-    flex: 1;
-  }
-  .co-paths__secondary-cta {
-    margin-top: 28px;
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--spruce);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  /* ---- Message form ---- */
-  .co-form {
-    padding: 0 var(--space-pad-x) var(--space-section);
-  }
-  .co-form__wrap { max-width: var(--container-max); margin: 0 auto; }
-  .co-form__title {
-    font-size: var(--text-display-md);
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-    color: var(--charcoal);
-    margin-top: 16px;
-    margin-bottom: var(--space-block);
-    max-width: 16ch;
-  }
-
-  /* ---- Direct contact footer strip ---- */
-  .co-direct {
-    padding: var(--space-block) var(--space-pad-x);
-    border-top: 1px solid var(--rule);
-    background: var(--spruce-tint);
-  }
-  .co-direct__wrap {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    display: flex;
-    gap: 48px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .co-direct__item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .co-direct__label {
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-  }
-  .co-direct__value {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 800;
-    font-size: clamp(18px, 2vw, 24px);
-    color: var(--spruce);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-  .co-direct__value a { color: var(--spruce); transition: opacity var(--t-med); }
-  .co-direct__value a:hover { opacity: 0.75; }
-
-  /* Hidden iframe sink for form submission */
-  .form-iframe-sink { display: none; }
-
-  /* Responsive */
-  @media (max-width: 960px) {
-    .co-paths__grid { grid-template-columns: 1fr; }
-    .co-paths__primary { min-height: 0; }
-  }
-  @media (max-width: 640px) {
-    .co-header { padding-top: 112px; }
-    .co-direct__wrap { flex-direction: column; gap: 28px; align-items: flex-start; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Anté</title>
+  <meta name="description" content="Book a 30-minute intake or send a message. We'll respond within one working day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:ital,wght@1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/shared.css">
 </head>
-
 <body>
-<div class="ante-page">
 
-<!-- ============================================================
-     NAV
-     ============================================================ -->
-<div class="nav-wrapper">
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a href="/" class="site-nav__logo" aria-label="Anté home">
-      <img src="/assets/images/ante-logo.png" alt="Anté" />
-    </a>
-
-    <div class="site-nav__links" id="primary-nav">
-      <a href="/approach/" class="site-nav__link">Approach</a>
-      <a href="/about/"    class="site-nav__link">About</a>
-      <a href="/contact/"  class="site-nav__link site-nav__link--active">Contact</a>
-      <a href="/scorecard/" class="btn btn-primary btn-sm site-nav__cta">
-        Take diagnostic
-      </a>
-    </div>
-
-    <button class="site-nav__burger" type="button"
-            aria-controls="mobile-nav" aria-expanded="false"
-            aria-label="Open menu">
-      <span class="site-nav__burger-bar"></span>
-      <span class="site-nav__burger-bar"></span>
-      <span class="site-nav__burger-bar"></span>
-    </button>
-
-    <div class="site-nav__mobile" id="mobile-nav" aria-hidden="true">
-      <a href="/approach/" class="site-nav__link">Approach</a>
-      <a href="/about/"    class="site-nav__link">About</a>
-      <a href="/contact/"  class="site-nav__link site-nav__link--active">Contact</a>
-      <a href="/scorecard/" class="btn btn-primary">Take diagnostic</a>
-    </div>
+  <!-- ── Navigation ───────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">anté</a>
+    <ul class="nav-links">
+      <li><a href="/approach/" class="nav-link">Approach</a></li>
+      <li><a href="/cases/" class="nav-link">Cases</a></li>
+      <li><a href="/about/" class="nav-link">About</a></li>
+      <li><a href="/contact/" class="nav-link active">Contact</a></li>
+    </ul>
+    <a href="/scorecard/" class="btn-primary nav-cta">Take assessment</a>
   </nav>
-</div>
 
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
-<header class="co-header">
-  <div class="co-header__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow">Contact</span>
-      <span class="eyebrow eyebrow--muted">Belgium · BeNeLux</span>
+  <!-- ── Section 1: Hero ──────────────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow reveal">Contact</span>
+      <h1 class="hero-headline reveal">Talk to us.</h1>
+      <p class="hero-subhead reveal">Two ways to start: book a 30-minute intake to discuss a project, or send a message and we'll respond within one working day.</p>
     </div>
-    <h1 class="co-header__title fade-in fade-in--d1">
-      Two ways to start.
-    </h1>
-    <p class="co-header__lead fade-in fade-in--d2">
-      Book a 30-minute call or send us a message. We respond within one working day.
-    </p>
-  </div>
-</header>
+  </section>
 
-<!-- ============================================================
-     § 01 — TWO PATHS
-     ============================================================ -->
-<section class="co-paths" aria-label="Two contact paths">
-  <div class="co-paths__wrap">
-    <div class="co-paths__grid">
+  <!-- ── Section 2: Two paths ─────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-cards">
 
-      <!-- Primary: Book a 30-minute call -->
-      <!-- [CALENDLY_URL] — replace the href below with your Calendly link -->
-      <a class="co-paths__primary fade-in"
-         href="[CALENDLY_URL]"
-         target="_blank"
-         rel="noopener noreferrer">
+        <div class="card reveal">
+          <h3>Book a 30-min call</h3>
+          <p>Pick a time that works for you. We'll discuss your project, your current concept direction, and whether an Anté engagement makes sense.</p>
+          <div class="btn-group">
+            <!-- Replace [CALENDLY_URL_PLACEHOLDER] with your Calendly link -->
+            <a href="[CALENDLY_URL_PLACEHOLDER]" class="btn-primary" target="_blank" rel="noopener">Open Calendly <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Send a message</h3>
+          <p>Prefer to write? Fill out the form below and we'll get back to you within one working day.</p>
+          <!-- Replace [FORM_ACTION_PLACEHOLDER] with your form endpoint -->
+          <form action="[FORM_ACTION_PLACEHOLDER]" method="POST" class="contact-form">
+            <div class="form-group">
+              <label class="form-label" for="name">Name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Tell us about your project or question." required></textarea>
+            </div>
+            <div class="btn-group">
+              <button type="submit" class="btn-primary">Send message</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 3: Direct contact ────────────────────────── -->
+  <section class="section--block section--direct">
+    <div class="container">
+      <p class="direct-contact reveal">
+        <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
+        &nbsp;·&nbsp; Based in Belgium
+        &nbsp;·&nbsp; Working across BeNeLux
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
         <div>
-          <div class="co-paths__primary-eyebrow">Primary · 30 minutes</div>
-          <h2 class="co-paths__primary-title">Book a 30-minute call.</h2>
-          <p class="co-paths__primary-desc">
-            A short call to map your project against our methodology. We'll tell you honestly whether a Decision Sprint, a Pre-Investment Audit, or neither is the right next step.
+          <a href="/" class="footer-logo">anté</a>
+          <p class="footer-tagline">Decide before you build.</p>
+        </div>
+        <div>
+          <span class="footer-col-title">Pages</span>
+          <ul class="footer-links">
+            <li><a href="/approach/">Approach</a></li>
+            <li><a href="/cases/">Cases</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/scorecard/">Take assessment</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <span class="footer-col-title">Contact</span>
+          <p>
+            <a href="mailto:hello@antedesign.be">hello@antedesign.be</a><br>
+            Based in Belgium<br>
+            Working across BeNeLux
           </p>
         </div>
-        <span class="co-paths__primary-cta">
-          Open calendar <span>→</span>
-        </span>
-      </a>
-
-      <!-- Secondary: Send a message -->
-      <a class="co-paths__secondary fade-in fade-in--d1" href="#message">
-        <div>
-          <div class="co-paths__secondary-eyebrow">Secondary · async</div>
-          <h2 class="co-paths__secondary-title">Send a message.</h2>
-          <p class="co-paths__secondary-desc">Three fields. We reply within one working day.</p>
-        </div>
-        <span class="co-paths__secondary-cta">
-          Jump to form <span>↓</span>
-        </span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     § 02 — MESSAGE FORM
-     ============================================================ -->
-<section class="co-form" id="message" aria-labelledby="form-title">
-  <div class="co-form__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow">§ 02 · Message</span>
-      <span class="eyebrow eyebrow--muted">Three fields · one working day</span>
-    </div>
-
-    <h2 class="co-form__title fade-in">Or just write.</h2>
-
-    <!-- Hidden iframe absorbs the Google Forms redirect so the page doesn't navigate -->
-    <iframe name="ante-contact-sink" title="contact form sink"
-            class="form-iframe-sink" aria-hidden="true"></iframe>
-
-    <form
-      class="form-grid fade-in"
-      style="max-width:640px"
-      id="contact-form"
-      method="POST"
-      target="ante-contact-sink"
-      action="[FORMSPREE_OR_GOOGLE_FORMS_URL]"
-      novalidate>
-
-      <!-- Name + Email in one row -->
-      <div class="form-row-2">
-        <label class="form-field">
-          <span class="form-label">Name</span>
-          <input class="form-input" type="text" name="name"
-                 required autocomplete="name"
-                 placeholder="Your name" />
-        </label>
-        <label class="form-field">
-          <span class="form-label">Email</span>
-          <input class="form-input" type="email" name="email"
-                 required autocomplete="email"
-                 placeholder="you@company.com" />
-        </label>
       </div>
-
-      <!-- Message -->
-      <label class="form-field">
-        <span class="form-label">Message</span>
-        <textarea class="form-textarea" name="message"
-                  rows="5" required
-                  placeholder="Briefly describe your project or question…"></textarea>
-      </label>
-
-      <!-- Footer row -->
-      <div class="form-foot">
-        <span class="form-status" id="form-status">
-          Three fields · we reply within one working day.
-        </span>
-        <button type="submit" class="btn btn-primary" id="form-submit">
-          Send message <span class="arrow">→</span>
-        </button>
-      </div>
-    </form>
-
-    <!-- Confirmation — shown after submit -->
-    <div class="confirm-card" id="form-confirm" style="max-width:640px; margin-top:40px;">
-      <div class="eyebrow">Message received</div>
-      <h3 class="confirm-card__title">Thanks. We'll be in touch within one working day.</h3>
-      <p style="font-size:var(--text-body-sm);line-height:1.7;color:var(--ink-soft);max-width:52ch;">
-        If you'd rather speak directly, you can also book a 30-minute intake.
-      </p>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;">
-        <!-- [CALENDLY_URL] — replace href -->
-        <a href="[CALENDLY_URL]" target="_blank" rel="noopener" class="btn btn-primary">
-          Book a 30-min call <span class="arrow">→</span>
-        </a>
-        <button type="button" class="btn btn-secondary" id="form-reset">
-          Send another message
-        </button>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Anté. All rights reserved.</p>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- ============================================================
-     DIRECT CONTACT STRIP
-     ============================================================ -->
-<div class="co-direct">
-  <div class="co-direct__wrap">
-    <div class="co-direct__item">
-      <span class="co-direct__label">Email</span>
-      <span class="co-direct__value">
-        <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
-      </span>
-    </div>
-    <div class="co-direct__item">
-      <span class="co-direct__label">Where</span>
-      <span class="co-direct__value">Based in Belgium. Working across BeNeLux.</span>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <div class="site-footer__left">
-      <img src="/assets/images/ante-logo.png" alt="Anté" class="site-footer__logo" />
-      <p class="site-footer__tagline">Decide before you build.</p>
-    </div>
-    <div class="site-footer__meta">
-      <span>© 2026 Anté</span>
-      <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
-      <span>Based in Belgium. Working across BeNeLux.</span>
-    </div>
-  </div>
-</footer>
-
-</div><!-- /.ante-page -->
-
-<script>
-  /* Mobile nav */
-  (function () {
-    var burger = document.querySelector('.site-nav__burger');
-    var panel  = document.getElementById('mobile-nav');
-    if (!burger || !panel) return;
-    burger.addEventListener('click', function () {
-      var open = panel.classList.toggle('is-open');
-      burger.setAttribute('aria-expanded', open);
-      panel.setAttribute('aria-hidden', !open);
-      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    });
-    panel.querySelectorAll('a, .btn').forEach(function (el) {
-      el.addEventListener('click', function () {
-        panel.classList.remove('is-open');
-        burger.setAttribute('aria-expanded', 'false');
-        panel.setAttribute('aria-hidden', 'true');
-      });
-    });
-  })();
-
-  /* Smooth scroll to form when clicking secondary path */
-  (function () {
-    var sec = document.querySelector('.co-paths__secondary');
-    if (!sec) return;
-    sec.addEventListener('click', function (e) {
-      var target = document.getElementById('message');
-      if (!target) return;
-      e.preventDefault();
-      var top = target.getBoundingClientRect().top + window.scrollY - 32;
-      window.scrollTo({ top: top, behavior: 'smooth' });
-      var first = target.querySelector('input, textarea');
-      if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 400);
-    });
-  })();
-
-  /* Contact form — optimistic submit pattern */
-  (function () {
-    var form    = document.getElementById('contact-form');
-    var status  = document.getElementById('form-status');
-    var submit  = document.getElementById('form-submit');
-    var confirm = document.getElementById('form-confirm');
-    var reset   = document.getElementById('form-reset');
-    if (!form) return;
-    var sending = false;
-
-    form.addEventListener('submit', function (e) {
-      var name    = form.querySelector('[name="name"]').value.trim();
-      var email   = form.querySelector('[name="email"]').value.trim();
-      var message = form.querySelector('[name="message"]').value.trim();
-      if (!name || !email || !message) {
-        e.preventDefault();
-        status.textContent = 'All three fields are required.';
-        status.classList.add('is-error');
-        return;
-      }
-      if (sending) { e.preventDefault(); return; }
-      sending = true;
-      submit.disabled = true;
-      submit.textContent = 'Sending…';
-      status.classList.remove('is-error');
-      status.textContent = 'Sending…';
-      /* Show confirmation after short delay (iframe absorbs the redirect) */
-      setTimeout(function () {
-        form.hidden = true;
-        confirm.classList.add('is-visible');
-      }, 900);
-    });
-
-    if (reset) {
-      reset.addEventListener('click', function () {
-        form.reset();
-        sending = false;
-        submit.disabled = false;
-        submit.innerHTML = 'Send message <span class="arrow">→</span>';
-        status.textContent = 'Three fields · we reply within one working day.';
-        status.classList.remove('is-error');
-        confirm.classList.remove('is-visible');
-        form.hidden = false;
-      });
-    }
-  })();
-
-  /* Scroll fade-in */
-  (function () {
-    if (!window.IntersectionObserver) {
-      document.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('is-visible'); });
-      return;
-    }
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-    document.querySelectorAll('.fade-in').forEach(function (el) { obs.observe(el); });
-  })();
-</script>
-
+  <script src="../assets/js/reveal.js"></script>
 </body>
 </html>

@@ -1,454 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Anté · About — Why we exist</title>
-<meta name="description" content="Anté was founded by two product developers who saw the same issue repeat itself: strong technical execution, weak decisions before development started." />
-
-<link rel="icon" type="image/png" href="/assets/images/ante-logo.png" />
-<link rel="stylesheet" href="/assets/css/shared.css" />
-
-<style>
-  /* ================================================================
-     About-only styles
-     ================================================================ */
-
-  /* ---- Why Anté exists ---- */
-  .ab-why {
-    padding: 136px var(--space-pad-x) var(--space-section);
-  }
-  .ab-why__wrap { max-width: var(--container-max); margin: 0 auto; }
-  .ab-why__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-block);
-    align-items: start;
-  }
-  .ab-why__title {
-    font-size: var(--text-display-md);
-    letter-spacing: -0.035em;
-    line-height: 0.95;
-    color: var(--charcoal);
-    margin-top: 16px;
-    max-width: 16ch;
-  }
-  .ab-why__body {
-    font-size: var(--text-body-md);
-    line-height: 1.75;
-    color: var(--ink-soft);
-    max-width: 52ch;
-    padding-top: 8px;
-  }
-  .ab-why__body p + p { margin-top: 18px; }
-
-  /* ---- Independence ---- */
-  .ab-indep {
-    padding: var(--space-section) var(--space-pad-x);
-    border-top: 1px solid var(--rule);
-  }
-  .ab-indep__wrap { max-width: var(--container-max); margin: 0 auto; }
-  .ab-indep__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-block);
-    align-items: start;
-  }
-  .ab-indep__title {
-    font-size: var(--text-display-md);
-    letter-spacing: -0.035em;
-    line-height: 0.95;
-    color: var(--charcoal);
-    margin-top: 16px;
-    max-width: 16ch;
-  }
-  .ab-indep__right { padding-top: 8px; }
-  .ab-indep__body {
-    font-size: var(--text-body-md);
-    line-height: 1.75;
-    color: var(--ink-soft);
-    max-width: 52ch;
-    margin-bottom: 36px;
-  }
-  .ab-indep__body p + p { margin-top: 18px; }
-
-  /* ---- Founders ---- */
-  .ab-found {
-    padding: var(--space-section) var(--space-pad-x);
-    border-top: 1px solid var(--rule);
-    background: var(--spruce-tint);
-  }
-  .ab-found__wrap { max-width: var(--container-max); margin: 0 auto; }
-  .ab-found__title {
-    font-size: var(--text-display-md);
-    letter-spacing: -0.035em;
-    line-height: 0.95;
-    color: var(--charcoal);
-    margin-top: 16px;
-    margin-bottom: var(--space-block);
-    max-width: 16ch;
-  }
-  .ab-found__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-  .ab-found__card {
-    background: var(--white);
-    border-radius: var(--radius-card);
-    border: 1px solid var(--rule);
-    overflow: hidden;
-  }
-  /* Portrait — 4:5 aspect ratio, large */
-  .ab-found__portrait {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: rgba(40,41,43,0.06);
-    position: relative;
-  }
-  .ab-found__portrait img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-  .ab-found__card:hover .ab-found__portrait img { transform: scale(1.03); }
-  /* Placeholder treatment (shown when no real image) */
-  .ab-found__portrait-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-    border: 1.5px dashed rgba(40,41,43,0.16);
-  }
-  .ab-found__info {
-    padding: 28px 32px 32px;
-  }
-  .ab-found__role {
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--spruce);
-    margin-bottom: 8px;
-  }
-  .ab-found__name {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 800;
-    font-size: clamp(26px, 3vw, 38px);
-    color: var(--charcoal);
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 16px;
-  }
-  .ab-found__bio {
-    font-size: var(--text-body-sm);
-    line-height: 1.7;
-    color: var(--ink-soft);
-    max-width: 42ch;
-  }
-  .ab-found__note {
-    margin-top: var(--space-block);
-    font-size: var(--text-body-sm);
-    line-height: 1.7;
-    color: var(--ink-soft);
-    text-align: center;
-    max-width: 60ch;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* ---- Diagnostic CTA (spruce — the one accent section on this page) ---- */
-  .ab-cta {
-    padding: var(--space-section) var(--space-pad-x);
-    background: var(--spruce);
-    color: var(--on-dark);
-  }
-  .ab-cta__wrap { max-width: var(--container-max); margin: 0 auto; }
-  .ab-cta__grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: var(--space-block);
-    align-items: end;
-  }
-  .ab-cta__title {
-    font-size: var(--text-display-lg);
-    line-height: 0.93;
-    letter-spacing: -0.04em;
-    color: var(--white);
-    margin-top: 16px;
-    max-width: 16ch;
-  }
-  .ab-cta__lead {
-    font-size: var(--text-body-md);
-    line-height: 1.75;
-    color: var(--on-dark-muted);
-    max-width: 50ch;
-    margin-bottom: 36px;
-  }
-  .ab-cta__actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  /* Responsive */
-  @media (max-width: 960px) {
-    .ab-why__grid  { grid-template-columns: 1fr; }
-    .ab-indep__grid { grid-template-columns: 1fr; }
-    .ab-found__grid { grid-template-columns: 1fr; }
-    .ab-cta__grid  { grid-template-columns: 1fr; }
-    .ab-cta__actions { justify-content: flex-start; }
-  }
-  @media (max-width: 640px) {
-    .ab-why { padding-top: 112px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Anté</title>
+  <meta name="description" content="Anté was founded by two product developers who saw the same issue repeat itself across innovation projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:ital,wght@1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/shared.css">
 </head>
-
 <body>
-<div class="ante-page">
 
-<!-- ============================================================
-     NAV
-     ============================================================ -->
-<div class="nav-wrapper">
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a href="/" class="site-nav__logo" aria-label="Anté home">
-      <img src="/assets/images/ante-logo.png" alt="Anté" />
-    </a>
-
-    <div class="site-nav__links" id="primary-nav">
-      <a href="/approach/" class="site-nav__link">Approach</a>
-      <a href="/about/"    class="site-nav__link site-nav__link--active">About</a>
-      <a href="/contact/"  class="site-nav__link">Contact</a>
-      <a href="/scorecard/" class="btn btn-primary btn-sm site-nav__cta">
-        Take diagnostic
-      </a>
-    </div>
-
-    <button class="site-nav__burger" type="button"
-            aria-controls="mobile-nav" aria-expanded="false"
-            aria-label="Open menu">
-      <span class="site-nav__burger-bar"></span>
-      <span class="site-nav__burger-bar"></span>
-      <span class="site-nav__burger-bar"></span>
-    </button>
-
-    <div class="site-nav__mobile" id="mobile-nav" aria-hidden="true">
-      <a href="/approach/" class="site-nav__link">Approach</a>
-      <a href="/about/"    class="site-nav__link site-nav__link--active">About</a>
-      <a href="/contact/"  class="site-nav__link">Contact</a>
-      <a href="/scorecard/" class="btn btn-primary">Take diagnostic</a>
-    </div>
+  <!-- ── Navigation ───────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">anté</a>
+    <ul class="nav-links">
+      <li><a href="/approach/" class="nav-link">Approach</a></li>
+      <li><a href="/cases/" class="nav-link">Cases</a></li>
+      <li><a href="/about/" class="nav-link active">About</a></li>
+      <li><a href="/contact/" class="nav-link">Contact</a></li>
+    </ul>
+    <a href="/scorecard/" class="btn-primary nav-cta">Take assessment</a>
   </nav>
-</div>
 
-<!-- ============================================================
-     § 01 — WHY ANTÉ EXISTS
-     ============================================================ -->
-<section class="ab-why" aria-labelledby="why-title">
-  <div class="ab-why__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow">§ 01 · Origin</span>
-      <span class="eyebrow eyebrow--muted">About Anté</span>
+  <!-- ── Section 1: Hero ──────────────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow reveal">About</span>
+      <h1 class="hero-headline reveal">Why Anté exists.</h1>
+      <p class="hero-body reveal">Anté was founded by two product developers who saw the same issue repeat itself across innovation projects. Strong technical execution, but weak decisions before development started.</p>
+      <p class="hero-body reveal">Too often, teams were forced to commit to one direction without enough certainty, alignment or objective input.</p>
+      <p class="hero-body reveal">We started Anté to make innovations more independent, structured and evidence-based before major investments are made.</p>
     </div>
+  </section>
 
-    <div class="ab-why__grid">
-      <h2 class="ab-why__title fade-in">
-        Why Anté exists.
-      </h2>
-
-      <div class="ab-why__body fade-in fade-in--d1">
-        <p>Anté was founded by two product developers who saw the same issue repeat itself across innovation projects. Strong technical execution, but weak decisions before development started.</p>
-        <p>Too often, teams were forced to commit to one direction without enough certainty, alignment or objective input.</p>
-        <p>We started Anté to make innovations more independent, structured and evidence-based before major investments are made.</p>
+  <!-- ── Section 2: Independence (Spruce) ─────────────────── -->
+  <section class="section section--spruce">
+    <div class="container">
+      <span class="eyebrow eyebrow--frosted reveal">Our model</span>
+      <h2 class="reveal">Independence is our business model.</h2>
+      <p class="reveal">Most agencies benefit when a project moves forward. That makes true objectivity difficult. Anté is deliberately structured to stay independent from what gets built.</p>
+      <p class="reveal">Our role is simple: help teams build the right concept before a big investment is made. That is what allows us to stay objective.</p>
+      <div class="btn-group reveal">
+        <a href="/approach/" class="btn-primary">More about our approach <span class="arrow">→</span></a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============================================================
-     § 02 — INDEPENDENCE IS OUR BUSINESS MODEL
-     ============================================================ -->
-<section class="ab-indep" aria-labelledby="indep-title">
-  <div class="ab-indep__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow">§ 02 · The position</span>
-      <span class="eyebrow eyebrow--muted">The Independence Contract</span>
-    </div>
+  <!-- ── Section 3: Founders ──────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow reveal">Team</span>
+      <h2 class="reveal">The founders behind Anté</h2>
+      <div class="founders-grid">
 
-    <div class="ab-indep__grid">
-      <h2 class="ab-indep__title fade-in">
-        Independence is our business model.
-      </h2>
-
-      <div class="ab-indep__right fade-in fade-in--d1">
-        <div class="ab-indep__body">
-          <p>Most agencies benefit when a project moves forward. That makes true objectivity difficult. Anté is deliberately structured to stay independent from what gets built.</p>
-          <p>Our role is simple: help teams build the right concept before a big investment is made. That is what allows us to stay objective.</p>
+        <div class="reveal">
+          <div class="placeholder placeholder--11">
+            <span class="placeholder-label">[FOUNDER PORTRAIT — JUSTIN]</span>
+          </div>
+          <h3 class="founder-name">Justin Lefebvre</h3>
+          <span class="founder-role">Strategy &amp; Concept Development</span>
+          <p>Justin is the strategic and creative force behind concept development, translating complexity into clear, tangible and future-proof directions.</p>
         </div>
-        <a href="/approach/" class="btn btn-primary">
-          More about our approach <span class="arrow">→</span>
-        </a>
+
+        <div class="reveal">
+          <div class="placeholder placeholder--11">
+            <span class="placeholder-label">[FOUNDER PORTRAIT — JOLAN]</span>
+          </div>
+          <h3 class="founder-name">Jolan Dijkmans</h3>
+          <span class="founder-role">Decision Frameworks &amp; Analysis</span>
+          <p>Jolan is the analytical and technical mind behind Anté's decision frameworks, ensuring every direction is grounded in logic, technical feasibility and structure.</p>
+        </div>
+
+      </div>
+      <p class="founders-closing reveal">Both founders have a background in Product Development at the University of Antwerp.</p>
+    </div>
+  </section>
+
+  <!-- ── Section 4: Diagnostic CTA ────────────────────────── -->
+  <section class="section section--cta">
+    <div class="container">
+      <h2 class="reveal">Ready to evaluate your concept?</h2>
+      <p class="reveal">Our free 4-minute assessment helps you determine how robust your current concept direction really is. No preparation needed. No email required to see results.</p>
+      <div class="btn-group reveal">
+        <a href="/scorecard/" class="btn-primary">Take free assessment</a>
+        <a href="/contact/" class="btn-secondary">Contact us</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============================================================
-     § 03 — THE FOUNDERS
-     ============================================================ -->
-<section class="ab-found" aria-labelledby="found-title">
-  <div class="ab-found__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow">§ 03 · The founders</span>
-      <span class="eyebrow eyebrow--muted">University of Antwerp · Product Development</span>
-    </div>
-
-    <h2 class="ab-found__title fade-in">The founders behind Anté.</h2>
-
-    <div class="ab-found__grid">
-
-      <!-- Justin Lefebvre -->
-      <article class="ab-found__card fade-in fade-in--d1">
-        <div class="ab-found__portrait">
-          <img src="/assets/images/foto-justin.jpg"
-               alt="Justin Lefebvre, co-founder of Anté"
-               loading="lazy" />
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="/" class="footer-logo">anté</a>
+          <p class="footer-tagline">Decide before you build.</p>
         </div>
-        <div class="ab-found__info">
-          <div class="ab-found__role">Co-founder</div>
-          <h3 class="ab-found__name">Justin Lefebvre</h3>
-          <p class="ab-found__bio">
-            Justin Lefebvre is the strategic and creative force behind concept development, translating complexity into clear, tangible and future-proof directions.
+        <div>
+          <span class="footer-col-title">Pages</span>
+          <ul class="footer-links">
+            <li><a href="/approach/">Approach</a></li>
+            <li><a href="/cases/">Cases</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/scorecard/">Take assessment</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <span class="footer-col-title">Contact</span>
+          <p>
+            <a href="mailto:hello@antedesign.be">hello@antedesign.be</a><br>
+            Based in Belgium<br>
+            Working across BeNeLux
           </p>
         </div>
-      </article>
-
-      <!-- Jolan Dijkmans -->
-      <article class="ab-found__card fade-in fade-in--d2">
-        <div class="ab-found__portrait">
-          <img src="/assets/images/foto-jolan.jpg"
-               alt="Jolan Dijkmans, co-founder of Anté"
-               loading="lazy" />
-        </div>
-        <div class="ab-found__info">
-          <div class="ab-found__role">Co-founder</div>
-          <h3 class="ab-found__name">Jolan Dijkmans</h3>
-          <p class="ab-found__bio">
-            Jolan Dijkmans is the analytical and technical mind behind Anté's decision frameworks, ensuring every direction is grounded in logic, technical feasibility and structure.
-          </p>
-        </div>
-      </article>
-
-    </div><!-- /.ab-found__grid -->
-
-    <p class="ab-found__note fade-in">
-      Both founders have a background in Product Development at the University of Antwerp.
-    </p>
-
-  </div>
-</section>
-
-<!-- ============================================================
-     § 04 — DIAGNOSTIC CTA / spruce accent section
-     ("Ready to evaluate your concept?")
-     ============================================================ -->
-<section class="ab-cta" aria-label="Diagnostic CTA">
-  <div class="ab-cta__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow eyebrow--frosted">§ 04 · Free diagnostic</span>
-      <span class="eyebrow" style="color:var(--on-dark-soft);">4 min · no email required</span>
-    </div>
-
-    <div class="ab-cta__grid">
-      <h2 class="ab-cta__title fade-in">
-        Ready to evaluate your concept?
-      </h2>
-
-      <div class="fade-in fade-in--d1">
-        <p class="ab-cta__lead">
-          Our free 4-minute assessment helps you determine how robust your current concept direction really is. No preparation needed. No email required to see results.
-        </p>
-        <div class="ab-cta__actions">
-          <a href="/scorecard/" class="btn btn-on-dark btn-lg">
-            Take free assessment <span class="arrow">→</span>
-          </a>
-          <a href="/contact/" class="btn btn-outline-light btn-lg">
-            Contact us
-          </a>
-        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Anté. All rights reserved.</p>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <div class="site-footer__left">
-      <img src="/assets/images/ante-logo.png" alt="Anté" class="site-footer__logo" />
-      <p class="site-footer__tagline">Decide before you build.</p>
-    </div>
-    <div class="site-footer__meta">
-      <span>© 2026 Anté</span>
-      <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
-      <span>Based in Belgium. Working across BeNeLux.</span>
-    </div>
-  </div>
-</footer>
-
-</div><!-- /.ante-page -->
-
-<script>
-  /* Mobile nav */
-  (function () {
-    var burger = document.querySelector('.site-nav__burger');
-    var panel  = document.getElementById('mobile-nav');
-    if (!burger || !panel) return;
-    burger.addEventListener('click', function () {
-      var open = panel.classList.toggle('is-open');
-      burger.setAttribute('aria-expanded', open);
-      panel.setAttribute('aria-hidden', !open);
-      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    });
-    panel.querySelectorAll('a, .btn').forEach(function (el) {
-      el.addEventListener('click', function () {
-        panel.classList.remove('is-open');
-        burger.setAttribute('aria-expanded', 'false');
-        panel.setAttribute('aria-hidden', 'true');
-      });
-    });
-  })();
-
-  /* Scroll fade-in */
-  (function () {
-    if (!window.IntersectionObserver) {
-      document.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('is-visible'); });
-      return;
-    }
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-    document.querySelectorAll('.fade-in').forEach(function (el) { obs.observe(el); });
-  })();
-</script>
-
+  <script src="../assets/js/reveal.js"></script>
 </body>
 </html>

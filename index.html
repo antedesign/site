@@ -1,874 +1,255 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Anté · Decide before you build.</title>
-<meta name="description" content="Anté helps teams shape the right concept direction before budget, time and engineering capacity get committed. Independent concept validation in 21 days." />
-
-<link rel="icon" type="image/png" href="/assets/images/ante-logo.png" />
-<link rel="stylesheet" href="/assets/css/shared.css" />
-
-<style>
-  /* ================================================================
-     Home-only styles
-     ================================================================ */
-
-  /* ---- Hero ---- */
-  .ho-hero {
-    padding: 136px var(--space-pad-x) var(--space-section);
-    background: var(--white);
-  }
-  .ho-hero__grid {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 64px;
-    align-items: center;
-  }
-  .ho-hero__eyebrow { margin-bottom: 20px; }
-  .ho-hero__title {
-    font-size: var(--text-display-xl);
-    line-height: 0.93;
-    letter-spacing: -0.04em;
-    color: var(--charcoal);
-    margin-bottom: 28px;
-    max-width: 13ch;
-  }
-  .ho-hero__lead {
-    font-size: var(--text-body-lg);
-    line-height: 1.6;
-    color: var(--ink-soft);
-    max-width: 46ch;
-    margin-bottom: 36px;
-  }
-  .ho-hero__ctas {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  /* ---- Mosaic (2×2 photo + card grid) ---- */
-  .mosaic {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    max-width: 440px;
-    margin-left: auto;
-  }
-  .mosaic-card {
-    aspect-ratio: 4 / 5;
-    border-radius: 24px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 2px 16px rgba(40,41,43,0.08);
-  }
-  .mosaic-card--photo .mosaic-card__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-  .mosaic-card--photo:hover .mosaic-card__img { transform: scale(1.03); }
-  .mosaic-card__badge {
-    position: absolute;
-    bottom: 12px;
-    left: 10px;
-    right: 10px;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 14px;
-    padding: 9px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .mosaic-card__badge-name {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 800;
-    font-size: 13px;
-    color: var(--charcoal);
-    letter-spacing: -0.01em;
-    line-height: 1;
-  }
-  .mosaic-card__badge-role {
-    font-family: var(--mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--ink-soft);
-    margin-top: 2px;
-  }
-  .mosaic-card__dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: var(--frosted);
-    flex-shrink: 0;
-  }
-  /* Frosted info card (replaces lime green card) */
-  .mosaic-card--info {
-    background: var(--frosted);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .mosaic-card--info .mosaic-card__title {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 800;
-    font-size: 20px;
-    color: var(--charcoal);
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-  }
-  .mosaic-card--info .mosaic-card__desc {
-    font-size: 12.5px;
-    color: var(--charcoal);
-    opacity: 0.7;
-    line-height: 1.55;
-  }
-  /* Diagnostic card */
-  .mosaic-card--diagnostic {
-    background: var(--white);
-    border: 1px solid var(--rule);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .mosaic-card--diagnostic .mosaic-card__title {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 800;
-    font-size: 19px;
-    color: var(--charcoal);
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-  }
-  .mosaic-card__link {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--spruce);
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    transition: gap var(--t-fast);
-    margin-top: 8px;
-  }
-  .mosaic-card__link:hover { gap: 8px; }
-
-  /* ---- Showcases ---- */
-  .ho-cases {
-    padding: 0 var(--space-pad-x) var(--space-section);
-  }
-  .ho-cases__wrap {
-    max-width: var(--container-max);
-    margin: 0 auto;
-  }
-  .ho-cases__title {
-    font-size: var(--text-display-md);
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-    color: var(--charcoal);
-    margin-bottom: var(--space-block);
-    max-width: 20ch;
-  }
-  .ho-cases__grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-  }
-  .ho-cases__item {
-    display: block;
-    aspect-ratio: 3 / 4;
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .ho-cases__placeholder {
-    width: 100%;
-    height: 100%;
-    background: rgba(40,41,43,0.04);
-    border: 1.5px dashed rgba(40,41,43,0.16);
-    border-radius: var(--radius-card);
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 16px;
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-    transition: transform 0.45s ease, border-color var(--t-med);
-  }
-  .ho-cases__item:hover .ho-cases__placeholder {
-    transform: scale(1.02);
-    border-color: var(--spruce);
-    border-style: solid;
-  }
-  .ho-cases__hover-label {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--spruce);
-    background: var(--white);
-    padding: 6px 12px;
-    border-radius: var(--radius-button);
-    border: 1px solid rgba(32,106,91,0.25);
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity var(--t-med), transform var(--t-med);
-  }
-  .ho-cases__item:hover .ho-cases__hover-label {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ---- Trust bar ---- */
-  .ho-trust {
-    padding: 48px var(--space-pad-x);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    background: var(--white);
-  }
-  .ho-trust__wrap {
-    max-width: var(--container-max);
-    margin: 0 auto;
-  }
-  .ho-trust__label {
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-    margin-bottom: 28px;
-    text-align: center;
-  }
-  .ho-trust__strip {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .ho-trust__logo-placeholder {
-    height: 36px;
-    width: 110px;
-    background: rgba(40,41,43,0.05);
-    border-radius: 8px;
-    border: 1.5px dashed rgba(40,41,43,0.14);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--mono);
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-    flex-shrink: 0;
-  }
-
-  /* ---- Independence ---- */
-  .ho-indep {
-    padding: var(--space-section) var(--space-pad-x);
-  }
-  .ho-indep__wrap {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-block);
-    align-items: start;
-  }
-  .ho-indep__left {}
-  .ho-indep__title {
-    font-size: var(--text-display-md);
-    letter-spacing: -0.035em;
-    line-height: 0.95;
-    color: var(--charcoal);
-    margin-top: 16px;
-    max-width: 18ch;
-  }
-  .ho-indep__right {
-    padding-top: 12px;
-  }
-  .ho-indep__body {
-    font-size: var(--text-body-md);
-    line-height: 1.75;
-    color: var(--ink-soft);
-    max-width: 52ch;
-  }
-  .ho-indep__body p + p { margin-top: 20px; }
-
-  /* ---- Failure narrative ---- */
-  .ho-failure {
-    padding: var(--space-section) var(--space-pad-x);
-    border-top: 1px solid var(--rule);
-  }
-  .ho-failure__wrap {
-    max-width: var(--container-max);
-    margin: 0 auto;
-  }
-  .ho-failure__intro {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-block);
-    align-items: start;
-    margin-bottom: var(--space-block);
-  }
-  .ho-failure__title {
-    font-size: var(--text-display-md);
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-    color: var(--charcoal);
-    margin-top: 16px;
-    max-width: 16ch;
-  }
-  .ho-failure__body {
-    font-size: var(--text-body-md);
-    line-height: 1.75;
-    color: var(--ink-soft);
-  }
-  .ho-failure__body p + p { margin-top: 16px; }
-  .ho-failure__cta {
-    padding-top: var(--space-block);
-    border-top: 1px solid var(--rule);
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-  .ho-failure__cta-text {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 800;
-    font-size: clamp(24px, 3vw, 36px);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    color: var(--charcoal);
-    max-width: 36ch;
-  }
-
-  /* ---- Testimonials ---- */
-  .ho-testi {
-    padding: var(--space-section) var(--space-pad-x);
-    border-top: 1px solid var(--rule);
-    background: var(--spruce-tint);
-  }
-  .ho-testi__wrap { max-width: var(--container-max); margin: 0 auto; }
-  .ho-testi__title {
-    font-size: var(--text-display-md);
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-    color: var(--charcoal);
-    margin-top: 16px;
-    margin-bottom: var(--space-block);
-    max-width: 20ch;
-  }
-  .ho-testi__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-  .ho-testi__card {
-    border-radius: var(--radius-card);
-    background: var(--white);
-    border: 1px solid var(--rule);
-    padding: 32px;
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .ho-testi__avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    background: rgba(40,41,43,0.07);
-    border: 1.5px dashed rgba(40,41,43,0.14);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--mono);
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--ink-soft);
-  }
-  .ho-testi__quote {
-    flex: 1;
-    font-size: var(--text-body-sm);
-    line-height: 1.7;
-    color: var(--ink-soft);
-    font-style: italic;
-    font-family: var(--display);
-    font-weight: 500;
-  }
-  .ho-testi__name {
-    font-family: var(--mono);
-    font-size: var(--text-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--spruce);
-  }
-
-  /* ---- Diagnostic CTA (spruce section) ---- */
-  .ho-cta {
-    padding: var(--space-section) var(--space-pad-x);
-    background: var(--spruce);
-    color: var(--on-dark);
-  }
-  .ho-cta__wrap {
-    max-width: var(--container-max);
-    margin: 0 auto;
-  }
-  .ho-cta__grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: var(--space-block);
-    align-items: end;
-  }
-  .ho-cta__title {
-    font-size: var(--text-display-lg);
-    line-height: 0.93;
-    letter-spacing: -0.04em;
-    color: var(--white);
-    margin-top: 16px;
-    max-width: 16ch;
-  }
-  .ho-cta__lead {
-    font-size: var(--text-body-md);
-    line-height: 1.75;
-    color: var(--on-dark-muted);
-    max-width: 50ch;
-    margin-bottom: 36px;
-  }
-  .ho-cta__actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  /* Responsive adjustments for home */
-  @media (max-width: 960px) {
-    .ho-hero__grid {
-      grid-template-columns: 1fr;
-      gap: 48px;
-    }
-    .mosaic { max-width: 100%; margin-left: 0; }
-
-    .ho-cases__grid { grid-template-columns: repeat(3, 1fr); }
-
-    .ho-indep__wrap { grid-template-columns: 1fr; }
-    .ho-failure__intro { grid-template-columns: 1fr; }
-
-    .ho-testi__grid { grid-template-columns: 1fr; }
-
-    .ho-cta__grid { grid-template-columns: 1fr; }
-    .ho-cta__actions { justify-content: flex-start; }
-  }
-  @media (max-width: 640px) {
-    .ho-hero { padding-top: 112px; }
-    .ho-cases__grid { grid-template-columns: repeat(2, 1fr); }
-    .ho-trust__strip { gap: 12px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anté — Decide before you build.</title>
+  <meta name="description" content="Anté helps teams shape the right concept direction before budget, time and engineering capacity get committed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:ital,wght@1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/shared.css">
 </head>
-
 <body>
-<div class="ante-page">
 
-<!-- ============================================================
-     NAV — floating glass pill
-     ============================================================ -->
-<div class="nav-wrapper">
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a href="/" class="site-nav__logo" aria-label="Anté home">
-      <img src="/assets/images/ante-logo.png" alt="Anté" />
-    </a>
-
-    <div class="site-nav__links" id="primary-nav">
-      <a href="/approach/" class="site-nav__link">Approach</a>
-      <a href="/about/"    class="site-nav__link">About</a>
-      <a href="/contact/"  class="site-nav__link">Contact</a>
-      <a href="/scorecard/" class="btn btn-primary btn-sm site-nav__cta">
-        Take diagnostic
-      </a>
-    </div>
-
-    <button class="site-nav__burger" type="button"
-            aria-controls="mobile-nav" aria-expanded="false"
-            aria-label="Open menu">
-      <span class="site-nav__burger-bar"></span>
-      <span class="site-nav__burger-bar"></span>
-      <span class="site-nav__burger-bar"></span>
-    </button>
-
-    <!-- Mobile dropdown -->
-    <div class="site-nav__mobile" id="mobile-nav" aria-hidden="true">
-      <a href="/approach/" class="site-nav__link">Approach</a>
-      <a href="/about/"    class="site-nav__link">About</a>
-      <a href="/contact/"  class="site-nav__link">Contact</a>
-      <a href="/scorecard/" class="btn btn-primary">Take diagnostic</a>
-    </div>
+  <!-- ── Navigation ───────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">anté</a>
+    <ul class="nav-links">
+      <li><a href="/approach/" class="nav-link">Approach</a></li>
+      <li><a href="/cases/" class="nav-link">Cases</a></li>
+      <li><a href="/about/" class="nav-link">About</a></li>
+      <li><a href="/contact/" class="nav-link">Contact</a></li>
+    </ul>
+    <a href="/scorecard/" class="btn-primary nav-cta">Take assessment</a>
   </nav>
-</div>
 
-<!-- ============================================================
-     § 01 — HERO (mosaic)
-     ============================================================ -->
-<section class="ho-hero" aria-label="Hero">
-  <div class="ho-hero__grid">
+  <!-- ── Section 1: Hero ──────────────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-2col">
 
-    <!-- Left: copy -->
-    <div>
-      <div class="eyebrow-pill ho-hero__eyebrow fade-in">
-        <span class="dot"></span>
-        Independent concept validation
+        <div class="hero-left">
+          <span class="eyebrow reveal">Independent concept validation</span>
+          <h1 class="hero-headline reveal">Decide before you build.</h1>
+          <p class="hero-subhead reveal">Most innovation mistakes don't happen during development. They happen before it.</p>
+          <p class="hero-body reveal">Anté helps teams shape the right concept direction before budget, time and engineering capacity get committed.</p>
+          <div class="btn-group reveal">
+            <a href="/scorecard/" class="btn-primary">Take free assessment (4 min)</a>
+            <a href="/contact/" class="btn-secondary">Book 30 min intake</a>
+          </div>
+        </div>
+
+        <div class="hero-right reveal">
+          <div class="placeholder placeholder--45">
+            <span class="placeholder-label">[WORKSHOP PHOTO — hero]</span>
+          </div>
+        </div>
+
       </div>
+    </div>
+  </section>
 
-      <h1 class="ho-hero__title fade-in fade-in--d1">
-        Decide before<br>you build.
-      </h1>
-
-      <p class="ho-hero__lead fade-in fade-in--d2">
-        Most innovation mistakes don't happen during development. They happen before it.
-        Anté helps teams shape the right concept direction before budget, time and engineering capacity get committed.
-      </p>
-
-      <div class="ho-hero__ctas fade-in fade-in--d3">
-        <a href="/scorecard/" class="btn btn-primary btn-lg">
-          Take free assessment (4 min) <span class="arrow">→</span>
+  <!-- ── Section 2: Example showcases ────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal">Selected work</span>
+        <h2 class="reveal">Example showcases.</h2>
+        <p class="reveal">Our first sprints are running with spin-offs, research groups and industrial partners.</p>
+      </div>
+      <div class="case-grid">
+        <a href="/cases/" class="case-item reveal">
+          <div class="placeholder placeholder--45">
+            <span class="placeholder-label">[CASE PHOTO 1]</span>
+          </div>
+          <div class="case-overlay">
+            <span class="case-overlay-text">View case <span class="arrow">→</span></span>
+          </div>
         </a>
-        <a href="/contact/" class="btn btn-secondary btn-lg">
-          Book 30 min intake
+        <a href="/cases/" class="case-item reveal">
+          <div class="placeholder placeholder--45">
+            <span class="placeholder-label">[CASE PHOTO 2]</span>
+          </div>
+          <div class="case-overlay">
+            <span class="case-overlay-text">View case <span class="arrow">→</span></span>
+          </div>
+        </a>
+        <a href="/cases/" class="case-item reveal">
+          <div class="placeholder placeholder--45">
+            <span class="placeholder-label">[CASE PHOTO 3]</span>
+          </div>
+          <div class="case-overlay">
+            <span class="case-overlay-text">View case <span class="arrow">→</span></span>
+          </div>
+        </a>
+        <a href="/cases/" class="case-item reveal">
+          <div class="placeholder placeholder--45">
+            <span class="placeholder-label">[CASE PHOTO 4]</span>
+          </div>
+          <div class="case-overlay">
+            <span class="case-overlay-text">View case <span class="arrow">→</span></span>
+          </div>
+        </a>
+        <a href="/cases/" class="case-item reveal">
+          <div class="placeholder placeholder--45">
+            <span class="placeholder-label">[CASE PHOTO 5]</span>
+          </div>
+          <div class="case-overlay">
+            <span class="case-overlay-text">View case <span class="arrow">→</span></span>
+          </div>
+        </a>
+        <a href="/cases/" class="case-item reveal">
+          <div class="placeholder placeholder--45">
+            <span class="placeholder-label">[CASE PHOTO 6]</span>
+          </div>
+          <div class="case-overlay">
+            <span class="case-overlay-text">View case <span class="arrow">→</span></span>
+          </div>
         </a>
       </div>
     </div>
+  </section>
 
-    <!-- Right: 2×2 mosaic -->
-    <div class="mosaic fade-in fade-in--d2" aria-hidden="true">
-
-      <!-- Card 1 — Justin photo -->
-      <div class="mosaic-card mosaic-card--photo">
-        <img src="/assets/images/foto-justin.jpg"
-             alt="Justin Lefebvre, co-founder"
-             class="mosaic-card__img" />
-        <div class="mosaic-card__badge">
-          <div>
-            <div class="mosaic-card__badge-name">Justin</div>
-            <div class="mosaic-card__badge-role">Co-founder</div>
-          </div>
-          <div class="mosaic-card__dot"></div>
+  <!-- ── Section 3: Trust bar ─────────────────────────────── -->
+  <section class="section--block trust-bar">
+    <div class="container">
+      <p class="reveal">Trusted by leading B2B service firms across Belgium and the EU.</p>
+      <div class="logo-row">
+        <div class="placeholder placeholder--logo reveal">
+          <span class="placeholder-label">[LOGO 1]</span>
+        </div>
+        <div class="placeholder placeholder--logo reveal">
+          <span class="placeholder-label">[LOGO 2]</span>
+        </div>
+        <div class="placeholder placeholder--logo reveal">
+          <span class="placeholder-label">[LOGO 3]</span>
+        </div>
+        <div class="placeholder placeholder--logo reveal">
+          <span class="placeholder-label">[LOGO 4]</span>
+        </div>
+        <div class="placeholder placeholder--logo reveal">
+          <span class="placeholder-label">[LOGO 5]</span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Card 2 — Info card (frosted blue, replaces lime) -->
-      <div class="mosaic-card mosaic-card--info">
-        <h3 class="mosaic-card__title">Quick<br>and validated</h3>
-        <p class="mosaic-card__desc">
-          Decide within 21 days. Map every risk before you invest in development.
-        </p>
+  <!-- ── Section 4: Independence (Spruce) ─────────────────── -->
+  <section class="section section--spruce">
+    <div class="container">
+      <span class="eyebrow eyebrow--frosted reveal">Why we exist</span>
+      <h2 class="reveal">We sell the right concept, not the build.</h2>
+      <p class="reveal">Most partners in product development benefit when you move forward. Engineering firms, design agencies and consultants bill hours. Anté doesn't.</p>
+      <p class="reveal">Our only role is to make one thing objective: what should be built, and what shouldn't.</p>
+      <ul class="no-list reveal">
+        <li>No build work.</li>
+        <li>No referral fees.</li>
+        <li>No equity.</li>
+        <li>No stake in what you decide.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Section 5: Failure narrative ────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow reveal">The problem we solve</span>
+      <h2 class="reveal">Most innovations fail before anything is built.</h2>
+      <p class="reveal">At some point, a concept direction must be chosen, even when there is no 100% confidence yet. So decisions get based on assumptions, internal pressure, or urgency rather than evidence.</p>
+      <p class="reveal">And once development starts, uncertainty becomes expensive.</p>
+      <p class="reveal">We do it differently. Anté creates certainty before commitment.</p>
+      <p class="reveal">We turn early-stage ideas into structured, evidence-based concept directions. Decide before you build.</p>
+      <div class="btn-group reveal">
+        <a href="/approach/" class="cta-link">More info — our approach <span class="arrow">→</span></a>
       </div>
+    </div>
+  </section>
 
-      <!-- Card 3 — Diagnostic card -->
-      <div class="mosaic-card mosaic-card--diagnostic">
-        <span class="eyebrow-pill">Diagnostic</span>
+  <!-- ── Section 6: Testimonials ──────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal">Voices</span>
+        <h2 class="reveal">What our clients say.</h2>
+      </div>
+      <div class="testimonial-grid">
+
+        <div class="card reveal">
+          <div class="testimonial-avatar">
+            <span class="testimonial-avatar-label">Avatar</span>
+          </div>
+          <p class="testimonial-quote">[TESTIMONIAL 1 — quote to be added]</p>
+          <p class="testimonial-name">[Name]</p>
+          <p class="testimonial-company">[Company]</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="testimonial-avatar">
+            <span class="testimonial-avatar-label">Avatar</span>
+          </div>
+          <p class="testimonial-quote">[TESTIMONIAL 2 — quote to be added]</p>
+          <p class="testimonial-name">[Name]</p>
+          <p class="testimonial-company">[Company]</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="testimonial-avatar">
+            <span class="testimonial-avatar-label">Avatar</span>
+          </div>
+          <p class="testimonial-quote">[TESTIMONIAL 3 — quote to be added]</p>
+          <p class="testimonial-name">[Name]</p>
+          <p class="testimonial-company">[Company]</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 7: Diagnostic CTA ────────────────────────── -->
+  <section class="section section--cta">
+    <div class="container">
+      <h2 class="reveal">Where do you actually stand?</h2>
+      <p class="reveal">Our 4 minute assessment shows where your concept stands today across 5 key dimensions. No preparation needed. No email required to see results.</p>
+      <div class="btn-group reveal">
+        <a href="/scorecard/" class="btn-primary">Take free assessment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
         <div>
-          <h3 class="mosaic-card__title">Concept<br>Scorecard</h3>
-          <a href="/scorecard/" class="mosaic-card__link">
-            Take the test <span class="arrow">→</span>
-          </a>
+          <a href="/" class="footer-logo">anté</a>
+          <p class="footer-tagline">Decide before you build.</p>
+        </div>
+        <div>
+          <span class="footer-col-title">Pages</span>
+          <ul class="footer-links">
+            <li><a href="/approach/">Approach</a></li>
+            <li><a href="/cases/">Cases</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/scorecard/">Take assessment</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <span class="footer-col-title">Contact</span>
+          <p>
+            <a href="mailto:hello@antedesign.be">hello@antedesign.be</a><br>
+            Based in Belgium<br>
+            Working across BeNeLux
+          </p>
         </div>
       </div>
-
-      <!-- Card 4 — Jolan photo -->
-      <div class="mosaic-card mosaic-card--photo">
-        <img src="/assets/images/foto-jolan.jpg"
-             alt="Jolan Dijkmans, co-founder"
-             class="mosaic-card__img" />
-        <div class="mosaic-card__badge">
-          <div>
-            <div class="mosaic-card__badge-name">Jolan</div>
-            <div class="mosaic-card__badge-role">Co-founder</div>
-          </div>
-          <div class="mosaic-card__dot"></div>
-        </div>
-      </div>
-
-    </div><!-- /.mosaic -->
-  </div><!-- /.ho-hero__grid -->
-</section>
-
-<!-- ============================================================
-     § 02 — EXAMPLE SHOWCASES
-     ============================================================ -->
-<section class="ho-cases" aria-labelledby="cases-title">
-  <div class="ho-cases__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow">§ 02 · Selected work</span>
-      <span class="eyebrow eyebrow--muted">Cases · click to explore</span>
-    </div>
-
-    <h2 class="ho-cases__title fade-in">Example showcases.</h2>
-
-    <div class="ho-cases__grid">
-      <!-- Five placeholder slots — replace src and add real image later -->
-      <a href="/approach/" class="ho-cases__item fade-in fade-in--d1">
-        <div class="ho-cases__placeholder">[CASE PHOTO 01]</div>
-        <span class="ho-cases__hover-label">View case →</span>
-      </a>
-      <a href="/approach/" class="ho-cases__item fade-in fade-in--d2">
-        <div class="ho-cases__placeholder">[CASE PHOTO 02]</div>
-        <span class="ho-cases__hover-label">View case →</span>
-      </a>
-      <a href="/approach/" class="ho-cases__item fade-in fade-in--d3">
-        <div class="ho-cases__placeholder">[CASE PHOTO 03]</div>
-        <span class="ho-cases__hover-label">View case →</span>
-      </a>
-      <a href="/approach/" class="ho-cases__item fade-in fade-in--d4">
-        <div class="ho-cases__placeholder">[CASE PHOTO 04]</div>
-        <span class="ho-cases__hover-label">View case →</span>
-      </a>
-      <a href="/approach/" class="ho-cases__item fade-in">
-        <div class="ho-cases__placeholder">[CASE PHOTO 05]</div>
-        <span class="ho-cases__hover-label">View case →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     § 03 — TRUST BAR
-     ============================================================ -->
-<div class="ho-trust" aria-label="Trusted by">
-  <div class="ho-trust__wrap">
-    <p class="ho-trust__label fade-in">
-      Trusted by leading B2B service firms across Belgium and the EU.
-    </p>
-    <div class="ho-trust__strip fade-in">
-      <!-- Replace with real logo <img> tags once available -->
-      <div class="ho-trust__logo-placeholder">[LOGO 01]</div>
-      <div class="ho-trust__logo-placeholder">[LOGO 02]</div>
-      <div class="ho-trust__logo-placeholder">[LOGO 03]</div>
-      <div class="ho-trust__logo-placeholder">[LOGO 04]</div>
-      <div class="ho-trust__logo-placeholder">[LOGO 05]</div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================
-     § 04 — INDEPENDENCE ("We sell the right concept, not the build.")
-     ============================================================ -->
-<section class="ho-indep section" aria-labelledby="indep-title">
-  <div class="ho-indep__wrap">
-
-    <div class="ho-indep__left">
-      <div class="section-meta fade-in">
-        <span class="eyebrow">§ 04 · Why we exist</span>
-      </div>
-      <h2 class="ho-indep__title fade-in">
-        We sell the right concept, not the build.
-      </h2>
-    </div>
-
-    <div class="ho-indep__right fade-in">
-      <div class="ho-indep__body">
-        <p>Most partners in product development benefit when you move forward. Engineering firms, design agencies and consultants bill hours. Anté doesn't.</p>
-        <p>Our only role is to make one thing objective: what should be built, and what shouldn't.</p>
-        <p>No build work. No referral fees. No equity. No stake in what you decide.</p>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Anté. All rights reserved.</p>
       </div>
     </div>
+  </footer>
 
-  </div>
-</section>
-
-<!-- ============================================================
-     § 05 — FAILURE NARRATIVE ("Most innovations fail before anything is built.")
-     ============================================================ -->
-<section class="ho-failure" aria-labelledby="failure-title">
-  <div class="ho-failure__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow">§ 05 · The problem</span>
-      <span class="eyebrow eyebrow--muted">Before the build</span>
-    </div>
-
-    <div class="ho-failure__intro">
-      <h2 class="ho-failure__title fade-in">
-        Most innovations fail before anything is built.
-      </h2>
-      <div class="ho-failure__body fade-in">
-        <p>At some point, a concept direction must be chosen, even when there is no 100% confidence yet. So decisions get based on assumptions, internal pressure, or urgency rather than evidence.</p>
-        <p>And once development starts, uncertainty becomes expensive.</p>
-        <p>We do it differently. Anté creates certainty before commitment.</p>
-        <p>We turn early-stage ideas into structured, evidence-based concept directions. Decide before you build.</p>
-      </div>
-    </div>
-
-    <div class="ho-failure__cta fade-in">
-      <p class="ho-failure__cta-text">See how our methodology turns uncertainty into a defensible decision.</p>
-      <a href="/approach/" class="btn btn-primary btn-lg">
-        Our approach <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     § 06 — TESTIMONIALS ("What our clients say.")
-     ============================================================ -->
-<section class="ho-testi" aria-labelledby="testi-title">
-  <div class="ho-testi__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow">§ 06 · Social proof</span>
-      <span class="eyebrow eyebrow--muted">Client feedback</span>
-    </div>
-
-    <h2 class="ho-testi__title fade-in">What our clients say.</h2>
-
-    <div class="ho-testi__grid">
-      <!-- Testimonial slot 1 — replace with real content -->
-      <div class="ho-testi__card fade-in fade-in--d1">
-        <div class="ho-testi__avatar">[PHOTO]</div>
-        <p class="ho-testi__quote">
-          <!-- [TESTIMONIAL QUOTE 01 — replace with actual client quote] -->
-          Testimonial placeholder. Replace with real client quote when available.
-        </p>
-        <span class="ho-testi__name"><!-- [CLIENT NAME · COMPANY 01] --> Name · Company</span>
-      </div>
-
-      <!-- Testimonial slot 2 -->
-      <div class="ho-testi__card fade-in fade-in--d2">
-        <div class="ho-testi__avatar">[PHOTO]</div>
-        <p class="ho-testi__quote">
-          <!-- [TESTIMONIAL QUOTE 02 — replace with actual client quote] -->
-          Testimonial placeholder. Replace with real client quote when available.
-        </p>
-        <span class="ho-testi__name"><!-- [CLIENT NAME · COMPANY 02] --> Name · Company</span>
-      </div>
-
-      <!-- Testimonial slot 3 -->
-      <div class="ho-testi__card fade-in fade-in--d3">
-        <div class="ho-testi__avatar">[PHOTO]</div>
-        <p class="ho-testi__quote">
-          <!-- [TESTIMONIAL QUOTE 03 — replace with actual client quote] -->
-          Testimonial placeholder. Replace with real client quote when available.
-        </p>
-        <span class="ho-testi__name"><!-- [CLIENT NAME · COMPANY 03] --> Name · Company</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     § 07 — DIAGNOSTIC CTA / spruce accent section
-     ("Where do you actually stand?")
-     ============================================================ -->
-<section class="ho-cta" aria-labelledby="cta-title">
-  <div class="ho-cta__wrap">
-    <div class="section-meta fade-in">
-      <span class="eyebrow eyebrow--frosted">§ 07 · Free diagnostic</span>
-      <span class="eyebrow" style="color:var(--on-dark-soft);">4 min · 5 dimensions · no email</span>
-    </div>
-
-    <div class="ho-cta__grid">
-      <h2 class="ho-cta__title fade-in">
-        Where do you actually stand?
-      </h2>
-      <div class="fade-in fade-in--d1">
-        <p class="ho-cta__lead">
-          Our 4 minute assessment shows where your concept stands today across 5 key dimensions.
-          No preparation needed. No email required to see results.
-        </p>
-        <div class="ho-cta__actions">
-          <a href="/scorecard/" class="btn btn-on-dark btn-lg">
-            Take free assessment <span class="arrow">→</span>
-          </a>
-          <a href="/contact/" class="btn btn-outline-light btn-lg">
-            Book 30 min intake
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <div class="site-footer__left">
-      <img src="/assets/images/ante-logo.png" alt="Anté" class="site-footer__logo" />
-      <p class="site-footer__tagline">Decide before you build.</p>
-    </div>
-    <div class="site-footer__meta">
-      <span>© 2026 Anté</span>
-      <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
-      <span>Based in Belgium. Working across BeNeLux.</span>
-    </div>
-  </div>
-</footer>
-
-</div><!-- /.ante-page -->
-
-<script>
-  /* Mobile nav toggle */
-  (function () {
-    var burger = document.querySelector('.site-nav__burger');
-    var panel  = document.getElementById('mobile-nav');
-    if (!burger || !panel) return;
-    burger.addEventListener('click', function () {
-      var open = panel.classList.toggle('is-open');
-      burger.setAttribute('aria-expanded', open);
-      panel.setAttribute('aria-hidden', !open);
-      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    });
-    panel.querySelectorAll('a, .btn').forEach(function (el) {
-      el.addEventListener('click', function () {
-        panel.classList.remove('is-open');
-        burger.setAttribute('aria-expanded', 'false');
-        panel.setAttribute('aria-hidden', 'true');
-      });
-    });
-  })();
-
-  /* Scroll fade-in */
-  (function () {
-    if (!window.IntersectionObserver) {
-      document.querySelectorAll('.fade-in').forEach(function (el) {
-        el.classList.add('is-visible');
-      });
-      return;
-    }
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
-    document.querySelectorAll('.fade-in').forEach(function (el) {
-      obs.observe(el);
-    });
-  })();
-</script>
-
+  <script src="assets/js/reveal.js"></script>
 </body>
 </html>
