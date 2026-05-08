@@ -4,142 +4,225 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Anté · Contact</title>
-<meta name="description" content="Two ways to start: book a 30-minute intake or send us a message. We respond within one working day." />
+<meta name="description" content="Two ways to start: book a 30-minute call to discuss your project, or send a message. Based in Belgium, working across BeNeLux." />
 
 <link rel="icon" type="image/png" href="/assets/images/ante-logo.png" />
 <link rel="stylesheet" href="/assets/css/shared.css" />
 
 <style>
-  /* ---- Contact-only styles ---- */
+  /* ================================================================
+     Contact-only styles
+     ================================================================ */
 
-  .co-hero { padding: var(--space-section-y-sm) var(--space-pad-x) 110px; }
-  .co-hero__title { color: var(--azure); max-width: 14ch; }
-  .co-hero__lead  {
-    margin-top: var(--space-stack-lg);
-    font-size: var(--text-body-xl); line-height: 1.55;
-    color: var(--azure-88); max-width: 60ch;
+  /* ---- Header ---- */
+  .co-header {
+    padding: 136px var(--space-pad-x) var(--space-block);
+  }
+  .co-header__wrap { max-width: var(--container-max); margin: 0 auto; }
+  .co-header__title {
+    font-size: var(--text-display-xl);
+    line-height: 0.93;
+    letter-spacing: -0.04em;
+    color: var(--charcoal);
+    margin-top: 20px;
+    max-width: 16ch;
+    margin-bottom: 24px;
+  }
+  .co-header__lead {
+    font-size: var(--text-body-lg);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 52ch;
   }
 
-  /* Two paths grid */
-  .co-paths { padding: var(--space-section-y-md) var(--space-pad-x) 60px; background: var(--azure); }
+  /* ---- Two paths ---- */
+  .co-paths {
+    padding: var(--space-block) var(--space-pad-x) var(--space-section);
+  }
+  .co-paths__wrap { max-width: var(--container-max); margin: 0 auto; }
   .co-paths__grid {
-    display: grid; grid-template-columns: 1.6fr 1fr;
-    gap: 48px; align-items: stretch;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+    align-items: stretch;
   }
-  .co-paths__primary,
-  .co-paths__secondary {
-    border-radius: var(--radius-media);
-    padding: 56px 56px 48px;
-    display: flex; flex-direction: column; justify-content: space-between;
-    min-height: 360px;
-    text-decoration: none;
-    transition: transform var(--t-fast);
-  }
-  .co-paths__primary:hover,
-  .co-paths__secondary:hover { transform: translateY(-2px); }
+
+  /* Primary path — book a call (spruce card) */
   .co-paths__primary {
-    background: var(--spruce); color: var(--azure);
+    background: var(--spruce);
+    border-radius: var(--radius-card);
+    padding: clamp(32px, 5vw, 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--on-dark);
+    transition: transform var(--t-med), box-shadow var(--t-med);
+    min-height: 360px;
   }
-  .co-paths__primary-meta { color: var(--frosted); margin-bottom: var(--space-stack-sm); }
+  .co-paths__primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(32,106,91,0.30);
+  }
+  .co-paths__primary-eyebrow {
+    font-family: var(--mono);
+    font-size: var(--text-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--frosted);
+    margin-bottom: 20px;
+  }
   .co-paths__primary-title {
-    font-size: var(--text-display-sm); color: var(--azure);
-    letter-spacing: -0.035em; line-height: 0.95;
-    max-width: 14ch; margin-bottom: var(--space-stack-sm);
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 48px);
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 16px;
+    max-width: 16ch;
   }
-  .co-paths__primary-copy {
-    font-size: var(--text-body); line-height: 1.6;
-    color: var(--azure-85); max-width: 44ch;
+  .co-paths__primary-desc {
+    font-size: var(--text-body-sm);
+    line-height: 1.7;
+    color: var(--on-dark-muted);
+    max-width: 42ch;
+    flex: 1;
   }
   .co-paths__primary-cta {
     margin-top: 32px;
-    display: inline-flex; align-items: center; gap: 12px;
-    font-family: var(--mono); text-transform: uppercase;
-    font-size: 12px; letter-spacing: 0.06em; color: var(--frosted);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: var(--text-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--frosted);
+    transition: gap var(--t-fast);
   }
-  .co-paths__primary-arrow { font-size: 18px; }
+  .co-paths__primary:hover .co-paths__primary-cta { gap: 14px; }
 
+  /* Secondary path — send a message (outlined card) */
   .co-paths__secondary {
     background: transparent;
-    border: 1px solid var(--rule-strong);
-    padding: 40px;
-    color: var(--shadow);
+    border: 1.5px solid var(--rule-strong);
+    border-radius: var(--radius-card);
+    padding: clamp(28px, 4vw, 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--charcoal);
+    transition: border-color var(--t-med), transform var(--t-med);
+    cursor: pointer;
   }
-  .co-paths__secondary-meta { color: var(--shadow); margin-bottom: var(--space-stack-sm); }
+  .co-paths__secondary:hover {
+    border-color: var(--charcoal);
+    transform: translateY(-2px);
+  }
+  .co-paths__secondary-eyebrow {
+    font-family: var(--mono);
+    font-size: var(--text-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
   .co-paths__secondary-title {
-    font-size: var(--text-h3-lg); color: var(--shadow);
-    letter-spacing: -0.025em; line-height: 1; margin-bottom: 20px;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: clamp(24px, 3vw, 36px);
+    letter-spacing: -0.025em;
+    line-height: 1;
+    color: var(--charcoal);
+    margin-bottom: 12px;
   }
-  .co-paths__secondary-copy {
-    font-size: 14.5px; line-height: 1.6; color: var(--shadow);
-    max-width: 32ch;
+  .co-paths__secondary-desc {
+    font-size: var(--text-body-sm);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 30ch;
+    flex: 1;
   }
   .co-paths__secondary-cta {
-    margin-top: 32px;
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--mono); text-transform: uppercase;
-    font-size: var(--text-mono); letter-spacing: 0.06em;
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: var(--text-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--spruce);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
-  .co-paths__secondary-arrow { font-size: 14px; }
 
-  /* Message form section */
-  .co-form { padding: 60px var(--space-pad-x) var(--space-section-y-md); background: var(--azure); }
+  /* ---- Message form ---- */
+  .co-form {
+    padding: 0 var(--space-pad-x) var(--space-section);
+  }
+  .co-form__wrap { max-width: var(--container-max); margin: 0 auto; }
   .co-form__title {
-    color: var(--spruce); letter-spacing: -0.03em; line-height: 0.95;
+    font-size: var(--text-display-md);
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: var(--charcoal);
+    margin-top: 16px;
+    margin-bottom: var(--space-block);
     max-width: 16ch;
-    font-size: var(--text-display-sm);
-  }
-  /* Protect CTA card titles from global section h2 rule */
-  .co-paths__primary .co-paths__primary-title { margin-bottom: var(--space-stack-sm); }
-  .co-paths__secondary .co-paths__secondary-title { margin-bottom: 20px; }
-
-  /* Direct contact */
-  .co-direct { padding: var(--space-section-y-md) var(--space-pad-x); }
-  .co-direct__split {
-    border-top: 1px solid var(--rule-strong);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-  }
-  .co-direct__cell { padding: 48px 48px 48px 0; border-right: 1px solid var(--rule); }
-  .co-direct__cell:last-child { padding: 48px 0 48px 48px; border-right: 0; }
-  .co-direct__label { color: var(--spruce); margin-bottom: 18px; }
-  .co-direct__email {
-    font-family: var(--display); font-style: italic; font-weight: 800;
-    color: var(--spruce); letter-spacing: -0.03em;
-    line-height: 1; text-decoration: none;
-    border-bottom: 1px solid var(--rule-strong);
-    padding-bottom: 8px; display: inline-block;
-    font-size: var(--text-h3-xl);
-    transition: color var(--t-med), border-color var(--t-med);
-  }
-  .co-direct__email:hover { color: var(--spruce); border-bottom-color: var(--spruce); }
-  .co-direct__where {
-    font-family: var(--display); font-style: italic; font-weight: 800;
-    color: var(--shadow); letter-spacing: -0.025em;
-    line-height: 1.15; max-width: 20ch; font-size: var(--text-h4);
   }
 
-  .confirm-card-copy {
-    font-size: 16px; line-height: 1.65; color: var(--shadow);
-    max-width: 52ch;
+  /* ---- Direct contact footer strip ---- */
+  .co-direct {
+    padding: var(--space-block) var(--space-pad-x);
+    border-top: 1px solid var(--rule);
+    background: var(--spruce-tint);
   }
-  .confirm-card-actions {
-    display: flex; gap: 14px; margin-top: 8px; flex-wrap: wrap;
+  .co-direct__wrap {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    flex-wrap: wrap;
   }
+  .co-direct__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .co-direct__label {
+    font-family: var(--mono);
+    font-size: var(--text-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+  .co-direct__value {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 24px);
+    color: var(--spruce);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .co-direct__value a { color: var(--spruce); transition: opacity var(--t-med); }
+  .co-direct__value a:hover { opacity: 0.75; }
+
+  /* Hidden iframe sink for form submission */
   .form-iframe-sink { display: none; }
 
-  /* Tablet */
+  /* Responsive */
   @media (max-width: 960px) {
-    .co-paths__grid { grid-template-columns: 1fr; gap: 24px; }
-    .co-paths__primary, .co-paths__secondary { padding: 40px; min-height: 0; }
-    .co-paths__primary-title { font-size: 44px; }
-    .co-direct__split { grid-template-columns: 1fr; }
-    .co-direct__cell { padding: 32px 0; border-right: 0; border-bottom: 1px solid var(--rule); }
-    .co-direct__cell:last-child { padding: 32px 0; border-bottom: 0; }
-    .co-direct__email { font-size: 32px; }
+    .co-paths__grid { grid-template-columns: 1fr; }
+    .co-paths__primary { min-height: 0; }
   }
   @media (max-width: 640px) {
-    .co-paths__primary-title { font-size: 36px; }
-    .co-direct__email { font-size: 26px; word-break: break-all; }
+    .co-header { padding-top: 112px; }
+    .co-direct__wrap { flex-direction: column; gap: 28px; align-items: flex-start; }
   }
 </style>
 </head>
@@ -147,213 +230,267 @@
 <body>
 <div class="ante-page">
 
-<!-- ============ NAV ============ -->
-<nav class="site-nav" aria-label="Primary">
-  <a href="/" class="site-nav__brand">anté</a>
-
-  <button class="site-nav__toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
-    <span class="site-nav__toggle-bar"></span>
-    <span class="site-nav__toggle-bar"></span>
-    <span class="site-nav__toggle-bar"></span>
-  </button>
-
-  <div class="site-nav__links" id="primary-nav">
-    <a href="/approach/" class="site-nav__link">Approach</a>
-    <a href="/about/"    class="site-nav__link">About</a>
-    <a href="/contact/"  class="site-nav__link site-nav__link--active">Contact</a>
-    <a href="/scorecard/" class="btn btn-frosted btn-mini">
-      Take the diagnostic <span class="btn-mini__meta">4 MIN</span>
-    </a>
-  </div>
-</nav>
-
-<!-- ============ HERO ============ -->
-<section class="section section--spruce co-hero">
-  <div class="hero-head">
-    <span class="eyebrow eyebrow--frosted">Contact</span>
-    <span class="eyebrow eyebrow--azure-55">FILE · 04 / CONTACT · BELGIUM</span>
-  </div>
-
-  <h1 class="h-display-xl co-hero__title">Let's Talk.</h1>
-
-  <p class="co-hero__lead">
-    Two ways to start: book a 30-minute intake to discuss a specific project, or send us a message and we'll respond within one working day.
-  </p>
-</section>
-
-<!-- ============ § 01 TWO PATHS ============ -->
-<section class="co-paths" data-screen-label="Two paths">
-  <div class="section-meta">
-    <span class="eyebrow">§ 01 · Two paths</span>
-    <span class="eyebrow eyebrow--muted">One faster · one slower</span>
-  </div>
-
-  <div class="co-paths__grid">
-    <a class="co-paths__primary" href="https://cal.com/ante-design/30min" target="_blank" rel="noopener noreferrer">
-      <div>
-        <div class="eyebrow co-paths__primary-meta">Primary · 30 minutes</div>
-        <h2 class="co-paths__primary-title">Book a 30-min intake.</h2>
-        <p class="co-paths__primary-copy">A short call to map your project context against our methodology. We'll tell you whether a Decision Sprint, a Pre-Investment Audit, or neither is the right next step.</p>
-      </div>
-      <span class="co-paths__primary-cta">
-        Open Cal.com
-        <span class="co-paths__primary-arrow">→</span>
-      </span>
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<div class="nav-wrapper">
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href="/" class="site-nav__logo" aria-label="Anté home">
+      <img src="/assets/images/ante-logo.png" alt="Anté" />
     </a>
 
-    <a class="co-paths__secondary" href="#message">
-      <div>
-        <div class="eyebrow co-paths__secondary-meta">Secondary · async</div>
-        <h2 class="co-paths__secondary-title">Send a message.</h2>
-        <p class="co-paths__secondary-copy">Three fields. We respond within one working day.</p>
-      </div>
-      <span class="co-paths__secondary-cta">
-        Jump to form
-        <span class="co-paths__secondary-arrow">↓</span>
-      </span>
-    </a>
-  </div>
-</section>
-
-<!-- ============ § 02 MESSAGE FORM ============ -->
-<section class="co-form" data-screen-label="Message form">
-  <div class="section-meta">
-    <span class="eyebrow">§ 02 · Send a message</span>
-    <span class="eyebrow eyebrow--muted">Three fields · async</span>
-  </div>
-
-  <h2 class="co-form__title">Or just write.</h2>
-
-  <!-- Hidden iframe — Google Forms posts here so the page doesn't navigate. -->
-  <iframe name="ante-contact-iframe" title="contact form sink" class="form-iframe-sink" aria-hidden="true"></iframe>
-
-  <form
-    id="message"
-    class="form"
-    method="POST"
-    target="ante-contact-iframe"
-    action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdtnVjuuzhtoDLbvwAm8YM-nzFS2vIEAnMgO_MFhS1HqHtEvQ/formResponse"
-    novalidate>
-
-    <div class="form-row-2">
-      <label class="form-field">
-        <span class="form-field__label">Name</span>
-        <input class="form-field__input" type="text" name="entry.1892390230" required autocomplete="name" />
-      </label>
-      <label class="form-field">
-        <span class="form-field__label">Email</span>
-        <input class="form-field__input" type="email" name="entry.1237768883" required autocomplete="email" />
-      </label>
+    <div class="site-nav__links" id="primary-nav">
+      <a href="/approach/" class="site-nav__link">Approach</a>
+      <a href="/about/"    class="site-nav__link">About</a>
+      <a href="/contact/"  class="site-nav__link site-nav__link--active">Contact</a>
+      <a href="/scorecard/" class="btn btn-primary btn-sm site-nav__cta">
+        Take diagnostic
+      </a>
     </div>
 
-    <label class="form-field">
-      <span class="form-field__label">Message</span>
-      <textarea class="form-field__textarea" name="entry.1566169903" rows="6" required></textarea>
-    </label>
+    <button class="site-nav__burger" type="button"
+            aria-controls="mobile-nav" aria-expanded="false"
+            aria-label="Open menu">
+      <span class="site-nav__burger-bar"></span>
+      <span class="site-nav__burger-bar"></span>
+      <span class="site-nav__burger-bar"></span>
+    </button>
 
-    <div class="form-foot">
-      <span class="form-meta" id="form-status">Three fields · we reply within one working day.</span>
-      <button type="submit" class="btn btn-primary" id="form-submit">Send message →</button>
+    <div class="site-nav__mobile" id="mobile-nav" aria-hidden="true">
+      <a href="/approach/" class="site-nav__link">Approach</a>
+      <a href="/about/"    class="site-nav__link">About</a>
+      <a href="/contact/"  class="site-nav__link site-nav__link--active">Contact</a>
+      <a href="/scorecard/" class="btn btn-primary">Take diagnostic</a>
     </div>
-  </form>
+  </nav>
+</div>
 
-  <!-- Confirmation card, shown after successful submit -->
-  <div id="form-confirm" class="confirm-card" hidden>
-    <div class="eyebrow">Message received</div>
-    <h3 class="confirm-card__title">Thanks. We'll be in touch within one working day.</h3>
-    <p class="confirm-card-copy">
-      Your note landed in our inbox. If you'd rather speak directly, you can also book a 30-minute intake on Cal.com.
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="co-header">
+  <div class="co-header__wrap">
+    <div class="section-meta fade-in">
+      <span class="eyebrow">Contact</span>
+      <span class="eyebrow eyebrow--muted">Belgium · BeNeLux</span>
+    </div>
+    <h1 class="co-header__title fade-in fade-in--d1">
+      Two ways to start.
+    </h1>
+    <p class="co-header__lead fade-in fade-in--d2">
+      Book a 30-minute call or send us a message. We respond within one working day.
     </p>
-    <div class="confirm-card-actions">
-      <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener" class="btn btn-primary">Book a 30-min intake →</a>
-      <button type="button" class="btn btn-ghost-spruce" id="form-reset">Send another message</button>
+  </div>
+</header>
+
+<!-- ============================================================
+     § 01 — TWO PATHS
+     ============================================================ -->
+<section class="co-paths" aria-label="Two contact paths">
+  <div class="co-paths__wrap">
+    <div class="co-paths__grid">
+
+      <!-- Primary: Book a 30-minute call -->
+      <!-- [CALENDLY_URL] — replace the href below with your Calendly link -->
+      <a class="co-paths__primary fade-in"
+         href="[CALENDLY_URL]"
+         target="_blank"
+         rel="noopener noreferrer">
+        <div>
+          <div class="co-paths__primary-eyebrow">Primary · 30 minutes</div>
+          <h2 class="co-paths__primary-title">Book a 30-minute call.</h2>
+          <p class="co-paths__primary-desc">
+            A short call to map your project against our methodology. We'll tell you honestly whether a Decision Sprint, a Pre-Investment Audit, or neither is the right next step.
+          </p>
+        </div>
+        <span class="co-paths__primary-cta">
+          Open calendar <span>→</span>
+        </span>
+      </a>
+
+      <!-- Secondary: Send a message -->
+      <a class="co-paths__secondary fade-in fade-in--d1" href="#message">
+        <div>
+          <div class="co-paths__secondary-eyebrow">Secondary · async</div>
+          <h2 class="co-paths__secondary-title">Send a message.</h2>
+          <p class="co-paths__secondary-desc">Three fields. We reply within one working day.</p>
+        </div>
+        <span class="co-paths__secondary-cta">
+          Jump to form <span>↓</span>
+        </span>
+      </a>
+
     </div>
   </div>
 </section>
 
-<!-- ============ § 03 DIRECT CONTACT ============ -->
-<section class="co-direct" data-screen-label="Direct contact">
-  <div class="section-meta">
-    <span class="eyebrow">§ 03 · Direct contact</span>
-    <span class="eyebrow eyebrow--muted">For everything else</span>
-  </div>
-
-  <div class="co-direct__split">
-    <div class="co-direct__cell">
-      <div class="eyebrow co-direct__label">E-mail</div>
-      <a href="mailto:hello@antedesign.be" class="co-direct__email">hello@antedesign.be</a>
+<!-- ============================================================
+     § 02 — MESSAGE FORM
+     ============================================================ -->
+<section class="co-form" id="message" aria-labelledby="form-title">
+  <div class="co-form__wrap">
+    <div class="section-meta fade-in">
+      <span class="eyebrow">§ 02 · Message</span>
+      <span class="eyebrow eyebrow--muted">Three fields · one working day</span>
     </div>
-    <div class="co-direct__cell">
-      <div class="eyebrow co-direct__label">Where</div>
-      <p class="co-direct__where">Based in Belgium. Working across BeNeLux.</p>
+
+    <h2 class="co-form__title fade-in">Or just write.</h2>
+
+    <!-- Hidden iframe absorbs the Google Forms redirect so the page doesn't navigate -->
+    <iframe name="ante-contact-sink" title="contact form sink"
+            class="form-iframe-sink" aria-hidden="true"></iframe>
+
+    <form
+      class="form-grid fade-in"
+      style="max-width:640px"
+      id="contact-form"
+      method="POST"
+      target="ante-contact-sink"
+      action="[FORMSPREE_OR_GOOGLE_FORMS_URL]"
+      novalidate>
+
+      <!-- Name + Email in one row -->
+      <div class="form-row-2">
+        <label class="form-field">
+          <span class="form-label">Name</span>
+          <input class="form-input" type="text" name="name"
+                 required autocomplete="name"
+                 placeholder="Your name" />
+        </label>
+        <label class="form-field">
+          <span class="form-label">Email</span>
+          <input class="form-input" type="email" name="email"
+                 required autocomplete="email"
+                 placeholder="you@company.com" />
+        </label>
+      </div>
+
+      <!-- Message -->
+      <label class="form-field">
+        <span class="form-label">Message</span>
+        <textarea class="form-textarea" name="message"
+                  rows="5" required
+                  placeholder="Briefly describe your project or question…"></textarea>
+      </label>
+
+      <!-- Footer row -->
+      <div class="form-foot">
+        <span class="form-status" id="form-status">
+          Three fields · we reply within one working day.
+        </span>
+        <button type="submit" class="btn btn-primary" id="form-submit">
+          Send message <span class="arrow">→</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Confirmation — shown after submit -->
+    <div class="confirm-card" id="form-confirm" style="max-width:640px; margin-top:40px;">
+      <div class="eyebrow">Message received</div>
+      <h3 class="confirm-card__title">Thanks. We'll be in touch within one working day.</h3>
+      <p style="font-size:var(--text-body-sm);line-height:1.7;color:var(--ink-soft);max-width:52ch;">
+        If you'd rather speak directly, you can also book a 30-minute intake.
+      </p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;">
+        <!-- [CALENDLY_URL] — replace href -->
+        <a href="[CALENDLY_URL]" target="_blank" rel="noopener" class="btn btn-primary">
+          Book a 30-min call <span class="arrow">→</span>
+        </a>
+        <button type="button" class="btn btn-secondary" id="form-reset">
+          Send another message
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- ============================================================
+     DIRECT CONTACT STRIP
+     ============================================================ -->
+<div class="co-direct">
+  <div class="co-direct__wrap">
+    <div class="co-direct__item">
+      <span class="co-direct__label">Email</span>
+      <span class="co-direct__value">
+        <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
+      </span>
+    </div>
+    <div class="co-direct__item">
+      <span class="co-direct__label">Where</span>
+      <span class="co-direct__value">Based in Belgium. Working across BeNeLux.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
 <footer class="site-footer">
-  <div>
-    <div class="site-footer__brand">anté</div>
-    <div class="site-footer__tagline">Independent concept validation · Belgium · 2026</div>
-  </div>
-  <div class="site-footer__meta">
-    <span>© 2026 Anté</span>
-    <span>hello@antedesign.be</span>
-    <span class="accent">Decide before you build</span>
+  <div class="site-footer__inner">
+    <div class="site-footer__left">
+      <img src="/assets/images/ante-logo.png" alt="Anté" class="site-footer__logo" />
+      <p class="site-footer__tagline">Decide before you build.</p>
+    </div>
+    <div class="site-footer__meta">
+      <span>© 2026 Anté</span>
+      <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>
+      <span>Based in Belgium. Working across BeNeLux.</span>
+    </div>
   </div>
 </footer>
 
 </div><!-- /.ante-page -->
 
 <script>
-  // Mobile burger toggle
+  /* Mobile nav */
   (function () {
-    var nav = document.querySelector('.site-nav');
-    var btn = nav && nav.querySelector('.site-nav__toggle');
-    if (!nav || !btn) return;
-    btn.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    var burger = document.querySelector('.site-nav__burger');
+    var panel  = document.getElementById('mobile-nav');
+    if (!burger || !panel) return;
+    burger.addEventListener('click', function () {
+      var open = panel.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open);
+      panel.setAttribute('aria-hidden', !open);
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
-    nav.querySelectorAll('.site-nav__link, .site-nav__links .btn').forEach(function (a) {
-      a.addEventListener('click', function () {
-        nav.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
+    panel.querySelectorAll('a, .btn').forEach(function (el) {
+      el.addEventListener('click', function () {
+        panel.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('aria-hidden', 'true');
       });
     });
   })();
 
-  // Smooth anchor jump from "Jump to form" with focus on first input
+  /* Smooth scroll to form when clicking secondary path */
   (function () {
-    var jump = document.querySelector('.co-paths__secondary');
-    if (!jump) return;
-    jump.addEventListener('click', function (e) {
-      var el = document.getElementById('message');
-      if (!el) return;
+    var sec = document.querySelector('.co-paths__secondary');
+    if (!sec) return;
+    sec.addEventListener('click', function (e) {
+      var target = document.getElementById('message');
+      if (!target) return;
       e.preventDefault();
-      var top = el.getBoundingClientRect().top + window.scrollY - 24;
+      var top = target.getBoundingClientRect().top + window.scrollY - 32;
       window.scrollTo({ top: top, behavior: 'smooth' });
-      var first = el.querySelector('input, textarea');
-      if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 350);
+      var first = target.querySelector('input, textarea');
+      if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 400);
     });
   })();
 
-  // Contact form: post to Google Forms via hidden iframe; show confirmation on success.
+  /* Contact form — optimistic submit pattern */
   (function () {
-    var form = document.getElementById('message');
-    if (!form) return;
+    var form    = document.getElementById('contact-form');
     var status  = document.getElementById('form-status');
     var submit  = document.getElementById('form-submit');
     var confirm = document.getElementById('form-confirm');
     var reset   = document.getElementById('form-reset');
+    if (!form) return;
     var sending = false;
 
     form.addEventListener('submit', function (e) {
-      // Validate locally.
-      var name    = form.querySelector('input[type="text"]').value.trim();
-      var email   = form.querySelector('input[type="email"]').value.trim();
-      var message = form.querySelector('textarea').value.trim();
+      var name    = form.querySelector('[name="name"]').value.trim();
+      var email   = form.querySelector('[name="email"]').value.trim();
+      var message = form.querySelector('[name="message"]').value.trim();
       if (!name || !email || !message) {
         e.preventDefault();
         status.textContent = 'All three fields are required.';
@@ -365,13 +502,11 @@
       submit.disabled = true;
       submit.textContent = 'Sending…';
       status.classList.remove('is-error');
-      status.textContent = 'Sending your message…';
-
-      // Google Forms blocks reading the iframe response cross-origin; we optimistically
-      // mark it sent after a short delay. The iframe absorbs the redirect.
+      status.textContent = 'Sending…';
+      /* Show confirmation after short delay (iframe absorbs the redirect) */
       setTimeout(function () {
         form.hidden = true;
-        confirm.hidden = false;
+        confirm.classList.add('is-visible');
       }, 900);
     });
 
@@ -380,13 +515,27 @@
         form.reset();
         sending = false;
         submit.disabled = false;
-        submit.textContent = 'Send message →';
+        submit.innerHTML = 'Send message <span class="arrow">→</span>';
         status.textContent = 'Three fields · we reply within one working day.';
         status.classList.remove('is-error');
-        confirm.hidden = true;
+        confirm.classList.remove('is-visible');
         form.hidden = false;
       });
     }
+  })();
+
+  /* Scroll fade-in */
+  (function () {
+    if (!window.IntersectionObserver) {
+      document.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.fade-in').forEach(function (el) { obs.observe(el); });
   })();
 </script>
 
