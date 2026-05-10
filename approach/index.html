@@ -22,15 +22,36 @@
       <li><a href="/about/" class="nav-link">About</a></li>
       <li><a href="/contact/" class="nav-link">Contact</a></li>
     </ul>
-    <a href="/scorecard/" class="btn-primary nav-cta">Take assessment</a>
+    <div class="nav-right">
+      <a href="/scorecard/" class="btn-primary nav-cta">Take assessment</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- ── Mobile menu ──────────────────────────────────────── -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <a href="/" class="nav-logo"><img src="/assets/images/ante-logo.svg" alt="anté"></a>
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Sluit menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="/approach/">Approach</a></li>
+      <li><a href="/cases/">Cases</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+    <a href="/scorecard/" class="btn-primary mobile-menu-cta">Take assessment</a>
+  </div>
 
   <!-- ── Section 1: Hero ──────────────────────────────────── -->
   <section class="hero">
     <div class="container">
       <h1 class="hero-headline reveal"><span class="text-spruce">Our 21-day</span> decision sprint.</h1>
-      <p class="hero-subhead reveal">A fixed 21-day system that turns early-stage uncertainty into a defensible concept direction.</p>
-      <p class="hero-body reveal">Most innovation projects fail not because of execution, but because the foundation underneath was never made explicit. Anté's methodology is structured to surface that foundation phase by phase, with the client involved at every checkpoint.</p>
+      <p class="hero-subhead reveal">A fixed 21-day system that turns early-stage uncertainty into a defensible concept direction. Most innovation projects fail not because of execution, but because the foundation underneath was never made explicit. Anté's methodology is structured to surface that foundation phase by phase, with the client involved at every checkpoint.</p>
     </div>
   </section>
 
@@ -47,9 +68,7 @@
             <p>This step is critical because most innovations fail before they are even made, in the form of untested assumptions that quietly shape direction.</p>
           </div>
           <div class="phase-image">
-            <div class="placeholder placeholder--video">
-              <span class="placeholder-label">[PHASE 01 — photo]</span>
-            </div>
+            <img src="/assets/images/phase-01.jpg" alt="Phase 01 — Context &amp; Evidence">
           </div>
         </div>
 
@@ -61,9 +80,7 @@
             <p>We translate fragmented input into a single structured problem definition, including the criteria that will later determine what "good" looks like.</p>
           </div>
           <div class="phase-image">
-            <div class="placeholder placeholder--video">
-              <span class="placeholder-label">[PHASE 02 — photo]</span>
-            </div>
+            <img src="/assets/images/phase-02.jpg" alt="Phase 02 — Problem Definition">
           </div>
         </div>
 
@@ -75,9 +92,7 @@
             <p>Each direction represents a different way of solving the same problem, making the trade-offs clear instead of leaving them implicit. This is the point where most teams choose too quickly. We don't.</p>
           </div>
           <div class="phase-image">
-            <div class="placeholder placeholder--video">
-              <span class="placeholder-label">[PHASE 03 — photo]</span>
-            </div>
+            <img src="/assets/images/phase-03.jpg" alt="Phase 03 — Concept Exploration">
           </div>
         </div>
 
@@ -89,9 +104,7 @@
             <p>What remains is traceable reasoning, not preference, but justification. The goal is a concept direction that can be defended internally and externally.</p>
           </div>
           <div class="phase-image">
-            <div class="placeholder placeholder--video">
-              <span class="placeholder-label">[PHASE 04 — photo]</span>
-            </div>
+            <img src="/assets/images/phase-04.jpg" alt="Phase 04 — Decision Matrix">
           </div>
         </div>
 
@@ -103,9 +116,7 @@
             <p>The result is clarity at execution level without losing strategic intent.</p>
           </div>
           <div class="phase-image">
-            <div class="placeholder placeholder--video">
-              <span class="placeholder-label">[PHASE 05 — photo]</span>
-            </div>
+            <img src="/assets/images/phase-05.jpg" alt="Phase 05 — Implementation Brief">
           </div>
         </div>
 
@@ -116,31 +127,33 @@
   <!-- ── Section 3: Deliverables ──────────────────────────── -->
   <section class="section">
     <div class="container">
-      <h2 class="reveal">Everything you need to move forward.</h2>
-      <p class="reveal">We design products, services, systems and combinations of them through one structured methodology. Throughout the sprint, every interview, insight and decision is connected inside one constantly growing analysis map.</p>
-      <p class="reveal">The outputs below are built directly from that system, making every concept direction and recommendation traceable back to real evidence.</p>
-      <div class="deliverables-grid">
+      <div class="deliverables-wrap reveal">
+        <h2>Everything you need to move forward.</h2>
+        <p>We design products, services, systems and combinations of them through one structured methodology. Throughout the sprint, every interview, insight and decision is connected inside one constantly growing analysis map.</p>
+        <p>The outputs below are built directly from that system, making every concept direction and recommendation traceable back to real evidence.</p>
+        <div class="deliverables-grid" style="margin-top: var(--space-block);">
 
-        <div class="card reveal">
-          <h4>Synthesis Dossier</h4>
-          <p>All interviews, insights and contradictions structured into one evidence document.</p>
+          <div class="card">
+            <h4>Synthesis Dossier</h4>
+            <p>All interviews, insights and contradictions structured into one evidence document.</p>
+          </div>
+
+          <div class="card">
+            <h4>Concept Directions (3×)</h4>
+            <p>Three visual and strategic paths for your concept direction.</p>
+          </div>
+
+          <div class="card">
+            <h4>Decision Matrix</h4>
+            <p>A fully traceable trade-off of all options based on evidence, not opinion.</p>
+          </div>
+
+          <div class="card">
+            <h4>Implementation Brief</h4>
+            <p>A structured document that engineers or partners can directly execute.</p>
+          </div>
+
         </div>
-
-        <div class="card reveal">
-          <h4>Concept Directions (3×)</h4>
-          <p>Three visual and strategic paths for your concept direction.</p>
-        </div>
-
-        <div class="card reveal">
-          <h4>Decision Matrix</h4>
-          <p>A fully traceable trade-off of all options based on evidence, not opinion.</p>
-        </div>
-
-        <div class="card reveal">
-          <h4>Implementation Brief</h4>
-          <p>A structured document that engineers or partners can directly execute.</p>
-        </div>
-
       </div>
     </div>
   </section>
@@ -280,5 +293,6 @@
   </footer>
 
   <script src="../assets/js/reveal.js"></script>
+  <script src="../assets/js/nav.js"></script>
 </body>
 </html>
