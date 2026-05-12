@@ -22,8 +22,30 @@
       <li><a href="/about/" class="nav-link active">About</a></li>
       <li><a href="/contact/" class="nav-link">Contact</a></li>
     </ul>
-    <a href="/scorecard/" class="btn-primary nav-cta">Take assessment</a>
+    <div class="nav-right">
+      <a href="/scorecard/" class="btn-primary nav-cta">Take assessment</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- ── Mobile menu ──────────────────────────────────────── -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <a href="/" class="nav-logo"><img src="/assets/images/ante-logo.svg" alt="anté"></a>
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Sluit menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="/approach/">Approach</a></li>
+      <li><a href="/cases/">Cases</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+    <a href="/scorecard/" class="btn-primary mobile-menu-cta">Take assessment</a>
+  </div>
 
   <!-- ── Section 1: Hero ──────────────────────────────────── -->
   <section class="hero">
@@ -53,8 +75,8 @@
       <div class="founders-grid">
 
         <div class="reveal">
-          <div class="placeholder placeholder--11">
-            <span class="placeholder-label">[FOUNDER PORTRAIT — JUSTIN]</span>
+          <div class="founder-portrait">
+            <img src="/assets/images/founder-justin.jpg" alt="Justin Lefebvre">
           </div>
           <h3 class="founder-name">Justin Lefebvre</h3>
           <span class="founder-role">Strategy &amp; Concept Development</span>
@@ -62,8 +84,8 @@
         </div>
 
         <div class="reveal">
-          <div class="placeholder placeholder--11">
-            <span class="placeholder-label">[FOUNDER PORTRAIT — JOLAN]</span>
+          <div class="founder-portrait">
+            <img src="/assets/images/founder-jolan.jpg" alt="Jolan Dijkmans">
           </div>
           <h3 class="founder-name">Jolan Dijkmans</h3>
           <span class="founder-role">Decision Frameworks &amp; Analysis</span>
@@ -145,5 +167,6 @@
   </footer>
 
   <script src="../assets/js/reveal.js"></script>
+  <script src="../assets/js/nav.js"></script>
 </body>
 </html>
