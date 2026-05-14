@@ -1,4 +1,4 @@
-# Anté | antedesign.be
+# Anté — antedesign.be
 
 Static website for Anté, an independent concept validation consultancy. Built as plain HTML/CSS/JS — no build step required.
 
