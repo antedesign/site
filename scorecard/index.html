@@ -259,7 +259,7 @@
     }
     .r-restart:hover { color: var(--charcoal); }
 
-    /* Intro — extra breathing room between title and lead */
+    /* Intro - extra breathing room between title and lead */
     #screen-intro h1 { margin-bottom: clamp(24px, 4vw, 48px); }
 
     /* Radar plot */
@@ -318,7 +318,7 @@
         <div class="a-wrap">
           <span class="a-eyebrow">Concept assessment</span>
           <h1 class="reveal"><span class="text-spruce">Where do you</span><br>actually stand?</h1>
-          <p class="hero-subhead reveal">Most innovation projects fail not at execution, but at the decision underneath. This 4-minute assessment surfaces the gaps in your concept across five dimensions — before you invest.</p>
+          <p class="hero-subhead reveal">Most innovation projects fail not at execution, but at the decision underneath. This 4-minute assessment surfaces the gaps in your concept across five dimensions, before you invest.</p>
 
           <div class="a-intro-meta reveal">
             <div class="a-meta-item">
@@ -356,7 +356,7 @@
             </header>
             <div class="q-progress"><div class="q-progress-fill" id="q-progress-fill"></div></div>
             <div class="q-body">
-              <h2 class="q-text" id="q-text">—</h2>
+              <h2 class="q-text" id="q-text">-</h2>
               <div class="q-options" id="q-options"></div>
             </div>
           </article>
@@ -372,8 +372,8 @@
         <div class="a-wrap--wide">
           <header class="r-head">
             <span class="a-eyebrow">Your result</span>
-            <h1 id="r-title">—</h1>
-            <p class="hero-subhead" id="r-lead">—</p>
+            <h1 id="r-title">-</h1>
+            <p class="hero-subhead" id="r-lead">-</p>
           </header>
 
           <div class="r-radar" id="r-radar"></div>
@@ -466,17 +466,17 @@
     };
 
     const QUESTIONS = [
-      { id: 1,  dim: 'stakeholder', text: 'Do all co-founders or leadership give the same answer to "what problem are we solving?"', options: [{ label: 'Not really — there are clear differences', score: 1 }, { label: 'Mostly aligned, with some open questions', score: 2 }, { label: 'Yes — explicitly aligned in writing', score: 3 }] },
+      { id: 1,  dim: 'stakeholder', text: 'Do all co-founders or leadership give the same answer to "what problem are we solving?"', options: [{ label: 'Not really, there are clear differences', score: 1 }, { label: 'Mostly aligned, with some open questions', score: 2 }, { label: 'Yes, explicitly aligned in writing', score: 3 }] },
       { id: 2,  dim: 'stakeholder', text: 'Is there a written document that defines scope and objectives for this project?', options: [{ label: 'No document exists', score: 1 }, { label: 'Informal notes, not formally shared', score: 2 }, { label: 'A formal document, signed off by leadership', score: 3 }] },
-      { id: 3,  dim: 'stakeholder', text: 'Does every team member have the same picture of what makes this project successful?', options: [{ label: 'No — there are competing definitions of success', score: 1 }, { label: 'Discussed, but not fully resolved', score: 2 }, { label: 'Yes — explicitly agreed and documented', score: 3 }] },
+      { id: 3,  dim: 'stakeholder', text: 'Does every team member have the same picture of what makes this project successful?', options: [{ label: 'No, there are competing definitions of success', score: 1 }, { label: 'Discussed, but not fully resolved', score: 2 }, { label: 'Yes, explicitly agreed and documented', score: 3 }] },
       { id: 4,  dim: 'market',      text: 'Have at least 5 potential customers specifically indicated what they would pay for your solution?', options: [{ label: 'None have', score: 1 }, { label: 'Between 1 and 4 have', score: 2 }, { label: '5 or more have', score: 3 }] },
       { id: 5,  dim: 'market',      text: 'Do you know which alternatives your audience currently uses, and why those fall short?', options: [{ label: 'Mostly assumptions', score: 1 }, { label: 'Some research, partial picture', score: 2 }, { label: 'Hard evidence from primary research', score: 3 }] },
-      { id: 6,  dim: 'market',      text: 'Do you have data — not assumptions — on how your audience currently solves this problem?', options: [{ label: 'No data available', score: 1 }, { label: 'Qualitative interviews', score: 2 }, { label: 'Quantitative data + interviews', score: 3 }] },
-      { id: 7,  dim: 'concept',     text: 'Can you explain in one sentence what your product does — and does everyone give the same answer?', options: [{ label: 'No — it varies a lot', score: 1 }, { label: 'Sometimes consistent, sometimes not', score: 2 }, { label: 'Consistently the same answer', score: 3 }] },
+      { id: 6,  dim: 'market',      text: 'Do you have data, not assumptions, on how your audience currently solves this problem?', options: [{ label: 'No data available', score: 1 }, { label: 'Qualitative interviews', score: 2 }, { label: 'Quantitative data + interviews', score: 3 }] },
+      { id: 7,  dim: 'concept',     text: 'Can you explain in one sentence what your product does and does everyone give the same answer?', options: [{ label: 'No, it varies a lot', score: 1 }, { label: 'Sometimes consistent, sometimes not', score: 2 }, { label: 'Consistently the same answer', score: 3 }] },
       { id: 8,  dim: 'concept',     text: 'Have you actively considered alternative concept directions, or are you committed to one solution?', options: [{ label: 'Committed to one direction from the start', score: 1 }, { label: 'Briefly considered alternatives', score: 2 }, { label: 'Actively weighed three or more directions', score: 3 }] },
       { id: 9,  dim: 'concept',     text: 'Do you have a specification an external builder could pick up without follow-up questions?', options: [{ label: 'No specification yet', score: 1 }, { label: 'High-level outline only', score: 2 }, { label: 'Detailed specification ready', score: 3 }] },
       { id: 10, dim: 'technical',   text: 'Does your solution already work outside a lab or demo environment?', options: [{ label: 'Lab or demo only', score: 1 }, { label: 'Tested at one pilot site', score: 2 }, { label: 'Working in a real customer context', score: 3 }] },
-      { id: 11, dim: 'technical',   text: 'Do you know the unit cost at production volume — and is it validated?', options: [{ label: 'Estimate only', score: 1 }, { label: 'Calculated internally', score: 2 }, { label: 'Validated by a manufacturer', score: 3 }] },
+      { id: 11, dim: 'technical',   text: 'Do you know the unit cost at production volume and is it validated?', options: [{ label: 'Estimate only', score: 1 }, { label: 'Calculated internally', score: 2 }, { label: 'Validated by a manufacturer', score: 3 }] },
       { id: 12, dim: 'technical',   text: 'Are there technical unknowns that could block the project?', options: [{ label: 'Multiple significant unknowns', score: 1 }, { label: 'One or two unknowns remain', score: 2 }, { label: 'No major unknowns', score: 3 }] },
       { id: 13, dim: 'resource',    text: 'Do you have budget for the full development phase, including a 30% buffer?', options: [{ label: 'No budget secured yet', score: 1 }, { label: 'Partial budget', score: 2 }, { label: 'Full budget plus buffer', score: 3 }] },
       { id: 14, dim: 'resource',    text: 'Do you have a timeline with milestones validated by someone with experience?', options: [{ label: 'No real timeline yet', score: 1 }, { label: 'Internal timeline only', score: 2 }, { label: 'Externally validated timeline', score: 3 }] },
