@@ -240,10 +240,8 @@
     .r-cta .a-eyebrow { color: var(--frosted); }
     .r-cta h2 { color: var(--white); }
     .r-cta p { color: rgba(255,255,255,0.85); margin-bottom: var(--space-stack); }
-    .r-cta .btn-primary { background: var(--frosted); color: var(--charcoal); }
-    .r-cta .btn-primary:hover { background: var(--white); }
-    .r-cta .btn-secondary { color: var(--white); border-color: rgba(255,255,255,0.4); }
-    .r-cta .btn-secondary:hover { background: var(--white); color: var(--spruce); }
+    .r-cta .btn-primary { background: var(--frosted); color: var(--charcoal); border-color: var(--frosted); }
+    .r-cta .btn-primary:hover { background: var(--white); border-color: var(--white); color: var(--charcoal); }
 
     .r-restart {
       display: inline-flex;
@@ -260,6 +258,14 @@
       cursor: pointer;
     }
     .r-restart:hover { color: var(--charcoal); }
+
+    /* Intro — extra breathing room between title and lead */
+    #screen-intro h1 { margin-bottom: clamp(24px, 4vw, 48px); }
+
+    /* Radar plot */
+    .r-radar {
+      margin-bottom: var(--space-block);
+    }
 
     @media (max-width: 600px) {
       .r-row { grid-template-columns: 1fr auto; }
@@ -370,15 +376,16 @@
             <p class="hero-subhead" id="r-lead">—</p>
           </header>
 
+          <div class="r-radar" id="r-radar"></div>
+
           <div class="r-grid" id="r-grid"></div>
 
           <div class="r-cta">
-            <span class="a-eyebrow">Recommended next step</span>
-            <h2 id="r-rec-title">—</h2>
-            <p id="r-rec-body">—</p>
+            <span class="a-eyebrow">Next step</span>
+            <h2>Let's scope your project.</h2>
+            <p>A 30-minute call is enough to understand your project's complexity and what the methodology looks like for your case.</p>
             <div class="btn-group">
-              <a href="/contact/" class="btn-primary">Book 30 min intake <span class="arrow">→</span></a>
-              <a href="/approach/" class="btn-secondary">See our approach</a>
+              <a href="/contact/" class="btn-primary">Book a 30-minute call <span class="arrow">→</span></a>
             </div>
           </div>
 
@@ -478,22 +485,16 @@
 
     const RESULT_COPY = {
       ready: {
-        title: "You're ready to build.",
-        lead:  "Your concept has the structural support a major investment needs.",
-        recTitle: "Focus on execution.",
-        recBody:  "Your weakest dimensions are still in solid territory — remaining gaps are best closed during early development."
+        title: "Your decision foundation looks solid.",
+        lead:  "If you want to ground that confidence in evidence and research before committing, let's discuss how the methodology applies. Scope is shaped by project complexity, not by where you start."
       },
       audit: {
-        title: "There are gaps to address.",
-        lead:  "Some dimensions are solid, but others create real risk for your budget.",
-        recTitle: "Pre-Investment Audit recommended.",
-        recBody:  "A focused 5-day audit closes high-risk gaps before you invest. If deeper issues arise, the cost is credited toward a full Decision Sprint."
+        title: "There are gaps worth surfacing before you invest.",
+        lead:  "A scoping call helps figure out how much depth your decision actually requires, and which parts of the methodology will matter most for your case."
       },
       sprint: {
-        title: "This needs structured work.",
-        lead:  "Multiple foundational dimensions show critical gaps. Commitment now is high risk.",
-        recTitle: "Decision Sprint needed.",
-        recBody:  "A 21-day sprint surfaces missing evidence, builds three concept directions, and ends with a defensible decision your team can sign off on."
+        title: "You're carrying significant decision risk.",
+        lead:  "The Anté methodology is built for exactly this position. The scope of work is shaped by the complexity of your project itself: how broad the decision is, how many stakeholders shape it, how much evidence it needs. Let's talk about what that means for your case."
       }
     };
 
@@ -564,6 +565,44 @@
       }
     }
 
+    function buildRadar(dims) {
+      const cx = 150, cy = 150, r = 100;
+      const keys = ['stakeholder', 'market', 'concept', 'technical', 'resource'];
+      const labels = ['Stakeholder', 'Market', 'Concept', 'Technical', 'Resources'];
+      const n = keys.length;
+
+      function pt(i, frac) {
+        const a = Math.PI / 2 - (2 * Math.PI / n) * i;
+        return { x: cx + r * frac * Math.cos(a), y: cy - r * frac * Math.sin(a) };
+      }
+
+      let grids = '';
+      [0.33, 0.66, 1.0].forEach(level => {
+        const pts = keys.map((_, i) => pt(i, level));
+        const d = pts.map((p, j) => `${j === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') + ' Z';
+        grids += `<path d="${d}" fill="none" stroke="rgba(40,41,43,0.08)" stroke-width="1"/>`;
+      });
+
+      const axes = keys.map((_, i) => {
+        const p = pt(i, 1);
+        return `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" stroke="rgba(40,41,43,0.08)" stroke-width="1"/>`;
+      }).join('');
+
+      const dataPts = keys.map((key, i) => pt(i, (dims[key] ? dims[key].pct : 0) / 100));
+      const dataD = dataPts.map((p, j) => `${j === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') + ' Z';
+
+      const labelEls = keys.map((_, i) => {
+        const p = pt(i, 1.32);
+        return `<text x="${p.x.toFixed(1)}" y="${p.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(40,41,43,0.5)" letter-spacing="1">${labels[i]}</text>`;
+      }).join('');
+
+      return `<svg viewBox="-30 -25 360 350" width="100%" style="max-width:360px;display:block;margin:0 auto;">
+        ${grids}${axes}
+        <path d="${dataD}" fill="rgba(156,227,248,0.3)" stroke="#206A5B" stroke-width="2.5" stroke-linejoin="round"/>
+        ${labelEls}
+      </svg>`;
+    }
+
     function computeAndShowResult() {
       const dims = {};
       Object.keys(DIMENSIONS).forEach(dim => {
@@ -578,10 +617,10 @@
       const rec = greenCount >= 4 ? 'ready' : (greenCount >= 2 && redCount <= 1 ? 'audit' : 'sprint');
 
       const copy = RESULT_COPY[rec];
-      $('r-title').innerHTML    = `<span class="text-spruce">${copy.title.split(' ')[0]}</span> ${copy.title.split(' ').slice(1).join(' ')}`;
-      $('r-lead').textContent   = copy.lead;
-      $('r-rec-title').textContent = copy.recTitle;
-      $('r-rec-body').textContent  = copy.recBody;
+      $('r-title').textContent = copy.title;
+      $('r-lead').textContent  = copy.lead;
+
+      $('r-radar').innerHTML = buildRadar(dims);
 
       const rows = Object.entries(dims).map(([key, d]) => `
         <div class="r-row">
