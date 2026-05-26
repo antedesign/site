@@ -596,7 +596,7 @@
         return `<text x="${p.x.toFixed(1)}" y="${p.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(40,41,43,0.5)" letter-spacing="1">${labels[i]}</text>`;
       }).join('');
 
-      return `<svg viewBox="-30 -25 360 350" width="100%" style="max-width:360px;display:block;margin:0 auto;">
+      return `<svg viewBox="-30 -25 360 350" width="100%" style="max-width:min(560px,90vw);display:block;margin:0 auto;">
         ${grids}${axes}
         <path d="${dataD}" fill="rgba(156,227,248,0.3)" stroke="#206A5B" stroke-width="2.5" stroke-linejoin="round"/>
         ${labelEls}
