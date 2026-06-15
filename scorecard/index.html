@@ -267,6 +267,66 @@
       margin-bottom: var(--space-block);
     }
 
+    /* Email gate — unlock the full report */
+    .r-gate {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-card);
+      padding: clamp(32px, 5vw, 56px);
+      margin-bottom: var(--space-block);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.05);
+    }
+    .r-gate h2 { margin-bottom: 16px; }
+    .r-gate > p { color: var(--ink-soft); margin-bottom: var(--space-stack); }
+    .r-gate-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-stack);
+      display: grid;
+      gap: 12px;
+    }
+    .r-gate-list li {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      color: var(--charcoal);
+      padding-left: 28px;
+      position: relative;
+    }
+    .r-gate-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--spruce);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .r-gate-form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .r-gate-form .form-input { flex: 1 1 260px; margin: 0; }
+    .r-gate-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-top: 16px;
+    }
+    .r-gate-note.error { color: #B23A3A; }
+
+    /* Confirmation after the email is submitted */
+    .r-thanks {
+      background: var(--spruce);
+      color: var(--white);
+      border-radius: var(--radius-card);
+      padding: clamp(32px, 5vw, 56px);
+      margin-bottom: var(--space-block);
+    }
+    .r-thanks .a-eyebrow { color: var(--frosted); }
+    .r-thanks h2 { color: var(--white); margin-bottom: 12px; }
+    .r-thanks p { color: rgba(255,255,255,0.85); }
+    .r-thanks a { color: var(--frosted); }
+
     @media (max-width: 600px) {
       .r-row { grid-template-columns: 1fr auto; }
       .r-row-bar { grid-column: 1 / -1; width: 100%; }
@@ -336,7 +396,7 @@
             </div>
             <div class="a-meta-item">
               <div class="a-meta-label">Email required</div>
-              <div class="a-meta-value">No</div>
+              <div class="a-meta-value">Optional</div>
             </div>
           </div>
 
@@ -379,7 +439,32 @@
 
           <div class="r-radar" id="r-radar"></div>
 
-          <div class="r-grid" id="r-grid"></div>
+          <!-- Email gate: unlock the full breakdown + tips, sent as a PDF -->
+          <div class="r-gate" id="r-gate">
+            <span class="a-eyebrow">Your full report</span>
+            <h2>Want all your results and tips?</h2>
+            <p>This is a first glimpse. Leave your email and we'll send you a personalised PDF with your complete results, a score for every dimension and concrete tips for the gaps that matter most.</p>
+            <ul class="r-gate-list">
+              <li>Your score across all five dimensions</li>
+              <li>What each result means for your project</li>
+              <li>Concrete next steps and tips, tailored to your gaps</li>
+            </ul>
+            <form class="r-gate-form" id="r-gate-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfnEIGDsgG8LWbtNM3Bwpx7jgq0DvcQi5VoA9gDF9whQ_FfvQ/formResponse" method="POST" novalidate>
+              <input type="hidden" name="entry.470779957" id="r-rec-field" value="">
+              <input type="hidden" name="entry.1089881584" id="r-results-field" value="">
+              <input class="form-input" type="email" name="entry.558975914" id="r-email" placeholder="your@email.com" required aria-label="Email address">
+              <button type="submit" class="btn-primary">Send me my report <span class="arrow">→</span></button>
+            </form>
+            <p class="r-gate-note error" id="r-gate-error" hidden>Please enter a valid email address.</p>
+            <p class="r-gate-note">We'll only use your email to send your report. No spam.</p>
+          </div>
+
+          <!-- Confirmation shown after the email is submitted -->
+          <div class="r-thanks" id="r-thanks" hidden>
+            <span class="a-eyebrow">On its way</span>
+            <h2>Check your inbox.</h2>
+            <p>Thanks — we'll send your full assessment report to <strong id="r-thanks-email">your inbox</strong> shortly. Didn't get it? Email <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>.</p>
+          </div>
 
           <div class="r-cta">
             <span class="a-eyebrow">Next step</span>
@@ -414,6 +499,15 @@
             </a>
             <a href="https://www.instagram.com/antedesign.be/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ante.design" class="footer-social-link" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61590565387982" class="footer-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@antedesign.be" class="footer-social-link" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
             </a>
           </div>
         </div>
@@ -623,16 +717,41 @@
 
       $('r-radar').innerHTML = buildRadar(dims);
 
-      const rows = Object.entries(dims).map(([key, d]) => `
-        <div class="r-row">
-          <div class="r-row-name">${DIMENSIONS[key].name}</div>
-          <div class="r-row-bar"><span style="width:${d.pct}%"></span></div>
-          <div class="r-badge ${d.status}">${d.status === 'solid' ? 'Solid' : d.status === 'attention' ? 'Attention' : 'Gap'}</div>
-        </div>
-      `).join('');
-      $('r-grid').innerHTML = rows;
+      // Stash the full results so they travel with the email report request.
+      const summary = Object.entries(dims)
+        .map(([key, d]) => `${DIMENSIONS[key].name}: ${d.pct}% (${d.status})`)
+        .join(' | ');
+      $('r-results-field').value = summary;
+      $('r-rec-field').value = rec;
+
+      // Reset the gate to its initial state (relevant after a restart).
+      $('r-gate').hidden = false;
+      $('r-thanks').hidden = true;
+      $('r-gate-error').hidden = true;
+      $('r-gate-form').reset();
 
       showScreen('result');
+    }
+
+    function submitReportRequest(e) {
+      e.preventDefault();
+      const form = $('r-gate-form');
+      const email = $('r-email').value.trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!valid) { $('r-gate-error').hidden = false; return; }
+      $('r-gate-error').hidden = true;
+
+      const showThanks = () => {
+        $('r-thanks-email').textContent = email;
+        $('r-gate').hidden = true;
+        $('r-thanks').hidden = false;
+      };
+
+      // Submit to Google Forms. The response is opaque (no-cors), so we can't
+      // read it — we confirm on screen regardless once the request is sent.
+      fetch(form.getAttribute('action'), { method: 'POST', mode: 'no-cors', body: new FormData(form) })
+        .then(showThanks)
+        .catch(showThanks);
     }
 
     function restart() {
@@ -649,6 +768,7 @@
     });
     $('q-back').addEventListener('click', goBack);
     $('r-restart').addEventListener('click', restart);
+    $('r-gate-form').addEventListener('submit', submitReportRequest);
   </script>
 </body>
 </html>
