@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Double Diamond Blueprint | Anté</title>
+<meta name="description" content="A guided workbook to find the right problem before you commit to a solution. By Anté. Decide before you build.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:ital,wght@1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Anté design tokens (subset of shared.css, inlined for a
+   single self-contained file)
+   ============================================================ */
+:root{
+  --white:#FFFFFF; --charcoal:#28292B; --spruce:#206A5B; --spruce-dark:#185249;
+  --frosted:#9CE3F8; --rule:rgba(40,41,43,0.08); --ink-soft:rgba(40,41,43,0.6);
+  --ink-muted:rgba(40,41,43,0.4);
+  --container-max:1080px; --container-pad:clamp(24px,4vw,48px);
+  --card-pad:clamp(24px,4vw,40px); --radius-card:24px; --radius-btn:999px; --radius-img:28px;
+  --space-block:clamp(48px,7vw,96px); --space-stack:32px; --space-tight:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{background:var(--white);color:var(--charcoal);font-family:'Poppins',sans-serif;font-weight:400;line-height:1.6}
+::selection{background:var(--frosted);color:var(--charcoal)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-style:italic;color:var(--charcoal);letter-spacing:-0.02em;line-height:1.05}
+h1{font-size:clamp(40px,7vw,84px)}
+h2{font-size:clamp(30px,5vw,56px);margin-bottom:var(--space-stack)}
+h3{font-size:clamp(20px,3vw,30px);margin-bottom:14px}
+h4{font-size:clamp(16px,2vw,21px);margin-bottom:10px}
+p{color:var(--ink-soft);line-height:1.75;font-size:clamp(15px,1.5vw,17px)}
+.text-spruce{color:var(--spruce)}
+.container{width:100%;max-width:var(--container-max);margin:0 auto;padding:0 var(--container-pad)}
+.eyebrow{display:block;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--spruce);margin-bottom:18px}
+.section{padding:var(--space-block) 0}
+.section--tight{padding:clamp(32px,5vw,56px) 0}
+
+/* ── Nav ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--rule)}
+.nav-inner{max-width:var(--container-max);margin:0 auto;padding:14px var(--container-pad);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-style:italic;font-size:24px;letter-spacing:-0.02em;color:var(--charcoal)}
+.brand span{color:var(--spruce)}
+.brand-link{display:inline-flex;align-items:center}
+.logo{height:30px;width:90px;display:block;color:var(--charcoal)}
+.logo--light{height:26px;width:78px;color:var(--frosted)}
+.nav-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);text-align:right;line-height:1.5}
+
+/* ── Buttons ── */
+.btn-primary,.btn-secondary,.btn-ghost{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;border-radius:var(--radius-btn);padding:15px 26px;cursor:pointer;border:1px solid transparent;transition:background-color .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s;white-space:nowrap;line-height:1}
+.btn-primary{background:var(--spruce);color:var(--white);border-color:var(--spruce)}
+.btn-primary:hover{background:var(--frosted);border-color:var(--frosted);color:var(--charcoal);transform:translateY(-2px)}
+.btn-secondary{background:var(--white);color:var(--charcoal);border-color:var(--charcoal)}
+.btn-secondary:hover{background:var(--charcoal);color:var(--white)}
+.btn-ghost{background:transparent;color:var(--spruce);border-color:var(--rule);padding:12px 20px;font-size:14px}
+.btn-ghost:hover{border-color:var(--spruce);background:rgba(32,106,91,0.05)}
+.btn-sm{padding:10px 18px;font-size:13px}
+.arrow{display:inline-block;transition:transform .2s}
+.btn-primary:hover .arrow,.btn-secondary:hover .arrow{transform:translateX(4px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:var(--space-tight);align-items:center}
+
+/* ── Hero ── */
+.hero{padding:clamp(56px,9vw,120px) 0 clamp(32px,5vw,56px)}
+.hero h1{margin-bottom:24px}
+.hero-sub{font-size:clamp(17px,2vw,20px);color:var(--ink-soft);max-width:60ch;margin-bottom:28px}
+
+/* ── Cards / layout ── */
+.card{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);padding:var(--card-pad);box-shadow:0 1px 2px rgba(0,0,0,0.04)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start}
+.step-tag{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);background:var(--spruce);padding:5px 12px;border-radius:6px;margin-bottom:18px}
+.lens{display:inline-block;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:5px;margin-left:8px;vertical-align:middle}
+.lens--diverge{background:rgba(156,227,248,0.35);color:var(--spruce-dark)}
+.lens--converge{background:rgba(32,106,91,0.1);color:var(--spruce-dark)}
+
+/* ── Mirror callout ── */
+.mirror{background:rgba(32,106,91,0.04);border:1px solid rgba(32,106,91,0.12);border-radius:var(--radius-card);padding:clamp(28px,4vw,44px)}
+.mirror .eyebrow{margin-bottom:12px}
+.mirror p{color:var(--charcoal);max-width:64ch}
+.mirror strong{color:var(--spruce);font-weight:600}
+
+/* ── Form controls ── */
+label.field-label{display:block;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;color:var(--charcoal);margin-bottom:8px}
+.field-hint{font-size:13px;color:var(--ink-muted);margin-bottom:12px;line-height:1.5}
+textarea,input[type=text]{font-family:'Poppins',sans-serif;font-size:16px;color:var(--charcoal);background:var(--white);border:1px solid var(--rule);border-radius:14px;padding:14px 16px;width:100%;outline:none;transition:border-color .2s,box-shadow .2s;line-height:1.6;resize:vertical}
+textarea:focus,input[type=text]:focus{border-color:var(--frosted);box-shadow:0 0 0 3px rgba(156,227,248,0.25)}
+textarea{min-height:92px}
+.field{margin-bottom:24px}
+
+/* ── Diamond diagram ── */
+.diamond-wrap{margin:8px 0 0}
+.diamond-wrap svg{width:100%;height:auto;display:block}
+
+/* ── Iceberg ── */
+.iceberg{border-radius:var(--radius-card);overflow:hidden;border:1px solid var(--rule)}
+.iceberg-sky{background:linear-gradient(180deg,#eaf7fd 0%,#d6eefb 100%);padding:22px clamp(18px,3vw,28px) 14px}
+.iceberg-sky .tip-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--spruce);margin-bottom:10px;display:block}
+.waterline{position:relative;height:0;border-top:2px dashed rgba(32,106,91,0.4)}
+.waterline span{position:absolute;right:14px;top:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--spruce)}
+.iceberg-sea{background:linear-gradient(180deg,#cfeaf7 0%,#185249 100%);padding:18px clamp(18px,3vw,28px) 26px}
+.why-row{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;margin-bottom:8px;background:rgba(255,255,255,0.86);transition:opacity .3s,transform .3s,background .3s}
+.why-row.ghost{opacity:0.45}
+.why-row .depth{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--spruce);flex-shrink:0;padding-top:2px;width:54px}
+.why-row .why-text{font-size:13px;color:var(--charcoal);line-height:1.45}
+.why-row .why-text em{color:var(--ink-muted);font-style:normal}
+/* deeper rows get darker, more inset */
+.why-row:nth-child(2){margin-left:6px}
+.why-row:nth-child(3){margin-left:12px}
+.why-row:nth-child(4){margin-left:18px}
+.why-row:nth-child(5){margin-left:24px;background:rgba(255,255,255,0.94);box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+
+/* ── Progress dots ── */
+.depth-meter{display:flex;gap:6px;margin-top:14px}
+.depth-meter i{width:100%;height:5px;border-radius:3px;background:rgba(255,255,255,0.35)}
+.depth-meter i.on{background:var(--frosted)}
+
+/* ── Brief output ── */
+.brief{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius-card);padding:clamp(28px,4vw,48px)}
+.brief-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:18px;margin-bottom:24px;gap:16px}
+.brief-head .b-brand{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-style:italic;font-size:22px}
+.brief-head .b-brand span{color:var(--spruce)}
+.brief-head .b-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted)}
+.brief-block{margin-bottom:22px}
+.brief-block .b-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--spruce);display:block;margin-bottom:6px}
+.brief-block .b-value{font-size:15px;color:var(--charcoal);line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.brief-block .b-value.empty{color:var(--ink-muted);font-style:italic}
+
+/* ── Prompt box ── */
+.prompt-box{background:var(--charcoal);border-radius:var(--radius-card);padding:clamp(28px,4vw,44px);color:var(--white)}
+.prompt-box h3{color:var(--white)}
+.prompt-box .eyebrow{color:var(--frosted)}
+.prompt-box p{color:rgba(255,255,255,0.72)}
+.prompt-pre{font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.7;color:rgba(255,255,255,0.92);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:20px;margin:20px 0;max-height:280px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.prompt-box .btn-primary{background:var(--frosted);border-color:var(--frosted);color:var(--charcoal)}
+.prompt-box .btn-primary:hover{background:var(--white);border-color:var(--white)}
+
+/* ── Save status ── */
+.save-note{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-muted)}
+
+/* ── Footer ── */
+.footer{background:var(--charcoal);color:var(--white);padding:64px 0 36px;margin-top:var(--space-block)}
+.footer .brand{color:var(--white)}
+.footer .brand span{color:var(--frosted)}
+.footer-tag{color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px}
+.footer-cols{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.1)}
+.footer-col-title{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(156,227,248,0.8);display:block;margin-bottom:14px}
+.footer a.fl{color:rgba(255,255,255,0.6);font-size:14px;display:block;margin-bottom:8px;transition:color .2s}
+.footer a.fl:hover{color:var(--white)}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.35);margin-top:32px}
+
+/* ── Reveal ── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ── Responsive ── */
+.ice-sticky{position:sticky;top:96px}
+@media(max-width:860px){
+  .grid-2{grid-template-columns:1fr}
+  .nav-meta{display:none}
+  .ice-sticky{position:static;top:auto}
+}
+@media(max-width:600px){
+  .section{padding:clamp(40px,11vw,64px) 0}
+  .hero{padding-top:clamp(40px,12vw,72px)}
+  .btn-row > .btn-primary,.btn-row > .btn-secondary{flex:1 1 100%;justify-content:center}
+}
+
+/* ── Print: only the brief ── */
+.brief-print-only{display:none}
+@media print{
+  body{background:#fff}
+  body > *:not(#brief-section){display:none!important}
+  #brief-section{display:block!important;padding:0!important}
+  #brief-section .container > *:not(#brief){display:none!important}
+  #brief{border:none;box-shadow:none;padding:0}
+  .brief-print-only{display:block!important}
+  @page{margin:18mm}
+}
+</style>
+</head>
+<body>
+
+<!-- hidden logo sprite (reused in nav + footer) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ante-logo" viewBox="300 1490 3570 1185">
+    <g transform="matrix(3.652908,0,0,3.652908,342.570591,1533.391111)">
+      <g transform="matrix(4.166667,0,0,4.166667,0,0)"><path fill="currentColor" fill-rule="nonzero" d="M53.24,22.21C51.23,18.97 48.33,16.42 44.56,14.59C40.8,12.76 36.47,11.84 31.63,11.84C27.67,11.84 23.93,12.46 20.42,13.69C16.89,14.92 13.79,16.67 11.1,18.93C8.43,21.19 6.36,23.94 4.88,27.18L17.14,33.83C18.33,31.3 20.14,29.21 22.54,27.55C24.92,25.89 27.63,25.07 30.67,25.07C32.37,25.07 33.91,25.38 35.33,26.01C36.73,26.65 37.83,27.53 38.59,28.66C39.37,29.79 39.66,31.16 39.45,32.79L38.96,36.3C38.96,36.3 26.83,36.21 22.21,36.92C17.98,37.56 14.2,38.69 10.86,40.31C7.49,41.93 4.86,44.05 2.91,46.7C0.98,49.35 0.02,52.57 0.02,56.37C0.02,59.76 0.8,62.63 2.38,64.99C3.98,67.35 6.22,69.14 9.09,70.33C11.98,71.54 15.41,72.64 19.25,72.14C25.17,71.36 30.6,67.65 35.32,63.57L34.34,70.87L50.13,70.87L55.3,33.54C55.94,29.23 55.26,25.47 53.25,22.23L53.24,22.21ZM36.6,54.17C33.78,57.34 28.59,60.27 24.22,60.59C20.03,61.19 15.62,58.55 16.42,53.94C17.87,46.6 25.62,44.83 32.16,43.85C35.45,43.36 38.11,43.08 38.11,43.08"/></g>
+      <g transform="matrix(4.166667,0,0,4.166667,0,0)"><path fill="currentColor" fill-rule="nonzero" d="M119.57,35.21L114.6,70.85L98.75,70.85L103.41,37.12C103.88,33.81 103.29,31.15 101.6,29.13C99.9,27.12 97.51,26.11 94.41,26.11C92.36,26.11 90.47,26.58 88.74,27.49C87.02,28.41 85.58,29.69 84.47,31.31C83.34,32.93 82.6,34.86 82.23,37.12L77.59,70.85L61.72,70.85L69.77,13.12L84.57,13.12L83.75,19.46C85.37,17.1 87.4,15.31 89.81,14.12C92.87,12.6 96.34,11.84 100.22,11.84C104.65,11.84 108.43,12.89 111.53,14.96C114.63,17.03 116.91,19.85 118.35,23.36C119.81,26.89 120.2,30.83 119.56,35.21L119.57,35.21Z"/></g>
+      <g transform="matrix(4.166667,0,0,4.166667,0,0)"><path fill="currentColor" fill-rule="nonzero" d="M153.53,71.49C146.41,71.49 141.12,69.54 137.67,65.62C134.22,61.71 132.95,56.37 133.86,49.6L137.03,26.87L127.3,26.87L129.2,13.12L129.41,13.12C132.37,13.12 134.82,12.31 136.76,10.69C138.7,9.07 139.88,6.78 140.3,3.82L140.84,0L156.91,0L155.01,13.11L168.33,13.11L166.43,26.86L153.11,26.86L149.94,49.38C149.66,51.35 149.73,52.96 150.15,54.19C150.57,55.42 151.4,56.32 152.63,56.89C153.86,57.45 155.54,57.73 157.65,57.73C158.28,57.73 158.9,57.71 159.5,57.68C160.1,57.65 160.86,57.56 161.77,57.42L160.61,70.85C159.55,71.13 158.37,71.31 157.07,71.38C155.76,71.45 154.59,71.48 153.53,71.48L153.53,71.49Z"/></g>
+      <g transform="matrix(4.166667,0,0,4.166667,0,0)"><path fill="currentColor" fill-rule="nonzero" d="M225.6,24.64C223.51,20.7 220.47,17.58 216.44,15.28C215.02,14.48 213.52,13.82 211.88,13.31L221.49,0.01L201.08,0.01L195.25,12.51C193.26,12.9 191.33,13.52 189.48,14.34C185.74,16 182.46,18.3 179.65,21.26C176.82,24.24 174.64,27.62 173.08,31.46C171.54,35.32 170.76,39.45 170.76,43.9C170.76,49.12 171.91,53.86 174.21,58.17C176.49,62.46 179.79,65.87 184.09,68.37C188.38,70.87 193.47,72.13 199.32,72.13C203.2,72.13 206.81,71.56 210.16,70.43C213.51,69.3 216.44,67.7 218.99,65.63C221.52,63.56 223.47,61.09 224.8,58.28L212.32,51.83C211.13,53.8 209.43,55.38 207.25,56.59C205.07,57.78 202.53,58.38 199.63,58.38C196.96,58.38 194.66,57.85 192.75,56.8C190.86,55.73 189.4,54.17 188.42,52.1C187.64,50.46 187.18,48.05 187.01,45.92L227.55,46.44C227.9,44.9 228.19,43.44 228.39,42.11C228.6,40.78 228.72,39.44 228.72,38.09C228.72,33.1 227.67,28.63 225.6,24.66L225.6,24.64ZM188.37,34.57C189.31,31.55 190.85,29.11 192.97,27.28C195.08,25.45 197.94,24.53 201.53,24.53C204.28,24.53 206.56,25.23 208.35,26.6C210.16,27.98 211.33,29.82 211.9,32.14C212.11,32.98 212.21,33.84 212.21,34.79L188.06,35.73C188.08,35.65 188.36,34.64 188.38,34.56L188.37,34.57Z"/></g>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ── Nav ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://antedesign.be" class="brand-link" aria-label="Anté"><svg class="logo" role="img" aria-label="Anté"><use href="#ante-logo"/></svg></a>
+    <div class="nav-meta">Double Diamond Blueprint<br>Decide before you build.</div>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<header class="hero section--screen">
+  <div class="container">
+    <h1 class="reveal">The <span class="text-spruce">Double Diamond</span> Blueprint.</h1>
+    <p class="hero-sub reveal">Most teams fall in love with a solution before they understand the problem. This workbook walks you through both diamonds, so you find the right problem first, then the right way to solve it. Your work saves automatically on this device.</p>
+    <div class="btn-row reveal">
+      <a href="#iceberg" class="btn-primary">Start the workbook <span class="arrow">&rarr;</span></a>
+      <a href="https://antedesign.be/scorecard/" class="btn-secondary">Take the 4 min assessment</a>
+    </div>
+  </div>
+</header>
+
+<!-- ── Mirror callout (input quality = AI) ── -->
+<section class="section--tight section--screen">
+  <div class="container">
+    <div class="mirror reveal">
+      <p style="font-size:clamp(16px,2vw,19px)"><strong>This tool is a mirror.</strong> What you get out of it depends entirely on what you put in. Fill it in at the surface and you get surface answers. Dig, and you get something you can actually decide on. That is not a limitation of the tool. It is exactly how AI works too: feed it shallow input and it returns confident, shallow output. The thinking is still yours. The tool only gives it structure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── The diamond, explained ── -->
+<section class="section section--screen">
+  <div class="container">
+    <h2 class="reveal">Two diamonds. <span class="text-spruce">Open, then narrow. Twice.</span></h2>
+    <p class="reveal" style="max-width:64ch;margin-bottom:28px">Each diamond opens wide to explore (diverge), then narrows to a decision (converge). The first diamond is about the problem. The second is about the solution. Most teams skip straight to the second.</p>
+    <div class="diamond-wrap reveal card" style="padding:clamp(20px,3vw,36px)">
+      <svg viewBox="0 0 820 250" role="img" aria-label="Double diamond diagram">
+        <!-- labels top -->
+        <text x="205" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#206A5B" letter-spacing="1">PROBLEM</text>
+        <text x="615" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#206A5B" letter-spacing="1">SOLUTION</text>
+        <!-- diamond 1 -->
+        <polygon points="40,140 205,55 370,140 205,225" fill="rgba(156,227,248,0.18)" stroke="#206A5B" stroke-width="2"/>
+        <line x1="205" y1="55" x2="205" y2="225" stroke="#206A5B" stroke-width="1" stroke-dasharray="4 5" opacity="0.5"/>
+        <!-- diamond 2 -->
+        <polygon points="450,140 615,55 780,140 615,225" fill="rgba(32,106,91,0.08)" stroke="#206A5B" stroke-width="2"/>
+        <line x1="615" y1="55" x2="615" y2="225" stroke="#206A5B" stroke-width="1" stroke-dasharray="4 5" opacity="0.5"/>
+        <!-- diverge/converge labels -->
+        <text x="120" y="145" text-anchor="middle" font-family="Poppins, sans-serif" font-size="12" fill="#28292B" opacity="0.55">diverge</text>
+        <text x="292" y="145" text-anchor="middle" font-family="Poppins, sans-serif" font-size="12" fill="#28292B" opacity="0.55">converge</text>
+        <text x="530" y="145" text-anchor="middle" font-family="Poppins, sans-serif" font-size="12" fill="#28292B" opacity="0.55">diverge</text>
+        <text x="702" y="145" text-anchor="middle" font-family="Poppins, sans-serif" font-size="12" fill="#28292B" opacity="0.55">converge</text>
+        <!-- phase names bottom -->
+        <text x="123" y="247" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-style="italic" font-weight="800" font-size="14" fill="#206A5B">Discover</text>
+        <text x="288" y="247" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-style="italic" font-weight="800" font-size="14" fill="#206A5B">Define</text>
+        <text x="533" y="247" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-style="italic" font-weight="800" font-size="14" fill="#206A5B">Develop</text>
+        <text x="698" y="247" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-style="italic" font-weight="800" font-size="14" fill="#206A5B">Deliver</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ── Project name ── -->
+<section class="section--tight section--screen">
+  <div class="container">
+    <div class="card reveal">
+      <div class="field" style="margin-bottom:0">
+        <label class="field-label" for="project">What are you working on?</label>
+        <div class="field-hint">A product, a feature, a service, a business idea. One line.</div>
+        <input type="text" id="project" data-save placeholder="e.g. A booking app for independent yoga teachers">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STEP 1: Iceberg / Define the real problem ── -->
+<section class="section section--screen" id="iceberg">
+  <div class="container">
+    <h2 class="reveal">Find the <span class="text-spruce">real</span> problem.</h2>
+    <p class="reveal" style="max-width:64ch;margin-bottom:32px">The problem you can see is the tip. The one worth solving sits below the waterline. Start with the visible problem, then ask "why" five times. Each answer takes you one layer deeper.</p>
+
+    <div class="grid-2 reveal">
+      <div>
+        <div class="field">
+          <label class="field-label" for="surface">The visible problem</label>
+          <div class="field-hint">What is the complaint or symptom, in the words people actually use?</div>
+          <textarea id="surface" data-save data-iceberg placeholder="e.g. Users sign up but don't come back after the first week"></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label" for="why1">Why is that? <span style="color:var(--ink-muted);font-weight:400">(1)</span></label>
+          <textarea id="why1" data-save data-iceberg placeholder="Because..."></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label" for="why2">And why is that? <span style="color:var(--ink-muted);font-weight:400">(2)</span></label>
+          <textarea id="why2" data-save data-iceberg placeholder="Because..."></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label" for="why3">Keep going. Why? <span style="color:var(--ink-muted);font-weight:400">(3)</span></label>
+          <textarea id="why3" data-save data-iceberg placeholder="Because..."></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label" for="why4">Deeper. Why? <span style="color:var(--ink-muted);font-weight:400">(4)</span></label>
+          <textarea id="why4" data-save data-iceberg placeholder="Because..."></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label" for="why5">The root. Why? <span style="color:var(--ink-muted);font-weight:400">(5)</span></label>
+          <textarea id="why5" data-save data-iceberg placeholder="Because..."></textarea>
+        </div>
+      </div>
+
+      <!-- live iceberg -->
+      <div class="ice-sticky">
+        <div class="iceberg">
+          <div class="iceberg-sky">
+            <span class="tip-label">The tip &middot; what everyone sees</span>
+            <div id="ice-surface" style="font-size:14px;color:var(--charcoal);font-weight:500;line-height:1.5;min-height:20px">Your visible problem appears here</div>
+          </div>
+          <div class="waterline"><span>waterline</span></div>
+          <div class="iceberg-sea">
+            <div class="why-row ghost" id="ice1"><div class="depth">layer 1</div><div class="why-text"><em>First why</em></div></div>
+            <div class="why-row ghost" id="ice2"><div class="depth">layer 2</div><div class="why-text"><em>Second why</em></div></div>
+            <div class="why-row ghost" id="ice3"><div class="depth">layer 3</div><div class="why-text"><em>Third why</em></div></div>
+            <div class="why-row ghost" id="ice4"><div class="depth">layer 4</div><div class="why-text"><em>Fourth why</em></div></div>
+            <div class="why-row ghost" id="ice5"><div class="depth">root</div><div class="why-text"><em>The root cause</em></div></div>
+            <div class="depth-meter" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:32px;background:rgba(156,227,248,0.07);border-color:rgba(32,106,91,0.15)">
+      <div class="field" style="margin-bottom:0">
+        <label class="field-label" for="define">So the real problem is... <span class="lens lens--converge">Define &middot; converge</span></label>
+        <div class="field-hint">Write the problem you actually want to solve as one clear sentence. This is the bottom of diamond one.</div>
+        <textarea id="define" data-save placeholder="The real problem is that..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STEP 2: Solution diamond ── -->
+<section class="section section--screen">
+  <div class="container">
+    <h2 class="reveal">Now, and only now, <span class="text-spruce">explore solutions.</span></h2>
+    <p class="reveal" style="max-width:64ch;margin-bottom:32px">With the real problem clear, open up again. Generate many possible directions before you pick one. The first ideas are the obvious ones. The good ones usually come after.</p>
+
+    <div class="card reveal" style="margin-bottom:24px">
+      <h4>Develop <span class="lens lens--diverge">diverge</span></h4>
+      <div class="field-hint" style="margin-bottom:14px">List as many ways to solve the real problem as you can. Aim for at least 10. Write the obvious ones down first to clear them out of the way, then push past them. No judging yet.</div>
+      <textarea id="develop" data-save placeholder="1.&#10;2.&#10;3.&#10;..." style="min-height:160px"></textarea>
+    </div>
+
+    <div class="card reveal" style="background:rgba(32,106,91,0.04);border-color:rgba(32,106,91,0.15)">
+      <h4>Deliver <span class="lens lens--converge">converge</span></h4>
+      <div class="field-hint" style="margin-bottom:14px">Pick the one direction you would commit to, and write why it beats the others. This is your decision, made on purpose instead of by default.</div>
+      <textarea id="deliver" data-save placeholder="The direction I would commit to is... because..." style="min-height:120px"></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- ── STEP 3: Brief ── -->
+<section class="section section--screen" id="brief-section">
+  <div class="container">
+    <h2 class="reveal">Your <span class="text-spruce">Innovation Brief.</span></h2>
+    <p class="reveal" style="max-width:64ch;margin-bottom:28px">Everything you wrote, pulled into one clean page. Save it as a PDF, share it with your team, or use it as the starting point for a real validation.</p>
+
+    <div class="brief reveal" id="brief">
+      <div class="brief-head">
+        <div class="b-brand">ant<span>é</span> &middot; Innovation Brief</div>
+        <div class="b-tag">Decide before you build.</div>
+      </div>
+      <div class="brief-block"><span class="b-label">Project</span><div class="b-value empty" data-brief="project">Not filled in yet</div></div>
+      <div class="brief-block"><span class="b-label">Visible problem (the tip)</span><div class="b-value empty" data-brief="surface">Not filled in yet</div></div>
+      <div class="brief-block"><span class="b-label">The real problem (define)</span><div class="b-value empty" data-brief="define">Not filled in yet</div></div>
+      <div class="brief-block"><span class="b-label">Explored directions (develop)</span><div class="b-value empty" data-brief="develop">Not filled in yet</div></div>
+      <div class="brief-block"><span class="b-label">The chosen direction (deliver)</span><div class="b-value empty" data-brief="deliver">Not filled in yet</div></div>
+      <div class="brief-print-only" style="margin-top:24px;border-top:1px solid var(--rule);padding-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-muted)">Generated with the Anté Double Diamond Blueprint &middot; antedesign.be</div>
+    </div>
+
+    <div class="btn-row no-print" style="margin-top:24px">
+      <button class="btn-primary" onclick="window.print()">Save brief as PDF <span class="arrow">&rarr;</span></button>
+      <button class="btn-ghost" id="reset-btn">Reset workbook</button>
+      <span class="save-note" id="save-note">Saved on this device</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── STEP 4: Sparring prompt ── -->
+<section class="section section--screen">
+  <div class="container">
+    <div class="prompt-box reveal">
+      <h3>Use AI as a sparring partner, not an oracle.</h3>
+      <p style="max-width:62ch">AI should not make this decision for you. It is good at one thing here: challenging your thinking and exposing blind spots. Copy the prompt below into ChatGPT, Claude or any model. It already contains everything you filled in.</p>
+      <pre class="prompt-pre" id="prompt-text"></pre>
+      <div class="btn-row">
+        <button class="btn-primary" id="copy-btn">Copy prompt <span class="arrow">&rarr;</span></button>
+        <span class="save-note" id="copy-note" style="color:var(--frosted)"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="section--tight section--screen">
+  <div class="container">
+    <div class="mirror reveal" style="text-align:center">
+      <p style="margin:0 auto 22px;max-width:56ch;font-size:clamp(16px,2vw,19px)">This blueprint gets you thinking the right way. When the decision is too big to get wrong, Anté runs the full Decision Sprint: real interviews, three evidence-based concepts, one defensible direction.</p>
+      <div class="btn-row" style="justify-content:center">
+        <a href="https://antedesign.be/scorecard/" class="btn-primary">Take the free assessment <span class="arrow">&rarr;</span></a>
+        <a href="https://antedesign.be/contact/" class="btn-secondary">Book a 30 min intake</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer section--screen">
+  <div class="container">
+    <div class="brand"><svg class="logo logo--light" role="img" aria-label="Anté"><use href="#ante-logo"/></svg></div>
+    <div class="footer-tag">Decide before you build.</div>
+    <div class="footer-cols">
+      <div>
+        <span class="footer-col-title">The toolkit</span>
+        <span class="fl" style="color:var(--frosted)">1. Double Diamond Blueprint</span>
+        <a class="fl" href="idea-generation-toolkit.html">2. Idea Generation Toolkit</a>
+        <span class="fl">3. Decide Before Build Checklist</span>
+      </div>
+      <div>
+        <span class="footer-col-title">Anté</span>
+        <a class="fl" href="https://antedesign.be/approach/">Approach</a>
+        <a class="fl" href="https://antedesign.be/cases/">Cases</a>
+        <a class="fl" href="https://antedesign.be/about/">About</a>
+      </div>
+      <div>
+        <span class="footer-col-title">Start</span>
+        <a class="fl" href="https://antedesign.be/scorecard/">Take assessment</a>
+        <a class="fl" href="https://antedesign.be/contact/">Book intake</a>
+        <a class="fl" href="mailto:hello@antedesign.be">hello@antedesign.be</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Anté. Decide before you build.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var STORE = "ante_ddb_v1";
+  var fields = Array.prototype.slice.call(document.querySelectorAll("[data-save]"));
+
+  // ── load saved ──
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch(e){ saved = {}; }
+  fields.forEach(function(el){ if(saved[el.id] != null) el.value = saved[el.id]; });
+
+  function save(){
+    var data = {};
+    fields.forEach(function(el){ data[el.id] = el.value; });
+    try { localStorage.setItem(STORE, JSON.stringify(data)); } catch(e){}
+  }
+
+  // ── iceberg live update ──
+  var iceMap = [
+    {src:"why1", row:"ice1"},
+    {src:"why2", row:"ice2"},
+    {src:"why3", row:"ice3"},
+    {src:"why4", row:"ice4"},
+    {src:"why5", row:"ice5"}
+  ];
+  var meterDots = document.querySelectorAll(".depth-meter i");
+  function updateIceberg(){
+    var s = document.getElementById("surface").value.trim();
+    var sEl = document.getElementById("ice-surface");
+    sEl.textContent = s || "Your visible problem appears here";
+    sEl.style.color = s ? "var(--charcoal)" : "var(--ink-muted)";
+    var depth = 0;
+    iceMap.forEach(function(m, i){
+      var v = document.getElementById(m.src).value.trim();
+      var row = document.getElementById(m.row);
+      var txt = row.querySelector(".why-text");
+      if(v){
+        txt.innerHTML = "";
+        txt.textContent = v;
+        row.classList.remove("ghost");
+        depth = i + 1;
+      } else {
+        var placeholders = ["First why","Second why","Third why","Fourth why","The root cause"];
+        txt.innerHTML = "<em>" + placeholders[i] + "</em>";
+        row.classList.add("ghost");
+      }
+    });
+    meterDots.forEach(function(d, i){ d.classList.toggle("on", i < depth); });
+  }
+
+  // ── brief live update ──
+  function updateBrief(){
+    document.querySelectorAll("[data-brief]").forEach(function(el){
+      var key = el.getAttribute("data-brief");
+      var src = document.getElementById(key);
+      var v = src ? src.value.trim() : "";
+      if(v){ el.textContent = v; el.classList.remove("empty"); }
+      else { el.textContent = "Not filled in yet"; el.classList.add("empty"); }
+    });
+  }
+
+  // ── sparring prompt ──
+  function val(id){ var e = document.getElementById(id); return e ? e.value.trim() : ""; }
+  function buildPrompt(){
+    var p = val("project") || "(not specified)";
+    var lines = [];
+    lines.push("You are acting as a critical innovation sparring partner, not an oracle.");
+    lines.push("Do not give me the answer and do not make the decision for me. Your job is to challenge my thinking and expose blind spots.");
+    lines.push("");
+    lines.push("Here is my Double Diamond worksheet for: " + p);
+    lines.push("");
+    lines.push("VISIBLE PROBLEM: " + (val("surface") || "(empty)"));
+    lines.push("WHY CHAIN:");
+    lines.push("  1. " + (val("why1") || "(empty)"));
+    lines.push("  2. " + (val("why2") || "(empty)"));
+    lines.push("  3. " + (val("why3") || "(empty)"));
+    lines.push("  4. " + (val("why4") || "(empty)"));
+    lines.push("  5. " + (val("why5") || "(empty)"));
+    lines.push("THE REAL PROBLEM I DEFINED: " + (val("define") || "(empty)"));
+    lines.push("SOLUTION DIRECTIONS I EXPLORED: " + (val("develop") || "(empty)"));
+    lines.push("THE DIRECTION I WOULD CHOOSE: " + (val("deliver") || "(empty)"));
+    lines.push("");
+    lines.push("Now push back. Be specific and direct:");
+    lines.push("1. Is my 'real problem' still a symptom? Push me one layer deeper with 3 sharp questions.");
+    lines.push("2. Where did I converge too early or explore too narrowly?");
+    lines.push("3. Name 3 assumptions I have not validated with real people yet.");
+    lines.push("4. Where am I relying on information when I should rely on real-world experience?");
+    lines.push("End with the 5 questions I must answer with real evidence before I build anything.");
+    return lines.join("\n");
+  }
+  function updatePrompt(){ document.getElementById("prompt-text").textContent = buildPrompt(); }
+
+  // ── wire up ──
+  function refreshAll(){ updateIceberg(); updateBrief(); updatePrompt(); }
+  fields.forEach(function(el){
+    el.addEventListener("input", function(){
+      save();
+      if(el.hasAttribute("data-iceberg")) updateIceberg();
+      updateBrief();
+      updatePrompt();
+      flashSaved();
+    });
+  });
+
+  var saveNote = document.getElementById("save-note");
+  var saveTimer;
+  function flashSaved(){
+    if(!saveNote) return;
+    saveNote.textContent = "Saving...";
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){ saveNote.textContent = "Saved on this device"; }, 600);
+  }
+
+  // copy
+  document.getElementById("copy-btn").addEventListener("click", function(){
+    var text = buildPrompt();
+    var note = document.getElementById("copy-note");
+    function ok(){ note.textContent = "Copied. Paste it into your AI of choice."; setTimeout(function(){ note.textContent=""; }, 4000); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(ok, function(){ fallbackCopy(text); ok(); });
+    } else { fallbackCopy(text); ok(); }
+  });
+  function fallbackCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // reset
+  document.getElementById("reset-btn").addEventListener("click", function(){
+    if(!confirm("Clear everything and start over? This cannot be undone.")) return;
+    try{ localStorage.removeItem(STORE); }catch(e){}
+    fields.forEach(function(el){ el.value = ""; });
+    refreshAll();
+  });
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, {threshold:0.12});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+  refreshAll();
+})();
+</script>
+</body>
+</html>
