@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:ital,wght@1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/images/favicon.png">
   <link rel="stylesheet" href="../assets/css/shared.css">
+  <link rel="stylesheet" href="../assets/css/decision-spine.css">
   <style>
     .pricing-central .btn-primary:hover {
       background-color: var(--white);
@@ -63,71 +64,81 @@
     </div>
   </section>
 
-  <!-- ── Section 2: The 5 phases ──────────────────────────── -->
-  <section class="section section--tighter-top">
-    <div class="container">
-      <div class="phase-stack">
-
-        <div class="phase-item reveal">
-          <div class="phase-content">
-            <span class="phase-number">01</span>
-            <h3 class="phase-title">Context &amp; Evidence</h3>
-            <p>We start by understanding the reality behind the brief, not the assumptions around it. Through structured stakeholder interviews and targeted market input, we map what is actually known, what is assumed and what is missing.</p>
-            <p>This step is critical because most innovations fail before they are even made, in the form of untested assumptions that quietly shape direction.</p>
-          </div>
-          <div class="phase-image">
-            <img src="/assets/images/phase-01.jpg" alt="Phase 01 | Context &amp; Evidence">
-          </div>
+  <!-- ── Section 2: The 5 phases — decision spine ─────────────
+       Scroll-driven. Tune the feel with the two CSS vars on .ds below:
+         --ds-len   horizontal scroll length (× viewport) — higher = lasts longer
+         --ds-glow  travelling node glow intensity
+       Engine: assets/js/decision-spine.js + assets/css/decision-spine.css -->
+  <section class="ds" id="approach-spine" style="--ds-len: 3.2; --ds-glow: 0.4;">
+    <div class="ds-sticky">
+      <div class="ds-head">
+        <span class="eyebrow">The methodology</span>
+        <h2>Five phases, one spine.</h2>
+        <div class="ds-stats">
+          <div class="ds-stat"><span class="ds-stat-num" data-count="21">0</span><span class="ds-stat-label">Working days</span></div>
+          <div class="ds-stat"><span class="ds-stat-num" data-count="3">0</span><span class="ds-stat-label">Concept directions</span></div>
+          <div class="ds-stat"><span class="ds-stat-num" data-count="5">0</span><span class="ds-stat-label">Dimensions</span></div>
         </div>
+      </div>
 
-        <div class="phase-item phase-item--reverse reveal">
-          <div class="phase-content">
-            <span class="phase-number">02</span>
-            <h3 class="phase-title">Problem Definition</h3>
-            <p>Once the evidence is clear, we define the real problem to be solved. Not the initial request. Not the internal narrative. But the underlying challenge that explains why the decision exists in the first place.</p>
-            <p>We translate fragmented input into a single structured problem definition, including the criteria that will later determine what "good" looks like.</p>
-          </div>
-          <div class="phase-image">
-            <img src="/assets/images/phase-02.jpg" alt="Phase 02 | Problem Definition">
-          </div>
+      <div class="ds-stage ds-body">
+        <div class="ds-vspine"><div class="ds-vfill"></div></div>
+        <div class="ds-track">
+
+          <article class="ds-panel">
+            <div class="ds-panel-media"><img src="/assets/images/phase-01.jpg" alt="Phase 01 | Context &amp; Evidence" onerror="this.remove()"></div>
+            <span class="ds-panel-num">01</span>
+            <h3>Context &amp; Evidence</h3>
+            <p>We map what is actually known, what is assumed and what is missing — through structured stakeholder interviews and targeted market input.</p>
+            <span class="ds-panel-tag">Synthesis dossier</span>
+          </article>
+
+          <article class="ds-panel">
+            <div class="ds-panel-media"><img src="/assets/images/phase-02.jpg" alt="Phase 02 | Problem Definition" onerror="this.remove()"></div>
+            <span class="ds-panel-num">02</span>
+            <h3>Problem Definition</h3>
+            <p>We translate fragmented input into a single structured problem definition, including the criteria for what "good" looks like.</p>
+            <span class="ds-panel-tag">Problem statement</span>
+          </article>
+
+          <article class="ds-panel">
+            <div class="ds-panel-media"><img src="/assets/images/phase-03.jpg" alt="Phase 03 | Concept Exploration" onerror="this.remove()"></div>
+            <span class="ds-panel-num">03</span>
+            <h3>Concept Exploration</h3>
+            <p>From one well-defined problem we develop three fundamentally different concept directions — strategic alternatives, not variations.</p>
+            <span class="ds-panel-tag">3 directions</span>
+          </article>
+
+          <article class="ds-panel">
+            <div class="ds-panel-media"><img src="/assets/images/phase-04.jpg" alt="Phase 04 | Decision Matrix" onerror="this.remove()"></div>
+            <span class="ds-panel-num">04</span>
+            <h3>Decision Matrix</h3>
+            <p>Every trade-off is linked back to evidence from each prior phase. What remains is traceable reasoning, not preference.</p>
+            <span class="ds-panel-tag">Trade-off matrix</span>
+          </article>
+
+          <article class="ds-panel">
+            <div class="ds-panel-media"><img src="/assets/images/phase-05.jpg" alt="Phase 05 | Implementation Brief" onerror="this.remove()"></div>
+            <span class="ds-panel-num">05</span>
+            <h3>Implementation Brief</h3>
+            <p>The chosen direction becomes a structured brief engineering or partners can act on immediately — scope, requirements, constraints.</p>
+            <span class="ds-panel-tag">Implementation brief</span>
+          </article>
+
         </div>
+      </div>
 
-        <div class="phase-item reveal">
-          <div class="phase-content">
-            <span class="phase-number">03</span>
-            <h3 class="phase-title">Concept Exploration</h3>
-            <p>From a single well-defined problem, we deliberately explore multiple possible futures. We develop 3 fundamentally different concept directions, not variations, but strategic alternatives.</p>
-            <p>Each direction represents a different way of solving the same problem, making the trade-offs clear instead of leaving them implicit. This is the point where most teams choose too quickly. We don't.</p>
-          </div>
-          <div class="phase-image">
-            <img src="/assets/images/phase-03.jpg" alt="Phase 03 | Concept Exploration">
-          </div>
+      <div class="ds-rail">
+        <div class="ds-rail-inner">
+          <div class="ds-line"></div>
+          <div class="ds-line-fill"></div>
+          <span class="ds-station"></span><span class="ds-station-label">Context</span>
+          <span class="ds-station"></span><span class="ds-station-label">Problem</span>
+          <span class="ds-station"></span><span class="ds-station-label">Concepts</span>
+          <span class="ds-station"></span><span class="ds-station-label">Decision</span>
+          <span class="ds-station"></span><span class="ds-station-label">Brief</span>
+          <span class="ds-node"></span>
         </div>
-
-        <div class="phase-item phase-item--reverse reveal">
-          <div class="phase-content">
-            <span class="phase-number">04</span>
-            <h3 class="phase-title">Decision Matrix</h3>
-            <p>We evaluate all directions using a structured, evidence-based comparison model. Every trade-off matrix is linked back to insights from each previous phase. This removes opinion from the decision.</p>
-            <p>What remains is traceable reasoning, not preference, but justification. The goal is a concept direction that can be defended internally and externally.</p>
-          </div>
-          <div class="phase-image">
-            <img src="/assets/images/phase-04.jpg" alt="Phase 04 | Decision Matrix">
-          </div>
-        </div>
-
-        <div class="phase-item reveal">
-          <div class="phase-content">
-            <span class="phase-number">05</span>
-            <h3 class="phase-title">Implementation Brief</h3>
-            <p>We translate the chosen direction into a structured brief that engineering or external partners can act on immediately. This includes scope, requirements, open questions and design constraints, all derived from the decision process, based on facts.</p>
-            <p>The result is clarity at execution level without losing strategic intent.</p>
-          </div>
-          <div class="phase-image">
-            <img src="/assets/images/phase-05.jpg" alt="Phase 05 | Implementation Brief">
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -316,5 +327,7 @@
 
   <script src="../assets/js/reveal.js"></script>
   <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/decision-spine.js" defer></script>
+  <script src="../assets/js/magnetic-buttons.js" defer></script>
 </body>
 </html>

@@ -262,7 +262,7 @@
     /* Intro - extra breathing room between title and lead */
     #screen-intro h1 { margin-bottom: clamp(24px, 4vw, 48px); }
 
-    /* Radar plot */
+    /* Radar plot — animation + cursor interaction handled by ante-radar.js */
     .r-radar {
       margin-bottom: var(--space-block);
     }
@@ -549,6 +549,8 @@
 
   <script src="../assets/js/reveal.js"></script>
   <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/ante-radar.js"></script>
+  <script src="../assets/js/magnetic-buttons.js" defer></script>
 
   <script>
     /* ── Data ──────────────────────────────────────────────── */
@@ -660,43 +662,16 @@
       }
     }
 
-    function buildRadar(dims) {
-      const cx = 150, cy = 150, r = 100;
-      const keys = ['stakeholder', 'market', 'concept', 'technical', 'resource'];
-      const labels = ['Stakeholder', 'Market', 'Concept', 'Technical', 'Resources'];
-      const n = keys.length;
-
-      function pt(i, frac) {
-        const a = Math.PI / 2 - (2 * Math.PI / n) * i;
-        return { x: cx + r * frac * Math.cos(a), y: cy - r * frac * Math.sin(a) };
-      }
-
-      let grids = '';
-      [0.33, 0.66, 1.0].forEach(level => {
-        const pts = keys.map((_, i) => pt(i, level));
-        const d = pts.map((p, j) => `${j === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') + ' Z';
-        grids += `<path d="${d}" fill="none" stroke="rgba(40,41,43,0.08)" stroke-width="1"/>`;
-      });
-
-      const axes = keys.map((_, i) => {
-        const p = pt(i, 1);
-        return `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" stroke="rgba(40,41,43,0.08)" stroke-width="1"/>`;
-      }).join('');
-
-      const dataPts = keys.map((key, i) => pt(i, (dims[key] ? dims[key].pct : 0) / 100));
-      const dataD = dataPts.map((p, j) => `${j === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') + ' Z';
-
-      const labelEls = keys.map((_, i) => {
-        const p = pt(i, 1.32);
-        return `<text x="${p.x.toFixed(1)}" y="${p.y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(40,41,43,0.5)" letter-spacing="1">${labels[i]}</text>`;
-      }).join('');
-
-      return `<svg viewBox="-30 -25 360 350" width="100%" style="max-width:min(560px,90vw);display:block;margin:0 auto;">
-        ${grids}${axes}
-        <path d="${dataD}" fill="rgba(156,227,248,0.3)" stroke="#206A5B" stroke-width="2.5" stroke-linejoin="round"/>
-        ${labelEls}
-      </svg>`;
-    }
+    /* ── Radar (assessment result) ─────────────────────────────
+       The radar build-up + magnetic cursor lives in
+       assets/js/ante-radar.js. Tune the feel here:
+         bend        how far the web bends toward the cursor (px)
+         radius      cursor influence radius (SVG units)
+         springBack  how snappy the points spring back (higher = snappier)
+         intro       intro energy (>1 = more overshoot)
+       ──────────────────────────────────────────────────────── */
+    const RADAR_OPTS = { bend: 32, radius: 130, springBack: 16, intro: 1 };
+    let radar = null;
 
     function computeAndShowResult() {
       const dims = {};
@@ -715,8 +690,6 @@
       $('r-title').textContent = copy.title;
       $('r-lead').textContent  = copy.lead;
 
-      $('r-radar').innerHTML = buildRadar(dims);
-
       // Stash the full results so they travel with the email report request.
       const summary = Object.entries(dims)
         .map(([key, d]) => `${DIMENSIONS[key].name}: ${d.pct}% (${d.status})`)
@@ -731,6 +704,13 @@
       $('r-gate-form').reset();
 
       showScreen('result');
+
+      // Render the radar once the result screen is visible, so the intro
+      // spring plays on-screen and cursor mapping has layout to work with.
+      requestAnimationFrame(() => {
+        if (radar) radar.destroy();
+        radar = AnteRadar.render($('r-radar'), dims, RADAR_OPTS);
+      });
     }
 
     function submitReportRequest(e) {

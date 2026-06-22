@@ -1,0 +1,206 @@
+/* ============================================================
+   decision-spine.css — scroll-driven "decision spine"
+   Desktop: the five phases pin and slide horizontally while a
+   spine line draws and a glowing node travels 01 → 05.
+   Mobile / reduced-motion: a calm vertical stack with a spine
+   that draws down the left edge as you scroll.
+
+   Uses only the Anté tokens from shared.css.
+   ============================================================ */
+
+.ds {
+  position: relative;
+  --ds-len: 3.2;     /* horizontal scroll length (× viewport) */
+  --ds-glow: 0.4;    /* node glow intensity */
+}
+
+/* ── Shared head ─────────────────────────────────────────── */
+.ds-head {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+.ds-head h2 { margin-bottom: 20px; }
+.ds-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 40px;
+  margin-top: 28px;
+}
+.ds-stat { display: flex; align-items: baseline; gap: 10px; }
+.ds-stat-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800; font-style: italic;
+  font-size: clamp(26px, 3vw, 40px);
+  letter-spacing: -0.02em; color: var(--spruce); line-height: 1;
+}
+.ds-stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* ── Panels (content) ────────────────────────────────────── */
+.ds-panel-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin-bottom: 22px;
+  background: linear-gradient(135deg, var(--spruce) 0%, var(--spruce-dark) 100%);
+}
+.ds-panel-media img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.ds-panel-media .ds-media-ph {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-end;
+  padding: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.ds-panel-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800; font-style: italic;
+  font-size: clamp(40px, 5vw, 72px);
+  color: var(--frosted); line-height: 1; letter-spacing: -0.02em;
+  display: block; margin-bottom: 16px;
+  transition: color 350ms ease;
+}
+.ds-panel.is-active .ds-panel-num { color: var(--spruce); }
+.ds-panel h3 { margin-bottom: 16px; }
+.ds-panel-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--white); background: var(--spruce);
+  padding: 5px 12px; border-radius: 999px; margin-top: 22px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   DESKTOP — horizontal pinned spine
+   ════════════════════════════════════════════════════════════ */
+@media (min-width: 901px) {
+  .ds { height: calc(var(--ds-len) * 100vh); }
+
+  .ds-sticky {
+    position: sticky; top: 0;
+    height: 100vh; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .ds-head { padding-top: clamp(96px, 13vh, 150px); }
+
+  .ds-stage { position: relative; flex: 1 1 auto; overflow: hidden; }
+
+  .ds-track {
+    position: absolute; top: 50%; left: 0;
+    display: flex; align-items: center;
+    gap: clamp(32px, 5vw, 72px);
+    padding: 0 max(8vw, var(--container-pad));
+    transform: translate(0, -50%);
+    will-change: transform;
+  }
+  .ds-panel {
+    flex: 0 0 auto;
+    width: min(60vw, 540px);
+    opacity: 0.45;
+    transition: opacity 400ms ease;
+  }
+  .ds-panel.is-active { opacity: 1; }
+
+  /* spine HUD pinned at the bottom of the viewport */
+  .ds-rail { position: relative; height: 132px; flex: 0 0 auto; }
+  .ds-rail-inner {
+    position: absolute; left: max(8vw, var(--container-pad));
+    right: max(8vw, var(--container-pad)); top: 46px; height: 2px;
+  }
+  .ds-line { position: absolute; inset: 0; background: var(--rule); border-radius: 999px; }
+  .ds-line-fill {
+    position: absolute; left: 0; top: 0; height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--spruce), var(--frosted));
+    border-radius: 999px;
+  }
+  .ds-station {
+    position: absolute; top: 50%; width: 13px; height: 13px;
+    border-radius: 50%; background: var(--white);
+    border: 2px solid var(--rule);
+    transform: translate(-50%, -50%);
+    transition: border-color 300ms ease, background 300ms ease;
+  }
+  .ds-station.done { border-color: var(--spruce); background: var(--spruce); }
+  .ds-station-label {
+    position: absolute; top: 22px; left: 0;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-muted); white-space: nowrap;
+    transition: color 300ms ease;
+  }
+  .ds-station.done + .ds-station-label,
+  .ds-station-label.done { color: var(--charcoal); }
+  .ds-node {
+    position: absolute; top: 50%; left: 0;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--frosted);
+    transform: translate(-50%, -50%);
+    box-shadow:
+      0 0 calc(var(--ds-glow) * 14px) calc(var(--ds-glow) * 3px) rgba(156, 227, 248, 0.85),
+      0 0 calc(var(--ds-glow) * 36px) calc(var(--ds-glow) * 8px) rgba(156, 227, 248, 0.4);
+  }
+
+  /* hide the mobile spine on desktop */
+  .ds-vspine { display: none; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE / TABLET — vertical stack with drawing spine
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .ds-sticky { position: static; height: auto; overflow: visible; }
+  .ds-rail { display: none; }
+
+  .ds-body { position: relative; padding-top: var(--space-block); }
+  .ds-vspine {
+    position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px;
+    background: var(--rule); border-radius: 999px;
+  }
+  .ds-vfill {
+    position: absolute; left: 0; top: 0; width: 100%; height: 0;
+    background: linear-gradient(180deg, var(--spruce), var(--frosted));
+    border-radius: 999px;
+  }
+  .ds-track {
+    display: flex; flex-direction: column; gap: var(--space-block);
+    padding-left: 40px;
+  }
+  .ds-panel { position: relative; opacity: 1; width: auto; }
+  .ds-panel::before {
+    content: '';
+    position: absolute; left: -39px; top: 8px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--white); border: 2px solid var(--rule);
+    transform: translateX(-50%);
+    transition: border-color 300ms ease, background 300ms ease;
+  }
+  .ds-panel.is-active::before { border-color: var(--spruce); background: var(--spruce); }
+}
+
+/* ════════════════════════════════════════════════════════════
+   REDUCED MOTION — no pinning, spine drawn statically
+   ════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .ds { height: auto !important; }
+  .ds-sticky { position: static !important; height: auto !important; overflow: visible !important; }
+  .ds-rail { display: none; }
+  .ds-track {
+    display: flex; flex-direction: column; gap: var(--space-block);
+    padding-left: 40px; transform: none !important;
+  }
+  .ds-panel { opacity: 1 !important; width: auto !important; }
+}
