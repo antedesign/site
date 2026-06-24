@@ -47,9 +47,10 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
+  max-height: 36vh;            /* keep the whole panel inside the pinned viewport so the photo isn't clipped top/bottom */
   border-radius: var(--radius-card);
   overflow: hidden;
-  margin-bottom: 22px;
+  margin-bottom: clamp(28px, 3.5vh, 48px);   /* breathing room between photo and the title below */
   background: linear-gradient(135deg, var(--spruce) 0%, var(--spruce-dark) 100%);
 }
 .ds-panel-media img {
@@ -94,7 +95,7 @@
     height: 100vh; overflow: hidden;
     display: flex; flex-direction: column;
   }
-  .ds-head { padding-top: clamp(96px, 13vh, 150px); }
+  .ds-head { padding-top: clamp(64px, 8vh, 110px); }
 
   .ds-stage { position: relative; flex: 1 1 auto; overflow: hidden; }
 
@@ -115,7 +116,7 @@
   .ds-panel.is-active { opacity: 1; }
 
   /* spine HUD pinned at the bottom of the viewport */
-  .ds-rail { position: relative; height: 132px; flex: 0 0 auto; }
+  .ds-rail { position: relative; height: 108px; flex: 0 0 auto; }
   .ds-rail-inner {
     position: absolute; left: max(8vw, var(--container-pad));
     right: max(8vw, var(--container-pad)); top: 46px; height: 2px;

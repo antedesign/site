@@ -23,7 +23,7 @@
   //   radius    influence radius in px beyond the button edge
   //   max       max displacement in px (premium = ~6–12)
   //   arrow     how much further the .arrow nudges (× button shift)
-  var cfg = { strength: 0.42, radius: 90, max: 11, arrow: 0.6 };
+  var cfg = { strength: 0.22, radius: 90, max: 7, arrow: 0.5 };
   // ────────────────────────────────────────────────────────
   var SEL = '.btn-primary, .btn-secondary, .btn-frosted';
   var items = [], mx = -99999, my = -99999, running = false;
