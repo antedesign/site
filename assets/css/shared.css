@@ -1231,6 +1231,16 @@ p + h2 {
     align-items: flex-start;
   }
 
+  /* Long CTA labels wrap onto multiple lines instead of overflowing the
+     button box on narrow phones. */
+  .btn-primary,
+  .btn-secondary,
+  .btn-frosted {
+    white-space: normal;
+    max-width: 100%;
+    text-align: center;
+  }
+
   .section--cta .btn-group {
     align-items: center;
   }

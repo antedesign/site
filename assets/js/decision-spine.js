@@ -43,7 +43,7 @@
 
     function applyHorizontal() {
       var max = track.scrollWidth - stage.clientWidth;
-      track.style.transform = 'translate(' + (-max * progress).toFixed(1) + 'px, -50%)';
+      track.style.transform = 'translate(' + (-max * progress).toFixed(1) + 'px, 0)';
       if (fill) fill.style.width = (progress * 100).toFixed(2) + '%';
       if (node) node.style.left = (progress * 100).toFixed(2) + '%';
       var af = progress * (n - 1);
