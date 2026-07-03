@@ -337,6 +337,10 @@ p + p {
   transform: translateX(4px);
 }
 
+/* Optional line break inside a button label — collapsed by default, shown on
+   narrow phones (see the 600px query) so long CTAs wrap at a deliberate point. */
+.cta-break { display: none; }
+
 /* Frosted (ante-blauw) button variant */
 .btn-frosted {
   display: inline-flex;
@@ -1240,6 +1244,9 @@ p + h2 {
     max-width: 100%;
     text-align: center;
   }
+
+  /* Break long CTA labels at the marked point instead of an awkward spot. */
+  .cta-break { display: inline; }
 
   .section--cta .btn-group {
     align-items: center;

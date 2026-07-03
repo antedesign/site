@@ -595,9 +595,27 @@
       }
     };
 
+    /* ── Google Forms capture ──────────────────────────────────
+       Every completed assessment is saved to a Google Form (which feeds a
+       Google Sheet on Drive), even when the visitor doesn't leave an email.
+
+       Build the Form with one short-answer question per field below and paste
+       its entry ID here. IMPORTANT: set every question to "not required" in
+       the Form, otherwise Google rejects submissions that have no email.
+       Leave a value as '' to skip that field until you have its entry ID. */
+    const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSfnEIGDsgG8LWbtNM3Bwpx7jgq0DvcQi5VoA9gDF9whQ_FfvQ/formResponse';
+    const FORM_FIELDS = {
+      recommendation: 'entry.470779957',    // outcome: ready / audit / sprint
+      dimensions:     'entry.1089881584',   // per-dimension scores summary
+      email:          'entry.558975914',    // optional — make NOT required in the Form
+      answers:        'entry.558819581',    // per-question answers (Q1:3, Q2:2, …)
+      responseId:     'entry.120003923'     // response ID for dedupe
+    };
+
     /* ── State ─────────────────────────────────────────────── */
     let step = -1;
     let answers = {};
+    let responseId = '';
 
     /* ── Helpers ───────────────────────────────────────────── */
     const $ = (id) => document.getElementById(id);
@@ -690,18 +708,24 @@
       $('r-title').textContent = copy.title;
       $('r-lead').textContent  = copy.lead;
 
-      // Stash the full results so they travel with the email report request.
+      // Reset the gate to its initial state (relevant after a restart) *before*
+      // stashing the fresh values, so form.reset() can't wipe them afterwards.
+      $('r-gate-form').reset();
+      $('r-gate').hidden = false;
+      $('r-thanks').hidden = true;
+      $('r-gate-error').hidden = true;
+
+      // Stash the full results so they travel with the form submission.
       const summary = Object.entries(dims)
         .map(([key, d]) => `${DIMENSIONS[key].name}: ${d.pct}% (${d.status})`)
         .join(' | ');
       $('r-results-field').value = summary;
       $('r-rec-field').value = rec;
 
-      // Reset the gate to its initial state (relevant after a restart).
-      $('r-gate').hidden = false;
-      $('r-thanks').hidden = true;
-      $('r-gate-error').hidden = true;
-      $('r-gate-form').reset();
+      // Save every completed assessment to the Google Form, even without an
+      // email. The id links this anonymous row to a later email row, if any.
+      responseId = 'r-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+      saveToForm();
 
       showScreen('result');
 
@@ -713,25 +737,38 @@
       });
     }
 
+    // Compact per-question answers, e.g. "Q1:3, Q2:2, …". 0 = unanswered.
+    function buildAnswersString() {
+      return QUESTIONS.map(q => `Q${q.id}:${answers[q.id] || 0}`).join(', ');
+    }
+
+    // Save the current result to the Google Form. Fields without an entry ID
+    // configured are skipped. The response is opaque (no-cors) — fire & forget.
+    function saveToForm(extra) {
+      if (!FORM_ACTION || !FORM_FIELDS.recommendation) return;
+      const data = new FormData();
+      const put = (id, val) => { if (id && val != null && val !== '') data.append(id, val); };
+      put(FORM_FIELDS.recommendation, $('r-rec-field').value);
+      put(FORM_FIELDS.dimensions,     $('r-results-field').value);
+      put(FORM_FIELDS.answers,        buildAnswersString());
+      put(FORM_FIELDS.responseId,     responseId);
+      if (extra && extra.email) put(FORM_FIELDS.email, extra.email);
+      fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: data }).catch(() => {});
+    }
+
     function submitReportRequest(e) {
       e.preventDefault();
-      const form = $('r-gate-form');
       const email = $('r-email').value.trim();
       const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       if (!valid) { $('r-gate-error').hidden = false; return; }
       $('r-gate-error').hidden = true;
 
-      const showThanks = () => {
-        $('r-thanks-email').textContent = email;
-        $('r-gate').hidden = true;
-        $('r-thanks').hidden = false;
-      };
+      // Save again, now with the email attached to the same result.
+      saveToForm({ email });
 
-      // Submit to Google Forms. The response is opaque (no-cors), so we can't
-      // read it — we confirm on screen regardless once the request is sent.
-      fetch(form.getAttribute('action'), { method: 'POST', mode: 'no-cors', body: new FormData(form) })
-        .then(showThanks)
-        .catch(showThanks);
+      $('r-thanks-email').textContent = email;
+      $('r-gate').hidden = true;
+      $('r-thanks').hidden = false;
     }
 
     function restart() {
