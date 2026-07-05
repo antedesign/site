@@ -609,13 +609,16 @@
       dimensions:     'entry.1089881584',   // per-dimension scores summary
       email:          'entry.558975914',    // optional — make NOT required in the Form
       answers:        'entry.558819581',    // per-question answers (Q1:3, Q2:2, …)
-      responseId:     'entry.120003923'     // response ID for dedupe
+      responseId:     'entry.120003923',    // response ID for dedupe
+      duration:       'entry.1812812562'    // completion time in seconds
     };
 
     /* ── State ─────────────────────────────────────────────── */
     let step = -1;
     let answers = {};
     let responseId = '';
+    let startTime = 0;
+    let durationSec = '';
 
     /* ── Helpers ───────────────────────────────────────────── */
     const $ = (id) => document.getElementById(id);
@@ -725,6 +728,7 @@
       // Save every completed assessment to the Google Form, even without an
       // email. The id links this anonymous row to a later email row, if any.
       responseId = 'r-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+      durationSec = startTime ? Math.round((Date.now() - startTime) / 1000) : '';
       saveToForm();
 
       showScreen('result');
@@ -752,6 +756,7 @@
       put(FORM_FIELDS.dimensions,     $('r-results-field').value);
       put(FORM_FIELDS.answers,        buildAnswersString());
       put(FORM_FIELDS.responseId,     responseId);
+      put(FORM_FIELDS.duration,       durationSec);
       if (extra && extra.email) put(FORM_FIELDS.email, extra.email);
       fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: data }).catch(() => {});
     }
@@ -779,6 +784,7 @@
 
     /* ── Wire-up ───────────────────────────────────────────── */
     $('btn-start').addEventListener('click', () => {
+      startTime = Date.now();   // start the completion timer
       step = 0;
       renderQuestion();
       showScreen('question');
