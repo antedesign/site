@@ -1,0 +1,823 @@
+/* ============================================================
+   insights.css — Anté Insights (blog)
+   Layered on top of shared.css. Adds only what the index and the
+   article pages need. All colour, spacing and type comes from the
+   tokens in shared.css: nothing is redefined here.
+   ============================================================ */
+
+/* ── Local tokens ────────────────────────────────────────── */
+:root {
+  --article-measure: 68ch;   /* reading width, body copy */
+  --cover-ratio: 1200 / 630; /* every Insights cover is drawn at this ratio */
+}
+
+/* ============================================================
+   1. COVER ART
+   Every post has one cover, drawn to the template in
+   assets/images/insights/. The cover carries no text of its own:
+   the label sits on top of it in HTML so brand fonts apply.
+   ============================================================ */
+.cover {
+  position: relative;
+  display: block;
+  aspect-ratio: var(--cover-ratio);
+  border-radius: var(--radius-img);
+  overflow: hidden;
+  background: var(--charcoal);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 500ms ease;
+}
+
+.cover-label {
+  position: absolute;
+  top: clamp(14px, 2.2vw, 26px);
+  left: clamp(16px, 2.6vw, 30px);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: clamp(9px, 1.1vw, 11px);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--frosted);
+  background: rgba(40, 41, 43, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(156, 227, 248, 0.28);
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+/* ============================================================
+   2. POST LIST (insights/index.html)
+   ============================================================ */
+
+/* Featured post — cover left, text right */
+.post-featured {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  background: var(--white);
+  transition: box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.post-featured:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+  border-color: rgba(32, 106, 91, 0.18);
+}
+
+.post-featured:hover .cover img { transform: scale(1.03); }
+
+.post-featured h2 {
+  font-size: clamp(26px, 3.4vw, 42px);
+  margin-bottom: 18px;
+}
+
+.post-featured .post-excerpt { margin-bottom: 24px; }
+
+/* Grid of remaining posts */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--white);
+  transition: box-shadow 300ms ease, transform 300ms ease, border-color 300ms ease;
+}
+
+.post-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+  transform: translateY(-3px);
+  border-color: rgba(32, 106, 91, 0.18);
+}
+
+.post-card:hover .cover img { transform: scale(1.04); }
+
+.post-card .cover { border-radius: 0; }
+
+.post-card-body {
+  padding: clamp(20px, 2.4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.post-card h3 {
+  font-size: clamp(19px, 2vw, 24px);
+  margin-bottom: 12px;
+}
+
+.post-card .post-excerpt { flex: 1; }
+
+/* Meta line: date · reading time */
+.post-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.post-meta .sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ink-muted);
+  flex-shrink: 0;
+}
+
+.post-meta .topic { color: var(--spruce); }
+
+.post-excerpt {
+  font-size: clamp(14px, 1.4vw, 16px);
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.post-more {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--spruce);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+}
+
+.post-card:hover .post-more .arrow,
+.post-featured:hover .post-more .arrow { transform: translateX(4px); }
+
+.post-more .arrow { transition: transform 200ms ease; }
+
+/* Placeholder card for the posts that are coming */
+.post-card--upcoming {
+  border-style: dashed;
+  border-color: rgba(40, 41, 43, 0.14);
+  background: rgba(32, 106, 91, 0.02);
+  box-shadow: none;
+}
+
+.post-card--upcoming:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(32, 106, 91, 0.2);
+}
+
+.post-card--upcoming h3 { color: var(--ink-soft); }
+
+.upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.upcoming-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.upcoming-list li::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--frosted);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   3. ARTICLE PAGE
+   ============================================================ */
+
+/* Reading progress bar, pinned under the floating nav */
+.progress-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 99;
+  background: transparent;
+  pointer-events: none;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--spruce);
+  transition: width 90ms linear;
+}
+
+/* Breadcrumb */
+.crumb {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.crumb a { color: var(--spruce); }
+.crumb a:hover { color: var(--charcoal); }
+
+/* Article header */
+.article-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(34px, 5.2vw, 68px);
+  letter-spacing: -0.02em;
+  line-height: 1.03;
+  color: var(--charcoal);
+  max-width: 17ch;
+  margin-bottom: 26px;
+}
+
+.article-lede {
+  font-size: clamp(17px, 2vw, 21px);
+  color: var(--ink-soft);
+  line-height: 1.65;
+  max-width: 58ch;
+  margin-bottom: 28px;
+}
+
+.article-byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.article-byline strong {
+  color: var(--charcoal);
+  font-weight: 500;
+}
+
+/* Article body: the reading column */
+.article-body {
+  max-width: var(--article-measure);
+}
+
+.article-body > p {
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin-bottom: 26px;
+}
+
+.article-body > p:first-of-type { margin-top: 0; }
+
+/* shared.css sets `p + p { margin-top: var(--space-stack) }`;
+   inside the article the bottom margin above already spaces them. */
+.article-body p + p { margin-top: 0; }
+
+.article-body h2 {
+  font-size: clamp(26px, 3.2vw, 40px);
+  margin-top: clamp(48px, 6vw, 76px);
+  margin-bottom: 22px;
+  scroll-margin-top: 110px;
+}
+
+.article-body h3 {
+  font-size: clamp(19px, 2.2vw, 26px);
+  margin-top: clamp(32px, 4vw, 44px);
+  margin-bottom: 14px;
+  scroll-margin-top: 110px;
+}
+
+.article-body h2 + p,
+.article-body h3 + p { margin-top: 0; }
+
+.article-body strong {
+  color: var(--charcoal);
+  font-weight: 600;
+}
+
+.article-body em { font-style: italic; }
+
+.article-body a:not(.btn-primary):not(.btn-secondary):not(.cta-link) {
+  color: var(--spruce);
+  border-bottom: 1px solid rgba(32, 106, 91, 0.3);
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.article-body a:not(.btn-primary):not(.btn-secondary):not(.cta-link):hover {
+  border-color: var(--spruce);
+  background: rgba(32, 106, 91, 0.06);
+}
+
+/* Lists inside the article */
+.article-body ul,
+.article-body ol {
+  margin: 0 0 26px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+/* The marker is positioned, not a flex sibling: a list item mixing <strong>
+   or <a> with plain text has to stay one flowing line of text. */
+.article-body li {
+  font-size: clamp(15px, 1.55vw, 17px);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  position: relative;
+  padding-left: 22px;
+}
+
+.article-body ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--frosted);
+}
+
+.article-body ol {
+  counter-reset: ol-counter;
+}
+
+.article-body ol > li {
+  counter-increment: ol-counter;
+  padding-left: 30px;
+}
+
+.article-body ol > li::before {
+  content: counter(ol-counter);
+  position: absolute;
+  left: 0;
+  top: 0.18em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--spruce);
+}
+
+.article-body li strong { color: var(--charcoal); }
+
+/* Pull quote */
+.pullquote {
+  margin: clamp(36px, 5vw, 56px) 0;
+  padding-left: clamp(22px, 3vw, 34px);
+  border-left: 3px solid var(--frosted);
+}
+
+.pullquote p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(21px, 2.6vw, 30px);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+/* Callout: the practical instruction inside a section */
+.callout {
+  background: rgba(32, 106, 91, 0.04);
+  border: 1px solid rgba(32, 106, 91, 0.12);
+  border-radius: var(--radius-card);
+  padding: clamp(24px, 3vw, 34px);
+  margin: clamp(32px, 4vw, 44px) 0;
+}
+
+.callout .eyebrow { margin-bottom: 12px; }
+
+.callout p:last-child,
+.callout ul:last-child,
+.callout ol:last-child { margin-bottom: 0; }
+
+/* Figure: diagrams sit full reading width */
+.article-figure {
+  margin: clamp(36px, 5vw, 56px) 0;
+}
+
+.article-figure .figure-frame {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  padding: clamp(20px, 3vw, 34px);
+  background: var(--white);
+  overflow-x: auto;
+}
+
+.article-figure svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  min-width: 460px;
+}
+
+.article-figure figcaption {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin-top: 14px;
+  text-transform: none;
+}
+
+/* Comparison table */
+.article-table-wrap {
+  overflow-x: auto;
+  margin: clamp(32px, 4vw, 44px) 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+}
+
+.article-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.article-table th,
+.article-table td {
+  text-align: left;
+  padding: 16px clamp(16px, 2vw, 22px);
+  font-size: 15px;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.article-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--spruce);
+  background: rgba(32, 106, 91, 0.03);
+}
+
+.article-table td { color: var(--ink-soft); }
+.article-table td:first-child { color: var(--charcoal); font-weight: 500; }
+.article-table tr:last-child td { border-bottom: none; }
+
+/* ============================================================
+   4. TABLE OF CONTENTS (sticky, desktop only)
+   ============================================================ */
+/* The reading column keeps the hero's left edge, the contents list sits
+   flush right against the cover's right edge. The slack falls between
+   them instead of after them. */
+.article-layout {
+  display: grid;
+  grid-template-columns: min(100%, var(--article-measure)) 232px;
+  justify-content: space-between;
+  gap: clamp(32px, 4vw, 56px);
+  align-items: start;
+}
+
+.toc {
+  position: sticky;
+  top: 110px;
+  border-left: 1px solid var(--rule);
+  padding-left: 22px;
+}
+
+.toc-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.toc ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toc a {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  transition: color 200ms ease;
+  display: block;
+}
+
+.toc a:hover { color: var(--charcoal); }
+
+.toc a.is-current {
+  color: var(--spruce);
+  font-weight: 500;
+}
+
+/* ============================================================
+   5. PROMPT BLOCK
+   Closes every Insights post. Kept as one self-contained block
+   so it can later be wrapped in an email gate without touching
+   the article: gate the .prompt-body, leave the header visible.
+   ============================================================ */
+.prompt-block {
+  background: var(--charcoal);
+  border-radius: var(--radius-card);
+  padding: clamp(30px, 4vw, 52px);
+  margin: clamp(48px, 6vw, 72px) 0 0;
+  color: var(--white);
+  scroll-margin-top: 110px;
+}
+
+.prompt-block .eyebrow { color: var(--frosted); }
+
+.prompt-block h2 {
+  color: var(--white);
+  font-size: clamp(24px, 3vw, 36px);
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.prompt-block > p {
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 62ch;
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.75;
+}
+
+.prompt-pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: clamp(18px, 2.4vw, 24px);
+  margin: 24px 0 20px;
+  max-height: 340px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+}
+
+.prompt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.prompt-block .btn-primary {
+  background: var(--frosted);
+  border-color: var(--frosted);
+  color: var(--charcoal);
+}
+
+.prompt-block .btn-primary:hover {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--charcoal);
+}
+
+.prompt-block .btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.prompt-block .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+
+.prompt-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--frosted);
+  min-height: 1em;
+}
+
+.prompt-howto {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  max-width: 62ch;
+}
+
+/* ============================================================
+   6. FAQ (renders as real content, and as FAQPage schema)
+   ============================================================ */
+.faq-list {
+  border-top: 1px solid var(--rule);
+  margin-top: var(--space-stack);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 22px 40px 22px 0;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(16px, 1.8vw, 19px);
+  color: var(--charcoal);
+  line-height: 1.5;
+  transition: color 200ms ease;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--spruce); }
+
+.faq-item summary::after {
+  content: '';
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: -7px;
+  border-right: 2px solid var(--spruce);
+  border-bottom: 2px solid var(--spruce);
+  transform: rotate(45deg);
+  transition: transform 250ms ease;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(-135deg);
+  margin-top: -3px;
+}
+
+.faq-answer {
+  padding: 0 0 24px;
+  max-width: 68ch;
+}
+
+.faq-answer p {
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.75;
+}
+
+.faq-answer p + p { margin-top: 18px; }
+
+/* ============================================================
+   7. SOURCES, AUTHOR, NEXT
+   ============================================================ */
+.sources {
+  margin-top: clamp(40px, 5vw, 56px);
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.sources ol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  counter-reset: src;
+}
+
+.sources li {
+  counter-increment: src;
+  position: relative;
+  padding-left: 26px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.sources li::before {
+  content: counter(src);
+  position: absolute;
+  left: 0;
+  top: 0.22em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+.sources a {
+  color: var(--spruce);
+  border-bottom: 1px solid rgba(32, 106, 91, 0.3);
+}
+
+.sources a:hover { border-color: var(--spruce); }
+
+.author-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: clamp(22px, 3vw, 30px);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  margin-top: clamp(40px, 5vw, 56px);
+}
+
+.author-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(32, 106, 91, 0.08);
+  border: 1px solid rgba(32, 106, 91, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.author-mark span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--spruce);
+  line-height: 1;
+}
+
+.author-card h4 { margin-bottom: 6px; }
+.author-card p { font-size: 14px; margin: 0; }
+
+/* ============================================================
+   8. RESPONSIVE
+   ============================================================ */
+@media (max-width: 1040px) {
+  .article-layout { grid-template-columns: minmax(0, 1fr); justify-content: start; }
+  .toc { display: none; }
+  .post-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .post-featured {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 680px) {
+  .post-grid { grid-template-columns: 1fr; }
+  .article-title { max-width: none; }
+  .article-figure svg { min-width: 380px; }
+  .prompt-pre { font-size: 11.5px; max-height: 300px; }
+  .prompt-actions > .btn-primary,
+  .prompt-actions > .btn-secondary { flex: 1 1 100%; justify-content: center; }
+}
+
+/* ── Print: the article, nothing else ───────────────────── */
+@media print {
+  .nav, .mobile-menu, .footer, .toc, .progress-rail,
+  .prompt-actions, .article-nav, .green-cta-block { display: none !important; }
+  .article-layout { display: block; }
+  .prompt-block { background: none; color: var(--charcoal); border: 1px solid #ccc; }
+  .prompt-block h2, .prompt-block > p, .prompt-pre { color: var(--charcoal); }
+  .prompt-pre { background: #f6f6f6; border-color: #ddd; }
+  .faq-item[open] .faq-answer, .faq-answer { display: block !important; }
+}

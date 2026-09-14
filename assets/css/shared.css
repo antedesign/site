@@ -1839,10 +1839,19 @@ p + h2 {
   margin-top: 32px;
 }
 
-@media (max-width: 600px) {
+/* The centred nav holds five links. Below ~860px they start to collide with
+   the logo and the CTA, so the menu collapses to the hamburger there rather
+   than at 600px. */
+@media (max-width: 860px) {
+  .nav-links {
+    display: none;
+  }
   .nav-hamburger {
     display: flex;
   }
+}
+
+@media (max-width: 600px) {
   .nav-right .btn-primary {
     padding: 8px 14px;
     font-size: 12px;
