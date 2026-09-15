@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Working files, not pages. Kept out of the index.
+Disallow: /source/
+
+Sitemap: https://antedesign.be/sitemap.xml

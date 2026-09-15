@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Double Diamond design process: two decisions, not four phases | Anté</title>
+  <meta name="description" content="The Double Diamond is usually run as four phases. Its real content is two decisions: the problem statement and the committed direction. Where it breaks, and how to run it so it holds.">
+  <link rel="canonical" href="https://antedesign.be/insights/double-diamond-design-process/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <!-- Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anté">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="The Double Diamond is two decisions, not four phases.">
+  <meta property="og:description" content="Four phases are the part of the model that is easy to draw. The two points where the diamonds narrow are where the money is committed.">
+  <meta property="og:url" content="https://antedesign.be/insights/double-diamond-design-process/">
+  <meta property="og:image" content="https://antedesign.be/assets/images/insights/double-diamond-design-process.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The double diamond, with both of its convergence points marked.">
+  <meta property="article:published_time" content="2026-09-14">
+  <meta property="article:section" content="Method">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Double Diamond is two decisions, not four phases.">
+  <meta name="twitter:description" content="Four phases are the part of the model that is easy to draw. The two points where the diamonds narrow are where the money is committed.">
+  <meta name="twitter:image" content="https://antedesign.be/assets/images/insights/double-diamond-design-process.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:ital,wght@1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/shared.css">
+  <link rel="stylesheet" href="/assets/css/insights.css">
+
+  <!-- Structured data: article, breadcrumb, FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://antedesign.be/insights/double-diamond-design-process/#article",
+        "headline": "The Double Diamond is two decisions, not four phases.",
+        "description": "The Double Diamond is usually run as four phases. Its real content is two decisions: the problem statement and the committed direction.",
+        "image": "https://antedesign.be/assets/images/insights/double-diamond-design-process.png",
+        "datePublished": "2026-09-14",
+        "dateModified": "2026-09-14",
+        "inLanguage": "en-GB",
+        "articleSection": "Method",
+        "keywords": "double diamond, design process, problem definition, concept validation, decision making",
+        "author": { "@type": "Organization", "name": "Anté", "url": "https://antedesign.be/" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Anté",
+          "url": "https://antedesign.be/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://antedesign.be/assets/images/ante-logo.svg"
+          }
+        },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://antedesign.be/insights/double-diamond-design-process/" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://antedesign.be/" },
+          { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://antedesign.be/insights/" },
+          { "@type": "ListItem", "position": 3, "name": "The Double Diamond is two decisions, not four phases." }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are the four stages of the Double Diamond?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Discover, Define, Develop and Deliver. Discover and Define sit in the first diamond and deal with the problem. Develop and Deliver sit in the second and deal with the solution. Each diamond widens to explore and narrows to a decision."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who created the Double Diamond, and in what year?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The UK Design Council's in-house Design and Innovation team created it in 2003, led by Richard Eisermann, and first shared it publicly in 2004. It is frequently dated to 2005 and attributed to a study of eleven global companies, which conflates it with a separate Design Council report, Eleven lessons: managing design in eleven global brands, published in 2007."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between the Double Diamond and design thinking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Design thinking is a broad family of human-centred practices. The Double Diamond is one diagram of the shape those practices tend to take: diverge then converge, once on the problem and once on the solution. The Double Diamond is more specific about sequence and less specific about method."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the Double Diamond still current?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Design Council has published two successors: the Framework for Innovation in 2019, which makes the process explicitly non-linear, and the Systemic Design Framework in 2021, which reframes the work as Explore, Reframe, Create and Catalyse. The original four-phase diamond remains the version most teams use."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the most common mistake teams make with the Double Diamond?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Converging without criteria. Teams generate options first and write the comparison afterwards, so the criteria end up describing the preferred option rather than testing it. Criteria written before the options exist are a decision rule. The same criteria written afterwards are a justification."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+  <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"68ea92b283d5d6d8bad1366116d1438b"})});</script>
+<body>
+
+  <div class="progress-rail" aria-hidden="true"><div class="progress-bar"></div></div>
+
+  <!-- ── Navigation ───────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="/" class="nav-logo"><img src="/assets/images/ante-logo.svg" alt="anté"></a>
+    <ul class="nav-links">
+      <li><a href="/approach/" class="nav-link">Approach</a></li>
+      <li><a href="/cases/" class="nav-link">Cases</a></li>
+      <li><a href="/insights/" class="nav-link active">Insights</a></li>
+      <li><a href="/about/" class="nav-link">About</a></li>
+      <li><a href="/contact/" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="/scorecard/" class="btn-primary nav-cta">Take assessment</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Mobile menu ──────────────────────────────────────── -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <a href="/" class="nav-logo"><img src="/assets/images/ante-logo.svg" alt="anté"></a>
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Sluit menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="/approach/">Approach</a></li>
+      <li><a href="/cases/">Cases</a></li>
+      <li><a href="/insights/">Insights</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+    <a href="/scorecard/" class="btn-primary mobile-menu-cta">Take assessment</a>
+  </div>
+
+  <article>
+
+    <!-- ── Article header ─────────────────────────────────── -->
+    <header class="hero">
+      <div class="container">
+        <nav class="crumb reveal" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span>/</span> <a href="/insights/">Insights</a> <span>/</span> <span>Double Diamond</span>
+        </nav>
+        <h1 class="article-title reveal">The Double Diamond is <span class="text-spruce">two decisions</span>, not four phases.</h1>
+        <p class="article-lede reveal">Four phases are the part of the model that is easy to put on a slide. The two points where the diamonds narrow are where the budget is committed, and they are usually the least documented moments in the whole project.</p>
+        <div class="article-byline reveal">
+          <span class="topic" style="color:var(--spruce)">Method</span>
+          <span>·</span>
+          <span>14 September 2026</span>
+          <span>·</span>
+          <span>10 min read</span>
+          <span>·</span>
+          <span>By <strong>Anté</strong></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Cover ──────────────────────────────────────────── -->
+    <div class="container">
+      <div class="cover reveal" style="margin-bottom: var(--space-block)">
+        <img src="/assets/images/insights/double-diamond-design-process.svg"
+             alt="The double diamond, with both of its convergence points marked as bright dots."
+             width="1200" height="630">
+        <span class="cover-label">Method · 01</span>
+      </div>
+    </div>
+
+    <!-- ── Body ───────────────────────────────────────────── -->
+    <section class="section section--snug" style="padding-top:0">
+      <div class="container">
+        <div class="article-layout">
+
+          <div class="article-body">
+
+            <p>Almost every team that draws the Double Diamond draws four phases. That is the part of the model that reproduces cleanly on a slide, fits in a project plan and survives being explained in thirty seconds. It is also the part that does the least work.</p>
+
+            <p>The content of the model is in two places on the drawing, and neither of them is a phase. They are the two points where the shape narrows: the moment a team commits to a statement of the problem, and the moment it commits to one direction and drops the others. Everything else on the diagram is preparation for those two moments, or execution of what they decided.</p>
+
+            <h2 id="origin">Where the model comes from, and one date almost everyone gets wrong</h2>
+
+            <p>Most write-ups will tell you the Double Diamond was published in 2005, based on a study of design at eleven global companies. The Design Council's own history of the model says something different.</p>
+
+            <p>The model was created in <strong>2003</strong> by the Council's in-house Design and Innovation team, led by Richard Eisermann, and first shared publicly in <strong>2004</strong>. It came out of reviewing projects the Council had run itself, not out of a field study of other people's companies.</p>
+
+            <p>The eleven companies belong to a different document. <em>Eleven lessons: managing design in eleven global brands</em> was published in 2007 and looked at how design was run inside firms including LEGO, Microsoft, Sony, Starbucks and Virgin Atlantic. The Double Diamond appeared in it as a framing device. Over twenty years of retelling, the two got fused into one origin story.</p>
+
+            <p>This matters for more than accuracy. It tells you what kind of object the model is. The Double Diamond was never a research finding about how innovation succeeds. It was a description of a shape that kept showing up, drawn so it could be communicated. The underlying idea is older again: alternating divergence and convergence comes from Béla H. Bánáthy's <em>Designing Social Systems in a Changing World</em>, published in 1996. What the Double Diamond added was the second diamond, and with it the insistence that you do this twice, once on the problem and once on the solution.</p>
+
+            <p>The Council has since moved on twice. The <a href="https://www.designcouncil.org.uk/resources/framework-for-innovation/" target="_blank" rel="noopener">Framework for Innovation</a> (2019) made the process explicitly non-linear and wrapped principles and leadership around it. The <a href="https://www.designcouncil.org.uk/resources/systemic-design-framework/" target="_blank" rel="noopener">Systemic Design Framework</a> (2021) reframed the work as Explore, Reframe, Create and Catalyse. The neat four-phase diamond most teams still work from is the 2004 drawing.</p>
+
+            <h2 id="what-it-says">What the model actually says</h2>
+
+            <p>Two diamonds, side by side. The first covers the problem: <strong>Discover</strong> opens up to gather evidence about what is going on, <strong>Define</strong> narrows that down to a statement of the problem worth solving. The second covers the solution: <strong>Develop</strong> opens up again to generate ways of solving it, <strong>Deliver</strong> narrows to the one you commit to.</p>
+
+            <p>Each diamond has the same rhythm. Widen, then narrow. Explore, then choose.</p>
+
+            <figure class="article-figure reveal">
+              <div class="figure-frame">
+                <svg viewBox="0 0 900 330" role="img" aria-labelledby="dd-title dd-desc">
+                  <title id="dd-title">The Double Diamond, with its two decision points marked</title>
+                  <desc id="dd-desc">Two diamonds side by side. The first covers Discover and Define, the second Develop and Deliver. The right-hand tip of each diamond is marked as a decision point.</desc>
+
+                  <!-- space labels -->
+                  <text x="235" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="17" fill="#206A5B" letter-spacing="1.8">PROBLEM SPACE</text>
+                  <text x="665" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="17" fill="#206A5B" letter-spacing="1.8">SOLUTION SPACE</text>
+
+                  <!-- diamond one -->
+                  <polygon points="60,190 235,100 410,190 235,280" fill="rgba(156,227,248,0.20)" stroke="#206A5B" stroke-width="2"/>
+                  <line x1="235" y1="100" x2="235" y2="280" stroke="#206A5B" stroke-width="1" stroke-dasharray="4 5" opacity="0.45"/>
+
+                  <!-- diamond two -->
+                  <polygon points="490,190 665,100 840,190 665,280" fill="rgba(32,106,91,0.09)" stroke="#206A5B" stroke-width="2"/>
+                  <line x1="665" y1="100" x2="665" y2="280" stroke="#206A5B" stroke-width="1" stroke-dasharray="4 5" opacity="0.45"/>
+
+                  <!-- handover -->
+                  <line x1="410" y1="190" x2="490" y2="190" stroke="#206A5B" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.5"/>
+
+                  <!-- diverge / converge -->
+                  <text x="148" y="196" text-anchor="middle" font-family="Poppins, sans-serif" font-size="17" fill="#28292B" opacity="0.5">diverge</text>
+                  <text x="323" y="196" text-anchor="middle" font-family="Poppins, sans-serif" font-size="17" fill="#28292B" opacity="0.5">converge</text>
+                  <text x="578" y="196" text-anchor="middle" font-family="Poppins, sans-serif" font-size="17" fill="#28292B" opacity="0.5">diverge</text>
+                  <text x="753" y="196" text-anchor="middle" font-family="Poppins, sans-serif" font-size="17" fill="#28292B" opacity="0.5">converge</text>
+
+                  <!-- phase names -->
+                  <text x="148" y="311" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-style="italic" font-weight="800" font-size="21" fill="#206A5B">Discover</text>
+                  <text x="323" y="311" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-style="italic" font-weight="800" font-size="21" fill="#206A5B">Define</text>
+                  <text x="578" y="311" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-style="italic" font-weight="800" font-size="21" fill="#206A5B">Develop</text>
+                  <text x="753" y="311" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-style="italic" font-weight="800" font-size="21" fill="#206A5B">Deliver</text>
+
+                  <!-- the two decisions -->
+                  <circle cx="410" cy="190" r="19" fill="none" stroke="#206A5B" stroke-width="1.2" opacity="0.35"/>
+                  <circle cx="410" cy="190" r="8" fill="#206A5B"/>
+                  <circle cx="840" cy="190" r="19" fill="none" stroke="#206A5B" stroke-width="1.2" opacity="0.35"/>
+                  <circle cx="840" cy="190" r="8" fill="#206A5B"/>
+
+                  <text x="410" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#28292B" letter-spacing="1.3" opacity="0.75">DECISION 1</text>
+                  <text x="410" y="82" text-anchor="middle" font-family="Poppins, sans-serif" font-size="15" fill="#28292B" opacity="0.5">the problem</text>
+                  <line x1="410" y1="94" x2="410" y2="166" stroke="#28292B" stroke-width="1" opacity="0.2"/>
+
+                  <text x="840" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#28292B" letter-spacing="1.3" opacity="0.75">DECISION 2</text>
+                  <text x="840" y="82" text-anchor="middle" font-family="Poppins, sans-serif" font-size="15" fill="#28292B" opacity="0.5">the direction</text>
+                  <line x1="840" y1="94" x2="840" y2="166" stroke="#28292B" stroke-width="1" opacity="0.2"/>
+                </svg>
+              </div>
+              <figcaption>The four phases describe activity. The two marked points are where commitments are made, and where the cost of being wrong is set.</figcaption>
+            </figure>
+
+            <h2 id="two-decisions">The part everyone draws, and the part that does the work</h2>
+
+            <p>Look at the drawing again and ignore the words for a moment. What is left is two wide openings and two narrow points.</p>
+
+            <p>The openings are activity: interviews, desk research, workshops, sketches, prototypes. Activity is visible. It can be scheduled, staffed, reported on and shown to a steering committee. It generates artefacts, and artefacts feel like progress.</p>
+
+            <p>The narrow points are something else entirely. At the end of the first diamond, a group of people commits to a sentence about what the problem is. At the end of the second, it commits to one direction and lets the alternatives go. Those two commitments determine where every euro after them is spent. The first decides what the project is about. The second decides what gets built.</p>
+
+            <div class="pullquote">
+              <p>Divergence is visible. Convergence is where the money is committed, and it is usually the least documented moment in the project.</p>
+            </div>
+
+            <p>This is why "we ran a Double Diamond" and "we made two defensible decisions" are not the same claim, and why the first is considerably easier to make.</p>
+
+            <h2 id="how-it-breaks">Four ways it breaks in practice</h2>
+
+            <h3>1. It gets read as a timeline</h3>
+
+            <p>The diamonds are drawn left to right, so they get transcribed into a schedule: two weeks Discover, one week Define, three weeks Develop. Phases can be planned, which is exactly what makes this attractive. The model then behaves like a waterfall with better geometry.</p>
+
+            <p>The 2019 Framework for Innovation states plainly that the process is not linear. In practice, a team that learns something during Develop that undermines its problem statement has two options: reopen the first diamond, or carry on. Once the phases are in a plan with dates attached, that becomes a political question rather than an evidential one.</p>
+
+            <p><strong>Signal to watch for:</strong> the problem statement has not changed since week two, and nobody can recall it being discussed since.</p>
+
+            <h3>2. "Diverge" gets read as brainstorming</h3>
+
+            <p>In the first diamond, divergence means going out and finding out. Interviews, observation, data you did not previously have. It is evidence gathering, and it is slow.</p>
+
+            <p>What often happens instead is a room, a wall and a pack of sticky notes. That produces divergence in the opinions the team already held. You finish with more options and no more information.</p>
+
+            <p>The test is blunt: after a divergent session, can you name one thing you now know that you did not know before, and say where it came from? If the answer is a list of ideas rather than a list of findings, you diverged inside the room, not outside it.</p>
+
+            <h3>3. The first diamond gets skipped, because the brief already contains the answer</h3>
+
+            <p>Most projects arrive with a solution already named: an app, a portal, a platform, a rebrand. When the solution is in the brief, Discover and Define quietly change function. They become research about the solution rather than research about the problem. The shape still gets drawn on the kick-off slide. The first diamond is decorative.</p>
+
+            <p>This is the most expensive of the four, because it is invisible. You cannot see the problem you never framed, and the project will not fail in a way that points back at it. It will fail later, as weak adoption, as scope that keeps expanding, as a rebuild eighteen months on.</p>
+
+            <h3>4. Convergence happens without criteria</h3>
+
+            <p>The most common version: options first, criteria afterwards. A team develops three concepts, puts them side by side, and then builds the comparison that explains the one it already prefers. The criteria get written to fit the conclusion. Because they are written in good faith, nobody notices.</p>
+
+            <p>The order matters more than the content. Criteria set before the options exist are a decision rule. The same criteria written after the options exist are a justification. They can be word for word identical and still do opposite jobs.</p>
+
+            <h2 id="what-it-lacks">What the model does not give you</h2>
+
+            <p>Three things are missing from the drawing, and all three have to be supplied by whoever is running the work.</p>
+
+            <ul>
+              <li><strong>A stopping rule.</strong> Nothing in the model says when Discover ends. In the absence of a rule, "enough" gets decided by the calendar or by fatigue, whichever arrives first.</li>
+              <li><strong>An evidence standard.</strong> The model treats one senior stakeholder's opinion, a competitor scan and six user interviews as the same kind of input. They are not. Nothing in the shape distinguishes what you know from what you assume.</li>
+              <li><strong>Decision rights.</strong> The diamonds do not say who converges. In most organisations the default answer is whoever is most senior in the room at the time, which is not the same as whoever has the best evidence.</li>
+            </ul>
+
+            <p>These are not flaws. The Double Diamond was drawn to describe a shape, not to govern a decision. They become flaws the moment the drawing is used as a process.</p>
+
+            <h2 id="how-to-run-it">How to run it so it holds</h2>
+
+            <p>Seven changes, none of which require a bigger budget. They move the weight of the work from the phases onto the two decisions.</p>
+
+            <ol>
+              <li><strong>Write the assumed solution down first, then set it aside.</strong> Name the thing everyone is already picturing, in one sentence, before Discover starts. Making it explicit is what allows you to test it instead of serving it.</li>
+              <li><strong>Give divergence an evidence target, not a time box.</strong> "Six stakeholder interviews across three functions" is checkable. "Two weeks of discovery" is not.</li>
+              <li><strong>Separate what you know from what you assume.</strong> Two columns, maintained as you go. Anything in the assumption column that would change the decision if it turned out to be wrong is a research priority, in that order.</li>
+              <li><strong>Set the convergence criteria before you generate options.</strong> Write down what would make a direction the right one, and get the people who will sign off to agree with it, while there is still nothing to defend.</li>
+              <li><strong>Make the problem statement falsifiable.</strong> If no piece of evidence could show your problem statement to be wrong, you have written a topic, not a problem.</li>
+              <li><strong>Develop directions that differ in principle, not in degree.</strong> Three variations of one idea is one option shown three times. Directions built on genuinely different premises force a real trade-off, and the trade-off is what makes the choice defensible six months later.</li>
+              <li><strong>Record why the others were dropped.</strong> A decision nobody can reconstruct will be reopened. Usually at the worst possible moment.</li>
+            </ol>
+
+            <div class="callout">
+              <span class="eyebrow">The short version</span>
+              <p>Spend less effort proving you followed the process and more effort making the two convergence points explicit: what the problem is, and what would make one direction better than another. Both should be written down before the evidence that supports them is collected.</p>
+            </div>
+
+            <h2 id="diagnostic">Which diamond are you actually in?</h2>
+
+            <p>A one-minute check. Read the left column, and be honest about which line describes your project this week.</p>
+
+            <div class="article-table-wrap">
+              <table class="article-table">
+                <thead>
+                  <tr>
+                    <th scope="col">If this is true</th>
+                    <th scope="col">Then this is where you are</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Everyone agrees on the problem, but nobody has written it in one sentence</td>
+                    <td>Still inside diamond one. Agreement that has never been written down is usually four different agreements.</td>
+                  </tr>
+                  <tr>
+                    <td>The brief names a solution</td>
+                    <td>Diamond two, without diamond one. The first decision was made before the project started, by whoever wrote the brief.</td>
+                  </tr>
+                  <tr>
+                    <td>You have three concepts and no criteria</td>
+                    <td>Diamond two, with no way out of it. Whatever you pick now, the comparison will be written backwards from it.</td>
+                  </tr>
+                  <tr>
+                    <td>New evidence keeps changing what the problem appears to be</td>
+                    <td>Diamond one, and it is not finished. This is uncomfortable and correct. It is far cheaper here than after development starts.</td>
+                  </tr>
+                  <tr>
+                    <td>You can state the problem in one sentence and name what would prove it wrong</td>
+                    <td>At the first decision point. This is the moment to commit, in writing, and move.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 id="faq">Common questions</h2>
+
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>What are the four stages of the Double Diamond?</summary>
+                <div class="faq-answer">
+                  <p>Discover, Define, Develop and Deliver. Discover and Define sit in the first diamond and deal with the problem. Develop and Deliver sit in the second and deal with the solution. Each diamond widens to explore and narrows to a decision.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary>Who created the Double Diamond, and in what year?</summary>
+                <div class="faq-answer">
+                  <p>The UK Design Council's in-house Design and Innovation team created it in 2003, led by Richard Eisermann, and first shared it publicly in 2004.</p>
+                  <p>It is frequently dated to 2005 and attributed to a study of eleven global companies. That conflates it with a separate Design Council report, <em>Eleven lessons: managing design in eleven global brands</em>, published in 2007.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary>What is the difference between the Double Diamond and design thinking?</summary>
+                <div class="faq-answer">
+                  <p>Design thinking is a broad family of human-centred practices. The Double Diamond is one diagram of the shape those practices tend to take: diverge then converge, once on the problem and once on the solution. It is more specific about sequence and less specific about method.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary>Is the Double Diamond still current?</summary>
+                <div class="faq-answer">
+                  <p>The Design Council has published two successors: the Framework for Innovation in 2019, which makes the process explicitly non-linear, and the Systemic Design Framework in 2021, which reframes the work as Explore, Reframe, Create and Catalyse.</p>
+                  <p>The original four-phase diamond remains the version most teams use, which is part of why the misreadings above are so persistent.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary>What is the most common mistake teams make with it?</summary>
+                <div class="faq-answer">
+                  <p>Converging without criteria. Options get generated first and the comparison gets written afterwards, so the criteria describe the preferred option rather than test it. Criteria written before the options exist are a decision rule. The same criteria written afterwards are a justification.</p>
+                </div>
+              </details>
+            </div>
+
+            <!-- ── Closing prompt ──────────────────────────────
+                 One self-contained block. To gate this later, wrap
+                 everything from .prompt-pre down in the gate and
+                 leave the heading and paragraph visible.
+                 ─────────────────────────────────────────────── -->
+            <div class="prompt-block" data-prompt-block>
+              <span class="eyebrow">Apply it to your own project</span>
+              <h2 id="prompt">Use AI as a sparring partner, not an oracle</h2>
+              <p>This prompt does not decide anything for you. It puts pressure on the two decisions above: whether your problem statement is a problem or a symptom, and whether your criteria were written before or after your preferred answer. Paste it into ChatGPT, Claude or Gemini, and fill in the bracketed parts with your own project.</p>
+
+              <pre class="prompt-pre" id="prompt-text">You are acting as a critical design and innovation sparring partner. Do not make the decision for me and do not hand me a recommendation. Your job is to find where my thinking is thin.
+
+MY PROJECT
+[one or two sentences: what you are working on, and who it is for]
+
+THE PROBLEM AS I CURRENTLY STATE IT
+[one sentence]
+
+WHAT I KNOW (name the source for every line)
+[bullet points: interviews, observation, data]
+
+WHAT I AM ASSUMING (no source yet)
+[bullet points]
+
+THE DIRECTIONS I AM CONSIDERING
+[list them]
+
+THE DIRECTION I AM LEANING TOWARDS, AND WHY
+[one paragraph]
+
+Work through the following in order, answering each one separately.
+
+1. PROBLEM OR SYMPTOM
+Is my problem statement a root problem, or a symptom of one? Ask "why is that" up to five times in sequence, writing the most likely answer at each layer based on what I gave you. Tell me at which layer the problem becomes worth solving, and why the layers above it are not.
+
+2. FALSIFIABILITY
+What evidence would prove my problem statement wrong? If you cannot name any, say so plainly and rewrite the statement so that it can be wrong.
+
+3. EVIDENCE AUDIT
+Go through my "what I know" list and label each line: observed (someone saw or measured it), reported (someone said it), or inferred (we concluded it). Flag anything I have filed as knowledge that is actually inference.
+
+4. THE SOLUTION ALREADY IN THE BRIEF
+From how I described the project, name the solution I appear to have decided on before framing the problem. Quote the words that gave it away.
+
+5. RETROFITTED CRITERIA
+Look at the direction I am leaning towards. Write out the criteria I would have needed in order to arrive there. Then tell me whether those criteria look chosen for the problem, or chosen for the answer.
+
+6. VARIATION OR ALTERNATIVE
+Are my directions genuinely different in principle, or three versions of one idea? If they are versions, propose two directions that solve the same problem on a fundamentally different premise.
+
+7. THE FIVE QUESTIONS
+End with the five questions I must answer with real evidence, from people outside my team, before any budget is committed. Rank them by how much the decision changes if the answer surprises me.
+
+Be specific and direct. Where I have given you too little to judge something, say what is missing instead of filling it in yourself.</pre>
+
+              <div class="prompt-actions">
+                <button class="btn-primary" type="button" data-copy-prompt>Copy the prompt <span class="arrow">→</span></button>
+                <a href="/tools/222-double-diamond-blueprint/" class="btn-secondary">Open the interactive workbook</a>
+                <span class="prompt-note" role="status" aria-live="polite"></span>
+              </div>
+
+              <p class="prompt-howto">Two notes on using it. Answer the bracketed sections properly before you paste: a model given thin input returns confident, thin output, and confidence is the part that travels. And when it pushes back on something you are sure about, that is the part worth reading twice.</p>
+            </div>
+
+            <!-- ── Sources ────────────────────────────────── -->
+            <div class="sources">
+              <span class="eyebrow">Sources</span>
+              <ol>
+                <li>Design Council, <a href="https://www.designcouncil.org.uk/resources/the-double-diamond/history-of-the-double-diamond/" target="_blank" rel="noopener">History of the Double Diamond</a>. Creation in 2003 by the Design and Innovation team led by Richard Eisermann, first shared publicly in 2004.</li>
+                <li>Design Council, <a href="https://www.designcouncil.org.uk/resources/the-double-diamond/" target="_blank" rel="noopener">The Double Diamond</a>.</li>
+                <li>Design Council, <em>Eleven lessons: managing design in eleven global brands</em>, 2007.</li>
+                <li>Design Council, <a href="https://www.designcouncil.org.uk/resources/framework-for-innovation/" target="_blank" rel="noopener">Framework for Innovation</a>, 2019.</li>
+                <li>Design Council, <a href="https://www.designcouncil.org.uk/resources/systemic-design-framework/" target="_blank" rel="noopener">Systemic Design Framework</a>, 2021.</li>
+                <li>Béla H. Bánáthy, <a href="https://link.springer.com/book/10.1007/978-1-4757-9981-1" target="_blank" rel="noopener"><em>Designing Social Systems in a Changing World</em></a>, Springer, 1996. Origin of the divergence and convergence model.</li>
+              </ol>
+            </div>
+
+            <!-- ── Author ─────────────────────────────────── -->
+            <div class="author-card">
+              <div class="author-mark"><span>a</span></div>
+              <div>
+                <h4>Anté</h4>
+                <p>An independent concept validation consultancy in Antwerp. We do not build, and we take no stake in what you decide, which is the only reason our answer on direction is worth anything. Decide before you build.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ── Table of contents ──────────────────────── -->
+          <aside class="toc" aria-label="On this page">
+            <span class="toc-title">On this page</span>
+            <ul>
+              <li><a href="#origin">Where the model comes from</a></li>
+              <li><a href="#what-it-says">What the model says</a></li>
+              <li><a href="#two-decisions">The two decisions</a></li>
+              <li><a href="#how-it-breaks">Four ways it breaks</a></li>
+              <li><a href="#what-it-lacks">What it does not give you</a></li>
+              <li><a href="#how-to-run-it">How to run it so it holds</a></li>
+              <li><a href="#diagnostic">Which diamond are you in?</a></li>
+              <li><a href="#faq">Common questions</a></li>
+              <li><a href="#prompt">The prompt</a></li>
+            </ul>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────── -->
+    <section class="section section--snug">
+      <div class="container">
+        <div class="green-cta-block reveal">
+          <h2>Which decision are you about to make?</h2>
+          <p>Our 4 minute assessment shows where your concept stands today across 5 key dimensions. No preparation needed. No email required to see results.</p>
+          <div class="btn-group">
+            <a href="/scorecard/" class="btn-primary">Take free assessment</a>
+            <a href="/approach/" class="btn-secondary">See the Decision Sprint</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </article>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div>
+          <a href="/" class="footer-logo">
+            <img src="/assets/images/SVG_LOGO_Transparent_Blue.svg" alt="anté">
+          </a>
+          <p class="footer-tagline">Decide before you build.</p>
+          <a href="mailto:hello@antedesign.be" class="footer-email">hello@antedesign.be</a>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/ant%C3%A9-design" class="footer-social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/antedesign.be" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ante.design" class="footer-social-link" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61590565387982" class="footer-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@antedesign.be" class="footer-social-link" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Navigation</span>
+          <ul class="footer-links">
+            <li><a href="/approach/">Approach</a></li>
+            <li><a href="/cases/">Cases</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/scorecard/">Take assessment</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Services</span>
+          <ul class="footer-links">
+            <li><a href="/approach/">Decision Sprint</a></li>
+            <li><a href="/approach/">Pre-Investment Audit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Legal</span>
+          <ul class="footer-links">
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms of Service</a></li>
+            <li><a href="/cookies/">Cookie Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Anté. All rights reserved. Designed in Antwerp.</p>
+        <p class="footer-vat">Ondernemingsnummer BE 1041.127.724</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/reveal.js"></script>
+  <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/insights.js" defer></script>
+  <script src="/assets/js/magnetic-buttons.js" defer></script>
+</body>
+</html>
