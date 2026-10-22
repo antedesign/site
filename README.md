@@ -19,11 +19,14 @@ Static website for Anté, an independent concept validation consultancy. Built a
 ├── assets/
 │   ├── css/
 │   │   ├── shared.css      All design tokens, components, utilities
-│   │   └── insights.css    Blog-only styles, layered on shared.css
+│   │   ├── insights.css    Blog-only styles, layered on shared.css
+│   │   └── starter-kit.css Extras for the ICM starter kit post (language switch, tabs)
 │   ├── js/
 │   │   ├── reveal.js       Scroll fade-in (IntersectionObserver)
 │   │   ├── nav.js          Mobile menu
-│   │   └── insights.js     Reading progress, TOC, copy-prompt button
+│   │   ├── insights.js     Reading progress, TOC, copy-prompt button
+│   │   └── starter-kit.js  EN/NL switch, use-case tabs, multi-prompt copy buttons
+│   ├── downloads/          Files offered for download (ICM example workspace zips)
 │   └── images/
 │       └── insights/       Post covers (.svg for the page, .png for social)
 ├── sitemap.xml             Add one <url> block per new post
@@ -66,6 +69,15 @@ post is a self-contained HTML file using `shared.css` plus `insights.css`.
 
 `/insights/double-diamond-design-process/index.html` is the reference
 implementation. Copy it to start a new post rather than writing markup fresh.
+
+### Bilingual posts (EN / NL)
+
+`/insights/icm-starter-kit/` is the one post with a language switch. Every
+translatable element carries `lang="en"` or `lang="nl"`, and `starter-kit.css`
+hides the one that is not active. The choice is remembered in `localStorage`
+and can be forced with `?lang=nl`. Search engines see the English text first,
+and the schema is English only. A post that needs to rank in Dutch should get
+its own URL instead.
 
 ### Three rules that matter
 
