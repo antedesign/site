@@ -11,8 +11,8 @@
 
   var root = document.documentElement;
   var TITLES = {
-    en: 'Start with one task, not a whole system: an ICM starter kit | Anté',
-    nl: 'Begin met één taak, niet met een heel systeem: een ICM-starterspakket | Anté'
+    en: 'Agents made simple: build AI agents in plain language, and keep them when the tools change | Anté',
+    nl: 'Agents made simple: bouw AI-agents in gewone taal en hou ze als de tools veranderen | Anté'
   };
 
   function currentLang() {
