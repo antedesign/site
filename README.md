@@ -79,6 +79,13 @@ and can be forced with `?lang=nl`. Search engines see the English text first,
 and the schema is English only. A post that needs to rank in Dutch should get
 its own URL instead.
 
+The starter kit post also has an animated cover (`data-hero`), step-by-step use
+cases (`data-stepper`) and collapsible tool groups, all driven by
+`assets/js/starter-kit.js`. The slides download is a disabled button in the
+Downloads section. When the PDF exists, save it as
+`assets/downloads/icm-starterkit-slides.pdf` and replace the two `disabled`
+buttons (EN and NL) with `<a class="btn-primary btn-sm" href="..." download>`.
+
 ### Three rules that matter
 
 1. **Nothing from the internal Anté repository goes on this site.** No client

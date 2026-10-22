@@ -208,7 +208,7 @@
           <span>·</span>
           <span>22 October 2026</span>
           <span>·</span>
-          <span>19 min <span lang="en">read</span><span lang="nl">lezen</span></span>
+          <span>21 min <span lang="en">read</span><span lang="nl">lezen</span></span>
           <span>·</span>
           <span><span lang="en">By</span><span lang="nl">Door</span> <strong>Anté</strong></span>
           <span>·</span>
@@ -217,15 +217,18 @@
       </div>
     </header>
 
-    <!-- ── Cover ──────────────────────────────────────────── -->
+    <!-- ── Animated cover ────────────────────────────────── -->
     <div class="container">
-      <div class="cover reveal" style="margin-bottom: var(--space-block)">
-        <img src="/assets/images/insights/icm-starter-kit.svg"
-             alt="Five stacked layers, from a small top layer to a wide base, drawn as a folder structure."
-             width="1200" height="630">
-        <span class="cover-label">Practice · 02</span>
+      <div class="hero-anim reveal" data-hero data-default-en="Five layers. A task enters at the top and only reads as far down as it needs. Hover or click a layer." data-default-nl="Vijf lagen. Een taak komt bovenaan binnen en leest enkel zo ver naar onder als nodig. Beweeg over of klik op een laag.">
+        <span class="hero-label">Practice · 02</span>
+        <span class="hero-ticks" aria-hidden="true"><i></i><i></i><i></i></span>
+        <button type="button" class="hero-replay" data-replay aria-label="Replay the animation"><span lang="en">Replay</span><span lang="nl">Opnieuw</span> <span class="arrow">↻</span></button>
+        <button type="button" class="hl" style="--i:0;--w:34%" data-en="Layer 0 · CLAUDE.md · Where am I? The top file, always loaded: the role, the rules and the map." data-nl="Laag 0 · CLAUDE.md · Waar ben ik? Het bovenste bestand, altijd geladen: de rol, de regels en de kaart."><span class="hl-n">0</span><span class="hl-f">CLAUDE.md</span><span class="hl-q"><span lang="en">Where am I?</span><span lang="nl">Waar ben ik?</span></span></button><button type="button" class="hl" style="--i:1;--w:48%" data-en="Layer 1 · CONTEXT.md · Where do I go? A router that points to the right stage for the request." data-nl="Laag 1 · CONTEXT.md · Waar ga ik heen? Een router die naar de juiste stage wijst voor de vraag."><span class="hl-n">1</span><span class="hl-f">CONTEXT.md</span><span class="hl-q"><span lang="en">Where do I go?</span><span lang="nl">Waar ga ik heen?</span></span></button><button type="button" class="hl" style="--i:2;--w:62%" data-en="Layer 2 · stages/ · What do I do? The contract of one stage: inputs, steps and outputs." data-nl="Laag 2 · stages/ · Wat doe ik? Het contract van één stage: input, stappen en output."><span class="hl-n">2</span><span class="hl-f">stages/</span><span class="hl-q"><span lang="en">What do I do?</span><span lang="nl">Wat doe ik?</span></span></button><button type="button" class="hl" style="--i:3;--w:76%" data-en="Layer 3 · _shared/ · Which rules apply? Rules, style and templates, set up once and stable between runs." data-nl="Laag 3 · _shared/ · Welke regels gelden? Regels, stijl en sjablonen, eenmalig opgezet en stabiel tussen runs."><span class="hl-n">3</span><span class="hl-f">_shared/</span><span class="hl-q"><span lang="en">Which rules apply?</span><span lang="nl">Welke regels gelden?</span></span></button><button type="button" class="hl" style="--i:4;--w:90%" data-en="Layer 4 · sources/ + output/ · What am I working on? The material of this run: inputs, drafts and results." data-nl="Laag 4 · sources/ + output/ · Waarmee werk ik nu? Het materiaal van deze run: input, ontwerpen en resultaten."><span class="hl-n">4</span><span class="hl-f">sources/ + output/</span><span class="hl-q"><span lang="en">What am I working on?</span><span lang="nl">Waarmee werk ik nu?</span></span></button>
+        <span class="hero-dot" aria-hidden="true"></span>
+        <p class="hero-caption" data-hero-caption aria-live="polite"><span lang="en">Five layers. A task enters at the top and only reads as far down as it needs. Hover or click a layer.</span><span lang="nl">Vijf lagen. Een taak komt bovenaan binnen en leest enkel zo ver naar onder als nodig. Beweeg over of klik op een laag.</span></p>
       </div>
     </div>
+    <div style="height: var(--space-block)"></div>
 
     <!-- ── Body ───────────────────────────────────────────── -->
     <section class="section section--snug" style="padding-top:0">
@@ -248,7 +251,7 @@
               <a class="kit-card" href="#use-cases"><span class="kit-n">03</span><strong><span lang="en">Five use cases</span><span lang="nl">Vijf use cases</span></strong><span><span lang="en">Interactive: pick one and see its folders, its prompt and what to check.</span><span lang="nl">Interactief: kies er één en zie de mappen, de prompt en wat je moet nakijken.</span></span></a>
               <a class="kit-card" href="#tools"><span class="kit-n">04</span><strong><span lang="en">The tools, by type</span><span lang="nl">De tools, per type</span></strong><span><span lang="en">Transcription, assistants, agents, storage, references, visuals.</span><span lang="nl">Transcriptie, assistenten, agents, opslag, referenties, visueel.</span></span></a>
               <a class="kit-card" href="#sources"><span class="kit-n">05</span><strong><span lang="en">Sources and reading</span><span lang="nl">Bronnen en leesmateriaal</span></strong><span><span lang="en">The paper, the repositories and the references behind this page.</span><span lang="nl">De paper, de repositories en de referenties achter deze pagina.</span></span></a>
-              <div class="kit-card kit-card--soon"><span class="kit-n">06</span><strong><span lang="en">The slides</span><span lang="nl">De slides</span></strong><span><span lang="en">A downloadable PowerPoint of the presentation, added after the session.</span><span lang="nl">Een downloadbare PowerPoint van de presentatie, toegevoegd na de sessie.</span></span></div>
+              <a class="kit-card kit-card--soon" href="#download"><span class="kit-n">06</span><strong><span lang="en">The slides</span><span lang="nl">De slides</span></strong><span><span lang="en">A downloadable PDF of the presentation. Coming soon.</span><span lang="nl">Een downloadbare pdf van de presentatie. Binnenkort.</span></span></a>
             </div>
 
             <h2 id="agents"><span lang="en">What an agent is, in plain terms</span><span lang="nl">Wat een agent is, in gewone woorden</span></h2>
@@ -267,8 +270,7 @@
             <p lang="en">ICM answers three problems in particular:</p>
             <p lang="nl">ICM beantwoordt in het bijzonder drie problemen:</p>
 
-            <ul lang="en"><li><strong>Tools that do not last.</strong> Whatever you set up in one product has to be rebuilt in the next.</li><li><strong>Platform switches.</strong> Moving from one assistant to another should mean moving a folder.</li><li><strong>No technical background.</strong> The structure is written in human language, so you can read it, correct it and explain it to someone else.</li></ul>
-            <ul lang="nl"><li><strong>Tools die niet blijven.</strong> Wat je in één product opzet, moet je in het volgende heropbouwen.</li><li><strong>Platformwissels.</strong> Overstappen van de ene assistent naar de andere zou een map verhuizen moeten betekenen.</li><li><strong>Geen technische achtergrond.</strong> De structuur is in mensentaal geschreven, dus je kunt ze lezen, corrigeren en aan iemand anders uitleggen.</li></ul>
+            <div class="cards cards--3"><div class="card"><h4 lang="en">Tools that do not last</h4><h4 lang="nl">Tools die niet blijven</h4><p lang="en">Whatever you set up in one product has to be rebuilt in the next.</p><p lang="nl">Wat je in één product opzet, moet je in het volgende heropbouwen.</p></div><div class="card"><h4 lang="en">Platform switches</h4><h4 lang="nl">Platformwissels</h4><p lang="en">Moving from one assistant to another should mean moving a folder.</p><p lang="nl">Overstappen van de ene assistent naar de andere zou een map verhuizen moeten betekenen.</p></div><div class="card"><h4 lang="en">No technical background</h4><h4 lang="nl">Geen technische achtergrond</h4><p lang="en">The structure is written in human language, so you can read it, correct it and explain it to someone else.</p><p lang="nl">De structuur is in mensentaal geschreven, dus je kunt ze lezen, corrigeren en aan iemand anders uitleggen.</p></div></div>
 
             <h2 id="how-icm-works"><span lang="en">ICM from the inside out</span><span lang="nl">ICM van binnen naar buiten</span></h2>
 
@@ -289,8 +291,7 @@
             <p lang="en">Five principles sit under the structure, taken from the repository's README:</p>
             <p lang="nl">Onder de structuur liggen vijf principes, overgenomen uit de README van de repository:</p>
 
-            <ol lang="en"><li><strong>One stage, one job.</strong> A stage that searches does not filter. A stage that stores does not process.</li><li><strong>Plain text as the interface.</strong> Stages hand each other files, not hidden state.</li><li><strong>Layered loading.</strong> Rules stay separate from the material you are working on.</li><li><strong>Every output is editable.</strong> The next stage reads what is there, including what you corrected.</li><li><strong>Configure the factory, not the product.</strong> What is stable gets written once, where every run can find it.</li></ol>
-            <ol lang="nl"><li><strong>Eén stage, één taak.</strong> Een stage die zoekt, filtert niet. Een stage die bewaart, verwerkt niet.</li><li><strong>Gewone tekst als koppeling.</strong> Stages geven elkaar bestanden door, geen verborgen toestand.</li><li><strong>Gelaagd laden.</strong> Regels blijven gescheiden van het materiaal waarmee je werkt.</li><li><strong>Elke output is bewerkbaar.</strong> De volgende stage leest wat er staat, ook wat jij gecorrigeerd hebt.</li><li><strong>Configureer de fabriek, niet het product.</strong> Wat stabiel is, schrijf je één keer op, waar elke run het kan vinden.</li></ol>
+            <div class="cards cards--3"><div class="card"><span class="card-n">1</span><h4 lang="en">One stage, one job</h4><h4 lang="nl">Eén stage, één taak</h4><p lang="en">A stage that searches does not filter. A stage that stores does not process.</p><p lang="nl">Een stage die zoekt, filtert niet. Een stage die bewaart, verwerkt niet.</p></div><div class="card"><span class="card-n">2</span><h4 lang="en">Plain text as the interface</h4><h4 lang="nl">Gewone tekst als koppeling</h4><p lang="en">Stages hand each other files, not hidden state.</p><p lang="nl">Stages geven elkaar bestanden door, geen verborgen toestand.</p></div><div class="card"><span class="card-n">3</span><h4 lang="en">Layered loading</h4><h4 lang="nl">Gelaagd laden</h4><p lang="en">Rules stay separate from the material you are working on.</p><p lang="nl">Regels blijven gescheiden van het materiaal waarmee je werkt.</p></div><div class="card"><span class="card-n">4</span><h4 lang="en">Every output is editable</h4><h4 lang="nl">Elke output is bewerkbaar</h4><p lang="en">The next stage reads what is there, including what you corrected.</p><p lang="nl">De volgende stage leest wat er staat, ook wat jij gecorrigeerd hebt.</p></div><div class="card"><span class="card-n">5</span><h4 lang="en">Configure the factory, not the product</h4><h4 lang="nl">Configureer de fabriek, niet het product</h4><p lang="en">What is stable gets written once, where every run can find it.</p><p lang="nl">Wat stabiel is, schrijf je één keer op, waar elke run het kan vinden.</p></div></div>
 
             <h3><span lang="en">Six shapes, chosen by what repeats</span><span lang="nl">Zes vormen, gekozen naargelang wat zich herhaalt</span></h3>
 
@@ -305,8 +306,7 @@
 
             <h2 id="limits"><span lang="en">What ICM does not give you</span><span lang="nl">Wat ICM je niet geeft</span></h2>
 
-            <ul lang="en"><li><strong>Proof.</strong> The source is a preprint by the method's authors. We found no independent evaluation. Treat it as a way of working to test, not a finding.</li><li><strong>A fit for every job.</strong> The repository itself says it suits sequential, human-reviewed, repeatable workflows, and not real-time multi-agent collaboration, high-concurrency systems or complex automated branching.</li><li><strong>Less checking.</strong> Interpretable here means you can see the workflow and its intermediate products. It does not mean you can see inside the model. A readable file does not explain why each word was chosen.</li><li><strong>Full independence from tools.</strong> Folders travel. How an agent picks them up still differs per product.</li><li><strong>Privacy by default.</strong> Files in a synced folder or in an AI tool are only as private as that tool's settings. Check them before you add sources about people.</li></ul>
-            <ul lang="nl"><li><strong>Bewijs.</strong> De bron is een preprint van de auteurs van de methode. We vonden geen onafhankelijke evaluatie. Zie het als een werkwijze om te testen, niet als een bevinding.</li><li><strong>Een match voor elke taak.</strong> De repository zelf zegt dat ze past bij sequentiële, door mensen nagekeken, herhaalbare werkstromen, en niet bij realtime samenwerking van meerdere agents, systemen met veel gelijktijdigheid of complexe automatische vertakkingen.</li><li><strong>Minder controle.</strong> Interpretable betekent hier dat je de werkwijze en de tussenproducten kunt zien. Het betekent niet dat je in het model kunt kijken. Een leesbaar bestand verklaart niet waarom elk woord gekozen werd.</li><li><strong>Volledige onafhankelijkheid van tools.</strong> Mappen reizen mee. Hoe een agent ze oppikt, verschilt nog steeds per product.</li><li><strong>Privacy als standaard.</strong> Bestanden in een gesynchroniseerde map of in een AI-tool zijn zo privé als de instellingen van die tool. Check ze voor je bronnen over personen toevoegt.</li></ul>
+            <div class="acc-list"><details class="acc" lang="en"><summary>Proof</summary><div class="acc-body"><p>The source is a preprint by the method's authors. We found no independent evaluation. Treat it as a way of working to test, not a finding.</p></div></details><details class="acc" lang="nl"><summary>Bewijs</summary><div class="acc-body"><p>De bron is een preprint van de auteurs van de methode. We vonden geen onafhankelijke evaluatie. Zie het als een werkwijze om te testen, niet als een bevinding.</p></div></details><details class="acc" lang="en"><summary>A fit for every job</summary><div class="acc-body"><p>The repository itself says it suits sequential, human-reviewed, repeatable workflows, and not real-time multi-agent collaboration, high-concurrency systems or complex automated branching.</p></div></details><details class="acc" lang="nl"><summary>Een match voor elke taak</summary><div class="acc-body"><p>De repository zelf zegt dat ze past bij sequentiële, door mensen nagekeken, herhaalbare werkstromen, en niet bij realtime samenwerking van meerdere agents, systemen met veel gelijktijdigheid of complexe automatische vertakkingen.</p></div></details><details class="acc" lang="en"><summary>Less checking</summary><div class="acc-body"><p>Interpretable here means you can see the workflow and its intermediate products. It does not mean you can see inside the model. A readable file does not explain why each word was chosen.</p></div></details><details class="acc" lang="nl"><summary>Minder controle</summary><div class="acc-body"><p>Interpretable betekent hier dat je de werkwijze en de tussenproducten kunt zien. Het betekent niet dat je in het model kunt kijken. Een leesbaar bestand verklaart niet waarom elk woord gekozen werd.</p></div></details><details class="acc" lang="en"><summary>Full independence from tools</summary><div class="acc-body"><p>Folders travel. How an agent picks them up still differs per product.</p></div></details><details class="acc" lang="nl"><summary>Volledige onafhankelijkheid van tools</summary><div class="acc-body"><p>Mappen reizen mee. Hoe een agent ze oppikt, verschilt nog steeds per product.</p></div></details><details class="acc" lang="en"><summary>Privacy by default</summary><div class="acc-body"><p>Files in a synced folder or in an AI tool are only as private as that tool's settings. Check them before you add sources about people.</p></div></details><details class="acc" lang="nl"><summary>Privacy als standaard</summary><div class="acc-body"><p>Bestanden in een gesynchroniseerde map of in een AI-tool zijn zo privé als de instellingen van die tool. Check ze voor je bronnen over personen toevoegt.</p></div></details></div>
 
             <h2 id="use-cases"><span lang="en">Five use cases</span><span lang="nl">Vijf use cases</span></h2>
 
@@ -324,207 +324,236 @@
               <h3 class="uc-title"><span lang="en">Process an interview</span><span lang="nl">Een interview verwerken</span></h3>
               <p lang="en">The simplest place to start. You record a conversation with a tool that transcribes it, drop the transcript into the workspace and say one sentence. The structure decides which folder, which role and which steps come next.</p>
             <p lang="nl">De eenvoudigste plek om te starten. Je neemt een gesprek op met een tool die transcribeert, zet het transcript in de werkruimte en zegt één zin. De structuur bepaalt welke map, welke rol en welke stappen volgen.</p>
-              <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
-              <pre class="tree" lang="en" tabindex="0">interview-workspace/
-├── CLAUDE.md                   # layer 0: where am I, what are the rules
-├── CONTEXT.md                  # layer 1: which stage for which request
-├── _shared/
-│   └── rules.md                # layer 3: quoting, anonymity, no inventing
-├── sources/
-│   └── interview-07.md         # layer 4: the transcript you drop in
-└── stages/
-    ├── 01-clean-transcript/    # fix obvious errors, keep wording
-    ├── 02-extract-insights/    # findings, each with a quote
-    └── 03-cluster/             # group findings across interviews</pre>
-              <pre class="tree" lang="nl" tabindex="0">interview-workspace/
-├── CLAUDE.md                   # laag 0: waar ben ik, welke regels gelden
-├── CONTEXT.md                  # laag 1: welke stage voor welke vraag
-├── _shared/
-│   └── rules.md                # laag 3: citeren, anonimiteit, niets verzinnen
-├── sources/
-│   └── interview-07.md         # laag 4: het transcript dat je erin zet
-└── stages/
-    ├── 01-clean-transcript/    # duidelijke fouten herstellen, formulering behouden
-    ├── 02-extract-insights/    # bevindingen, elk met een citaat
-    └── 03-cluster/             # bevindingen groeperen over interviews heen</pre>
-              <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
-              <pre class="uc-prompt" lang="en">Process the interview in sources/interview-07.md.</pre>
-              <pre class="uc-prompt" lang="nl">Verwerk het interview in sources/interview-07.md.</pre>
-              <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
-              <ul lang="en"><li>Check every quote against the transcript, and the transcript against the audio where it matters. Speech-to-text gets names, jargon and accents wrong.</li><li>Read the interviews one by one yourself. Let the AI do the clustering, not the reading.</li><li>Ask for consent before you record, and anonymise before you share.</li></ul>
+              <div class="stepper" data-stepper>
+                <ol class="stepper-dots"><li><button type="button" class="sd" data-goto="0"><span class="sd-n">1</span><span class="sd-l"><span lang="en">Folders</span><span lang="nl">Mappen</span></span></button></li><li><button type="button" class="sd" data-goto="1"><span class="sd-n">2</span><span class="sd-l"><span lang="en">You say</span><span lang="nl">Jij zegt</span></span></button></li><li><button type="button" class="sd" data-goto="2"><span class="sd-n">3</span><span class="sd-l"><span lang="en">It runs</span><span lang="nl">Het loopt</span></span></button></li><li><button type="button" class="sd" data-goto="3"><span class="sd-n">4</span><span class="sd-l"><span lang="en">Result</span><span lang="nl">Resultaat</span></span></button></li><li><button type="button" class="sd" data-goto="4"><span class="sd-n">5</span><span class="sd-l"><span lang="en">You check</span><span lang="nl">Jij controleert</span></span></button></li></ol>
+                <div class="stepper-stage">
+                  <div class="step is-active" data-step="0">
+                    <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
+                    <pre class="tree" lang="en" tabindex="0"><span class="tl" style="--n:0">interview-workspace/</span><span class="tl" style="--n:1">├── CLAUDE.md                   # layer 0: where am I, what are the rules</span><span class="tl" style="--n:2">├── CONTEXT.md                  # layer 1: which stage for which request</span><span class="tl" style="--n:3">├── _shared/</span><span class="tl" style="--n:4">│   └── rules.md                # layer 3: quoting, anonymity, no inventing</span><span class="tl" style="--n:5">├── sources/</span><span class="tl" style="--n:6">│   └── interview-07.md         # layer 4: the transcript you drop in</span><span class="tl" style="--n:7">└── stages/</span><span class="tl" style="--n:8">    ├── 01-clean-transcript/    # fix obvious errors, keep wording</span><span class="tl" style="--n:9">    ├── 02-extract-insights/    # findings, each with a quote</span><span class="tl" style="--n:10">    └── 03-cluster/             # group findings across interviews</span></pre>
+                    <pre class="tree" lang="nl" tabindex="0"><span class="tl" style="--n:0">interview-workspace/</span><span class="tl" style="--n:1">├── CLAUDE.md                   # laag 0: waar ben ik, welke regels gelden</span><span class="tl" style="--n:2">├── CONTEXT.md                  # laag 1: welke stage voor welke vraag</span><span class="tl" style="--n:3">├── _shared/</span><span class="tl" style="--n:4">│   └── rules.md                # laag 3: citeren, anonimiteit, niets verzinnen</span><span class="tl" style="--n:5">├── sources/</span><span class="tl" style="--n:6">│   └── interview-07.md         # laag 4: het transcript dat je erin zet</span><span class="tl" style="--n:7">└── stages/</span><span class="tl" style="--n:8">    ├── 01-clean-transcript/    # duidelijke fouten herstellen, formulering behouden</span><span class="tl" style="--n:9">    ├── 02-extract-insights/    # bevindingen, elk met een citaat</span><span class="tl" style="--n:10">    └── 03-cluster/             # bevindingen groeperen over interviews heen</span></pre>
+                  </div>
+                  <div class="step" data-step="1">
+                    <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
+                    <pre class="uc-prompt" data-prompt="uc-interviews" lang="en"><span class="p-bg">Background, in case you do not know this method: ICM (Interpretable Context Methodology, Jake Van Clief and David McDermott, 2026, arXiv:2603.16021) organises AI work as numbered folders with plain-text instruction files. Layer 0 is a top file such as CLAUDE.md (where am I), layer 1 a CONTEXT.md router (where do I go), layer 2 the CONTEXT.md of one stage (what do I do), layer 3 stable reference material, layer 4 the working material of this run. Read from the top down and stop when you have enough. Rely on this description, not on memory, and do not invent details about ICM.</span>
+<span class="p-task">Process the interview in sources/interview-07.md.</span></pre>
+                    <pre class="uc-prompt" data-prompt="uc-interviews" lang="nl"><span class="p-bg">Achtergrond, voor het geval je deze methode niet kent: ICM (Interpretable Context Methodology, Jake Van Clief en David McDermott, 2026, arXiv:2603.16021) organiseert AI-werk als genummerde mappen met instructiebestanden in gewone tekst. Laag 0 is een bovenste bestand zoals CLAUDE.md (waar ben ik), laag 1 een CONTEXT.md als router (waar ga ik heen), laag 2 de CONTEXT.md van één stage (wat doe ik), laag 3 stabiel referentiemateriaal, laag 4 het werkmateriaal van deze run. Lees van boven naar onder en stop als je genoeg hebt. Baseer je op deze beschrijving, niet op je geheugen, en verzin geen details over ICM.</span>
+<span class="p-task">Verwerk het interview in sources/interview-07.md.</span></pre>
+                    <p class="step-note" lang="en">The grey part is background for an AI that has never heard of ICM. The dark line is the task. Paste both.</p>
+            <p class="step-note" lang="nl">Het grijze deel is achtergrond voor een AI die nog nooit van ICM gehoord heeft. De donkere regel is de taak. Plak beide.</p>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-interviews" data-copy-lang="en" lang="en">Copy <span class="arrow">→</span></button>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-interviews" data-copy-lang="nl" lang="nl">Kopieer <span class="arrow">→</span></button>
+                  </div>
+                  <div class="step" data-step="2">
+                    <span class="uc-label"><span lang="en">What happens</span><span lang="nl">Wat er gebeurt</span></span>
+                    <ol class="run-list" lang="en"><li class="tl" style="--n:0">Stage 01 reads sources/interview-07.md and _shared/rules.md, writes a clean transcript and a list of things to check.</li><li class="tl" style="--n:1">You read the list, correct what is wrong, and say go.</li><li class="tl" style="--n:2">Stage 02 turns the clean transcript into findings, each with an exact quote and a label: observed, reported or inferred.</li><li class="tl" style="--n:3">Stage 03 groups findings across interviews and lists what nobody covered.</li></ol>
+                    <ol class="run-list" lang="nl"><li class="tl" style="--n:0">Stage 01 leest sources/interview-07.md en _shared/rules.md en schrijft een schoon transcript plus een lijst van wat je moet nakijken.</li><li class="tl" style="--n:1">Jij leest de lijst, corrigeert wat fout is en zegt: ga verder.</li><li class="tl" style="--n:2">Stage 02 zet het schone transcript om in bevindingen, elk met een exact citaat en een label: waargenomen, gerapporteerd of afgeleid.</li><li class="tl" style="--n:3">Stage 03 groepeert bevindingen over interviews heen en som op wat niemand behandelde.</li></ol>
+                  </div>
+                  <div class="step" data-step="3">
+                    <span class="uc-label"><span lang="en">What you get</span><span lang="nl">Wat je krijgt</span> <em class="badge"><span lang="en">illustrative, invented</span><span lang="nl">illustratief, verzonnen</span></em></span>
+                    <pre class="uc-result" lang="en"><span class="tl" style="--n:0">interview-07-findings.md   (fictional interview)</span><span class="tl" style="--n:1">- [reported] Participant 3 plans the week on paper first.</span><span class="tl" style="--n:2">  &quot;I write it out on paper first, otherwise I forget it.&quot; (line 41)</span><span class="tl" style="--n:3">- [observed] Copies the same figure between two apps. (line 58)</span><span class="tl" style="--n:4"> </span><span class="tl" style="--n:5">clusters.md</span><span class="tl" style="--n:6">Group &quot;Double work between tools&quot;: 3 of 7 interviews</span><span class="tl" style="--n:7">Not covered yet: who decides when the tool gets replaced?</span></pre>
+                    <pre class="uc-result" lang="nl"><span class="tl" style="--n:0">interview-07-bevindingen.md   (fictief interview)</span><span class="tl" style="--n:1">- [gerapporteerd] Deelnemer 3 plant de week eerst op papier.</span><span class="tl" style="--n:2">  &quot;Ik schrijf het eerst op papier uit, anders vergeet ik het.&quot; (regel 41)</span><span class="tl" style="--n:3">- [waargenomen] Kopieert hetzelfde cijfer tussen twee apps. (regel 58)</span><span class="tl" style="--n:4"> </span><span class="tl" style="--n:5">groepen.md</span><span class="tl" style="--n:6">Groep &quot;Dubbel werk tussen tools&quot;: 3 van 7 interviews</span><span class="tl" style="--n:7">Nog niet behandeld: wie beslist wanneer de tool vervangen wordt?</span></pre>
+                  </div>
+                  <div class="step" data-step="4">
+                    <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
+                    <ul lang="en"><li>Check every quote against the transcript, and the transcript against the audio where it matters. Speech-to-text gets names, jargon and accents wrong.</li><li>Read the interviews one by one yourself. Let the AI do the clustering, not the reading.</li><li>Ask for consent before you record, and anonymise before you share.</li></ul>
             <ul lang="nl"><li>Controleer elk citaat tegen het transcript, en het transcript tegen de audio waar het ertoe doet. Spraak-naar-tekst maakt fouten met namen, vakjargon en accenten.</li><li>Lees de interviews zelf één voor één. Laat de AI het groeperen doen, niet het lezen.</li><li>Vraag toestemming voor je opneemt en anonimiseer voor je deelt.</li></ul>
+                  </div>
+                </div>
+                <div class="stepper-nav">
+                  <button class="btn-secondary btn-sm" type="button" data-back><span class="arrow">←</span> <span lang="en">Back</span><span lang="nl">Terug</span></button>
+                  <button class="btn-primary btn-sm" type="button" data-next><span lang="en">Next</span><span lang="nl">Volgende</span> <span class="arrow">→</span></button>
+                  <button class="btn-link" type="button" data-restart><span lang="en">Start over</span><span lang="nl">Opnieuw beginnen</span></button>
+                </div>
+              </div>
             </div>
 <div class="uc-panel" role="tabpanel" id="uc-product-analysis" aria-labelledby="tab-product-analysis">
               <h3 class="uc-title"><span lang="en">Go from interview to a brief for 3D models</span><span lang="nl">Van interview naar een briefing voor 3D-modellen</span></h3>
               <p lang="en">A longer chain with the same logic. Each stage hands a plain-text file to the next, so you can open, correct and rerun any link without redoing the rest.</p>
             <p lang="nl">Een langere keten met dezelfde logica. Elke stage geeft een tekstbestand door aan de volgende, zodat je elke schakel kunt openen, corrigeren en herhalen zonder de rest te herdoen.</p>
-              <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
-              <pre class="tree" lang="en" tabindex="0">product-analysis/
-├── CLAUDE.md
-├── CONTEXT.md
-├── _shared/
-│   ├── rules.md
-│   └── product-brief.md              # who it is for, constraints, what success is
-├── sources/
-│   ├── interviews/
-│   └── photos-and-measurements/
-└── stages/
-    ├── 01-synthesise-interviews/
-    ├── 02-requirements/              # needs turned into testable requirements
-    ├── 03-concept-directions/        # directions that differ in principle
-    └── 04-brief-for-3d-modelling/    # one brief per chosen direction</pre>
-              <pre class="tree" lang="nl" tabindex="0">product-analysis/
-├── CLAUDE.md
-├── CONTEXT.md
-├── _shared/
-│   ├── rules.md
-│   └── product-brief.md              # voor wie, randvoorwaarden, wat succes is
-├── sources/
-│   ├── interviews/
-│   └── photos-and-measurements/      # foto&#x27;s en metingen
-└── stages/
-    ├── 01-synthesise-interviews/     # interviews samenvatten
-    ├── 02-requirements/              # behoeften omgezet in toetsbare eisen
-    ├── 03-concept-directions/        # richtingen die in principe verschillen
-    └── 04-brief-for-3d-modelling/    # één briefing per gekozen richting</pre>
-              <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
-              <pre class="uc-prompt" lang="en">Run stages 01 and 02 on the interviews in sources/interviews/. Stop after 02.</pre>
-              <pre class="uc-prompt" lang="nl">Voer stage 01 en 02 uit op de interviews in sources/interviews/. Stop na 02.</pre>
-              <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
-              <ul lang="en"><li>The chain ends in a brief, not in a finished model. The 3D modelling itself happens in your CAD tool, or in a tool that generates models, and needs its own checking.</li><li>Choose the concept direction yourself at stage 03. The workspace prepares the options and the comparison, you decide.</li><li>Keep the product brief short. A page that nobody rereads does not steer anything.</li></ul>
+              <div class="stepper" data-stepper>
+                <ol class="stepper-dots"><li><button type="button" class="sd" data-goto="0"><span class="sd-n">1</span><span class="sd-l"><span lang="en">Folders</span><span lang="nl">Mappen</span></span></button></li><li><button type="button" class="sd" data-goto="1"><span class="sd-n">2</span><span class="sd-l"><span lang="en">You say</span><span lang="nl">Jij zegt</span></span></button></li><li><button type="button" class="sd" data-goto="2"><span class="sd-n">3</span><span class="sd-l"><span lang="en">It runs</span><span lang="nl">Het loopt</span></span></button></li><li><button type="button" class="sd" data-goto="3"><span class="sd-n">4</span><span class="sd-l"><span lang="en">Result</span><span lang="nl">Resultaat</span></span></button></li><li><button type="button" class="sd" data-goto="4"><span class="sd-n">5</span><span class="sd-l"><span lang="en">You check</span><span lang="nl">Jij controleert</span></span></button></li></ol>
+                <div class="stepper-stage">
+                  <div class="step is-active" data-step="0">
+                    <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
+                    <pre class="tree" lang="en" tabindex="0"><span class="tl" style="--n:0">product-analysis/</span><span class="tl" style="--n:1">├── CLAUDE.md</span><span class="tl" style="--n:2">├── CONTEXT.md</span><span class="tl" style="--n:3">├── _shared/</span><span class="tl" style="--n:4">│   ├── rules.md</span><span class="tl" style="--n:5">│   └── product-brief.md              # who it is for, constraints, what success is</span><span class="tl" style="--n:6">├── sources/</span><span class="tl" style="--n:7">│   ├── interviews/</span><span class="tl" style="--n:8">│   └── photos-and-measurements/</span><span class="tl" style="--n:9">└── stages/</span><span class="tl" style="--n:10">    ├── 01-synthesise-interviews/</span><span class="tl" style="--n:11">    ├── 02-requirements/              # needs turned into testable requirements</span><span class="tl" style="--n:12">    ├── 03-concept-directions/        # directions that differ in principle</span><span class="tl" style="--n:13">    └── 04-brief-for-3d-modelling/    # one brief per chosen direction</span></pre>
+                    <pre class="tree" lang="nl" tabindex="0"><span class="tl" style="--n:0">product-analysis/</span><span class="tl" style="--n:1">├── CLAUDE.md</span><span class="tl" style="--n:2">├── CONTEXT.md</span><span class="tl" style="--n:3">├── _shared/</span><span class="tl" style="--n:4">│   ├── rules.md</span><span class="tl" style="--n:5">│   └── product-brief.md              # voor wie, randvoorwaarden, wat succes is</span><span class="tl" style="--n:6">├── sources/</span><span class="tl" style="--n:7">│   ├── interviews/</span><span class="tl" style="--n:8">│   └── photos-and-measurements/      # foto&#x27;s en metingen</span><span class="tl" style="--n:9">└── stages/</span><span class="tl" style="--n:10">    ├── 01-synthesise-interviews/     # interviews samenvatten</span><span class="tl" style="--n:11">    ├── 02-requirements/              # behoeften omgezet in toetsbare eisen</span><span class="tl" style="--n:12">    ├── 03-concept-directions/        # richtingen die in principe verschillen</span><span class="tl" style="--n:13">    └── 04-brief-for-3d-modelling/    # één briefing per gekozen richting</span></pre>
+                  </div>
+                  <div class="step" data-step="1">
+                    <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
+                    <pre class="uc-prompt" data-prompt="uc-product-analysis" lang="en"><span class="p-bg">Background, in case you do not know this method: ICM (Interpretable Context Methodology, Jake Van Clief and David McDermott, 2026, arXiv:2603.16021) organises AI work as numbered folders with plain-text instruction files. Layer 0 is a top file such as CLAUDE.md (where am I), layer 1 a CONTEXT.md router (where do I go), layer 2 the CONTEXT.md of one stage (what do I do), layer 3 stable reference material, layer 4 the working material of this run. Read from the top down and stop when you have enough. Rely on this description, not on memory, and do not invent details about ICM.</span>
+<span class="p-task">Run stages 01 and 02 on the interviews in sources/interviews/. Stop after 02.</span></pre>
+                    <pre class="uc-prompt" data-prompt="uc-product-analysis" lang="nl"><span class="p-bg">Achtergrond, voor het geval je deze methode niet kent: ICM (Interpretable Context Methodology, Jake Van Clief en David McDermott, 2026, arXiv:2603.16021) organiseert AI-werk als genummerde mappen met instructiebestanden in gewone tekst. Laag 0 is een bovenste bestand zoals CLAUDE.md (waar ben ik), laag 1 een CONTEXT.md als router (waar ga ik heen), laag 2 de CONTEXT.md van één stage (wat doe ik), laag 3 stabiel referentiemateriaal, laag 4 het werkmateriaal van deze run. Lees van boven naar onder en stop als je genoeg hebt. Baseer je op deze beschrijving, niet op je geheugen, en verzin geen details over ICM.</span>
+<span class="p-task">Voer stage 01 en 02 uit op de interviews in sources/interviews/. Stop na 02.</span></pre>
+                    <p class="step-note" lang="en">The grey part is background for an AI that has never heard of ICM. The dark line is the task. Paste both.</p>
+            <p class="step-note" lang="nl">Het grijze deel is achtergrond voor een AI die nog nooit van ICM gehoord heeft. De donkere regel is de taak. Plak beide.</p>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-product-analysis" data-copy-lang="en" lang="en">Copy <span class="arrow">→</span></button>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-product-analysis" data-copy-lang="nl" lang="nl">Kopieer <span class="arrow">→</span></button>
+                  </div>
+                  <div class="step" data-step="2">
+                    <span class="uc-label"><span lang="en">What happens</span><span lang="nl">Wat er gebeurt</span></span>
+                    <ol class="run-list" lang="en"><li class="tl" style="--n:0">Stage 01 summarises each interview in the same format, so they can be compared.</li><li class="tl" style="--n:1">Stage 02 turns needs into requirements, each with a source and a way to test it.</li><li class="tl" style="--n:2">Stage 03 proposes directions that differ in principle. You choose one, the workspace does not.</li><li class="tl" style="--n:3">Stage 04 writes a brief for 3D modelling from the direction you chose.</li></ol>
+                    <ol class="run-list" lang="nl"><li class="tl" style="--n:0">Stage 01 vat elk interview samen in hetzelfde formaat, zodat ze vergelijkbaar zijn.</li><li class="tl" style="--n:1">Stage 02 zet behoeften om in eisen, elk met een bron en een manier om ze te toetsen.</li><li class="tl" style="--n:2">Stage 03 stelt richtingen voor die in principe verschillen. Jij kiest er één, de werkruimte doet dat niet.</li><li class="tl" style="--n:3">Stage 04 schrijft een briefing voor 3D-modelleren op basis van de richting die je koos.</li></ol>
+                  </div>
+                  <div class="step" data-step="3">
+                    <span class="uc-label"><span lang="en">What you get</span><span lang="nl">Wat je krijgt</span> <em class="badge"><span lang="en">illustrative, invented</span><span lang="nl">illustratief, verzonnen</span></em></span>
+                    <pre class="uc-result" lang="en"><span class="tl" style="--n:0">requirements.md   (illustrative)</span><span class="tl" style="--n:1">R1  Usable one-handed (interviews 2, 5, 6). Test: hold test, 30 s.</span><span class="tl" style="--n:2">R2  Tolerates wet hands (interview 4). Inferred, verify first.</span><span class="tl" style="--n:3"> </span><span class="tl" style="--n:4">brief-direction-B.md</span><span class="tl" style="--n:5">Direction B: handle first. Model: grip diameter 28 to 34 mm</span><span class="tl" style="--n:6">(assumption, measure real users before you model).</span></pre>
+                    <pre class="uc-result" lang="nl"><span class="tl" style="--n:0">eisen.md   (illustratief)</span><span class="tl" style="--n:1">R1  Bruikbaar met één hand (interviews 2, 5, 6). Test: vasthoudtest, 30 s.</span><span class="tl" style="--n:2">R2  Werkt met natte handen (interview 4). Afgeleid, eerst nagaan.</span><span class="tl" style="--n:3"> </span><span class="tl" style="--n:4">briefing-richting-B.md</span><span class="tl" style="--n:5">Richting B: greep eerst. Model: grepen van 28 tot 34 mm doorsnede</span><span class="tl" style="--n:6">(aanname, meet echte gebruikers voor je modelleert).</span></pre>
+                  </div>
+                  <div class="step" data-step="4">
+                    <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
+                    <ul lang="en"><li>The chain ends in a brief, not in a finished model. The 3D modelling itself happens in your CAD tool, or in a tool that generates models, and needs its own checking.</li><li>Choose the concept direction yourself at stage 03. The workspace prepares the options and the comparison, you decide.</li><li>Keep the product brief short. A page that nobody rereads does not steer anything.</li></ul>
             <ul lang="nl"><li>De keten eindigt in een briefing, niet in een afgewerkt model. Het 3D-modelleren zelf gebeurt in je CAD-tool, of in een tool die modellen genereert, en vraagt eigen controle.</li><li>Kies zelf de conceptrichting bij stage 03. De werkruimte bereidt de opties en de vergelijking voor, jij beslist.</li><li>Hou de productbriefing kort. Een pagina die niemand herleest, stuurt niets bij.</li></ul>
+                  </div>
+                </div>
+                <div class="stepper-nav">
+                  <button class="btn-secondary btn-sm" type="button" data-back><span class="arrow">←</span> <span lang="en">Back</span><span lang="nl">Terug</span></button>
+                  <button class="btn-primary btn-sm" type="button" data-next><span lang="en">Next</span><span lang="nl">Volgende</span> <span class="arrow">→</span></button>
+                  <button class="btn-link" type="button" data-restart><span lang="en">Start over</span><span lang="nl">Opnieuw beginnen</span></button>
+                </div>
+              </div>
             </div>
 <div class="uc-panel" role="tabpanel" id="uc-assignment" aria-labelledby="tab-assignment">
               <h3 class="uc-title"><span lang="en">Understand an assignment, without handing it over</span><span lang="nl">Een opdracht begrijpen, zonder ze uit handen te geven</span></h3>
               <p lang="en">A student gets a starting prompt and one document: the assignment brief plus the rules for how the AI may help. Questions about the assignment are asked inside that structure, and nowhere else.</p>
             <p lang="nl">Een student krijgt een beginprompt en één document: de opdrachtomschrijving plus de regels voor hoe de AI mag helpen. Vragen over de opdracht worden binnen die structuur gesteld, en nergens anders.</p>
-              <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
-              <pre class="tree" lang="en" tabindex="0">assignment-helper/
-├── CLAUDE.md                  # the rules: explain, ask, check
-├── CONTEXT.md
-├── assignment/
-│   ├── brief.md
-│   └── grading-criteria.md
-└── notes/
-    └── my-questions.md</pre>
-              <pre class="tree" lang="nl" tabindex="0">assignment-helper/
-├── CLAUDE.md                  # de regels: uitleggen, vragen, controleren
-├── CONTEXT.md
-├── assignment/                # opdracht/
-│   ├── brief.md               # omschrijving.md
-│   └── grading-criteria.md    # beoordelingscriteria.md
-└── notes/
-    └── my-questions.md        # mijn-vragen.md</pre>
-              <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
-              <pre class="uc-prompt" lang="en">Work only from the files in this workspace. Explain the assignment in your own words, then ask me three questions to find out what I have not understood yet. Do not give me a finished answer.</pre>
-              <pre class="uc-prompt" lang="nl">Werk enkel vanuit de bestanden in deze werkruimte. Leg de opdracht uit in je eigen woorden en stel me dan drie vragen om te ontdekken wat ik nog niet begrepen heb. Geef me geen afgewerkt antwoord.</pre>
-              <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
-              <ul lang="en"><li>Read your course's rules on AI use before you start. This setup supports understanding, and whether it is allowed for your assignment is for your teacher to say.</li><li>The rule file is the point. Write down what the AI may do and what it may not, and make it say so when you ask for more.</li><li>Hand in your own work, in your own words.</li></ul>
+              <div class="stepper" data-stepper>
+                <ol class="stepper-dots"><li><button type="button" class="sd" data-goto="0"><span class="sd-n">1</span><span class="sd-l"><span lang="en">Folders</span><span lang="nl">Mappen</span></span></button></li><li><button type="button" class="sd" data-goto="1"><span class="sd-n">2</span><span class="sd-l"><span lang="en">You say</span><span lang="nl">Jij zegt</span></span></button></li><li><button type="button" class="sd" data-goto="2"><span class="sd-n">3</span><span class="sd-l"><span lang="en">It runs</span><span lang="nl">Het loopt</span></span></button></li><li><button type="button" class="sd" data-goto="3"><span class="sd-n">4</span><span class="sd-l"><span lang="en">Result</span><span lang="nl">Resultaat</span></span></button></li><li><button type="button" class="sd" data-goto="4"><span class="sd-n">5</span><span class="sd-l"><span lang="en">You check</span><span lang="nl">Jij controleert</span></span></button></li></ol>
+                <div class="stepper-stage">
+                  <div class="step is-active" data-step="0">
+                    <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
+                    <pre class="tree" lang="en" tabindex="0"><span class="tl" style="--n:0">assignment-helper/</span><span class="tl" style="--n:1">├── CLAUDE.md                  # the rules: explain, ask, check</span><span class="tl" style="--n:2">├── CONTEXT.md</span><span class="tl" style="--n:3">├── assignment/</span><span class="tl" style="--n:4">│   ├── brief.md</span><span class="tl" style="--n:5">│   └── grading-criteria.md</span><span class="tl" style="--n:6">└── notes/</span><span class="tl" style="--n:7">    └── my-questions.md</span></pre>
+                    <pre class="tree" lang="nl" tabindex="0"><span class="tl" style="--n:0">assignment-helper/</span><span class="tl" style="--n:1">├── CLAUDE.md                  # de regels: uitleggen, vragen, controleren</span><span class="tl" style="--n:2">├── CONTEXT.md</span><span class="tl" style="--n:3">├── assignment/                # opdracht/</span><span class="tl" style="--n:4">│   ├── brief.md               # omschrijving.md</span><span class="tl" style="--n:5">│   └── grading-criteria.md    # beoordelingscriteria.md</span><span class="tl" style="--n:6">└── notes/</span><span class="tl" style="--n:7">    └── my-questions.md        # mijn-vragen.md</span></pre>
+                  </div>
+                  <div class="step" data-step="1">
+                    <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
+                    <pre class="uc-prompt" data-prompt="uc-assignment" lang="en"><span class="p-bg">Background, in case you do not know this method: ICM (Interpretable Context Methodology, Jake Van Clief and David McDermott, 2026, arXiv:2603.16021) organises AI work as numbered folders with plain-text instruction files. Layer 0 is a top file such as CLAUDE.md (where am I), layer 1 a CONTEXT.md router (where do I go), layer 2 the CONTEXT.md of one stage (what do I do), layer 3 stable reference material, layer 4 the working material of this run. Read from the top down and stop when you have enough. Rely on this description, not on memory, and do not invent details about ICM.</span>
+<span class="p-task">Work only from the files in this workspace. Explain the assignment in your own words, then ask me three questions to find out what I have not understood yet. Do not give me a finished answer.</span></pre>
+                    <pre class="uc-prompt" data-prompt="uc-assignment" lang="nl"><span class="p-bg">Achtergrond, voor het geval je deze methode niet kent: ICM (Interpretable Context Methodology, Jake Van Clief en David McDermott, 2026, arXiv:2603.16021) organiseert AI-werk als genummerde mappen met instructiebestanden in gewone tekst. Laag 0 is een bovenste bestand zoals CLAUDE.md (waar ben ik), laag 1 een CONTEXT.md als router (waar ga ik heen), laag 2 de CONTEXT.md van één stage (wat doe ik), laag 3 stabiel referentiemateriaal, laag 4 het werkmateriaal van deze run. Lees van boven naar onder en stop als je genoeg hebt. Baseer je op deze beschrijving, niet op je geheugen, en verzin geen details over ICM.</span>
+<span class="p-task">Werk enkel vanuit de bestanden in deze werkruimte. Leg de opdracht uit in je eigen woorden en stel me dan drie vragen om te ontdekken wat ik nog niet begrepen heb. Geef me geen afgewerkt antwoord.</span></pre>
+                    <p class="step-note" lang="en">The grey part is background for an AI that has never heard of ICM. The dark line is the task. Paste both.</p>
+            <p class="step-note" lang="nl">Het grijze deel is achtergrond voor een AI die nog nooit van ICM gehoord heeft. De donkere regel is de taak. Plak beide.</p>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-assignment" data-copy-lang="en" lang="en">Copy <span class="arrow">→</span></button>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-assignment" data-copy-lang="nl" lang="nl">Kopieer <span class="arrow">→</span></button>
+                  </div>
+                  <div class="step" data-step="2">
+                    <span class="uc-label"><span lang="en">What happens</span><span lang="nl">Wat er gebeurt</span></span>
+                    <ol class="run-list" lang="en"><li class="tl" style="--n:0">The assistant reads CLAUDE.md first: the rules say explain, ask and check, never hand over a final answer.</li><li class="tl" style="--n:1">It reads assignment/brief.md and the grading criteria, and nothing else.</li><li class="tl" style="--n:2">It explains the assignment in its own words, so you can see whether you read it the same way.</li><li class="tl" style="--n:3">It asks you questions. Your answers go into notes/my-questions.md.</li></ol>
+                    <ol class="run-list" lang="nl"><li class="tl" style="--n:0">De assistent leest eerst CLAUDE.md: de regels zeggen uitleggen, vragen en controleren, nooit een eindantwoord geven.</li><li class="tl" style="--n:1">Hij leest opdracht/omschrijving.md en de beoordelingscriteria, en niets anders.</li><li class="tl" style="--n:2">Hij legt de opdracht uit in eigen woorden, zodat je kunt zien of jij ze op dezelfde manier las.</li><li class="tl" style="--n:3">Hij stelt je vragen. Jouw antwoorden komen in notes/mijn-vragen.md.</li></ol>
+                  </div>
+                  <div class="step" data-step="3">
+                    <span class="uc-label"><span lang="en">What you get</span><span lang="nl">Wat je krijgt</span> <em class="badge"><span lang="en">illustrative, invented</span><span lang="nl">illustratief, verzonnen</span></em></span>
+                    <pre class="uc-result" lang="en"><span class="tl" style="--n:0">In my words: you must design a bracket that carries a given load</span><span class="tl" style="--n:1">with as few parts as possible.   (illustrative)</span><span class="tl" style="--n:2"> </span><span class="tl" style="--n:3">Questions for you:</span><span class="tl" style="--n:4">1. Which load case in the brief is the worst one, and why?</span><span class="tl" style="--n:5">2. What would you check first to know if a bolted joint is enough?</span><span class="tl" style="--n:6">3. Which grading criterion do you find least clear?</span></pre>
+                    <pre class="uc-result" lang="nl"><span class="tl" style="--n:0">In mijn woorden: je moet een beugel ontwerpen die een gegeven</span><span class="tl" style="--n:1">belasting draagt met zo weinig mogelijk onderdelen.   (illustratief)</span><span class="tl" style="--n:2"> </span><span class="tl" style="--n:3">Vragen voor jou:</span><span class="tl" style="--n:4">1. Welk belastingsgeval in de omschrijving is het zwaarste, en waarom?</span><span class="tl" style="--n:5">2. Wat zou je eerst nagaan om te weten of een bout volstaat?</span><span class="tl" style="--n:6">3. Welk beoordelingscriterium vind je het minst duidelijk?</span></pre>
+                  </div>
+                  <div class="step" data-step="4">
+                    <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
+                    <ul lang="en"><li>Read your course's rules on AI use before you start. This setup supports understanding, and whether it is allowed for your assignment is for your teacher to say.</li><li>The rule file is the point. Write down what the AI may do and what it may not, and make it say so when you ask for more.</li><li>Hand in your own work, in your own words.</li></ul>
             <ul lang="nl"><li>Lees de regels van je opleiding over AI-gebruik voor je start. Deze opzet ondersteunt begrip, en of ze mag voor jouw opdracht beslist je docent.</li><li>Het regelbestand is de kern. Schrijf op wat de AI wel en niet mag doen en laat ze dat zeggen als je meer vraagt.</li><li>Lever je eigen werk in, in je eigen woorden.</li></ul>
+                  </div>
+                </div>
+                <div class="stepper-nav">
+                  <button class="btn-secondary btn-sm" type="button" data-back><span class="arrow">←</span> <span lang="en">Back</span><span lang="nl">Terug</span></button>
+                  <button class="btn-primary btn-sm" type="button" data-next><span lang="en">Next</span><span lang="nl">Volgende</span> <span class="arrow">→</span></button>
+                  <button class="btn-link" type="button" data-restart><span lang="en">Start over</span><span lang="nl">Opnieuw beginnen</span></button>
+                </div>
+              </div>
             </div>
 <div class="uc-panel" role="tabpanel" id="uc-social" aria-labelledby="tab-social">
               <h3 class="uc-title"><span lang="en">Make a content system that repeats itself</span><span lang="nl">Een contentsysteem dat zichzelf herhaalt</span></h3>
               <p lang="en">Built once as a template, then reused. You plan an input or a visual, and the system knows which folder it belongs in, which tone applies and which checks come before anything is posted.</p>
             <p lang="nl">Eenmalig als sjabloon gebouwd, daarna hergebruikt. Je plant een input of een visual, en het systeem weet in welke map die hoort, welke toon geldt en welke controles er zijn voor er iets gepost wordt.</p>
-              <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
-              <pre class="tree" lang="en" tabindex="0">social-media/
-├── CLAUDE.md
-├── CONTEXT.md
-├── _shared/
-│   ├── tone-of-voice.md
-│   ├── visual-rules.md
-│   └── post-templates/
-├── calendar/
-│   └── 2026-11.md          # one line per planned post
-└── stages/
-    ├── 01-brief/
-    ├── 02-caption/
-    ├── 03-visual-brief/
-    └── 04-review/          # a human approves</pre>
-              <pre class="tree" lang="nl" tabindex="0">social-media/
-├── CLAUDE.md
-├── CONTEXT.md
-├── _shared/
-│   ├── tone-of-voice.md    # toon.md
-│   ├── visual-rules.md     # visuele-regels.md
-│   └── post-templates/     # post-sjablonen/
-├── calendar/               # kalender/
-│   └── 2026-11.md          # één regel per geplande post
-└── stages/
-    ├── 01-brief/
-    ├── 02-caption/         # bijschrift/
-    ├── 03-visual-brief/    # visuele-briefing/
-    └── 04-review/          # een mens keurt goed</pre>
-              <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
-              <pre class="uc-prompt" lang="en">Take the next planned post from calendar/2026-11.md and run stages 01 to 03. Stop at 04 and wait for my review.</pre>
-              <pre class="uc-prompt" lang="nl">Neem de volgende geplande post uit kalender/2026-11.md en voer stage 01 tot 03 uit. Stop bij 04 en wacht op mijn nazicht.</pre>
-              <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
-              <ul lang="en"><li>Nothing is posted without a person reading it. Stage 04 exists so that this is a rule and not a habit.</li><li>Keep the tone file honest. If you cannot describe your tone in a page, the AI will average it.</li><li>Visuals are made in your design tool. The workspace writes the brief for them.</li></ul>
+              <div class="stepper" data-stepper>
+                <ol class="stepper-dots"><li><button type="button" class="sd" data-goto="0"><span class="sd-n">1</span><span class="sd-l"><span lang="en">Folders</span><span lang="nl">Mappen</span></span></button></li><li><button type="button" class="sd" data-goto="1"><span class="sd-n">2</span><span class="sd-l"><span lang="en">You say</span><span lang="nl">Jij zegt</span></span></button></li><li><button type="button" class="sd" data-goto="2"><span class="sd-n">3</span><span class="sd-l"><span lang="en">It runs</span><span lang="nl">Het loopt</span></span></button></li><li><button type="button" class="sd" data-goto="3"><span class="sd-n">4</span><span class="sd-l"><span lang="en">Result</span><span lang="nl">Resultaat</span></span></button></li><li><button type="button" class="sd" data-goto="4"><span class="sd-n">5</span><span class="sd-l"><span lang="en">You check</span><span lang="nl">Jij controleert</span></span></button></li></ol>
+                <div class="stepper-stage">
+                  <div class="step is-active" data-step="0">
+                    <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
+                    <pre class="tree" lang="en" tabindex="0"><span class="tl" style="--n:0">social-media/</span><span class="tl" style="--n:1">├── CLAUDE.md</span><span class="tl" style="--n:2">├── CONTEXT.md</span><span class="tl" style="--n:3">├── _shared/</span><span class="tl" style="--n:4">│   ├── tone-of-voice.md</span><span class="tl" style="--n:5">│   ├── visual-rules.md</span><span class="tl" style="--n:6">│   └── post-templates/</span><span class="tl" style="--n:7">├── calendar/</span><span class="tl" style="--n:8">│   └── 2026-11.md          # one line per planned post</span><span class="tl" style="--n:9">└── stages/</span><span class="tl" style="--n:10">    ├── 01-brief/</span><span class="tl" style="--n:11">    ├── 02-caption/</span><span class="tl" style="--n:12">    ├── 03-visual-brief/</span><span class="tl" style="--n:13">    └── 04-review/          # a human approves</span></pre>
+                    <pre class="tree" lang="nl" tabindex="0"><span class="tl" style="--n:0">social-media/</span><span class="tl" style="--n:1">├── CLAUDE.md</span><span class="tl" style="--n:2">├── CONTEXT.md</span><span class="tl" style="--n:3">├── _shared/</span><span class="tl" style="--n:4">│   ├── tone-of-voice.md    # toon.md</span><span class="tl" style="--n:5">│   ├── visual-rules.md     # visuele-regels.md</span><span class="tl" style="--n:6">│   └── post-templates/     # post-sjablonen/</span><span class="tl" style="--n:7">├── calendar/               # kalender/</span><span class="tl" style="--n:8">│   └── 2026-11.md          # één regel per geplande post</span><span class="tl" style="--n:9">└── stages/</span><span class="tl" style="--n:10">    ├── 01-brief/</span><span class="tl" style="--n:11">    ├── 02-caption/         # bijschrift/</span><span class="tl" style="--n:12">    ├── 03-visual-brief/    # visuele-briefing/</span><span class="tl" style="--n:13">    └── 04-review/          # een mens keurt goed</span></pre>
+                  </div>
+                  <div class="step" data-step="1">
+                    <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
+                    <pre class="uc-prompt" data-prompt="uc-social" lang="en"><span class="p-bg">Background, in case you do not know this method: ICM (Interpretable Context Methodology, Jake Van Clief and David McDermott, 2026, arXiv:2603.16021) organises AI work as numbered folders with plain-text instruction files. Layer 0 is a top file such as CLAUDE.md (where am I), layer 1 a CONTEXT.md router (where do I go), layer 2 the CONTEXT.md of one stage (what do I do), layer 3 stable reference material, layer 4 the working material of this run. Read from the top down and stop when you have enough. Rely on this description, not on memory, and do not invent details about ICM.</span>
+<span class="p-task">Take the next planned post from calendar/2026-11.md and run stages 01 to 03. Stop at 04 and wait for my review.</span></pre>
+                    <pre class="uc-prompt" data-prompt="uc-social" lang="nl"><span class="p-bg">Achtergrond, voor het geval je deze methode niet kent: ICM (Interpretable Context Methodology, Jake Van Clief en David McDermott, 2026, arXiv:2603.16021) organiseert AI-werk als genummerde mappen met instructiebestanden in gewone tekst. Laag 0 is een bovenste bestand zoals CLAUDE.md (waar ben ik), laag 1 een CONTEXT.md als router (waar ga ik heen), laag 2 de CONTEXT.md van één stage (wat doe ik), laag 3 stabiel referentiemateriaal, laag 4 het werkmateriaal van deze run. Lees van boven naar onder en stop als je genoeg hebt. Baseer je op deze beschrijving, niet op je geheugen, en verzin geen details over ICM.</span>
+<span class="p-task">Neem de volgende geplande post uit kalender/2026-11.md en voer stage 01 tot 03 uit. Stop bij 04 en wacht op mijn nazicht.</span></pre>
+                    <p class="step-note" lang="en">The grey part is background for an AI that has never heard of ICM. The dark line is the task. Paste both.</p>
+            <p class="step-note" lang="nl">Het grijze deel is achtergrond voor een AI die nog nooit van ICM gehoord heeft. De donkere regel is de taak. Plak beide.</p>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-social" data-copy-lang="en" lang="en">Copy <span class="arrow">→</span></button>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-social" data-copy-lang="nl" lang="nl">Kopieer <span class="arrow">→</span></button>
+                  </div>
+                  <div class="step" data-step="2">
+                    <span class="uc-label"><span lang="en">What happens</span><span lang="nl">Wat er gebeurt</span></span>
+                    <ol class="run-list" lang="en"><li class="tl" style="--n:0">Stage 01 takes the next line from the calendar and writes a one-idea brief.</li><li class="tl" style="--n:1">Stage 02 writes a caption in the tone described in _shared/tone-of-voice.md.</li><li class="tl" style="--n:2">Stage 03 writes a visual brief, using the rules in _shared/visual-rules.md.</li><li class="tl" style="--n:3">Stage 04 stops. A person reads everything and approves or sends it back.</li></ol>
+                    <ol class="run-list" lang="nl"><li class="tl" style="--n:0">Stage 01 neemt de volgende regel uit de kalender en schrijft een briefing met één idee.</li><li class="tl" style="--n:1">Stage 02 schrijft een bijschrift in de toon uit _shared/toon.md.</li><li class="tl" style="--n:2">Stage 03 schrijft een visuele briefing volgens de regels in _shared/visuele-regels.md.</li><li class="tl" style="--n:3">Stage 04 stopt. Een mens leest alles en keurt goed of stuurt terug.</li></ol>
+                  </div>
+                  <div class="step" data-step="3">
+                    <span class="uc-label"><span lang="en">What you get</span><span lang="nl">Wat je krijgt</span> <em class="badge"><span lang="en">illustrative, invented</span><span lang="nl">illustratief, verzonnen</span></em></span>
+                    <pre class="uc-result" lang="en"><span class="tl" style="--n:0">01-brief: announce the workshop date. Audience: students.   (illustrative)</span><span class="tl" style="--n:1">02-caption: draft, 3 lines, tone-of-voice.md applied.</span><span class="tl" style="--n:2">03-visual-brief: square, big date, one photo from the last workshop.</span><span class="tl" style="--n:3">04-review: waiting for you. Nothing is posted until you approve.</span></pre>
+                    <pre class="uc-result" lang="nl"><span class="tl" style="--n:0">01-briefing: de workshopdatum aankondigen. Doelgroep: studenten.   (illustratief)</span><span class="tl" style="--n:1">02-bijschrift: ontwerp, 3 regels, toon.md toegepast.</span><span class="tl" style="--n:2">03-visuele-briefing: vierkant, grote datum, één foto van de vorige workshop.</span><span class="tl" style="--n:3">04-nazicht: wacht op jou. Er wordt niets gepost tot je goedkeurt.</span></pre>
+                  </div>
+                  <div class="step" data-step="4">
+                    <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
+                    <ul lang="en"><li>Nothing is posted without a person reading it. Stage 04 exists so that this is a rule and not a habit.</li><li>Keep the tone file honest. If you cannot describe your tone in a page, the AI will average it.</li><li>Visuals are made in your design tool. The workspace writes the brief for them.</li></ul>
             <ul lang="nl"><li>Er wordt niets gepost zonder dat een mens het leest. Stage 04 bestaat zodat dit een regel is en geen gewoonte.</li><li>Hou het toonbestand eerlijk. Als je je toon niet in één pagina kunt beschrijven, middelt de AI hem uit.</li><li>Visuals maak je in je ontwerptool. De werkruimte schrijft er de briefing voor.</li></ul>
+                  </div>
+                </div>
+                <div class="stepper-nav">
+                  <button class="btn-secondary btn-sm" type="button" data-back><span class="arrow">←</span> <span lang="en">Back</span><span lang="nl">Terug</span></button>
+                  <button class="btn-primary btn-sm" type="button" data-next><span lang="en">Next</span><span lang="nl">Volgende</span> <span class="arrow">→</span></button>
+                  <button class="btn-link" type="button" data-restart><span lang="en">Start over</span><span lang="nl">Opnieuw beginnen</span></button>
+                </div>
+              </div>
             </div>
 <div class="uc-panel" role="tabpanel" id="uc-thesis" aria-labelledby="tab-thesis">
               <h3 class="uc-title"><span lang="en">Run a whole thesis as one system</span><span lang="nl">Een hele masterproef als één systeem</span></h3>
               <p lang="en">The same pattern, zoomed out. Interviews, papers, insights and conclusions each get a place, and the system knows how they connect. The AI does the filing and the first clustering. The reading, the judgement and the writing stay yours.</p>
             <p lang="nl">Hetzelfde patroon, uitgezoomd. Interviews, papers, inzichten en conclusies krijgen elk een plaats, en het systeem weet hoe ze samenhangen. De AI doet het ordenen en de eerste clustering. Het lezen, het oordeel en het schrijven blijven van jou.</p>
-              <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
-              <pre class="tree" lang="en" tabindex="0">thesis/
-├── CLAUDE.md
-├── CONTEXT.md
-├── _shared/
-│   ├── research-question.md
-│   └── rules.md                # sources only from this folder, mark gaps
-├── sources/
-│   ├── interviews/
-│   └── papers/
-├── knowledge/
-│   ├── insights.md
-│   └── open-questions.md       # where to look next
-└── stages/
-    ├── 01-ingest/
-    ├── 02-code/
-    ├── 03-synthesise/
-    └── 04-outline/</pre>
-              <pre class="tree" lang="nl" tabindex="0">thesis/                         # masterproef/
-├── CLAUDE.md
-├── CONTEXT.md
-├── _shared/
-│   ├── research-question.md    # onderzoeksvraag.md
-│   └── rules.md                # bronnen enkel uit deze map, hiaten markeren
-├── sources/                    # bronnen/
-│   ├── interviews/
-│   └── papers/
-├── knowledge/                  # kennis/
-│   ├── insights.md             # inzichten.md
-│   └── open-questions.md       # waar je nog moet zoeken
-└── stages/
-    ├── 01-ingest/              # inlezen/
-    ├── 02-code/                # coderen/
-    ├── 03-synthesise/          # synthese/
-    └── 04-outline/             # opzet/</pre>
-              <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
-              <pre class="uc-prompt" lang="en">Add the new paper in sources/papers/ to the knowledge base. List what it changes in insights.md and which open questions it answers or creates.</pre>
-              <pre class="uc-prompt" lang="nl">Voeg de nieuwe paper in sources/papers/ toe aan de kennisbank. Som op wat ze verandert in inzichten.md en welke open vragen ze beantwoordt of oproept.</pre>
-              <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
-              <ul lang="en"><li>Open the papers yourself before you cite them. A summary of a paper is not the paper.</li><li>Use the open-questions file to find blind spots, then go back to people and sources with sharper questions.</li><li>Check your university's rules on AI in a thesis, and describe your use of it honestly.</li></ul>
+              <div class="stepper" data-stepper>
+                <ol class="stepper-dots"><li><button type="button" class="sd" data-goto="0"><span class="sd-n">1</span><span class="sd-l"><span lang="en">Folders</span><span lang="nl">Mappen</span></span></button></li><li><button type="button" class="sd" data-goto="1"><span class="sd-n">2</span><span class="sd-l"><span lang="en">You say</span><span lang="nl">Jij zegt</span></span></button></li><li><button type="button" class="sd" data-goto="2"><span class="sd-n">3</span><span class="sd-l"><span lang="en">It runs</span><span lang="nl">Het loopt</span></span></button></li><li><button type="button" class="sd" data-goto="3"><span class="sd-n">4</span><span class="sd-l"><span lang="en">Result</span><span lang="nl">Resultaat</span></span></button></li><li><button type="button" class="sd" data-goto="4"><span class="sd-n">5</span><span class="sd-l"><span lang="en">You check</span><span lang="nl">Jij controleert</span></span></button></li></ol>
+                <div class="stepper-stage">
+                  <div class="step is-active" data-step="0">
+                    <span class="uc-label"><span lang="en">The folders</span><span lang="nl">De mappen</span></span>
+                    <pre class="tree" lang="en" tabindex="0"><span class="tl" style="--n:0">thesis/</span><span class="tl" style="--n:1">├── CLAUDE.md</span><span class="tl" style="--n:2">├── CONTEXT.md</span><span class="tl" style="--n:3">├── _shared/</span><span class="tl" style="--n:4">│   ├── research-question.md</span><span class="tl" style="--n:5">│   └── rules.md                # sources only from this folder, mark gaps</span><span class="tl" style="--n:6">├── sources/</span><span class="tl" style="--n:7">│   ├── interviews/</span><span class="tl" style="--n:8">│   └── papers/</span><span class="tl" style="--n:9">├── knowledge/</span><span class="tl" style="--n:10">│   ├── insights.md</span><span class="tl" style="--n:11">│   └── open-questions.md       # where to look next</span><span class="tl" style="--n:12">└── stages/</span><span class="tl" style="--n:13">    ├── 01-ingest/</span><span class="tl" style="--n:14">    ├── 02-code/</span><span class="tl" style="--n:15">    ├── 03-synthesise/</span><span class="tl" style="--n:16">    └── 04-outline/</span></pre>
+                    <pre class="tree" lang="nl" tabindex="0"><span class="tl" style="--n:0">thesis/                         # masterproef/</span><span class="tl" style="--n:1">├── CLAUDE.md</span><span class="tl" style="--n:2">├── CONTEXT.md</span><span class="tl" style="--n:3">├── _shared/</span><span class="tl" style="--n:4">│   ├── research-question.md    # onderzoeksvraag.md</span><span class="tl" style="--n:5">│   └── rules.md                # bronnen enkel uit deze map, hiaten markeren</span><span class="tl" style="--n:6">├── sources/                    # bronnen/</span><span class="tl" style="--n:7">│   ├── interviews/</span><span class="tl" style="--n:8">│   └── papers/</span><span class="tl" style="--n:9">├── knowledge/                  # kennis/</span><span class="tl" style="--n:10">│   ├── insights.md             # inzichten.md</span><span class="tl" style="--n:11">│   └── open-questions.md       # waar je nog moet zoeken</span><span class="tl" style="--n:12">└── stages/</span><span class="tl" style="--n:13">    ├── 01-ingest/              # inlezen/</span><span class="tl" style="--n:14">    ├── 02-code/                # coderen/</span><span class="tl" style="--n:15">    ├── 03-synthesise/          # synthese/</span><span class="tl" style="--n:16">    └── 04-outline/             # opzet/</span></pre>
+                  </div>
+                  <div class="step" data-step="1">
+                    <span class="uc-label"><span lang="en">What you say to start</span><span lang="nl">Wat je zegt om te starten</span></span>
+                    <pre class="uc-prompt" data-prompt="uc-thesis" lang="en"><span class="p-bg">Background, in case you do not know this method: ICM (Interpretable Context Methodology, Jake Van Clief and David McDermott, 2026, arXiv:2603.16021) organises AI work as numbered folders with plain-text instruction files. Layer 0 is a top file such as CLAUDE.md (where am I), layer 1 a CONTEXT.md router (where do I go), layer 2 the CONTEXT.md of one stage (what do I do), layer 3 stable reference material, layer 4 the working material of this run. Read from the top down and stop when you have enough. Rely on this description, not on memory, and do not invent details about ICM.</span>
+<span class="p-task">Add the new paper in sources/papers/ to the knowledge base. List what it changes in insights.md and which open questions it answers or creates.</span></pre>
+                    <pre class="uc-prompt" data-prompt="uc-thesis" lang="nl"><span class="p-bg">Achtergrond, voor het geval je deze methode niet kent: ICM (Interpretable Context Methodology, Jake Van Clief en David McDermott, 2026, arXiv:2603.16021) organiseert AI-werk als genummerde mappen met instructiebestanden in gewone tekst. Laag 0 is een bovenste bestand zoals CLAUDE.md (waar ben ik), laag 1 een CONTEXT.md als router (waar ga ik heen), laag 2 de CONTEXT.md van één stage (wat doe ik), laag 3 stabiel referentiemateriaal, laag 4 het werkmateriaal van deze run. Lees van boven naar onder en stop als je genoeg hebt. Baseer je op deze beschrijving, niet op je geheugen, en verzin geen details over ICM.</span>
+<span class="p-task">Voeg de nieuwe paper in sources/papers/ toe aan de kennisbank. Som op wat ze verandert in inzichten.md en welke open vragen ze beantwoordt of oproept.</span></pre>
+                    <p class="step-note" lang="en">The grey part is background for an AI that has never heard of ICM. The dark line is the task. Paste both.</p>
+            <p class="step-note" lang="nl">Het grijze deel is achtergrond voor een AI die nog nooit van ICM gehoord heeft. De donkere regel is de taak. Plak beide.</p>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-thesis" data-copy-lang="en" lang="en">Copy <span class="arrow">→</span></button>
+                    <button class="btn-secondary btn-sm" type="button" data-copy="uc-thesis" data-copy-lang="nl" lang="nl">Kopieer <span class="arrow">→</span></button>
+                  </div>
+                  <div class="step" data-step="2">
+                    <span class="uc-label"><span lang="en">What happens</span><span lang="nl">Wat er gebeurt</span></span>
+                    <ol class="run-list" lang="en"><li class="tl" style="--n:0">Stage 01 files the new paper in sources/papers/ and notes what was actually read: abstract only, or the full text.</li><li class="tl" style="--n:1">Stage 02 codes the material against your research question.</li><li class="tl" style="--n:2">Stage 03 updates knowledge/insights.md and the list of open questions.</li><li class="tl" style="--n:3">Stage 04 proposes an outline. You decide what it means and write it.</li></ol>
+                    <ol class="run-list" lang="nl"><li class="tl" style="--n:0">Stage 01 bergt de nieuwe paper op in sources/papers/ en noteert wat echt gelezen is: enkel het abstract of de volledige tekst.</li><li class="tl" style="--n:1">Stage 02 codeert het materiaal tegen je onderzoeksvraag.</li><li class="tl" style="--n:2">Stage 03 werkt kennis/inzichten.md en de lijst met open vragen bij.</li><li class="tl" style="--n:3">Stage 04 stelt een opzet voor. Jij beslist wat het betekent en schrijft het.</li></ol>
+                  </div>
+                  <div class="step" data-step="3">
+                    <span class="uc-label"><span lang="en">What you get</span><span lang="nl">Wat je krijgt</span> <em class="badge"><span lang="en">illustrative, invented</span><span lang="nl">illustratief, verzonnen</span></em></span>
+                    <pre class="uc-result" lang="en"><span class="tl" style="--n:0">insights.md  (+2 lines)   (illustrative)</span><span class="tl" style="--n:1">- [interviews 3, 5] Parents hand the tool over when they are tired.</span><span class="tl" style="--n:2">- [paper 12, abstract only] Suggests routines matter more than features.</span><span class="tl" style="--n:3">  TO OPEN before you cite it.</span><span class="tl" style="--n:4"> </span><span class="tl" style="--n:5">open-questions.md  (+1)</span><span class="tl" style="--n:6">- Do parents of younger children behave differently? No interview yet.</span></pre>
+                    <pre class="uc-result" lang="nl"><span class="tl" style="--n:0">inzichten.md  (+2 regels)   (illustratief)</span><span class="tl" style="--n:1">- [interviews 3, 5] Ouders geven de tool weg als ze moe zijn.</span><span class="tl" style="--n:2">- [paper 12, enkel abstract] Suggereert dat routines belangrijker zijn dan functies.</span><span class="tl" style="--n:3">  NOG OPENEN voor je ze citeert.</span><span class="tl" style="--n:4"> </span><span class="tl" style="--n:5">open-vragen.md  (+1)</span><span class="tl" style="--n:6">- Gedragen ouders van jongere kinderen zich anders? Nog geen interview.</span></pre>
+                  </div>
+                  <div class="step" data-step="4">
+                    <span class="uc-label"><span lang="en">What you still check</span><span lang="nl">Wat je nog zelf nakijkt</span></span>
+                    <ul lang="en"><li>Open the papers yourself before you cite them. A summary of a paper is not the paper.</li><li>Use the open-questions file to find blind spots, then go back to people and sources with sharper questions.</li><li>Check your university's rules on AI in a thesis, and describe your use of it honestly.</li></ul>
             <ul lang="nl"><li>Open de papers zelf voor je ze citeert. Een samenvatting van een paper is de paper niet.</li><li>Gebruik het bestand met open vragen om blinde vlekken te vinden en ga daarna met scherpere vragen terug naar mensen en bronnen.</li><li>Check de regels van je universiteit over AI in een masterproef en beschrijf je gebruik eerlijk.</li></ul>
+                  </div>
+                </div>
+                <div class="stepper-nav">
+                  <button class="btn-secondary btn-sm" type="button" data-back><span class="arrow">←</span> <span lang="en">Back</span><span lang="nl">Terug</span></button>
+                  <button class="btn-primary btn-sm" type="button" data-next><span lang="en">Next</span><span lang="nl">Volgende</span> <span class="arrow">→</span></button>
+                  <button class="btn-link" type="button" data-restart><span lang="en">Start over</span><span lang="nl">Opnieuw beginnen</span></button>
+                </div>
+              </div>
             </div></div>
 
             <h2 id="habits"><span lang="en">Three habits that make it work better</span><span lang="nl">Drie gewoontes die het beter laten werken</span></h2>
 
-            <h3><span lang="en">1. Speak instead of typing</span><span lang="nl">1. Spreek in plaats van te typen</span></h3>
-
-            <p lang="en">Speaking is faster than typing and carries more context. For short prompts, the dictation built into your phone or computer is enough. For longer thoughts, interviews or a whole brain dump, use a tool built for that, such as Granola or a dictation tool like Wispr Flow. The tools section below groups more of them.</p>
-            <p lang="nl">Spreken gaat sneller dan typen en bevat meer context. Voor korte prompts volstaat het dictee dat in je telefoon of computer zit. Voor langere gedachten, interviews of een volledige braindump gebruik je een tool die daarvoor gemaakt is, zoals Granola of een dicteertool zoals Wispr Flow. De sectie met tools hieronder groepeert er meer.</p>
-
-            <h3><span lang="en">2. Let the AI ask you questions</span><span lang="nl">2. Laat de AI jou vragen stellen</span></h3>
-
-            <p lang="en">Before a task, ask the AI to interview you, one question at a time, with a few labelled options to click or number instead of typing an answer. In our experience this gives better output every time, because the AI stops guessing what you meant. The prompt for it is in the closing section.</p>
-            <p lang="nl">Vraag de AI vóór een taak om je te interviewen, één vraag per keer, met een paar genummerde opties om te klikken of te nummeren in plaats van een antwoord te typen. In onze ervaring levert dat telkens betere output op, omdat de AI stopt met raden wat je bedoelde. De prompt ervoor staat in de afsluitende sectie.</p>
-
-            <h3><span lang="en">3. Know where you sit on the spectrum</span><span lang="nl">3. Weet waar je zit op het spectrum</span></h3>
-
-            <p lang="en">AI use is not on or off. It runs from occasional to continuous. ICM is, for us, what moves work from using AI a lot to using it continuously: the system knows the task, so you stop re-explaining it.</p>
-            <p lang="nl">AI-gebruik staat niet aan of uit. Het loopt van af en toe tot continu. ICM is voor ons wat werk verplaatst van veel AI gebruiken naar het continu gebruiken: het systeem kent de taak, dus je stopt met ze opnieuw uit te leggen.</p>
+            <div class="cards cards--1"><div class="card"><span class="card-n">1</span><h4 lang="en">Speak instead of typing</h4><h4 lang="nl">Spreek in plaats van te typen</h4><p lang="en">Speaking is faster than typing and carries more context. For short prompts, the dictation built into your phone or computer is enough. For longer thoughts, interviews or a whole brain dump, use a tool built for that, such as Granola or a dictation tool like Wispr Flow. The tools section below groups more of them.</p><p lang="nl">Spreken gaat sneller dan typen en bevat meer context. Voor korte prompts volstaat het dictee dat in je telefoon of computer zit. Voor langere gedachten, interviews of een volledige braindump gebruik je een tool die daarvoor gemaakt is, zoals Granola of een dicteertool zoals Wispr Flow. De sectie met tools hieronder groepeert er meer.</p></div><div class="card"><span class="card-n">2</span><h4 lang="en">Let the AI ask you questions</h4><h4 lang="nl">Laat de AI jou vragen stellen</h4><p lang="en">Before a task, ask the AI to interview you, one question at a time, with a few labelled options to click or number instead of typing an answer. In our experience this gives better output every time, because the AI stops guessing what you meant. The prompt for it is in the closing section.</p><p lang="nl">Vraag de AI vóór een taak om je te interviewen, één vraag per keer, met een paar genummerde opties om te klikken of te nummeren in plaats van een antwoord te typen. In onze ervaring levert dat telkens betere output op, omdat de AI stopt met raden wat je bedoelde. De prompt ervoor staat in de afsluitende sectie.</p></div><div class="card"><span class="card-n">3</span><h4 lang="en">Know where you sit on the spectrum</h4><h4 lang="nl">Weet waar je zit op het spectrum</h4><p lang="en">AI use is not on or off. It runs from occasional to continuous. ICM is, for us, what moves work from using AI a lot to using it continuously: the system knows the task, so you stop re-explaining it.</p><p lang="nl">AI-gebruik staat niet aan of uit. Het loopt van af en toe tot continu. ICM is voor ons wat werk verplaatst van veel AI gebruiken naar het continu gebruiken: het systeem kent de taak, dus je stopt met ze opnieuw uit te leggen.</p></div></div>
 
             <div class="spectrum" aria-label="Spectrum of AI use"><span class="spectrum-step"><span lang="en">Occasional</span><span lang="nl">Af en toe</span></span><span class="spectrum-step"><span lang="en">Regular</span><span lang="nl">Regelmatig</span></span><span class="spectrum-step"><span lang="en">A lot</span><span lang="nl">Veel</span></span><span class="spectrum-step"><span lang="en">Across all tasks</span><span lang="nl">Over alle taken</span></span><span class="spectrum-step"><span lang="en">Continuous</span><span lang="nl">Continu</span></span></div>
 
@@ -533,8 +562,7 @@
 
             <h2 id="steps"><span lang="en">Start with one task: four steps</span><span lang="nl">Begin met één taak: vier stappen</span></h2>
 
-            <ol lang="en"><li><strong>Pick one task that repeats and can be automated.</strong> Not the whole system. If you cannot name it in one sentence, it is too big.</li><li><strong>Build the context.</strong> Make one top file, CLAUDE.md in Claude Code or an equivalent in other tools, as the overview: what the agent does, which folder to look in, which step belongs where. You do not have to write it alone. Let the AI help, using the starter prompt below.</li><li><strong>Test and talk.</strong> Run it on a real input. Correct what is wrong by speaking, then ask the AI to write that correction into the instructions.</li><li><strong>Use it again.</strong> The more you run it, the more concrete and the better the workspace becomes. After every run, write down what you had to correct.</li></ol>
-            <ol lang="nl"><li><strong>Kies één taak die zich herhaalt en geautomatiseerd kan worden.</strong> Niet het hele systeem. Als je ze niet in één zin kunt benoemen, is ze te groot.</li><li><strong>Bouw de context.</strong> Maak één bovenste bestand, CLAUDE.md in Claude Code of een equivalent in andere tools, als overzicht: wat de agent doet, in welke map hij kijkt, welke stap waar hoort. Je hoeft het niet alleen te schrijven. Laat de AI helpen met de startersprompt hieronder.</li><li><strong>Test en praat.</strong> Draai het op een echte input. Corrigeer wat fout is door te spreken en vraag de AI die correctie in de instructies te schrijven.</li><li><strong>Gebruik het opnieuw.</strong> Hoe meer je het draait, hoe concreter en beter de werkruimte wordt. Schrijf na elke run op wat je moest corrigeren.</li></ol>
+            <div class="cards cards--4"><div class="card"><span class="card-n">1</span><h4 lang="en">Pick one task that repeats and can be automated</h4><h4 lang="nl">Kies één taak die zich herhaalt en geautomatiseerd kan worden</h4><p lang="en">Not the whole system. If you cannot name it in one sentence, it is too big.</p><p lang="nl">Niet het hele systeem. Als je ze niet in één zin kunt benoemen, is ze te groot.</p></div><div class="card"><span class="card-n">2</span><h4 lang="en">Build the context</h4><h4 lang="nl">Bouw de context</h4><p lang="en">Make one top file, CLAUDE.md in Claude Code or an equivalent in other tools, as the overview: what the agent does, which folder to look in, which step belongs where. You do not have to write it alone. Let the AI help, using the starter prompt below.</p><p lang="nl">Maak één bovenste bestand, CLAUDE.md in Claude Code of een equivalent in andere tools, als overzicht: wat de agent doet, in welke map hij kijkt, welke stap waar hoort. Je hoeft het niet alleen te schrijven. Laat de AI helpen met de startersprompt hieronder.</p></div><div class="card"><span class="card-n">3</span><h4 lang="en">Test and talk</h4><h4 lang="nl">Test en praat</h4><p lang="en">Run it on a real input. Correct what is wrong by speaking, then ask the AI to write that correction into the instructions.</p><p lang="nl">Draai het op een echte input. Corrigeer wat fout is door te spreken en vraag de AI die correctie in de instructies te schrijven.</p></div><div class="card"><span class="card-n">4</span><h4 lang="en">Use it again</h4><h4 lang="nl">Gebruik het opnieuw</h4><p lang="en">The more you run it, the more concrete and the better the workspace becomes. After every run, write down what you had to correct.</p><p lang="nl">Hoe meer je het draait, hoe concreter en beter de werkruimte wordt. Schrijf na elke run op wat je moest corrigeren.</p></div></div>
 
             <p lang="en">We built this kind of system over the summer for our own work at Anté, are now applying it to a master's thesis, and see that the possibilities are larger than we expected.</p>
             <p lang="nl">We bouwden dit soort systeem de afgelopen zomer voor ons eigen werk bij Anté, passen het nu toe op een masterproef en zien dat de mogelijkheden groter zijn dan we verwachtten.</p>
@@ -552,20 +580,202 @@
             <p lang="en">The method does not depend on any of these, and the list is deliberately a start. Names change quickly, so choose by the type of job, and check the current terms and data settings of whatever you pick. Missing something? Tell us at hello@antedesign.be.</p>
             <p lang="nl">De methode hangt van geen enkele hiervan af, en de lijst is bewust een begin. Namen veranderen snel, dus kies op het type taak en check de actuele voorwaarden en data-instellingen van wat je kiest. Mis je iets? Laat het ons weten via hello@antedesign.be.</p>
 
-            <div class="article-table-wrap" lang="en"><table class="article-table"><thead><tr><th scope="col">Type</th><th scope="col">Examples</th><th scope="col">What it is for</th><th scope="col">Watch out</th></tr></thead><tbody><tr><td>Transcription and dictation</td><td>Granola, Wispr Flow, built-in dictation on your phone or computer, Whisper-based apps</td><td>Turn speech into text: meetings and interviews (longer), prompts and notes (shorter).</td><td>Names, jargon and accents go wrong. Recording needs consent.</td></tr><tr><td>AI assistants</td><td>Claude, ChatGPT, Gemini</td><td>Chat and projects. Upload or paste the workspace files if the assistant cannot read a folder.</td><td>Settings for data use differ per product and per plan. Read them.</td></tr><tr><td>Agents that work in folders</td><td>Claude Code, OpenAI Codex, Gemini CLI</td><td>Read the whole workspace, follow the stage files, write outputs back to the folders.</td><td>They can change files. Keep a copy, and review what changed.</td></tr><tr><td>Where the folder lives</td><td>Your own disk, Google Drive, OneDrive, GitHub</td><td>Drive or a shared folder to work with others, local if it stays private, GitHub if you want a history of every change.</td><td>A synced folder is shared with everyone it is shared with. Decide before you put sources in it.</td></tr><tr><td>Editing the files</td><td>Any text editor, Obsidian, VS Code</td><td>The files are plain text. Obsidian shows them as linked notes, VS Code shows the whole tree.</td><td>Keep file names lowercase with hyphens, so every tool reads them the same way.</td></tr><tr><td>Papers and references</td><td>Zotero, EndNote, Mendeley, NotebookLM, Elicit, Consensus</td><td>Collect and organise papers, then give the AI the papers you actually opened.</td><td>AI tools invent citations. Open every source before you cite it.</td></tr><tr><td>Visual work</td><td>Canva, Figma, Miro</td><td>Where the visual brief becomes a visual. Miro for sticky notes and clusters.</td><td>The workspace writes the brief. The tool makes the image.</td></tr></tbody></table></div>
-            <div class="article-table-wrap" lang="nl"><table class="article-table"><thead><tr><th scope="col">Type</th><th scope="col">Voorbeelden</th><th scope="col">Waarvoor</th><th scope="col">Opgelet</th></tr></thead><tbody><tr><td>Transcriptie en dictee</td><td>Granola, Wispr Flow, het ingebouwde dictee van je telefoon of computer, apps op basis van Whisper</td><td>Spraak omzetten in tekst: vergaderingen en interviews (langer), prompts en notities (korter).</td><td>Namen, jargon en accenten gaan fout. Opnemen vraagt toestemming.</td></tr><tr><td>AI-assistenten</td><td>Claude, ChatGPT, Gemini</td><td>Chat en projecten. Upload of plak de werkruimtebestanden als de assistent geen map kan lezen.</td><td>Instellingen voor datagebruik verschillen per product en per abonnement. Lees ze.</td></tr><tr><td>Agents die in mappen werken</td><td>Claude Code, OpenAI Codex, Gemini CLI</td><td>Lezen de hele werkruimte, volgen de stagebestanden en schrijven output terug naar de mappen.</td><td>Ze kunnen bestanden wijzigen. Hou een kopie en bekijk wat er veranderd is.</td></tr><tr><td>Waar de map staat</td><td>Je eigen schijf, Google Drive, OneDrive, GitHub</td><td>Drive of een gedeelde map om met anderen te werken, lokaal als het privé blijft, GitHub als je een geschiedenis van elke wijziging wil.</td><td>Een gesynchroniseerde map is gedeeld met iedereen met wie ze gedeeld is. Beslis voor je er bronnen in zet.</td></tr><tr><td>De bestanden bewerken</td><td>Een willekeurige teksteditor, Obsidian, VS Code</td><td>De bestanden zijn gewone tekst. Obsidian toont ze als gelinkte notities, VS Code toont de hele boom.</td><td>Hou bestandsnamen in kleine letters met koppeltekens, zodat elke tool ze op dezelfde manier leest.</td></tr><tr><td>Papers en referenties</td><td>Zotero, EndNote, Mendeley, NotebookLM, Elicit, Consensus</td><td>Papers verzamelen en ordenen, en de AI de papers geven die je echt geopend hebt.</td><td>AI-tools verzinnen citaten. Open elke bron voor je ze citeert.</td></tr><tr><td>Visueel werk</td><td>Canva, Figma, Miro</td><td>Waar de visuele briefing een visual wordt. Miro voor post-its en clusters.</td><td>De werkruimte schrijft de briefing. De tool maakt het beeld.</td></tr></tbody></table></div>
+            <div class="tools-ctl">
+              <button type="button" class="btn-link" data-tools-open><span lang="en">Expand all</span><span lang="nl">Alles openklappen</span></button>
+              <button type="button" class="btn-link" data-tools-close><span lang="en">Collapse all</span><span lang="nl">Alles dichtklappen</span></button>
+            </div>
+<div class="tool-groups"><details class="tool-group" open id="tools-transcription">
+              <summary><span class="tg-title"><span lang="en">Transcription and dictation</span><span lang="nl">Transcriptie en dictee</span></span><span class="tg-count">4 <span lang="en">tools</span><span lang="nl">tools</span></span>
+                <span class="tg-sub"><span lang="en">Turn speech into text, for interviews, meetings and prompts.</span><span lang="nl">Zet spraak om in tekst, voor interviews, vergaderingen en prompts.</span></span></summary>
+              <div class="tg-body"><details class="tool"><summary><span class="t-name">Granola</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">An AI notepad for meetings. You type your own notes while it transcribes the meeting audio on your computer, then combines both into structured notes.</span><span lang="nl">Een AI-notitieblok voor vergaderingen. Jij typt je eigen notities terwijl het de audio van het gesprek op je computer transcribeert, en combineert daarna beide tot gestructureerde notities.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">Interviews and meetings become a transcript and notes you can drop into a workspace's sources folder.</span><span lang="nl">Interviews en vergaderingen worden een transcript en notities die je in de bronnenmap van een werkruimte kunt zetten.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Recording people needs their consent. Check where audio and notes are stored in the current terms.</span><span lang="nl">Mensen opnemen vraagt hun toestemming. Check in de actuele voorwaarden waar audio en notities bewaard worden.</span></p>
+                    <a class="tool-link" href="https://www.granola.ai/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Wispr Flow</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A voice dictation app that types what you say into whichever app is active, and tidies filler words and grammar.</span><span lang="nl">Een dicteerapp die typt wat je zegt in de app die actief is, en stopwoorden en grammatica opkuist.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">Speaking is faster than typing and carries more context, which helps with long prompts and corrections.</span><span lang="nl">Spreken gaat sneller dan typen en bevat meer context, wat helpt bij lange prompts en correcties.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">As far as we found, it works through the cloud, so read the privacy terms before dictating anything sensitive.</span><span lang="nl">Voor zover we vonden werkt het via de cloud, dus lees de privacyvoorwaarden voor je iets gevoeligs dicteert.</span></p>
+                    <a class="tool-link" href="https://wisprflow.ai/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Whisper</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">An open-source speech-to-text model from OpenAI. Many transcription apps are built on it, and you can also run it yourself.</span><span lang="nl">Een open-source spraak-naar-tekstmodel van OpenAI. Veel transcriptie-apps zijn erop gebouwd en je kunt het ook zelf draaien.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">Useful when audio must stay on your own machine.</span><span lang="nl">Handig als audio op je eigen toestel moet blijven.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Running it yourself needs some technical setup, and it still mishears names and jargon.</span><span lang="nl">Zelf draaien vraagt wat technische opzet, en het verstaat namen en jargon nog steeds fout.</span></p>
+                    <a class="tool-link" href="https://github.com/openai/whisper" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Built-in dictation</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">The dictation function that comes with your phone or operating system.</span><span lang="nl">De dicteerfunctie die bij je telefoon of besturingssysteem hoort.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">No setup, and enough for short prompts.</span><span lang="nl">Geen opzet nodig, en genoeg voor korte prompts.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Quality and supported languages vary per device.</span><span lang="nl">Kwaliteit en ondersteunde talen verschillen per toestel.</span></p>
+                    
+                  </div></details></div></details>
+<details class="tool-group" id="tools-assistants">
+              <summary><span class="tg-title"><span lang="en">AI assistants (chat)</span><span lang="nl">AI-assistenten (chat)</span></span><span class="tg-count">3 <span lang="en">tools</span><span lang="nl">tools</span></span>
+                <span class="tg-sub"><span lang="en">Where you paste the starter prompt. They work with attached files or projects.</span><span lang="nl">Waar je de startersprompt plakt. Ze werken met bijgevoegde bestanden of projecten.</span></span></summary>
+              <div class="tg-body"><details class="tool"><summary><span class="t-name">Claude</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">Anthropic's AI assistant, as chat and as projects that can hold files.</span><span lang="nl">De AI-assistent van Anthropic, als chat en als projecten die bestanden kunnen bevatten.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">You can attach the workspace files, so the assistant reads the same structure an agent would.</span><span lang="nl">Je kunt de werkruimtebestanden bijvoegen, zodat de assistent dezelfde structuur leest als een agent zou doen.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Check the data and training settings of your plan before you add personal data.</span><span lang="nl">Check de data- en trainingsinstellingen van je abonnement voor je persoonsgegevens toevoegt.</span></p>
+                    <a class="tool-link" href="https://claude.ai/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">ChatGPT</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">OpenAI's AI assistant, as chat and projects with file uploads.</span><span lang="nl">De AI-assistent van OpenAI, als chat en projecten met bestandsuploads.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">The starter prompt explains ICM itself instead of assuming the assistant knows it, so you can paste it into any chat.</span><span lang="nl">De startersprompt legt ICM zelf uit in plaats van te veronderstellen dat de assistent het kent, dus je kunt hem in elke chat plakken.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Settings for data use differ per plan. Read them.</span><span lang="nl">Instellingen voor datagebruik verschillen per abonnement. Lees ze.</span></p>
+                    <a class="tool-link" href="https://chatgpt.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Gemini</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">Google's AI assistant, available in the browser and inside Google products.</span><span lang="nl">De AI-assistent van Google, beschikbaar in de browser en in Google-producten.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">Handy if your files already live in Google Drive.</span><span lang="nl">Handig als je bestanden al in Google Drive staan.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Check which Google account and which data settings apply.</span><span lang="nl">Check welk Google-account en welke data-instellingen gelden.</span></p>
+                    <a class="tool-link" href="https://gemini.google.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details></div></details>
+<details class="tool-group" id="tools-agents">
+              <summary><span class="tg-title"><span lang="en">Agents that work in folders</span><span lang="nl">Agents die in mappen werken</span></span><span class="tg-count">3 <span lang="en">tools</span><span lang="nl">tools</span></span>
+                <span class="tg-sub"><span lang="en">They read the whole workspace and write results back to it.</span><span lang="nl">Ze lezen de hele werkruimte en schrijven resultaten ernaar terug.</span></span></summary>
+              <div class="tg-body"><details class="tool"><summary><span class="t-name">Claude Code</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">Anthropic's coding agent that works in a folder on your computer. At the start of a session it reads a CLAUDE.md file as project instructions.</span><span lang="nl">Het programmeeragent van Anthropic die in een map op je computer werkt. Aan het begin van een sessie leest hij een CLAUDE.md-bestand als projectinstructies.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">ICM's layer 0 is a CLAUDE.md, which this tool loads by itself, so the folder structure can do the routing.</span><span lang="nl">Laag 0 van ICM is een CLAUDE.md, die dit hulpmiddel zelf laadt, zodat de mappenstructuur de routing kan doen.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">It can change files on your disk. Keep a copy and review what changed.</span><span lang="nl">Het kan bestanden op je schijf wijzigen. Hou een kopie en bekijk wat er veranderd is.</span></p>
+                    <a class="tool-link" href="https://code.claude.com/docs" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">OpenAI Codex CLI</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">OpenAI's agent that you run locally from your terminal. It can read, change and run files in the directory you choose.</span><span lang="nl">De agent van OpenAI die je lokaal vanuit je terminal draait. Hij kan bestanden lezen, wijzigen en uitvoeren in de map die je kiest.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">The same workspace can move over, because it is only folders and text files.</span><span lang="nl">Dezelfde werkruimte kan mee verhuizen, omdat ze enkel uit mappen en tekstbestanden bestaat.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Each tool has its own name for the top instruction file. Check its documentation and rename if needed.</span><span lang="nl">Elke tool heeft een eigen naam voor het bovenste instructiebestand. Check de documentatie en hernoem indien nodig.</span></p>
+                    <a class="tool-link" href="https://developers.openai.com/codex/cli" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Gemini CLI</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">Google's open-source command-line agent for Gemini models.</span><span lang="nl">De open-source opdrachtlijnagent van Google voor Gemini-modellen.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">Another agent that works in folders, so you are not tied to one product.</span><span lang="nl">Nog een agent die in mappen werkt, zodat je niet aan één product vastzit.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Limits and terms have changed over time. Check the current ones.</span><span lang="nl">Limieten en voorwaarden zijn in de loop van de tijd veranderd. Check de actuele.</span></p>
+                    <a class="tool-link" href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details></div></details>
+<details class="tool-group" id="tools-storage">
+              <summary><span class="tg-title"><span lang="en">Where the folder lives</span><span lang="nl">Waar de map staat</span></span><span class="tg-count">2 <span lang="en">tools</span><span lang="nl">tools</span></span>
+                <span class="tg-sub"><span lang="en">A drive for sharing, your own disk for private work, a repository for history.</span><span lang="nl">Een drive om te delen, je eigen schijf voor privéwerk, een repository voor geschiedenis.</span></span></summary>
+              <div class="tg-body"><details class="tool"><summary><span class="t-name">Google Drive</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">Cloud storage with sharing.</span><span lang="nl">Cloudopslag met delen.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">A shared drive suits a workspace you build together.</span><span lang="nl">Een gedeelde drive past bij een werkruimte die je samen bouwt.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Shared means shared: check who has access before you add interview material.</span><span lang="nl">Gedeeld is gedeeld: check wie toegang heeft voor je interviewmateriaal toevoegt.</span></p>
+                    <a class="tool-link" href="https://drive.google.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">GitHub</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A platform that stores folders as repositories, with a history of every change.</span><span lang="nl">Een platform dat mappen opslaat als repositories, met een geschiedenis van elke wijziging.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">Every correction to your instruction files becomes visible and reversible.</span><span lang="nl">Elke correctie aan je instructiebestanden wordt zichtbaar en omkeerbaar.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Public repositories are public. Keep personal data out of them.</span><span lang="nl">Publieke repositories zijn publiek. Hou persoonsgegevens eruit.</span></p>
+                    <a class="tool-link" href="https://github.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details></div></details>
+<details class="tool-group" id="tools-editing">
+              <summary><span class="tg-title"><span lang="en">Writing and editing the files</span><span lang="nl">De bestanden schrijven en bewerken</span></span><span class="tg-count">2 <span lang="en">tools</span><span lang="nl">tools</span></span>
+                <span class="tg-sub"><span lang="en">The files are plain text, so any editor will do.</span><span lang="nl">De bestanden zijn gewone tekst, dus elke editor volstaat.</span></span></summary>
+              <div class="tg-body"><details class="tool"><summary><span class="t-name">Obsidian</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A notes app that keeps plain Markdown files in a folder on your computer and links notes to each other.</span><span lang="nl">Een notitie-app die gewone Markdown-bestanden in een map op je computer bewaart en notities aan elkaar linkt.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">ICM files are Markdown, so Obsidian shows a workspace as linked notes you can read and edit.</span><span lang="nl">ICM-bestanden zijn Markdown, dus Obsidian toont een werkruimte als gelinkte notities die je kunt lezen en bewerken.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Syncing is a separate decision. Decide how and where before you sync sensitive material.</span><span lang="nl">Synchroniseren is een aparte beslissing. Beslis hoe en waar voor je gevoelig materiaal synchroniseert.</span></p>
+                    <a class="tool-link" href="https://obsidian.md/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Visual Studio Code</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A free code editor that shows a whole folder tree.</span><span lang="nl">Een gratis code-editor die een hele mappenboom toont.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">You see the structure and edit the instruction files in one place.</span><span lang="nl">Je ziet de structuur en bewerkt de instructiebestanden op één plaats.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">More than you need if you only edit a few text files.</span><span lang="nl">Meer dan je nodig hebt als je maar een paar tekstbestanden bewerkt.</span></p>
+                    <a class="tool-link" href="https://code.visualstudio.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details></div></details>
+<details class="tool-group" id="tools-papers">
+              <summary><span class="tg-title"><span lang="en">Papers and references</span><span lang="nl">Papers en referenties</span></span><span class="tg-count">6 <span lang="en">tools</span><span lang="nl">tools</span></span>
+                <span class="tg-sub"><span lang="en">Collect and organise sources, then give the AI the ones you actually opened.</span><span lang="nl">Verzamel en orden bronnen en geef de AI degene die je echt geopend hebt.</span></span></summary>
+              <div class="tg-body"><details class="tool"><summary><span class="t-name">Zotero</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A reference manager that collects papers, stores PDFs and formats citations.</span><span lang="nl">Een referentiebeheerder die papers verzamelt, pdf's bewaart en citaten opmaakt.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">It gives you one place for the papers that go into the workspace's papers folder.</span><span lang="nl">Het geeft je één plaats voor de papers die in de papersmap van de werkruimte komen.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Online storage is limited on the free plan.</span><span lang="nl">Online opslag is beperkt in het gratis abonnement.</span></p>
+                    <a class="tool-link" href="https://www.zotero.org/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">EndNote</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A commercial reference manager, available through some universities.</span><span lang="nl">Een commerciële referentiebeheerder, beschikbaar via sommige universiteiten.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">If your university provides it, it does the same job.</span><span lang="nl">Als je universiteit het aanbiedt, doet het dezelfde taak.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Check whether your institution gives you access before you pay.</span><span lang="nl">Check of je instelling je toegang geeft voor je betaalt.</span></p>
+                    <a class="tool-link" href="https://endnote.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Mendeley</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A reference manager with a PDF library and citation tools.</span><span lang="nl">Een referentiebeheerder met een pdf-bibliotheek en citatietools.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">A third option if your group already uses it.</span><span lang="nl">Een derde optie als je groep het al gebruikt.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Features and storage terms change. Check the current ones.</span><span lang="nl">Functies en opslagvoorwaarden veranderen. Check de actuele.</span></p>
+                    <a class="tool-link" href="https://www.mendeley.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">NotebookLM</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A Google tool that answers questions from the sources you upload, with references to them.</span><span lang="nl">Een Google-tool die vragen beantwoordt vanuit de bronnen die je uploadt, met verwijzingen ernaar.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">Handy for a first pass over a set of papers or notes.</span><span lang="nl">Handig voor een eerste verkenning van een reeks papers of notities.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">It still makes mistakes. Open the cited passage before you rely on it.</span><span lang="nl">Het maakt nog steeds fouten. Open de geciteerde passage voor je erop steunt.</span></p>
+                    <a class="tool-link" href="https://notebooklm.google.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Elicit</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">An AI research assistant that searches papers and extracts details into a table.</span><span lang="nl">Een AI-onderzoeksassistent die papers zoekt en details in een tabel haalt.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">It speeds up finding candidate papers.</span><span lang="nl">Het versnelt het vinden van kandidaat-papers.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Extraction needs human verification, and AI tools can invent citations. Open every paper.</span><span lang="nl">Extractie vraagt menselijke controle, en AI-tools kunnen citaten verzinnen. Open elke paper.</span></p>
+                    <a class="tool-link" href="https://elicit.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Consensus</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">An AI search engine for scientific papers.</span><span lang="nl">Een AI-zoekmachine voor wetenschappelijke papers.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">Another way to find candidate papers for your question.</span><span lang="nl">Een andere manier om kandidaat-papers voor je vraag te vinden.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">The same rule applies: open every paper before you cite it.</span><span lang="nl">Dezelfde regel geldt: open elke paper voor je ze citeert.</span></p>
+                    <a class="tool-link" href="https://consensus.app/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details></div></details>
+<details class="tool-group" id="tools-visual">
+              <summary><span class="tg-title"><span lang="en">Visual work</span><span lang="nl">Visueel werk</span></span><span class="tg-count">3 <span lang="en">tools</span><span lang="nl">tools</span></span>
+                <span class="tg-sub"><span lang="en">Where a brief from the workspace becomes an image, or findings become clusters.</span><span lang="nl">Waar een briefing uit de werkruimte een beeld wordt, of bevindingen clusters.</span></span></summary>
+              <div class="tg-body"><details class="tool"><summary><span class="t-name">Canva</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A design tool for presentations, social posts and other visuals.</span><span lang="nl">Een ontwerptool voor presentaties, sociale posts en andere visuals.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">The workspace writes the visual brief, Canva makes the image.</span><span lang="nl">De werkruimte schrijft de visuele briefing, Canva maakt het beeld.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Check brand rules and image rights.</span><span lang="nl">Check huisstijlregels en beeldrechten.</span></p>
+                    <a class="tool-link" href="https://www.canva.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Figma</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">A collaborative interface and graphic design tool.</span><span lang="nl">Een collaboratieve interface- en grafische ontwerptool.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">For designs that need exact layout, built from a brief the workspace wrote.</span><span lang="nl">Voor ontwerpen met exacte lay-out, gebouwd vanuit een briefing die de werkruimte schreef.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">A steeper learning curve than Canva.</span><span lang="nl">Een steilere leercurve dan Canva.</span></p>
+                    <a class="tool-link" href="https://www.figma.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details><details class="tool"><summary><span class="t-name">Miro</span></summary>
+                  <div class="tool-body">
+                    <p class="t-row"><span class="t-k"><span lang="en">What it is</span><span lang="nl">Wat het is</span></span><span lang="en">An online whiteboard for sticky notes, clusters and diagrams.</span><span lang="nl">Een online whiteboard voor post-its, clusters en diagrammen.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Why use it here</span><span lang="nl">Waarom hier gebruiken</span></span><span lang="en">Useful to cluster findings by hand after the workspace's first pass.</span><span lang="nl">Nuttig om bevindingen met de hand te groeperen na de eerste ronde van de werkruimte.</span></p>
+                    <p class="t-row"><span class="t-k"><span lang="en">Watch out</span><span lang="nl">Opgelet</span></span><span lang="en">Do the final clustering yourself. It is where you notice what the AI missed.</span><span lang="nl">Doe de uiteindelijke groepering zelf. Daar merk je wat de AI gemist heeft.</span></p>
+                    <a class="tool-link" href="https://miro.com/" target="_blank" rel="noopener"><span lang="en">Website</span><span lang="nl">Website</span> <span class="arrow">↗</span></a>
+                  </div></details></div></details></div>
 
-            <h2 id="download"><span lang="en">Download the example workspace</span><span lang="nl">Download de voorbeeldwerkruimte</span></h2>
+            <h2 id="download"><span lang="en">Downloads</span><span lang="nl">Downloads</span></h2>
 
             <p lang="en">The zip file contains the interview workspace from the first use case, filled in: the top file, the router, the rules, and three stage contracts. Unzip it, open it in the assistant you use, drop a transcript into sources/ and say the sentence from the use case. Then change what does not fit your own work.</p>
             <p lang="nl">Het zip-bestand bevat de interviewwerkruimte uit de eerste use case, ingevuld: het bovenste bestand, de router, de regels en drie stagecontracten. Pak het uit, open het in de assistent die je gebruikt, zet een transcript in bronnen/ en zeg de zin uit de use case. Pas daarna aan wat niet bij je eigen werk past.</p>
 
-            <div class="dl-row">
-              <a class="btn-primary" href="/assets/downloads/icm-example-workspace-en.zip" download lang="en">Download the zip (English) <span class="arrow">→</span></a>
-              <a class="btn-primary" href="/assets/downloads/icm-voorbeeldwerkruimte-nl.zip" download lang="nl">Download de zip (Nederlands) <span class="arrow">→</span></a>
-              <span class="dl-note" lang="en">The files are plain text. Language does not matter to the method, so write yours in the language you think in.</span>
-              <span class="dl-note" lang="nl">De bestanden zijn gewone tekst. De taal maakt voor de methode niet uit, schrijf de jouwe in de taal waarin je denkt.</span>
+            <div class="dl-grid">
+              <div class="dl-card">
+                <span class="kit-n">ZIP</span>
+                <strong><span lang="en">Example workspace</span><span lang="nl">Voorbeeldwerkruimte</span></strong>
+                <span class="dl-desc"><span lang="en">The interview workspace from use case 1, filled in.</span><span lang="nl">De interviewwerkruimte uit use case 1, ingevuld.</span></span>
+                <a class="btn-primary btn-sm" href="/assets/downloads/icm-example-workspace-en.zip" download lang="en">Download (English) <span class="arrow">→</span></a>
+                <a class="btn-primary btn-sm" href="/assets/downloads/icm-voorbeeldwerkruimte-nl.zip" download lang="nl">Download (Nederlands) <span class="arrow">→</span></a>
+              </div>
+              <div class="dl-card dl-card--soon" id="slides">
+                <span class="kit-n">PDF</span>
+                <strong><span lang="en">The slides</span><span lang="nl">De slides</span></strong>
+                <span class="dl-desc"><span lang="en">The presentation as a PDF, with the sources on each slide.</span><span lang="nl">De presentatie als pdf, met de bronnen op elke dia.</span></span>
+                <!-- When the PDF is ready: save it as /assets/downloads/icm-starterkit-slides.pdf and turn this button into
+                     <a class="btn-primary btn-sm" href="/assets/downloads/icm-starterkit-slides.pdf" download>. -->
+                <button class="btn-primary btn-sm" type="button" disabled aria-disabled="true" data-href="/assets/downloads/icm-starterkit-slides.pdf" lang="en">Download the slides (PDF) <span class="soon-tag">coming soon</span></button>
+                <button class="btn-primary btn-sm" type="button" disabled aria-disabled="true" data-href="/assets/downloads/icm-starterkit-slides.pdf" lang="nl">Download de slides (pdf) <span class="soon-tag">binnenkort</span></button>
+              </div>
             </div>
+            <p class="dl-note" lang="en">The files are plain text. Language does not matter to the method, so write yours in the language you think in.</p>
+            <p class="dl-note" lang="nl">De bestanden zijn gewone tekst. De taal maakt voor de methode niet uit, schrijf de jouwe in de taal waarin je denkt.</p>
 
             <h2 id="faq"><span lang="en">Common questions</span><span lang="nl">Veelgestelde vragen</span></h2>
 
@@ -583,10 +793,20 @@
             <div class="prompt-block" data-prompt-block>
               <span class="eyebrow"><span lang="en">The starter prompt</span><span lang="nl">De startersprompt</span></span>
               <h2 id="prompt"><span lang="en">Let your own AI build the first workspace with you</span><span lang="nl">Laat je eigen AI samen met jou de eerste werkruimte bouwen</span></h2>
-              <p lang="en">This prompt needs no knowledge of ICM. It asks whether you are setting up one task or a whole system, and advises one. It then interviews you, proposes the folders, writes the files one at a time and tests them. Paste it into ChatGPT, Claude or Gemini, or into an agent that can write files to a folder.</p>
-            <p lang="nl">Deze prompt vereist geen kennis van ICM. Hij vraagt of je één taak of een heel systeem opzet en raadt één taak aan. Daarna interviewt hij je, stelt de mappen voor, schrijft de bestanden één voor één en test ze. Plak hem in ChatGPT, Claude of Gemini, of in een agent die bestanden naar een map kan schrijven.</p>
+              <p lang="en">This prompt needs no knowledge of ICM. It asks whether you are setting up one task or a whole system, and advises one. It then interviews you, proposes the folders, writes the files one at a time and tests them. It starts with a short briefing on ICM, so the assistant does not need to know it already. Paste it into ChatGPT, Claude or Gemini, or into an agent that can write files to a folder.</p>
+            <p lang="nl">Deze prompt vereist geen kennis van ICM. Hij vraagt of je één taak of een heel systeem opzet en raadt één taak aan. Daarna interviewt hij je, stelt de mappen voor, schrijft de bestanden één voor één en test ze. Hij start met een korte uitleg over ICM, zodat de assistent het niet al hoeft te kennen. Plak hem in ChatGPT, Claude of Gemini, of in een agent die bestanden naar een map kan schrijven.</p>
 
               <pre class="prompt-pre" data-prompt="starter" id="prompt-text" lang="en">You are an ICM workspace builder. ICM (Interpretable Context Methodology) organises AI work as numbered folders with plain-language instruction files, so that an AI assistant always knows where it is, what to do next and which files to read. I may know nothing about this method. Explain things in plain words, one step at a time, and never use a term you have not explained.
+
+BACKGROUND YOU MAY NOT HAVE (read this first, and do not assume you already know it)
+ICM, the Interpretable Context Methodology, is a recent method (2026). You may know nothing about it, or you may confuse it with something else. Rely on this description, not on memory.
+- What it is: a way to organise AI work as a folder structure. Numbered folders are the stages of a workflow. Plain-text Markdown files in those folders tell one AI agent what role to take, what to read, what to do and what to produce. The folder structure replaces orchestration code.
+- Who made it: Jake Van Clief and David McDermott. Paper: &quot;Interpretable Context Methodology: Folder Structure as Agentic Architecture&quot;, arXiv:2603.16021 (a preprint from March 2026). Reference implementation: github.com/RinDig/Interpretable-Context-Methodology. Companion skill that builds workspaces: github.com/RinDig/icm-architect.
+- &quot;Interpretable&quot; means a person can read the workflow and its intermediate files. It does not mean the model&#x27;s inner workings are explained.
+- Five layers: layer 0 is a top file such as CLAUDE.md (where am I?); layer 1 is a CONTEXT.md router (where do I go?); layer 2 is the CONTEXT.md of one stage (what do I do?); layer 3 is reference material that stays the same between runs, such as rules and templates (which rules apply?); layer 4 is the working material of this run, such as inputs and outputs (what am I working on?). The agent reads from the top down and stops as soon as it has enough.
+- Five principles: one stage, one job; plain text as the interface; layered context loading; every output is an editable file; configure the factory, not the product.
+- It fits sequential, human-reviewed, repeatable workflows. It fits badly with real-time multi-agent collaboration, high-concurrency systems and complex automated branching.
+- If you can browse the web, you may check the sources above. If you cannot, rely on this description and tell me which parts you could not verify. Never invent details of ICM that are not stated here.
 
 RULES FOR THIS CONVERSATION
 - Ask before you build. Ask one question at a time. When the answer is a choice, offer 3 to 5 labelled options with your recommendation first, so I can answer with a letter or a number.
@@ -620,6 +840,16 @@ Tell me exactly where to put my first input and what to say to start. After each
 
 Begin with Step 1.</pre>
               <pre class="prompt-pre" data-prompt="starter" lang="nl">Je bent een ICM-werkruimtebouwer. ICM (Interpretable Context Methodology) organiseert AI-werk als genummerde mappen met instructiebestanden in gewone taal, zodat een AI-assistent altijd weet waar hij is, wat de volgende stap is en welke bestanden hij moet lezen. Ik ken deze methode mogelijk niet. Leg dingen uit in gewone woorden, één stap per keer, en gebruik geen term die je niet eerst hebt uitgelegd.
+
+ACHTERGROND DIE JE MOGELIJK NIET HEBT (lees dit eerst en ga er niet van uit dat je het al kent)
+ICM, de Interpretable Context Methodology, is een recente methode (2026). Je kent ze mogelijk helemaal niet of verwart ze met iets anders. Baseer je op deze beschrijving, niet op je geheugen.
+- Wat het is: een manier om AI-werk te organiseren als mappenstructuur. Genummerde mappen zijn de stages van een werkstroom. Markdown-bestanden in gewone tekst in die mappen vertellen één AI-agent welke rol hij aanneemt, wat hij leest, wat hij doet en wat hij maakt. De mappenstructuur vervangt orkestratiecode.
+- Wie het maakte: Jake Van Clief en David McDermott. Paper: &quot;Interpretable Context Methodology: Folder Structure as Agentic Architecture&quot;, arXiv:2603.16021 (een preprint van maart 2026). Referentie-implementatie: github.com/RinDig/Interpretable-Context-Methodology. Begeleidende skill die werkruimtes bouwt: github.com/RinDig/icm-architect.
+- &quot;Interpretable&quot; betekent dat een mens de werkwijze en de tussenbestanden kan lezen. Het betekent niet dat de interne werking van het model verklaard wordt.
+- Vijf lagen: laag 0 is een bovenste bestand zoals CLAUDE.md (waar ben ik?); laag 1 is een CONTEXT.md als router (waar ga ik heen?); laag 2 is de CONTEXT.md van één stage (wat doe ik?); laag 3 is referentiemateriaal dat gelijk blijft tussen runs, zoals regels en sjablonen (welke regels gelden?); laag 4 is het werkmateriaal van deze run, zoals input en output (waarmee werk ik nu?). De agent leest van boven naar onder en stopt zodra hij genoeg heeft.
+- Vijf principes: één stage, één taak; gewone tekst als koppeling; gelaagd laden van context; elke output is een bewerkbaar bestand; configureer de fabriek, niet het product.
+- Het past bij sequentiële, door mensen nagekeken, herhaalbare werkstromen. Het past slecht bij realtime samenwerking van meerdere agents, systemen met veel gelijktijdigheid en complexe automatische vertakkingen.
+- Als je het web kunt raadplegen, mag je de bronnen hierboven nakijken. Als je dat niet kunt, baseer je op deze beschrijving en zeg je me welke delen je niet kon controleren. Verzin nooit details over ICM die hier niet staan.
 
 REGELS VOOR DIT GESPREK
 - Vraag eerst, bouw daarna. Stel één vraag per keer. Als het antwoord een keuze is, geef 3 tot 5 genummerde opties met je aanbeveling vooraan, zodat ik kan antwoorden met een letter of een cijfer.
@@ -660,25 +890,37 @@ Begin met Stap 1.</pre>
                 <span class="prompt-note" role="status" aria-live="polite"></span>
               </div>
 
-              <p class="prompt-howto" lang="en">Two notes on using it. Answer the questions properly: an assistant given thin answers returns a confident, thin workspace. And do the walk test at step 5 seriously, because a workspace that only you can follow is not yet a system.</p>
-            <p class="prompt-howto" lang="nl">Twee opmerkingen bij het gebruik. Beantwoord de vragen goed: een assistent die magere antwoorden krijgt, geeft een zelfverzekerde, magere werkruimte terug. En doe de wandeltest bij stap 5 serieus, want een werkruimte die enkel jij kunt volgen is nog geen systeem.</p>
+              <p class="prompt-howto" lang="en">Every prompt on this page carries its own background on ICM, so it also works in a chat that has never heard of the method. Two notes on using it. Answer the questions properly: an assistant given thin answers returns a confident, thin workspace. And do the walk test at step 5 seriously, because a workspace that only you can follow is not yet a system.</p>
+            <p class="prompt-howto" lang="nl">Elke prompt op deze pagina bevat zelf de achtergrond over ICM, dus ze werkt ook in een chat die de methode nog nooit zag. Twee opmerkingen bij het gebruik. Beantwoord de vragen goed: een assistent die magere antwoorden krijgt, geeft een zelfverzekerde, magere werkruimte terug. En doe de wandeltest bij stap 5 serieus, want een werkruimte die enkel jij kunt volgen is nog geen systeem.</p>
 
               <h3 class="prompt-sub"><span lang="en">Three shorter prompts</span><span lang="nl">Drie kortere prompts</span></h3>
               <details class="mini-prompt" lang="en"><summary>Let the AI interview you first</summary>
-                <pre class="prompt-pre prompt-pre--short" data-prompt="interview" lang="en">Before you do anything, interview me. Ask up to 7 questions, one at a time. Give each question 3 to 5 labelled options with your recommendation first, plus one option for &quot;something else&quot;. Stop when you could do the task without guessing. Then restate the brief in five lines and wait for my OK.</pre>
+                <pre class="prompt-pre prompt-pre--short" data-prompt="interview" lang="en">Background, in case you do not know this method: ICM (Interpretable Context Methodology, Jake Van Clief and David McDermott, 2026, arXiv:2603.16021) organises AI work as numbered folders with plain-text instruction files. Layer 0 is a top file such as CLAUDE.md (where am I), layer 1 a CONTEXT.md router (where do I go), layer 2 the CONTEXT.md of one stage (what do I do), layer 3 stable reference material, layer 4 the working material of this run. Read from the top down and stop when you have enough. Rely on this description, not on memory, and do not invent details about ICM.
+
+Before you do anything, interview me. Ask up to 7 questions, one at a time. Give each question 3 to 5 labelled options with your recommendation first, plus one option for &quot;something else&quot;. Stop when you could do the task without guessing. Then restate the brief in five lines and wait for my OK.</pre>
                 <button class="btn-secondary" type="button" data-copy="interview" data-copy-lang="en">Copy <span class="arrow">→</span></button></details>
               <details class="mini-prompt" lang="nl"><summary>Laat de AI je eerst interviewen</summary>
-                <pre class="prompt-pre prompt-pre--short" data-prompt="interview" lang="nl">Interview me eerst voor je iets doet. Stel maximaal 7 vragen, één per keer. Geef elke vraag 3 tot 5 genummerde opties met je aanbeveling vooraan, plus een optie &quot;iets anders&quot;. Stop als je de taak zou kunnen doen zonder te gokken. Vat daarna de opdracht samen in vijf regels en wacht op mijn akkoord.</pre>
+                <pre class="prompt-pre prompt-pre--short" data-prompt="interview" lang="nl">Achtergrond, voor het geval je deze methode niet kent: ICM (Interpretable Context Methodology, Jake Van Clief en David McDermott, 2026, arXiv:2603.16021) organiseert AI-werk als genummerde mappen met instructiebestanden in gewone tekst. Laag 0 is een bovenste bestand zoals CLAUDE.md (waar ben ik), laag 1 een CONTEXT.md als router (waar ga ik heen), laag 2 de CONTEXT.md van één stage (wat doe ik), laag 3 stabiel referentiemateriaal, laag 4 het werkmateriaal van deze run. Lees van boven naar onder en stop als je genoeg hebt. Baseer je op deze beschrijving, niet op je geheugen, en verzin geen details over ICM.
+
+Interview me eerst voor je iets doet. Stel maximaal 7 vragen, één per keer. Geef elke vraag 3 tot 5 genummerde opties met je aanbeveling vooraan, plus een optie &quot;iets anders&quot;. Stop als je de taak zou kunnen doen zonder te gokken. Vat daarna de opdracht samen in vijf regels en wacht op mijn akkoord.</pre>
                 <button class="btn-secondary" type="button" data-copy="interview" data-copy-lang="nl">Kopieer <span class="arrow">→</span></button></details><details class="mini-prompt" lang="en"><summary>Run one stage at a time</summary>
-                <pre class="prompt-pre prompt-pre--short" data-prompt="run" lang="en">Process the file sources/[file name]. Follow the stage files in this workspace in order. Stop after each stage, tell me what you produced and what I should check, and wait for me before you continue.</pre>
+                <pre class="prompt-pre prompt-pre--short" data-prompt="run" lang="en">Background, in case you do not know this method: ICM (Interpretable Context Methodology, Jake Van Clief and David McDermott, 2026, arXiv:2603.16021) organises AI work as numbered folders with plain-text instruction files. Layer 0 is a top file such as CLAUDE.md (where am I), layer 1 a CONTEXT.md router (where do I go), layer 2 the CONTEXT.md of one stage (what do I do), layer 3 stable reference material, layer 4 the working material of this run. Read from the top down and stop when you have enough. Rely on this description, not on memory, and do not invent details about ICM.
+
+Process the file sources/[file name]. Follow the stage files in this workspace in order. Stop after each stage, tell me what you produced and what I should check, and wait for me before you continue.</pre>
                 <button class="btn-secondary" type="button" data-copy="run" data-copy-lang="en">Copy <span class="arrow">→</span></button></details>
               <details class="mini-prompt" lang="nl"><summary>Voer één stage per keer uit</summary>
-                <pre class="prompt-pre prompt-pre--short" data-prompt="run" lang="nl">Verwerk het bestand sources/[bestandsnaam]. Volg de stagebestanden in deze werkruimte in volgorde. Stop na elke stage, zeg me wat je gemaakt hebt en wat ik moet nakijken, en wacht op mij voor je verdergaat.</pre>
+                <pre class="prompt-pre prompt-pre--short" data-prompt="run" lang="nl">Achtergrond, voor het geval je deze methode niet kent: ICM (Interpretable Context Methodology, Jake Van Clief en David McDermott, 2026, arXiv:2603.16021) organiseert AI-werk als genummerde mappen met instructiebestanden in gewone tekst. Laag 0 is een bovenste bestand zoals CLAUDE.md (waar ben ik), laag 1 een CONTEXT.md als router (waar ga ik heen), laag 2 de CONTEXT.md van één stage (wat doe ik), laag 3 stabiel referentiemateriaal, laag 4 het werkmateriaal van deze run. Lees van boven naar onder en stop als je genoeg hebt. Baseer je op deze beschrijving, niet op je geheugen, en verzin geen details over ICM.
+
+Verwerk het bestand sources/[bestandsnaam]. Volg de stagebestanden in deze werkruimte in volgorde. Stop na elke stage, zeg me wat je gemaakt hebt en wat ik moet nakijken, en wacht op mij voor je verdergaat.</pre>
                 <button class="btn-secondary" type="button" data-copy="run" data-copy-lang="nl">Kopieer <span class="arrow">→</span></button></details><details class="mini-prompt" lang="en"><summary>Audit your own workspace</summary>
-                <pre class="prompt-pre prompt-pre--short" data-prompt="audit" lang="en">Audit this workspace without changing any file. Tell me: which instruction files are longer than they need to be, which stage does more than one job, which stage reads files it should not need, and where a new assistant with no memory would get lost. Rank the findings and propose one fix for each.</pre>
+                <pre class="prompt-pre prompt-pre--short" data-prompt="audit" lang="en">Background, in case you do not know this method: ICM (Interpretable Context Methodology, Jake Van Clief and David McDermott, 2026, arXiv:2603.16021) organises AI work as numbered folders with plain-text instruction files. Layer 0 is a top file such as CLAUDE.md (where am I), layer 1 a CONTEXT.md router (where do I go), layer 2 the CONTEXT.md of one stage (what do I do), layer 3 stable reference material, layer 4 the working material of this run. Read from the top down and stop when you have enough. Rely on this description, not on memory, and do not invent details about ICM.
+
+Audit this workspace without changing any file. Tell me: which instruction files are longer than they need to be, which stage does more than one job, which stage reads files it should not need, and where a new assistant with no memory would get lost. Rank the findings and propose one fix for each.</pre>
                 <button class="btn-secondary" type="button" data-copy="audit" data-copy-lang="en">Copy <span class="arrow">→</span></button></details>
               <details class="mini-prompt" lang="nl"><summary>Doe een audit van je eigen werkruimte</summary>
-                <pre class="prompt-pre prompt-pre--short" data-prompt="audit" lang="nl">Doe een audit van deze werkruimte zonder een bestand te wijzigen. Zeg me: welke instructiebestanden langer zijn dan nodig, welke stage meer dan één taak doet, welke stage bestanden leest die ze niet nodig zou moeten hebben en waar een nieuwe assistent zonder geheugen zou verdwalen. Rangschik de bevindingen en stel per bevinding één oplossing voor.</pre>
+                <pre class="prompt-pre prompt-pre--short" data-prompt="audit" lang="nl">Achtergrond, voor het geval je deze methode niet kent: ICM (Interpretable Context Methodology, Jake Van Clief en David McDermott, 2026, arXiv:2603.16021) organiseert AI-werk als genummerde mappen met instructiebestanden in gewone tekst. Laag 0 is een bovenste bestand zoals CLAUDE.md (waar ben ik), laag 1 een CONTEXT.md als router (waar ga ik heen), laag 2 de CONTEXT.md van één stage (wat doe ik), laag 3 stabiel referentiemateriaal, laag 4 het werkmateriaal van deze run. Lees van boven naar onder en stop als je genoeg hebt. Baseer je op deze beschrijving, niet op je geheugen, en verzin geen details over ICM.
+
+Doe een audit van deze werkruimte zonder een bestand te wijzigen. Zeg me: welke instructiebestanden langer zijn dan nodig, welke stage meer dan één taak doet, welke stage bestanden leest die ze niet nodig zou moeten hebben en waar een nieuwe assistent zonder geheugen zou verdwalen. Rangschik de bevindingen en stel per bevinding één oplossing voor.</pre>
                 <button class="btn-secondary" type="button" data-copy="audit" data-copy-lang="nl">Kopieer <span class="arrow">→</span></button></details>
             </div>
 
@@ -704,6 +946,17 @@ Begin met Stap 1.</pre>
               </div>
             </div>
 
+            <div class="contact-card" id="contact">
+              <span class="eyebrow"><span lang="en">Questions?</span><span lang="nl">Vragen?</span></span>
+              <h2><span lang="en">You can always contact us</span><span lang="nl">Je mag ons altijd contacteren</span></h2>
+              <p lang="en">Stuck on the starter prompt, unsure which task to start with, or curious how this fits your own work? Send us a message through the contact form or by email. We are glad to help.</p>
+            <p lang="nl">Zit je vast bij de startersprompt, weet je niet met welke taak te starten, of ben je benieuwd hoe dit bij je eigen werk past? Stuur ons een bericht via het contactformulier of per e-mail. We helpen graag.</p>
+              <div class="btn-group">
+                <a class="btn-primary" href="/contact/"><span lang="en">Open the contact form</span><span lang="nl">Open het contactformulier</span> <span class="arrow">→</span></a>
+                <a class="btn-secondary" href="mailto:hello@antedesign.be">hello@antedesign.be</a>
+              </div>
+            </div>
+
           </div>
 
           <!-- ── Table of contents ──────────────────────── -->
@@ -720,10 +973,11 @@ Begin met Stap 1.</pre>
               <li><a href="#steps"><span lang="en">Four steps</span><span lang="nl">Vier stappen</span></a></li>
               <li><a href="#diagnostic"><span lang="en">First candidate?</span><span lang="nl">Eerste kandidaat?</span></a></li>
               <li><a href="#tools"><span lang="en">The tools</span><span lang="nl">De tools</span></a></li>
-              <li><a href="#download"><span lang="en">Download</span><span lang="nl">Download</span></a></li>
+              <li><a href="#download"><span lang="en">Downloads</span><span lang="nl">Downloads</span></a></li>
               <li><a href="#faq"><span lang="en">Common questions</span><span lang="nl">Veelgestelde vragen</span></a></li>
               <li><a href="#prompt"><span lang="en">The starter prompt</span><span lang="nl">De startersprompt</span></a></li>
               <li><a href="#sources"><span lang="en">Sources</span><span lang="nl">Bronnen</span></a></li>
+              <li><a href="#contact"><span lang="en">Contact</span><span lang="nl">Contact</span></a></li>
             </ul>
           </aside>
 
