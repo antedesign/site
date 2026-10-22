@@ -105,3 +105,4 @@ nothing to change is filler, and filler is worse than silence.
 | Date | Post | URL |
 |---|---|---|
 | 2026-09-14 | The Double Diamond is two decisions, not four phases | `/insights/double-diamond-design-process/` |
+| 2026-10-22 | Start with one task, not a whole system: an ICM starter kit (EN/NL, off-backlog) | `/insights/icm-starter-kit/` |
