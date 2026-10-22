@@ -136,4 +136,96 @@
       });
     });
   });
+
+  /* ── 4. Animated cover ───────────────────────────────── */
+  var hero = document.querySelector('[data-hero]');
+  if (hero) {
+    var layers = Array.prototype.slice.call(hero.querySelectorAll('.hl'));
+    var caption = hero.querySelector('[data-hero-caption]');
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pulseTimers = [];
+
+    function showCaption(text) { if (caption) caption.textContent = text; }
+    function defaultCaption() { return hero.getAttribute('data-default-' + currentLang()); }
+    function layerCaption(l) { return l.getAttribute('data-' + currentLang()); }
+
+    layers.forEach(function (l) {
+      function on() { layers.forEach(function (x) { x.classList.toggle('is-on', x === l); }); showCaption(layerCaption(l)); }
+      function off() { l.classList.remove('is-on'); showCaption(defaultCaption()); }
+      l.addEventListener('mouseenter', on);
+      l.addEventListener('focus', on);
+      l.addEventListener('click', on);
+      l.addEventListener('mouseleave', off);
+      l.addEventListener('blur', off);
+    });
+
+    function playHero() {
+      pulseTimers.forEach(clearTimeout); pulseTimers = [];
+      hero.classList.remove('play');
+      layers.forEach(function (l) { l.classList.remove('pulse'); });
+      void hero.offsetWidth;
+      hero.classList.add('play');
+      if (!reduced) {
+        layers.forEach(function (l, i) {
+          pulseTimers.push(setTimeout(function () { l.classList.add('pulse'); }, 3200 + i * 650 + 250));
+        });
+      }
+      showCaption(defaultCaption());
+    }
+
+    var replay = hero.querySelector('[data-replay]');
+    if (replay) replay.addEventListener('click', playHero);
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { playHero(); io.disconnect(); } });
+      }, { threshold: 0.35 });
+      io.observe(hero);
+    } else {
+      playHero();
+    }
+    // keep the default caption in step with the language switch
+    Array.prototype.forEach.call(document.querySelectorAll('[data-set-lang]'), function (b) {
+      b.addEventListener('click', function () { setTimeout(function () { showCaption(defaultCaption()); }, 0); });
+    });
+  }
+
+  /* ── 5. Use-case steppers ────────────────────────────── */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-stepper]'), function (st) {
+    var steps = Array.prototype.slice.call(st.querySelectorAll('.step'));
+    var dots = Array.prototype.slice.call(st.querySelectorAll('.sd'));
+    var back = st.querySelector('[data-back]');
+    var next = st.querySelector('[data-next]');
+    var restart = st.querySelector('[data-restart]');
+    var idx = 0;
+
+    function show(i) {
+      idx = Math.max(0, Math.min(steps.length - 1, i));
+      steps.forEach(function (s, k) { s.classList.toggle('is-active', k === idx); });
+      dots.forEach(function (d, k) {
+        d.classList.toggle('is-current', k === idx);
+        d.classList.toggle('is-done', k < idx);
+        if (k === idx) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current');
+      });
+      if (back) back.disabled = idx === 0;
+      if (next) next.disabled = idx === steps.length - 1;
+    }
+
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); }); });
+    if (back) back.addEventListener('click', function () { show(idx - 1); });
+    if (next) next.addEventListener('click', function () { show(idx + 1); });
+    if (restart) restart.addEventListener('click', function () { show(0); });
+    show(0);
+  });
+
+  /* ── 6. Tools: expand / collapse all ─────────────────── */
+  function setAll(open) {
+    Array.prototype.forEach.call(document.querySelectorAll('.tool-group, .tool'), function (d) { d.open = open; });
+  }
+  var openAll = document.querySelector('[data-tools-open]');
+  var closeAll = document.querySelector('[data-tools-close]');
+  if (openAll) openAll.addEventListener('click', function () { setAll(true); });
+  if (closeAll) closeAll.addEventListener('click', function () {
+    Array.prototype.forEach.call(document.querySelectorAll('.tool-group, .tool'), function (d) { d.open = false; });
+  });
 }());
