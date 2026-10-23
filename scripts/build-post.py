@@ -97,6 +97,9 @@ def body_html(d):
     out.append(f'<div class="faq-list">{items}</div>')
     # prompt
     p = d["prompt"]
+    howto = p["howto"]
+    if not re.search(r"confidential|personal data", howto, re.I):
+        howto += " Do not paste confidential, personal or client data into any AI tool."
     out.append(f"""<div class="prompt-block" data-prompt-block>
               <span class="eyebrow">{p['eyebrow']}</span>
               <h2 id="prompt">{p['heading']}</h2>
@@ -106,12 +109,15 @@ def body_html(d):
                 <button class="btn-primary" type="button" data-copy-prompt>Copy the prompt <span class="arrow">→</span></button>
                 <span class="prompt-note" role="status" aria-live="polite"></span>
               </div>
-              <p class="prompt-howto">{p['howto']}</p>
+              <p class="prompt-howto">{howto}</p>
             </div>""")
     # sources
     src = "".join("<li>" + (f'<a href="{esc(s["url"])}" target="_blank" rel="noopener">{s["text"]}</a>' if s.get("url") else s["text"])
                   + (f' {s["note"]}' if s.get("note") else "") + "</li>" for s in d["sources"])
-    out.append(f'<div class="sources"><span class="eyebrow">Sources</span><ol>{src}</ol></div>')
+    out.append(f'<div class="sources"><span class="eyebrow">Sources</span><ol>{src}</ol>'
+               '<p class="sources-note">Every claim above links to the page it comes from, which we opened while writing. '
+               'Quotations are short and attributed, and all other wording is our own. Companies, products and publications '
+               'are named to identify them or as sources and examples. No endorsement or partnership is implied.</p></div>')
     out.append("""<div class="author-card">
               <div class="author-mark"><span>a</span></div>
               <div>
