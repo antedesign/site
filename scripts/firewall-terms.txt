@@ -1,0 +1,16 @@
+# Terms that must never appear in a published post. One per line, case-insensitive.
+# The website is built from public sources and Anté's own reasoning only.
+designworks
+design works
+po-1
+aippd
+mestdagh
+verbruggen
+uantwerp
+universiteit antwerpen
+productontwikkeling
+bedrijfsbrein
+granola-notities
+ante-cloud
+justin lefebvre
+jolan dijkmans
