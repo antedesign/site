@@ -28,6 +28,10 @@ python3 scripts/next-topic.py
 ls posts-src/*.json | tail -1   # newest source; check its "published" date
 ```
 
+**Dry run.** If an extra message says `DRY RUN` (optionally with a topic id such as `T03`), take
+that topic from `.claude/skills/insights-post/QUEUE.md` (grep its line) even if it is not approved,
+do every step, and never merge: open the pull request, leave it open, and say so in the report.
+
 Stop and report in one line if: `next-topic` prints `"none": true` (then open or update
 one GitHub issue titled "Approve topics for the Insights routine" in the repo, body: how
 many are waiting, link to `.claude/skills/insights-post/QUEUE.md`); or a post was already
@@ -155,6 +159,9 @@ git add -A && git commit -m "Insights: <title>" && git push -u origin claude/ins
 Open a pull request into `main` (title `Insights: <title>`). Body, at most 12 lines: topic id,
 gate result (`PASS`), reviewer verdict and its bullets, the sources list, and the line
 "Automated by the Insights routine. Revert this PR to unpublish."
+
+If pull request tools are not available in this session, push the branch, say so in the report,
+and stop. Never push to `main`.
 
 Merge it (merge commit) **only if** `autopublish` is true in `posts-src/config.json`,
 `check-post` printed PASS, the reviewer said PASS, and this is not a dry run. Otherwise

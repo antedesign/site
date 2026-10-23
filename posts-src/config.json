@@ -1,1 +1,8 @@
-{ "autopublish": true, "max_posts_per_run": 1, "min_gap_days": 1, "reviewer_model": "sonnet", "research_model": "sonnet" }
+{
+ "_note": "autopublish false: the routine opens a pull request and stops, a person merges. Set true to let it merge by itself once every gate and the independent review pass.",
+ "autopublish": false,
+ "max_posts_per_run": 1,
+ "min_gap_days": 1,
+ "reviewer_model": "sonnet",
+ "research_model": "sonnet"
+}
