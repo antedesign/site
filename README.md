@@ -86,6 +86,27 @@ Downloads section. When the PDF exists, save it as
 `assets/downloads/icm-starterkit-slides.pdf` and replace the two `disabled`
 buttons (EN and NL) with `<a class="btn-primary btn-sm" href="..." download>`.
 
+
+### The every-other-night routine
+
+A scheduled Claude Code routine publishes one post every other night, from topics you approve.
+
+| Piece | Where | What it does |
+|---|---|---|
+| Topic queue | `.claude/skills/insights-post/QUEUE.md` | 28 topics. **Tick `[x]` to approve.** Order is priority. Published lines get a `PUBLISHED` marker. |
+| Procedure | `.claude/skills/insights-post/AUTOPOST.md` | What the routine does, step by step, including the research and review prompts. |
+| Source of a post | `posts-src/<slug>.json` + `.research.md` + `.review.md` | The text, the verified-claims table and the reviewer's verdict. Generated HTML is never edited by hand. |
+| Renderer | `scripts/build-post.py` | Page, cover (SVG + PNG), index card, sitemap, queue status. |
+| Gates | `scripts/check-post.py` | Voice rules, length, structure, firewall terms, numbers traceable to research, JSON-LD, links return 200. |
+| Settings | `posts-src/config.json` | `"autopublish": false` makes the routine open a pull request and stop, for review before anything goes live. |
+
+Nothing is published unless a topic is approved, every gate passes and an independent reviewer
+agent says PASS. Anything else leaves an open pull request with the reason. To unpublish a post,
+revert its pull request. The featured post at the top of the Insights page is edited by hand and
+is never touched by the routine; new posts appear under "Already published".
+
+Site-wide nav or footer changes: also update `scripts/shell/nav.html` and `scripts/shell/footer.html`.
+
 ### Three rules that matter
 
 1. **Nothing from the internal Anté repository goes on this site.** No client

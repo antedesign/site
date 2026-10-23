@@ -5,6 +5,11 @@ description: Research and publish one Anté Insights post on antedesign.be. Take
 
 # Insights post
 
+> **Unattended mode.** The every-other-night routine does not use this file. It follows
+> `AUTOPOST.md` (token-efficient: research subagent, JSON source, generated page, scripted
+> gates, independent review). Use this file when you write a post by hand. Topics for the
+> routine come from `QUEUE.md`, which you approve by ticking boxes.
+
 One post. Research, write, build, verify. Roughly 1,500 to 2,000 words of real
 content, published as a static page under `/insights/<slug>/`.
 
