@@ -98,10 +98,14 @@ A scheduled Claude Code routine publishes one post every other night, from topic
 | Source of a post | `posts-src/<slug>.json` + `.research.md` + `.review.md` | The text, the verified-claims table and the reviewer's verdict. Generated HTML is never edited by hand. |
 | Renderer | `scripts/build-post.py` | Page, cover (SVG + PNG), index card, sitemap, queue status. |
 | Gates | `scripts/check-post.py` | Voice rules, length, structure, firewall terms, numbers traceable to research, JSON-LD, links return 200. |
+| Guardrails | `.claude/skills/insights-post/GUARDRAILS.md` | 16 numbered rules: confidentiality (AIPPD and DesignWorks never named), copyright and attribution, people and companies, scope and safety. |
+| Hard terms | `scripts/firewall-terms.txt` | Terms that fail a post in any file it touches. Empty or missing file fails closed. `python3 scripts/check-post.py --selftest` proves the guards still catch them. |
 | Settings | `posts-src/config.json` | `"autopublish": false` makes the routine open a pull request and stop, for review before anything goes live. |
 
-Nothing is published unless a topic is approved, every gate passes and an independent reviewer
-agent says PASS. Anything else leaves an open pull request with the reason. To unpublish a post,
+Nothing is published unless a topic is approved, the scripted gates pass (including a scope guard
+that fails if any file outside the post's own set changed) and three independent agents all say PASS:
+one for confidentiality and privacy, one for sources and copyright (it opens the key sources), one for
+editorial quality. Anything else leaves an open pull request with the reason. To unpublish a post,
 revert its pull request. The featured post at the top of the Insights page is edited by hand and
 is never touched by the routine; new posts appear under "Already published".
 

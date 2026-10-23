@@ -821,3 +821,5 @@
   .prompt-pre { background: #f6f6f6; border-color: #ddd; }
   .faq-item[open] .faq-answer, .faq-answer { display: block !important; }
 }
+
+.sources-note { font-size: 14px; line-height: 1.7; color: var(--ink-soft); margin-top: 16px; }

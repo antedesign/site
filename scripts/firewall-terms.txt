@@ -1,16 +1,48 @@
-# Terms that must never appear in a published post. One per line, case-insensitive.
-# The website is built from public sources and Anté's own reasoning only.
+# Hard NO-GO terms. check-post.py fails if any appears in ANY file a post touches
+# (posts-src, research, review, generated HTML, index card). One term per line.
+#   plain line   : case-insensitive substring
+#   "=" prefix   : case-sensitive whole word (names)
+# This file missing or empty is itself a failure (fail closed).
+aippd
+ai-ppd
+ai ppd
 designworks
 design works
+design-works
 po-1
-aippd
-mestdagh
-verbruggen
-uantwerp
-universiteit antwerpen
-productontwikkeling
+po1
+teach the teacher
+teach-the-teacher
+studentenbevraging
+eigen-ervaring
 bedrijfsbrein
+bedrijfs-brein
+dagbord
+ai-logboek
 granola-notities
 ante-cloud
-justin lefebvre
-jolan dijkmans
+mestdagh
+verbruggen
+lefebvre
+dijkmans
+uantwerp
+universiteit antwerpen
+university of antwerp
+productontwikkeling
+ugc cinema
+dutch design week
+dutchdesignweek
+voxdale
+nightmoves
+darwin design
+super eliefs
+pars pro tota
+=Elke
+=Dries
+=Anton
+=Jorren
+=Robrecht
+=Gunther
+=Justin
+=Jolan
+=Bruno
