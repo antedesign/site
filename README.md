@@ -92,6 +92,14 @@ working: `#use-cases`, `#download`, `#prompt`, `#tools`, `#faq`, `#sources`. The
 the same starter prompt as the page (EN and NL). If you change the prompt on
 the page, rebuild both zips. There is no slides download for now.
 
+The page loads its stylesheet and script as `starter-kit.css?v=<hash>` and
+`starter-kit.js?v=<hash>`. GitHub Pages lets browsers keep every file for ten
+minutes (`Cache-Control: max-age=600`), so right after a deploy a browser can
+pair the new HTML with an old stylesheet and show the page unstyled. When you
+change either file, also change its `v` value in
+`insights/icm-starter-kit/index.html`: use the first ten characters of
+`sha1sum assets/css/starter-kit.css` (or of `starter-kit.js`).
+
 
 ### The every-other-night routine
 
