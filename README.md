@@ -26,7 +26,7 @@ Static website for Anté, an independent concept validation consultancy. Built a
 │   │   ├── nav.js          Mobile menu
 │   │   ├── insights.js     Reading progress, TOC, copy-prompt button
 │   │   └── starter-kit.js  EN/NL switch, use-case tabs, multi-prompt copy buttons
-│   ├── downloads/          Files offered for download (ICM example workspace zips)
+│   ├── downloads/          Files offered for download (ICM test folder zips, EN and NL)
 │   └── images/
 │       └── insights/       Post covers (.svg for the page, .png for social)
 ├── sitemap.xml             Add one <url> block per new post
@@ -79,12 +79,18 @@ and can be forced with `?lang=nl`. Search engines see the English text first,
 and the schema is English only. A post that needs to rank in Dutch should get
 its own URL instead.
 
-The starter kit post also has an animated cover (`data-hero`), step-by-step use
-cases (`data-stepper`) and collapsible tool groups, all driven by
-`assets/js/starter-kit.js`. The slides download is a disabled button in the
-Downloads section. When the PDF exists, save it as
-`assets/downloads/icm-starterkit-slides.pdf` and replace the two `disabled`
-buttons (EN and NL) with `<a class="btn-primary btn-sm" href="..." download>`.
+The starter kit post also has an animated cover (`data-hero`, four layers),
+steppers (`data-stepper`) for the agent explanation, the five-step build-up of
+ICM and the three use cases, use-case tabs and collapsible tool groups, all
+driven by `assets/js/starter-kit.js`. The visual explainers (`v-*`, `qmap`,
+`reasons`, `limit-grid`, `diag`) are plain HTML and CSS in `starter-kit.css`.
+
+The page ends with one start block that combines the test-folder download and
+the copy-the-prompt card. Anchors that must keep working: `#use-cases`,
+`#download`, `#prompt`, `#tools`, `#faq`, `#sources`. The two zips in
+`assets/downloads/` contain fictional, plain-markdown content, and each holds
+the same starter prompt as the page (EN and NL). If you change the prompt on
+the page, rebuild both zips. There is no slides download for now.
 
 
 ### The every-other-night routine

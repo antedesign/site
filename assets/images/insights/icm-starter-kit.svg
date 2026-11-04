@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Anté Insights cover: five stacked layers, narrow at the top and wide at the base, drawn as folders">
-  <title>Five layers of an ICM workspace, from one top file to the working material</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Anté Insights cover: four stacked layers, narrow at the top and wide at the base, drawn as folders">
+  <title>Four layers of an ICM workspace, from one top file to the working material</title>
 
   <!-- ============================================================
        ANTÉ INSIGHTS — COVER TEMPLATE v1
@@ -34,33 +34,29 @@
   <rect width="1200" height="630" fill="#28292B"/>
   <rect width="1200" height="630" fill="url(#grid)"/>
 
-  <!-- motif: five layers, one small file on top, wider material below -->
+  <!-- motif: four layers, one small file on top, wider material below -->
   <g>
-    <circle cx="404" cy="150" r="92" fill="url(#glowB)"/>
+    <circle cx="404" cy="156" r="92" fill="url(#glowB)"/>
     <!-- layer 0 -->
-    <path d="M450,134 a14,14 0 0 1 14,-14 h58 l14,14 h214 a14,14 0 0 1 14,14 v26 a14,14 0 0 1 -14,14 h-272 a14,14 0 0 1 -14,-14 z"
+    <path d="M450,140 a14,14 0 0 1 14,-14 h58 l14,14 h214 a14,14 0 0 1 14,14 v26 a14,14 0 0 1 -14,14 h-272 a14,14 0 0 1 -14,-14 z"
           fill="#206A5B" fill-opacity="0.50" stroke="#9CE3F8" stroke-opacity="0.62" stroke-width="2"/>
-    <line x1="484" y1="153" x2="624" y2="153" stroke="#9CE3F8" stroke-opacity="0.28" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+    <line x1="484" y1="159" x2="624" y2="159" stroke="#9CE3F8" stroke-opacity="0.28" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
     <!-- layer 1 -->
-    <path d="M380,204 a14,14 0 0 1 14,-14 h58 l14,14 h354 a14,14 0 0 1 14,14 v26 a14,14 0 0 1 -14,14 h-412 a14,14 0 0 1 -14,-14 z"
+    <path d="M360,232 a14,14 0 0 1 14,-14 h58 l14,14 h394 a14,14 0 0 1 14,14 v26 a14,14 0 0 1 -14,14 h-452 a14,14 0 0 1 -14,-14 z"
           fill="#206A5B" fill-opacity="0.43" stroke="#9CE3F8" stroke-opacity="0.54" stroke-width="2"/>
-    <line x1="414" y1="223" x2="604" y2="223" stroke="#9CE3F8" stroke-opacity="0.25" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+    <line x1="394" y1="251" x2="634" y2="251" stroke="#9CE3F8" stroke-opacity="0.25" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
     <!-- layer 2 -->
-    <path d="M310,274 a14,14 0 0 1 14,-14 h58 l14,14 h494 a14,14 0 0 1 14,14 v26 a14,14 0 0 1 -14,14 h-552 a14,14 0 0 1 -14,-14 z"
+    <path d="M270,324 a14,14 0 0 1 14,-14 h58 l14,14 h574 a14,14 0 0 1 14,14 v26 a14,14 0 0 1 -14,14 h-632 a14,14 0 0 1 -14,-14 z"
           fill="#206A5B" fill-opacity="0.36" stroke="#9CE3F8" stroke-opacity="0.46" stroke-width="2"/>
-    <line x1="344" y1="293" x2="584" y2="293" stroke="#9CE3F8" stroke-opacity="0.22" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+    <line x1="304" y1="343" x2="644" y2="343" stroke="#9CE3F8" stroke-opacity="0.22" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
     <!-- layer 3 -->
-    <path d="M240,344 a14,14 0 0 1 14,-14 h58 l14,14 h634 a14,14 0 0 1 14,14 v26 a14,14 0 0 1 -14,14 h-692 a14,14 0 0 1 -14,-14 z"
+    <path d="M180,416 a14,14 0 0 1 14,-14 h58 l14,14 h754 a14,14 0 0 1 14,14 v26 a14,14 0 0 1 -14,14 h-812 a14,14 0 0 1 -14,-14 z"
           fill="#206A5B" fill-opacity="0.29" stroke="#9CE3F8" stroke-opacity="0.38" stroke-width="2"/>
-    <line x1="274" y1="363" x2="564" y2="363" stroke="#9CE3F8" stroke-opacity="0.19" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
-    <!-- layer 4 -->
-    <path d="M170,414 a14,14 0 0 1 14,-14 h58 l14,14 h774 a14,14 0 0 1 14,14 v26 a14,14 0 0 1 -14,14 h-832 a14,14 0 0 1 -14,-14 z"
-          fill="#206A5B" fill-opacity="0.22" stroke="#9CE3F8" stroke-opacity="0.30" stroke-width="2"/>
-    <line x1="204" y1="433" x2="544" y2="433" stroke="#9CE3F8" stroke-opacity="0.16" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+    <line x1="214" y1="435" x2="654" y2="435" stroke="#9CE3F8" stroke-opacity="0.19" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
     <!-- the one task you start with -->
-    <circle cx="404" cy="153" r="30" fill="none" stroke="#9CE3F8" stroke-opacity="0.16" stroke-width="1.5"/>
-    <circle cx="404" cy="153" r="19" fill="none" stroke="#9CE3F8" stroke-opacity="0.34" stroke-width="1.5"/>
-    <circle cx="404" cy="153" r="8" fill="#9CE3F8"/>
+    <circle cx="404" cy="159" r="30" fill="none" stroke="#9CE3F8" stroke-opacity="0.16" stroke-width="1.5"/>
+    <circle cx="404" cy="159" r="19" fill="none" stroke="#9CE3F8" stroke-opacity="0.34" stroke-width="1.5"/>
+    <circle cx="404" cy="159" r="8" fill="#9CE3F8"/>
   </g>
 
   <!-- signature ticks, top right — repeats on every cover -->

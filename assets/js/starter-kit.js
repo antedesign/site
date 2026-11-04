@@ -228,4 +228,13 @@
   if (closeAll) closeAll.addEventListener('click', function () {
     Array.prototype.forEach.call(document.querySelectorAll('.tool-group, .tool'), function (d) { d.open = false; });
   });
+  /* ── 7. Links that open a collapsed <details> (the full prompt) ── */
+  function openTarget(id) {
+    var el = id && document.getElementById(id);
+    if (el && el.tagName === 'DETAILS') el.open = true;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-open]'), function (a) {
+    a.addEventListener('click', function () { openTarget(a.getAttribute('data-open')); });
+  });
+  if (window.location.hash) openTarget(window.location.hash.slice(1));
 }());
