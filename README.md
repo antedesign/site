@@ -85,9 +85,9 @@ ICM and the three use cases, use-case tabs and collapsible tool groups, all
 driven by `assets/js/starter-kit.js`. The visual explainers (`v-*`, `qmap`,
 `reasons`, `limit-grid`, `diag`) are plain HTML and CSS in `starter-kit.css`.
 
-The page ends with one start block that combines the test-folder download and
-the copy-the-prompt card. Anchors that must keep working: `#use-cases`,
-`#download`, `#prompt`, `#tools`, `#faq`, `#sources`. The two zips in
+The page ends with one Downloads block (`#downloads`) that combines the
+test-folder download and the copy-the-prompt card. Anchors that must keep
+working: `#use-cases`, `#download`, `#prompt`, `#tools`, `#faq`, `#sources`. The two zips in
 `assets/downloads/` contain fictional, plain-markdown content, and each holds
 the same starter prompt as the page (EN and NL). If you change the prompt on
 the page, rebuild both zips. There is no slides download for now.

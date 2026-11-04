@@ -523,14 +523,6 @@ a.kit-card:hover { border-color: var(--spruce); transform: translateY(-2px); }
 .limit-tag { align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 9px; border-radius: 99px; background: rgba(40, 41, 43, .07); color: var(--charcoal); }
 .article-body .limit h4 { margin: 0; font-size: 16.5px; line-height: 1.3; color: var(--charcoal); }
 .article-body .limit p { margin: 0; font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); }
-.v-ladder { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 14px 0 4px; }
-.rung { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: 14px; border: 1px dashed rgba(40, 41, 43, .3); font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
-.rung b { font-size: 13.5px; color: var(--charcoal); }
-.rung em { font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
-.rung--done { border-style: solid; border-color: var(--spruce); background: rgba(32, 106, 91, .07); }
-.rung--done em { color: var(--spruce); }
-.rung--now { border-style: solid; border-color: var(--spruce); background: var(--spruce); color: rgba(255, 255, 255, .9); }
-.rung--now b, .rung--now em { color: var(--white); }
 
 /* ── Use cases: result visuals ────────────────────────────── */
 .v-onepager { max-width: 560px; padding: 20px 22px; border: 1px solid var(--rule); border-radius: 6px 18px 18px 18px; background: var(--white); box-shadow: 0 8px 26px rgba(40, 41, 43, .07); display: grid; gap: 12px; }
@@ -645,8 +637,7 @@ a.kit-card:hover { border-color: var(--spruce); transform: translateY(-2px); }
   .v-two, .v-mc, .start-grid, .v-versus, .step-split, .cards--2 { grid-template-columns: minmax(0, 1fr); }
   .qmap-q { grid-template-columns: minmax(0, 1fr); }
   .qmap-layer { padding: 14px 16px; }
-  .v-ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .v-bar { grid-template-columns: 96px minmax(0, 1fr) 54px; gap: 8px; }
+    .v-bar { grid-template-columns: 96px minmax(0, 1fr) 54px; gap: 8px; }
   .v-op { display: none; }
   .v-lane { padding: 16px; }
 }
@@ -654,7 +645,7 @@ a.kit-card:hover { border-color: var(--spruce); transform: translateY(-2px); }
 
 /* ── Round 3b: fixes after the first visual review ────────── */
 /* breathing room after every visual block */
-.v-two, .v-lanes, .v-eq, .qmap, .v-process, .v-mc, .v-tools3, .v-notice, .limit-grid, .start-grid, .how3, .v-answers, .stepper, .v-ladder, .diag { margin-bottom: 30px; }
+.v-two, .v-lanes, .v-eq, .qmap, .v-process, .v-mc, .v-tools3, .v-notice, .limit-grid, .start-grid, .how3, .v-answers, .stepper, .diag { margin-bottom: 30px; }
 .uc-panel .v-two { margin-bottom: 26px; }
 
 /* reasons: one per row (the reading column is narrow) */
@@ -678,7 +669,7 @@ a.kit-card:hover { border-color: var(--spruce); transform: translateY(-2px); }
 .v-flow--stack > .v-arr { transform: rotate(90deg); margin: 14px 0 14px 18px; }
 .v-row { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 
-/* limits: two columns, evidence ladder below */
+/* limits: two columns */
 .limit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .limit, .limit--half, .limit--full { grid-column: auto; }
 
