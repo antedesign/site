@@ -356,7 +356,7 @@ def page_html(root, d, minutes, number):
           <p>Our 4 minute assessment shows where your concept stands today across 5 key dimensions. No preparation needed. No email required to see results.</p>
           <div class="btn-group">
             <a href="/scorecard/" class="btn-primary">Take free assessment</a>
-            <a href="/approach/" class="btn-secondary">See the Decision Sprint</a>
+            <a href="/approach/" class="btn-secondary">See what we offer</a>
           </div>
         </div>
       </div>
