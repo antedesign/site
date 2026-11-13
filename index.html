@@ -26,6 +26,7 @@
     <ul class="nav-links">
       <li><a href="/approach/" class="nav-link">Approach</a></li>
       <li><a href="/cases/" class="nav-link">Cases</a></li>
+      <li><a href="/resources/" class="nav-link">Resources</a></li>
       <li><a href="/insights/" class="nav-link">Insights</a></li>
       <li><a href="/about/" class="nav-link">About</a></li>
       <li><a href="/contact/" class="nav-link">Contact</a></li>
@@ -49,6 +50,7 @@
     <ul class="mobile-menu-links">
       <li><a href="/approach/">Approach</a></li>
       <li><a href="/cases/">Cases</a></li>
+     <li><a href="/resources/">Resources</a></li>
       <li><a href="/insights/">Insights</a></li>
       <li><a href="/about/">About</a></li>
       <li><a href="/contact/">Contact</a></li>
@@ -59,7 +61,7 @@
   <!-- ── Section 1: Hero ──────────────────────────────────── -->
   <section class="hero hero--centered">
     <div class="container">
-      <h1 class="hero-headline reveal">We design the <span class="text-spruce">next generation</span> of AI-driven products.</h1>
+      <h1 class="hero-headline reveal">We design the <span class="text-spruce">next generation</span> of AI&#8209;driven products.</h1>
       <p class="hero-subhead reveal">You know AI belongs in your product, but not yet what it should do. Anté turns that ambition into a concrete product definition: what the product does, for whom, what role AI plays and which features it needs.</p>
       <div class="btn-group reveal">
         <a href="/contact/" class="btn-primary">Book a 30-minute call</a>
@@ -116,6 +118,122 @@
           <div class="pill-item">Engineering through partners.</div>
           <div class="pill-item">No stake in who builds it.</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 4b: What you get (voorbeeld-A4) ──────────── -->
+  <section class="section section--snug">
+    <div class="container">
+      <div class="example-split">
+        <div>
+          <span class="example-note reveal">Fictional example</span>
+          <h2 class="reveal" style="margin-top:20px;">This is what you get.</h2>
+          <p class="reveal">An AI Product Definition ends with one page that says what the product does, for whom, what role AI plays and what comes first. Everyone involved, from your board to your builder, reads the same thing.</p>
+          <div class="btn-group mt-stack reveal">
+            <a href="/example/" class="btn-secondary">See the full example <span class="arrow">→</span></a>
+          </div>
+          <p class="reveal" style="margin-top:var(--space-stack);font-size:15px;">Or start on your own: <a href="/check/">take the AI Product Check</a>, or read <a href="/principles/">how we look at AI products</a>.</p>
+        </div>
+        <a href="/example/" class="a4-teaser reveal" aria-label="Open the full example product definition" style="display:block;text-decoration:none;">
+          <div class="a4-wrap" style="margin-top:0;">
+<article class="a4-sheet" aria-label="Example product definition">
+  <header class="a4-head">
+    <div>
+      <span class="eyebrow">AI Product Definition · Fictional example</span>
+      <h3 class="a4-title">BrewCare</h3>
+    </div>
+    <img class="a4-logo" src="/assets/images/ante-logo.svg" alt="anté">
+  </header>
+
+  <p class="a4-oneliner">An assistant in the coffee machine and the service app that warns office managers before the machine fails, and tells the technician what to bring.</p>
+
+  <div class="a4-grid">
+    <section class="a4-block">
+      <h4>For whom</h4>
+      <ul>
+        <li><strong>User:</strong> the office manager who looks after the machines.</li>
+        <li><strong>Second user:</strong> the company's own service technician.</li>
+        <li><strong>Buyer:</strong> the facility or purchasing manager.</li>
+      </ul>
+    </section>
+
+    <section class="a4-block">
+      <h4>The problem</h4>
+      <p>Machines stop at the worst moment. Service visits are reactive, and technicians often arrive without the right part. Customers judge the brand on downtime, not on coffee.</p>
+    </section>
+
+    <section class="a4-block">
+      <h4>What the product does</h4>
+      <ul>
+        <li>Warns the office manager a few days before a likely problem, in plain language.</li>
+        <li>Gives the technician a likely cause and parts list before the visit.</li>
+        <li>Guides the office manager through simple fixes.</li>
+      </ul>
+    </section>
+
+    <section class="a4-block">
+      <h4>Role of AI</h4>
+      <ul>
+        <li><strong>Does:</strong> predicts likely problems from usage and sensor data. Drafts the technician's brief.</li>
+        <li><strong>Does not:</strong> decide on repairs, order parts, or chat freely with users.</li>
+      </ul>
+    </section>
+
+    <section class="a4-block a4-block--wide">
+      <h4>Features, by priority</h4>
+      <div class="a4-prio">
+        <div><span>Must</span><p>Early warning with the reason. Technician brief. “Report a problem” button.</p></div>
+        <div><span>Should</span><p>Guided self-fix for the three most common issues. “This warning was wrong” feedback.</p></div>
+        <div><span>Later</span><p>Automatic parts ordering. Usage insights for the buyer.</p></div>
+      </div>
+    </section>
+
+    <section class="a4-block">
+      <h4>Data it relies on</h4>
+      <p>Usage logs from connected machines. Service history from the CRM, partly free text. No personal data from coffee drinkers.</p>
+    </section>
+
+    <section class="a4-block">
+      <h4>Risks, and how we handle them</h4>
+      <ul>
+        <li><strong>False warnings:</strong> shown as “likely”, with one-tap feedback.</li>
+        <li><strong>Older machines without sensors:</strong> out of scope for version 1.</li>
+        <li><strong>Messy service history:</strong> a clean-up step before the build.</li>
+      </ul>
+    </section>
+
+    <section class="a4-block">
+      <h4>Success criteria</h4>
+      <ul>
+        <li>Office managers understand a warning without help.</li>
+        <li>Technicians bring the right part more often than today.</li>
+        <li>Few warnings are marked wrong after three months.</li>
+      </ul>
+    </section>
+
+    <section class="a4-block">
+      <h4>Open questions</h4>
+      <ul>
+        <li>Will customers agree to share machine data?</li>
+        <li>Part of the service contract, or a paid add-on?</li>
+        <li>Which partner builds the prediction model?</li>
+      </ul>
+    </section>
+
+    <section class="a4-block a4-block--wide">
+      <h4>Brief for the builder</h4>
+      <p><strong>Version 1:</strong> connected machines only, two user roles, the three must-have features, in the existing service app and on the machine display. <strong>Out of scope:</strong> parts ordering, open chat, older models.</p>
+    </section>
+  </div>
+
+  <footer class="a4-foot">
+    <span>Fictional example · company and product are made up</span>
+    <span>antedesign.be</span>
+  </footer>
+</article>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -229,7 +347,8 @@
             <li><a href="/insights/">Insights</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/">Contact</a></li>
-            <li><a href="/scorecard/">Take assessment</a></li>
+            <li><a href="/resources/">Resources</a></li>
+            <li><a href="/check/">AI Product Check</a></li>
           </ul>
         </div>
 
