@@ -2004,7 +2004,7 @@ p + h2 {
   font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink-muted);
+  color: var(--ink-soft);
   display: block;
   margin-bottom: 20px;
 }
@@ -2066,7 +2066,7 @@ p + h2 {
 .service-card--core .service-meta li { color: var(--white); }
 .service-card--core > p { color: rgba(255, 255, 255, 0.78); }
 .service-card--core .service-num { color: var(--frosted); }
-.service-card--core .service-route,
+.service-card--core .service-route { color: rgba(255, 255, 255, 0.72); }
 .service-card--core .service-meta span { color: rgba(255, 255, 255, 0.55); }
 .service-card--core .service-meta { border-top-color: rgba(255, 255, 255, 0.18); }
 
@@ -2187,4 +2187,13 @@ p + h2 {
 @media (max-width: 600px) {
   .services-layer-steps { grid-template-columns: 1fr; }
   .stairs { grid-template-columns: 1fr; }
+}
+
+/* Team van drie (About): dezelfde kaarten, drie naast elkaar */
+.founders-grid--three {
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 48px);
+}
+@media (max-width: 900px) {
+  .founders-grid--three { grid-template-columns: 1fr; }
 }
