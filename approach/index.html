@@ -33,6 +33,8 @@
     <ul class="nav-links">
       <li><a href="/approach/" class="nav-link active">Approach</a></li>
       <li><a href="/cases/" class="nav-link">Cases</a></li>
+      <li><a href="/resources/" class="nav-link">Resources</a></li>
+      <li><a href="/insights/" class="nav-link">Insights</a></li>
       <li><a href="/about/" class="nav-link">About</a></li>
       <li><a href="/contact/" class="nav-link">Contact</a></li>
     </ul>
@@ -55,6 +57,8 @@
     <ul class="mobile-menu-links">
       <li><a href="/approach/">Approach</a></li>
       <li><a href="/cases/">Cases</a></li>
+      <li><a href="/resources/">Resources</a></li>
+      <li><a href="/insights/">Insights</a></li>
       <li><a href="/about/">About</a></li>
       <li><a href="/contact/">Contact</a></li>
     </ul>
@@ -79,10 +83,11 @@
           <span class="service-num">01</span>
           <h3>AI Opportunity Exploration</h3>
           <span class="service-route">Opportunity → problem definition</span>
-          <p>Where can AI add real value in your product or your market? We map the opportunities, weigh them, and narrow them down to the one problem worth solving.</p>
+          <p>For when you are torn between ideas, or don't know yet where AI fits.</p>
           <ul class="service-meta">
-            <li><span>You get</span>A clear problem definition, ready to build a product on</li>
-            <li><span>Format</span>A fixed scope at a fixed price</li>
+            <li><span>After this you know</span>Which AI idea is worth pursuing, or that it is better to do nothing.</li>
+            <li><span>You get</span>An opportunity map: 5 to 10 opportunities scored on value, feasibility and risk. One or two recommended, written as problem definitions, with a clear go or no-go.</li>
+            <li><span>Time and price</span>2 weeks, fixed price</li>
           </ul>
         </article>
 
@@ -91,10 +96,11 @@
           <span class="service-num">02</span>
           <h3>AI Product Definition</h3>
           <span class="service-route">Problem → product definition</span>
-          <p>The heart of our work. We define what the product does, for whom, what role AI plays in it and which features belong in it, and which do not.</p>
+          <p>For when you know which idea, and want it built right.</p>
           <ul class="service-meta">
-            <li><span>You get</span>A product definition your team or a builder can quote on and build from</li>
-            <li><span>Format</span>Scaled to fit your project</li>
+            <li><span>After this you know</span>Exactly what to have built. You can brief a builder and compare quotes on the same question.</li>
+            <li><span>You get</span>A product definition on one page, plus appendices: users, problem, what it does, the role of AI, features by priority, risks, success criteria and open questions. And a brief for your builder. <a href="/example/" style="color:var(--frosted);">See an example</a></li>
+            <li><span>Time and price</span>3 to 6 weeks, scaled to your project</li>
           </ul>
         </article>
 
@@ -102,10 +108,11 @@
           <span class="service-num">03</span>
           <h3>Prototype &amp; Validation</h3>
           <span class="service-route">Product definition → prototype</span>
-          <p>We turn the definition into a first prototype: a minimal version you put in front of real users, to measure early traction before you commit to a full build.</p>
+          <p>For when you have a definition and want to see if real users want it.</p>
           <ul class="service-meta">
-            <li><span>You get</span>A working prototype and what users did with it</li>
-            <li><span>Format</span>On quote</li>
+            <li><span>After this you know</span>Whether users want it, before you pay for the full build.</li>
+            <li><span>You get</span>A working prototype, a minimal version in front of real users, and what they did with it.</li>
+            <li><span>Time and price</span>On quote</li>
           </ul>
         </article>
 
@@ -120,7 +127,7 @@
         </div>
         <ol class="services-layer-steps">
           <li><strong>Start at any service</strong>Begin where you stand: with an ambition, a problem or a definition.</li>
-          <li><strong>Add the next when you are ready</strong>Continue with the following service, or stop when you have what you need.</li>
+          <li><strong>Add the next when you are ready</strong>Nothing is done twice: the Exploration fee is fully credited when you start a Definition within 90 days.</li>
           <li><strong>Build with a partner</strong>We do not build production versions or custom AI. Our partners do, from your definition.</li>
         </ol>
       </div>
@@ -128,32 +135,36 @@
     </div>
   </section>
 
-  <!-- ── Section 3: What you keep ─────────────────────────── -->
+  <!-- ── Section 3: Where do you start (beslisboom) ───────── -->
   <section class="section section--snug">
     <div class="container">
-      <h2 class="reveal">What you keep.</h2>
-      <p class="reveal">Our knowledge of AI is the real value of working with us. So we leave more behind than a document.</p>
-      <div class="keep-grid">
-
-        <div class="card reveal">
-          <span class="eyebrow">ICM starter kit</span>
-          <h4>The way we work with AI</h4>
-          <p>The method we use to work with AI, in plain folders and files. Your team can keep using it after the project, whichever AI tool you choose.</p>
-          <a href="/insights/icm-starter-kit/">See the starter kit →</a>
+      <h2 class="reveal">Where do you start?</h2>
+      <p class="reveal">Three questions point you to the right service.</p>
+      <div class="tree" id="tree">
+        <div class="tree-steps">
+          <div class="tree-step is-current" data-step="1">
+            <span class="service-num">Question 1</span>
+            <p>Do you know which AI idea you want to build?</p>
+            <div class="tree-answers"><button type="button" class="tree-btn" data-a="no">No</button><button type="button" class="tree-btn" data-a="yes">Yes</button></div>
+          </div>
+          <div class="tree-step" data-step="2" aria-disabled="true">
+            <span class="service-num">Question 2</span>
+            <p>Do you know who it is for and what it must do?</p>
+            <div class="tree-answers"><button type="button" class="tree-btn" data-a="no" disabled>No</button><button type="button" class="tree-btn" data-a="yes" disabled>Yes</button></div>
+          </div>
+          <div class="tree-step" data-step="3" aria-disabled="true">
+            <span class="service-num">Question 3</span>
+            <p>Have you already tested it with real users?</p>
+            <div class="tree-answers"><button type="button" class="tree-btn" data-a="no" disabled>No</button><button type="button" class="tree-btn" data-a="yes" disabled>Yes</button></div>
+          </div>
         </div>
-
-        <div class="card reveal">
-          <span class="eyebrow">Toolkit</span>
-          <h4>Tools for the next decision</h4>
-          <p>Practical tools to frame the next product question on your own, before you bring anyone in.</p>
+        <div class="tree-result" aria-live="polite">
+          <span class="eyebrow" id="tree-eyebrow">Your starting point</span>
+          <h3 id="tree-title">Answer the questions on the left.</h3>
+          <p id="tree-text">No idea yet points to an Exploration. A clear idea without a definition points to a Definition. A definition that users have not seen yet points to a Prototype.</p>
+          <div class="btn-group" id="tree-cta" hidden><a href="/contact/" class="btn-frosted">Book a 30-minute call</a></div>
+          <button type="button" class="tree-reset" id="tree-reset" hidden>Start over</button>
         </div>
-
-        <div class="card reveal">
-          <span class="eyebrow">In development</span>
-          <h4>AI updates for your product</h4>
-          <p>We are building a space for clients with updates on what is changing in AI, and what that means for products like yours.</p>
-        </div>
-
       </div>
     </div>
   </section>
@@ -176,11 +187,13 @@
       <div class="pricing-central reveal" style="max-width:100%;margin-top:var(--space-block);">
         <span class="price">Scaled to fit.</span>
         <div class="pricing-specs">
+          <span>Review call: free</span>
           <span>Exploration: fixed price</span>
           <span>Definition: scoped to your project</span>
           <span>Prototype: on quote</span>
         </div>
-        <p>Every service starts from a basic package. We adjust it to your product: how much is already known, how many people shape the decision, how much the AI has to do. We don't sell scope you don't need. In a first call we look at where you stand and where it makes sense to start.</p>
+        <p>Every service starts from a basic package. We adjust it to your product: how much is already known, how many people shape the decision, how much the AI has to do. We don't sell scope you don't need.</p>
+        <p>It starts with a free review call of 30 minutes, with a fixed agenda: what you want to build and why now, the open question that weighs most, who decides and with what budget, and where to start. You get a proposal within 48 hours.</p>
         <div class="btn-group" style="margin-top: var(--space-stack);">
           <a href="/contact/" class="btn-primary">Book a 30-minute call <br class="cta-break">to scope your project <span class="arrow">→</span></a>
         </div>
@@ -238,7 +251,8 @@
             <li><a href="/cases/">Cases</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/">Contact</a></li>
-            <li><a href="/scorecard/">Take assessment</a></li>
+            <li><a href="/resources/">Resources</a></li>
+            <li><a href="/check/">AI Product Check</a></li>
           </ul>
         </div>
 
@@ -271,5 +285,6 @@
   <script src="../assets/js/reveal.js"></script>
   <script src="../assets/js/nav.js"></script>
   <script src="../assets/js/magnetic-buttons.js" defer></script>
+  <script src="/assets/js/tree.js" defer></script>
 </body>
 </html>
