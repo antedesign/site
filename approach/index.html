@@ -68,7 +68,7 @@
   <!-- ── Section 1: Hero ──────────────────────────────────── -->
   <section class="hero">
     <div class="container">
-      <h1 class="hero-headline hero-headline--inner reveal"><span class="text-spruce">Three services.</span> Start where you stand.</h1>
+      <h1 class="hero-headline hero-headline--inner reveal"><span class="text-spruce">Three services</span> for AI&#8209;driven products.</h1>
       <p class="hero-subhead reveal">Some companies come to us with a broad AI ambition. Others already know the problem, or have a product definition that needs testing. That is why our work comes as three separate services. You order the one that fits, and we scale it to your project.</p>
     </div>
   </section>
@@ -80,56 +80,38 @@
       <div class="services-grid">
 
         <article class="service-card reveal">
-          <span class="service-num">01</span>
           <h3>AI Opportunity Exploration</h3>
-          <span class="service-route">Opportunity → problem definition</span>
-          <p>For when you are torn between ideas, or don't know yet where AI fits.</p>
+          <p>For when you are torn between ideas, or don't know yet where AI fits in your product or market.</p>
           <ul class="service-meta">
             <li><span>After this you know</span>Which AI idea is worth pursuing, or that it is better to do nothing.</li>
             <li><span>You get</span>An opportunity map: 5 to 10 opportunities scored on value, feasibility and risk. One or two recommended, written as problem definitions, with a clear go or no-go.</li>
-            <li><span>Time and price</span>2 weeks, fixed price</li>
+            <li><span>Time and price</span>2 weeks, fixed price. Fully credited if you start a Definition within 90 days.</li>
           </ul>
+          <button type="button" class="service-toggle" aria-expanded="false">More info</button>
         </article>
 
         <article class="service-card service-card--core reveal">
-          <span class="service-tag">Core</span>
-          <span class="service-num">02</span>
           <h3>AI Product Definition</h3>
-          <span class="service-route">Problem → product definition</span>
-          <p>For when you know which idea, and want it built right.</p>
+          <p>For when you know which idea, and want it built right. We define what the product does, for whom, what role AI plays and which features come first.</p>
           <ul class="service-meta">
             <li><span>After this you know</span>Exactly what to have built. You can brief a builder and compare quotes on the same question.</li>
-            <li><span>You get</span>A product definition on one page, plus appendices: users, problem, what it does, the role of AI, features by priority, risks, success criteria and open questions. And a brief for your builder. <a href="/example/" style="color:var(--frosted);">See an example</a></li>
-            <li><span>Time and price</span>3 to 6 weeks, scaled to your project</li>
+            <li><span>You get</span>A product definition on one page, plus appendices: users, problem, what it does, the role of AI, features by priority, risks, success criteria and open questions. And a brief for your builder. <a href="/example/">See an example</a></li>
+            <li><span>Time and price</span>3 to 8 weeks, scaled to your project.</li>
           </ul>
+          <button type="button" class="service-toggle" aria-expanded="false">More info</button>
         </article>
 
         <article class="service-card reveal">
-          <span class="service-num">03</span>
           <h3>Prototype &amp; Validation</h3>
-          <span class="service-route">Product definition → prototype</span>
-          <p>For when you have a definition and want to see if real users want it.</p>
+          <p>For when you have a definition and want to see whether real users want it, before you pay for the full build.</p>
           <ul class="service-meta">
-            <li><span>After this you know</span>Whether users want it, before you pay for the full build.</li>
+            <li><span>After this you know</span>Whether users want it, before you commit to the full build.</li>
             <li><span>You get</span>A working prototype, a minimal version in front of real users, and what they did with it.</li>
-            <li><span>Time and price</span>On quote</li>
+            <li><span>Time and price</span>On quote.</li>
           </ul>
+          <button type="button" class="service-toggle" aria-expanded="false">More info</button>
         </article>
 
-      </div>
-
-      <!-- Laag onder de drie diensten: het bestelprincipe -->
-      <div class="services-layer reveal">
-        <div>
-          <span class="eyebrow">How it works</span>
-          <h3>Order what you need.</h3>
-          <p>The three services are not a fixed sequence. Each one stands on its own and ends with something you can act on.</p>
-        </div>
-        <ol class="services-layer-steps">
-          <li><strong>Start at any service</strong>Begin where you stand: with an ambition, a problem or a definition.</li>
-          <li><strong>Add the next when you are ready</strong>Nothing is done twice: the Exploration fee is fully credited when you start a Definition within 90 days.</li>
-          <li><strong>Build with a partner</strong>We do not build production versions or custom AI. Our partners do, from your definition.</li>
-        </ol>
       </div>
 
     </div>
@@ -149,7 +131,7 @@
           </div>
           <div class="tree-step" data-step="2" aria-disabled="true">
             <span class="service-num">Question 2</span>
-            <p>Do you know who it is for and what it must do?</p>
+            <p>Is it written down who it is for, what it does and which features come first?</p>
             <div class="tree-answers"><button type="button" class="tree-btn" data-a="no" disabled>No</button><button type="button" class="tree-btn" data-a="yes" disabled>Yes</button></div>
           </div>
           <div class="tree-step" data-step="3" aria-disabled="true">
@@ -161,7 +143,7 @@
         <div class="tree-result" aria-live="polite">
           <span class="eyebrow" id="tree-eyebrow">Your starting point</span>
           <h3 id="tree-title">Answer the questions on the left.</h3>
-          <p id="tree-text">No idea yet points to an Exploration. A clear idea without a definition points to a Definition. A definition that users have not seen yet points to a Prototype.</p>
+          <p id="tree-text">No idea yet points to an Exploration. A clear idea that is not yet written down as a definition points to a Definition. A definition that users have not seen yet points to a Prototype.</p>
           <div class="btn-group" id="tree-cta" hidden><a href="/contact/" class="btn-frosted">Book a 30-minute call</a></div>
           <button type="button" class="tree-reset" id="tree-reset" hidden>Start over</button>
         </div>
@@ -286,5 +268,6 @@
   <script src="../assets/js/nav.js"></script>
   <script src="../assets/js/magnetic-buttons.js" defer></script>
   <script src="/assets/js/tree.js" defer></script>
+  <script src="/assets/js/services.js" defer></script>
 </body>
 </html>
