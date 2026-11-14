@@ -25,7 +25,6 @@
   var result = document.getElementById('check-result');
   var idea = form.elements.idea;
   var ideaCount = document.getElementById('idea-count');
-  var progress = document.getElementById('check-progress');
   var MIN_IDEA = 150;
 
   var LABELS = {
@@ -44,30 +43,82 @@
     return (el.value || '').trim();
   }
 
-  /* ── Live feedback ────────────────────────────────────── */
+  /* ── Stepper: one question at a time ──────────────────── */
+  var steps = Array.prototype.slice.call(form.querySelectorAll('.check-q'));
+  // Ten questions; question 2 and 10 each have two fields.
+  var QUESTIONS = [['type'], ['size', 'sector'], ['idea'], ['users'], ['evidence'], ['help'], ['data'], ['stage'], ['blocker'], ['decider', 'budget']];
+  var AUTO = { type: 1, evidence: 1, help: 1, data: 1, stage: 1 }; // single choice: advance on click
+  var stage = document.getElementById('check-stage');
+  var back = document.getElementById('check-back');
+  var label = document.getElementById('check-step-label');
+  var fill = document.getElementById('check-bar-fill');
+  var next = document.getElementById('check-next');
+  var err = document.getElementById('check-error');
+  var current = 0;
+
+  function done1(k) { return k === 'idea' ? val(k).length >= MIN_IDEA : !!val(k); }
+  function stepValid(i) { return QUESTIONS[i].every(done1); }
+
+  function show(i, focus) {
+    current = i;
+    steps.forEach(function (s, n) { s.classList.toggle('is-active', n === i); });
+    label.textContent = 'Question ' + (i + 1) + ' of ' + steps.length;
+    fill.style.width = ((i + 1) / steps.length * 100) + '%';
+    back.hidden = i === 0;
+    var last = i === steps.length - 1;
+    var auto = QUESTIONS[i].length === 1 && AUTO[QUESTIONS[i][0]];
+    next.innerHTML = last ? 'See my profile <span class="arrow">→</span>' : 'Next <span class="arrow">→</span>';
+    next.hidden = auto && !stepValid(i);
+    err.hidden = true;
+    if (focus) {
+      var el = steps[i].querySelector('textarea, input[type=text], select, input[type=radio]');
+      if (el && el.type !== 'radio') el.focus({ preventScroll: true });
+    }
+  }
+
+  function advance() {
+    if (!stepValid(current)) {
+      err.textContent = QUESTIONS[current][0] === 'idea' && val('idea')
+        ? 'A little more detail, please: at least ' + MIN_IDEA + ' characters.'
+        : 'Please answer this question to continue.';
+      err.hidden = false;
+      return;
+    }
+    if (current < steps.length - 1) show(current + 1, true);
+    else finish();
+  }
+
+  back.addEventListener('click', function () { if (current > 0) show(current - 1, true); });
+
+  form.addEventListener('change', function (e) {
+    if (e.target.type !== 'radio') return;
+    var key = e.target.name;
+    if (AUTO[key] && QUESTIONS[current][0] === key) setTimeout(advance, 260);
+    else next.hidden = false;
+  });
+
+  form.addEventListener('submit', function (e) { e.preventDefault(); advance(); });
+
   function updateCount() {
     var n = idea.value.trim().length;
-    ideaCount.textContent = n >= MIN_IDEA ? n + ' characters. Enough to work with.' : n + ' / ' + MIN_IDEA + ' characters minimum';
+    ideaCount.textContent = n >= MIN_IDEA ? 'Enough to work with.' : n + ' / ' + MIN_IDEA + ' characters minimum';
     ideaCount.classList.toggle('is-ok', n >= MIN_IDEA);
   }
   idea.addEventListener('input', updateCount);
   updateCount();
 
-  var REQUIRED = ['type', 'size', 'sector', 'idea', 'users', 'evidence', 'help', 'data', 'stage', 'blocker', 'decider', 'budget'];
-  // Ten questions; question 2 and 10 each have two fields.
-  var QUESTIONS = [['type'], ['size', 'sector'], ['idea'], ['users'], ['evidence'], ['help'], ['data'], ['stage'], ['blocker'], ['decider', 'budget']];
-  function done1(k) { return k === 'idea' ? val(k).length >= MIN_IDEA : !!val(k); }
-  function answered() {
-    return QUESTIONS.filter(function (q) { return q.every(done1); }).length;
-  }
-  function updateProgress() { progress.textContent = answered() + ' of ' + QUESTIONS.length + ' questions answered'; }
-  form.addEventListener('input', updateProgress);
-  form.addEventListener('change', updateProgress);
-  updateProgress();
-
   var sector = form.elements.sector;
   var sectorOther = document.getElementById('sector-other-wrap');
   sector.addEventListener('change', function () { sectorOther.hidden = sector.value !== 'other'; });
+
+  document.getElementById('check-edit').addEventListener('click', function () {
+    result.hidden = true;
+    stage.hidden = false;
+    show(0, false);
+    stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  show(0, false);
 
   /* ── Profile (rules) ──────────────────────────────────── */
   var TEXT = {
@@ -112,8 +163,8 @@
   var ROUTES = {
     early: {
       eyebrow: 'Your next step', title: 'Sharpen the idea first.',
-      text: 'There is no budget yet, and the idea is still early. A call would come too soon. Your first read lists the questions to answer first. Our principles and the example definition help you get there.',
-      primary: ['/principles/', 'Read the eight principles'], secondary: ['/example/', 'See an example definition']
+      text: 'There is no budget yet, and the idea is still early. A call would come too soon. Your first read lists the questions to answer first. The example definition shows what you will need to know.',
+      primary: ['/example/', 'See an example definition'], secondary: ['/insights/', 'Read our insights']
     },
     quote: {
       eyebrow: 'Your next step', title: "Before you sign, let's check the brief.",
@@ -123,7 +174,7 @@
     ready: {
       eyebrow: 'Your next step', title: 'You may be ready to build.',
       text: 'You have something live or a prototype, and evidence from real users. You may not need us. If you want a second look before the next investment, a review call is free.',
-      primary: ['/contact/', 'Book a 30-minute review call'], secondary: ['/principles/', 'Check it against our principles']
+      primary: ['/contact/', 'Book a 30-minute review call'], secondary: ['/example/', 'See what a definition covers']
     },
     exploration: {
       eyebrow: 'Your next step', title: 'Start with an AI Opportunity Exploration.',
@@ -147,32 +198,12 @@
     return 'exploration';
   }
 
-  /* ── Validation ───────────────────────────────────────── */
-  function firstMissing() {
-    for (var i = 0; i < REQUIRED.length; i++) {
-      var k = REQUIRED[i];
-      if (!val(k)) return k;
-      if (k === 'idea' && val(k).length < MIN_IDEA) return k;
-    }
-    return null;
-  }
-
-  var err = document.getElementById('check-error');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var miss = firstMissing();
-    if (miss) {
-      var q = document.querySelector('[data-q="' + miss + '"]');
-      err.textContent = miss === 'idea' && val('idea')
-        ? 'Describe your idea in a bit more detail (at least ' + MIN_IDEA + ' characters).'
-        : 'Please answer every question. The first open one is highlighted.';
-      err.hidden = false;
-      if (q) { q.scrollIntoView({ behavior: 'smooth', block: 'center' }); q.style.borderColor = 'var(--spruce)'; }
-      return;
-    }
-    err.hidden = true;
+  function finish() {
+    for (var i = 0; i < QUESTIONS.length; i++) { if (!stepValid(i)) { show(i, true); advance(); return; } }
+    stage.hidden = true;
+    document.querySelector('.check-fineprint').hidden = true;
     render();
-  });
+  }
 
   /* ── Render result ────────────────────────────────────── */
   var LEVEL = ['', 'Open', 'Partly clear', 'Clear'];
@@ -206,6 +237,7 @@
 
     result.hidden = false;
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelector('.check-fineprint').hidden = false;
   }
 
   /* ── Send for the first read ──────────────────────────── */

@@ -27,12 +27,12 @@
     <ul class="nav-links">
       <li><a href="/approach/" class="nav-link">Approach</a></li>
       <li><a href="/cases/" class="nav-link">Cases</a></li>
-      <li><a href="/resources/" class="nav-link">Resources</a></li>
       <li><a href="/insights/" class="nav-link">Insights</a></li>
       <li><a href="/about/" class="nav-link">About</a></li>
       <li><a href="/contact/" class="nav-link">Contact</a></li>
     </ul>
     <div class="nav-right">
+      <a href="/check/" class="btn-frosted nav-cta nav-cta--check">AI Product Check</a>
       <a href="/contact/" class="btn-primary nav-cta">Book a call</a>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -51,31 +51,33 @@
     <ul class="mobile-menu-links">
       <li><a href="/approach/">Approach</a></li>
       <li><a href="/cases/">Cases</a></li>
-     <li><a href="/resources/">Resources</a></li>
       <li><a href="/insights/">Insights</a></li>
       <li><a href="/about/">About</a></li>
       <li><a href="/contact/">Contact</a></li>
     </ul>
-    <a href="/contact/" class="btn-primary mobile-menu-cta">Book a call</a>
+    <a href="/check/" class="btn-frosted mobile-menu-cta">AI Product Check</a>
+    <a href="/contact/" class="btn-primary mobile-menu-cta mobile-menu-cta--second">Book a call</a>
   </div>
 
 <main>
-  <section class="hero">
+  <section class="hero hero--check">
     <div class="container">
-      <h1 class="hero-headline hero-headline--inner reveal"><span class="text-spruce">AI Product Check.</span> A first read of your idea.</h1>
-      <p class="hero-subhead reveal">Ten questions, about five minutes. You see your readiness profile and a recommended next step right away. Leave your email and we send you a written first read within one working day: where AI could earn its place, your riskiest assumptions, and the questions you can't answer yet.</p>
-      <div class="check-notice reveal">
-        <p>Don't share confidential details. A rough description is enough.</p>
-        <p>Your first read is written by a person at Anté, with help from an AI service. It is a first read, not advice. See our <a href="/privacy/">privacy policy</a>.</p>
-      </div>
+      <h1 class="hero-headline hero-headline--inner reveal"><span class="text-spruce">AI Product Check.</span><br>A first read of your idea.</h1>
+      <p class="hero-subhead reveal">Ten short questions, about five minutes. You see right away where your idea stands. We send you a written first read within one working day.</p>
     </div>
   </section>
 
   <section class="section section--tighter-top">
     <div class="container">
-      <form class="check-form" id="check-form" novalidate>
-      <fieldset class="check-q reveal" data-q="type">
-        <span class="service-num">01 / 10</span>
+      <div class="check-stage reveal" id="check-stage">
+        <div class="check-top">
+          <button type="button" class="check-back" id="check-back" hidden>← Back</button>
+          <span class="check-step-label" id="check-step-label" aria-live="polite">Question 1 of 10</span>
+        </div>
+        <div class="check-bar" aria-hidden="true"><span id="check-bar-fill"></span></div>
+
+        <form class="check-form" id="check-form" novalidate>
+      <fieldset class="check-q" data-q="type">
         <legend>Which describes you best?</legend>
         <div class="chip-group">
           <label class="chip"><input type="radio" name="type" value="new" required><span>A new product</span></label>
@@ -85,8 +87,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="check-q reveal" data-q="size">
-        <span class="service-num">02 / 10</span>
+      <fieldset class="check-q" data-q="size">
         <legend>Your company.</legend>
         <p class="check-hint">How many people work there, and in which sector?</p>
         <div class="chip-group">
@@ -118,22 +119,19 @@
         </div>
       </fieldset>
 
-      <div class="check-q reveal" data-q="idea">
-        <span class="service-num">03 / 10</span>
+      <div class="check-q" data-q="idea">
         <label class="check-q-title" for="idea">Describe your product idea in two or three sentences.</label>
         <p class="check-hint">A rough description is enough. Leave out anything confidential.</p>
         <textarea class="form-textarea" id="idea" name="idea" rows="5" maxlength="1200" required placeholder="What would the product do, and for whom?"></textarea>
         <p class="check-count" id="idea-count" aria-live="polite"></p>
       </div>
 
-      <div class="check-q reveal" data-q="users">
-        <span class="service-num">04 / 10</span>
+      <div class="check-q" data-q="users">
         <label class="check-q-title" for="users">Who will use it, and how do they solve this today?</label>
         <textarea class="form-textarea" id="users" name="users" rows="3" maxlength="600" required placeholder="For example: planners at our customers, who now do this in a spreadsheet."></textarea>
       </div>
 
-      <fieldset class="check-q reveal" data-q="evidence">
-        <span class="service-num">05 / 10</span>
+      <fieldset class="check-q" data-q="evidence">
         <legend>How do you know this is a real problem?</legend>
         <div class="chip-group">
           <label class="chip"><input type="radio" name="evidence" value="users" required><span>We talked to users</span></label>
@@ -143,8 +141,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="check-q reveal" data-q="help">
-        <span class="service-num">06 / 10</span>
+      <fieldset class="check-q" data-q="help">
         <legend>Where should the AI help?</legend>
         <p class="check-hint">Pick the one that matters most.</p>
         <div class="chip-group">
@@ -157,8 +154,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="check-q reveal" data-q="data">
-        <span class="service-num">07 / 10</span>
+      <fieldset class="check-q" data-q="data">
         <legend>What data or content would it rely on?</legend>
         <div class="chip-group">
           <label class="chip"><input type="radio" name="data" value="own" required><span>Our own</span></label>
@@ -169,8 +165,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="check-q reveal" data-q="stage">
-        <span class="service-num">08 / 10</span>
+      <fieldset class="check-q" data-q="stage">
         <legend>Where are you now?</legend>
         <div class="chip-group">
           <label class="chip"><input type="radio" name="stage" value="idea" required><span>Idea</span></label>
@@ -181,14 +176,12 @@
         </div>
       </fieldset>
 
-      <div class="check-q reveal" data-q="blocker">
-        <span class="service-num">09 / 10</span>
+      <div class="check-q" data-q="blocker">
         <label class="check-q-title" for="blocker">What's blocking the next step, and why now?</label>
         <textarea class="form-textarea" id="blocker" name="blocker" rows="3" maxlength="600" required></textarea>
       </div>
 
-      <fieldset class="check-q reveal" data-q="budget">
-        <span class="service-num">10 / 10</span>
+      <fieldset class="check-q" data-q="budget">
         <legend>Who decides, and what budget is set aside for the next step?</legend>
         <div class="check-row" data-q="decider" style="margin:12px 0 20px;">
           <div>
@@ -204,12 +197,13 @@
         </div>
       </fieldset>
 
-        <div class="check-submit">
-          <button type="submit" class="btn-primary">See my profile <span class="arrow">→</span></button>
-          <span class="check-progress" id="check-progress" aria-live="polite"></span>
-        </div>
-        <p class="check-error" id="check-error" role="alert" hidden></p>
-      </form>
+          <div class="check-nav">
+            <button type="submit" class="btn-primary" id="check-next">Next <span class="arrow">→</span></button>
+            <p class="check-error" id="check-error" role="alert" hidden></p>
+          </div>
+        </form>
+      </div>
+      <p class="check-fineprint">Please leave out confidential details: a rough description is enough. Your first read is written by a person at Anté, with help from an AI service. It is a first read, not advice. <a href="/privacy/">Privacy policy</a>.</p>
 
       <div class="check-result" id="check-result" hidden>
         <span class="eyebrow">Your result</span>
@@ -254,6 +248,7 @@
             <p id="send-thanks-mail" hidden>Your mail app opened with your answers filled in. Press send there, and we take it from there. Nothing opened? Email <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>.</p>
           </div>
         </div>
+        <button type="button" class="tree-reset" id="check-edit" style="color:var(--spruce);margin-top:20px;">Change my answers</button>
       </div>
     </div>
   </section>
@@ -298,7 +293,6 @@
             <li><a href="/insights/">Insights</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/">Contact</a></li>
-            <li><a href="/resources/">Resources</a></li>
             <li><a href="/check/">AI Product Check</a></li>
           </ul>
         </div>
