@@ -35,7 +35,7 @@
     help: { time: 'Save time', decisions: 'Improve decisions', content: 'Personalise or create content', predict: 'Detect or predict', talk: 'Talk with the user', unsure: 'Not sure yet' },
     data: { own: 'Our own', customers: "Our customers'", public: 'Public', none: 'None yet', unknown: "Don't know" },
     stage: { idea: 'Idea', concept: 'Concept', quote: 'Quote from a builder in hand', prototype: 'Prototype', live: 'Live' },
-    budget: { under5: 'Under €5k', mid: '€5–15k', over15: 'Over €15k', notset: 'Not set' }
+    budget: { under10: 'Under €10k', mid: '€10–30k', over30: 'Over €30k', notset: 'Not set' }
   };
 
   function val(name) {
@@ -143,7 +143,7 @@
     if (stage === 'quote') return 'quote';
     if ((stage === 'prototype' || stage === 'live') && (val('evidence') === 'users' || val('evidence') === 'customers')) return 'ready';
     if (val('type') === 'unsure' || val('help') === 'unsure') return 'exploration';
-    if (budget === 'mid' || budget === 'over15') return 'definition';
+    if (budget === 'mid' || budget === 'over30') return 'definition';
     return 'exploration';
   }
 
