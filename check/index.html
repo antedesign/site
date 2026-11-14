@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Product Check | Anté</title>
+  <meta name="description" content="Ten questions about your AI product idea. See your readiness profile and next step right away, and get a written first read within one working day.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Anté">
+  <meta property="og:title" content="AI Product Check | Anté">
+  <meta property="og:description" content="Ten questions about your AI product idea. See your readiness profile and next step right away, and get a written first read within one working day.">
+  <meta property="og:url" content="https://antedesign.be/check/">
+  <meta property="og:image" content="https://antedesign.be/assets/images/case-01.jpg">
+  <link rel="canonical" href="https://antedesign.be/check/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:ital,wght@1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/shared.css">
+</head>
+  <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"68ea92b283d5d6d8bad1366116d1438b"})});</script>
+<body>
+
+  <!-- ── Navigation ───────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="/" class="nav-logo"><img src="/assets/images/ante-logo.svg" alt="anté"></a>
+    <ul class="nav-links">
+      <li><a href="/approach/" class="nav-link">Approach</a></li>
+      <li><a href="/cases/" class="nav-link">Cases</a></li>
+      <li><a href="/insights/" class="nav-link">Insights</a></li>
+      <li><a href="/about/" class="nav-link">About</a></li>
+      <li><a href="/contact/" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="/check/" class="btn-frosted nav-cta nav-cta--check">AI Product Check</a>
+      <a href="/contact/" class="btn-primary nav-cta">Book a call</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Mobile menu ──────────────────────────────────────── -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <a href="/" class="nav-logo"><img src="/assets/images/ante-logo.svg" alt="anté"></a>
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Sluit menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="/approach/">Approach</a></li>
+      <li><a href="/cases/">Cases</a></li>
+      <li><a href="/insights/">Insights</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+    <a href="/check/" class="btn-frosted mobile-menu-cta">AI Product Check</a>
+    <a href="/contact/" class="btn-primary mobile-menu-cta mobile-menu-cta--second">Book a call</a>
+  </div>
+
+<main>
+  <section class="hero hero--check">
+    <div class="container">
+      <h1 class="hero-headline hero-headline--inner reveal"><span class="text-spruce">AI Product Check.</span><br>A first read of your idea.</h1>
+      <p class="hero-subhead reveal">Ten short questions, about five minutes. You see right away where your idea stands. We send you a written first read within one working day.</p>
+    </div>
+  </section>
+
+  <section class="section section--tighter-top">
+    <div class="container">
+      <div class="check-stage reveal" id="check-stage">
+        <div class="check-top">
+          <button type="button" class="check-back" id="check-back" hidden>← Back</button>
+          <span class="check-step-label" id="check-step-label" aria-live="polite">Question 1 of 10</span>
+        </div>
+        <div class="check-bar" aria-hidden="true"><span id="check-bar-fill"></span></div>
+
+        <form class="check-form" id="check-form" novalidate>
+      <fieldset class="check-q" data-q="type">
+        <legend>Which describes you best?</legend>
+        <div class="chip-group">
+          <label class="chip"><input type="radio" name="type" value="new" required><span>A new product</span></label>
+          <label class="chip"><input type="radio" name="type" value="existing" required><span>AI in an existing product</span></label>
+          <label class="chip"><input type="radio" name="type" value="internal" required><span>A tool for our own team</span></label>
+          <label class="chip"><input type="radio" name="type" value="unsure" required><span>Not sure yet</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="check-q" data-q="size">
+        <legend>Your company.</legend>
+        <p class="check-hint">How many people work there, and in which sector?</p>
+        <div class="chip-group">
+          <label class="chip"><input type="radio" name="size" value="s1" required><span>1–10</span></label>
+          <label class="chip"><input type="radio" name="size" value="s2" required><span>11–50</span></label>
+          <label class="chip"><input type="radio" name="size" value="s3" required><span>51–250</span></label>
+          <label class="chip"><input type="radio" name="size" value="s4" required><span>250+</span></label>
+        </div>
+        <div class="check-row" style="margin-top:20px;" data-q="sector">
+          <div>
+            <label class="form-label" for="sector">Sector</label>
+            <select class="form-input" id="sector" name="sector" required>
+            <option value="">Choose a sector</option>
+            <option value="manufacturing">Manufacturing and industry</option>
+            <option value="consumer">Consumer products</option>
+            <option value="health">Health and care</option>
+            <option value="agrifood">Agriculture and food</option>
+            <option value="education">Education and training</option>
+            <option value="software">Software and digital services</option>
+            <option value="retail">Retail and e-commerce</option>
+            <option value="construction">Construction and real estate</option>
+            <option value="other">Other</option>
+            </select>
+          </div>
+          <div id="sector-other-wrap" hidden>
+            <label class="form-label" for="sectorOther">Which sector?</label>
+            <input class="form-input" id="sectorOther" name="sectorOther" type="text" maxlength="80">
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="check-q" data-q="idea">
+        <label class="check-q-title" for="idea">Describe your product idea in two or three sentences.</label>
+        <p class="check-hint">A rough description is enough. Leave out anything confidential.</p>
+        <textarea class="form-textarea" id="idea" name="idea" rows="5" maxlength="1200" required placeholder="What would the product do, and for whom?"></textarea>
+        <p class="check-count" id="idea-count" aria-live="polite"></p>
+      </div>
+
+      <div class="check-q" data-q="users">
+        <label class="check-q-title" for="users">Who will use it, and how do they solve this today?</label>
+        <textarea class="form-textarea" id="users" name="users" rows="3" maxlength="600" required placeholder="For example: planners at our customers, who now do this in a spreadsheet."></textarea>
+      </div>
+
+      <fieldset class="check-q" data-q="evidence">
+        <legend>How do you know this is a real problem?</legend>
+        <div class="chip-group">
+          <label class="chip"><input type="radio" name="evidence" value="users" required><span>We talked to users</span></label>
+          <label class="chip"><input type="radio" name="evidence" value="customers" required><span>Customers asked for it</span></label>
+          <label class="chip"><input type="radio" name="evidence" value="competitors" required><span>Competitors are doing it</span></label>
+          <label class="chip"><input type="radio" name="evidence" value="gut" required><span>Gut feeling</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="check-q" data-q="help">
+        <legend>Where should the AI help?</legend>
+        <p class="check-hint">Pick the one that matters most.</p>
+        <div class="chip-group">
+          <label class="chip"><input type="radio" name="help" value="time" required><span>Save time</span></label>
+          <label class="chip"><input type="radio" name="help" value="decisions" required><span>Improve decisions</span></label>
+          <label class="chip"><input type="radio" name="help" value="content" required><span>Personalise or create content</span></label>
+          <label class="chip"><input type="radio" name="help" value="predict" required><span>Detect or predict</span></label>
+          <label class="chip"><input type="radio" name="help" value="talk" required><span>Talk with the user</span></label>
+          <label class="chip"><input type="radio" name="help" value="unsure" required><span>Not sure yet</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="check-q" data-q="data">
+        <legend>What data or content would it rely on?</legend>
+        <div class="chip-group">
+          <label class="chip"><input type="radio" name="data" value="own" required><span>Our own</span></label>
+          <label class="chip"><input type="radio" name="data" value="customers" required><span>Our customers'</span></label>
+          <label class="chip"><input type="radio" name="data" value="public" required><span>Public</span></label>
+          <label class="chip"><input type="radio" name="data" value="none" required><span>None yet</span></label>
+          <label class="chip"><input type="radio" name="data" value="unknown" required><span>Don't know</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="check-q" data-q="stage">
+        <legend>Where are you now?</legend>
+        <div class="chip-group">
+          <label class="chip"><input type="radio" name="stage" value="idea" required><span>Idea</span></label>
+          <label class="chip"><input type="radio" name="stage" value="concept" required><span>Concept</span></label>
+          <label class="chip"><input type="radio" name="stage" value="quote" required><span>Quote from a builder in hand</span></label>
+          <label class="chip"><input type="radio" name="stage" value="prototype" required><span>Prototype</span></label>
+          <label class="chip"><input type="radio" name="stage" value="live" required><span>Live</span></label>
+        </div>
+      </fieldset>
+
+      <div class="check-q" data-q="blocker">
+        <label class="check-q-title" for="blocker">What's blocking the next step, and why now?</label>
+        <textarea class="form-textarea" id="blocker" name="blocker" rows="3" maxlength="600" required></textarea>
+      </div>
+
+      <fieldset class="check-q" data-q="budget">
+        <legend>Who decides, and what budget is set aside for the next step?</legend>
+        <div class="check-row" data-q="decider" style="margin:12px 0 20px;">
+          <div>
+            <label class="form-label" for="decider">Who decides</label>
+            <input class="form-input" id="decider" name="decider" type="text" maxlength="120" required placeholder="For example: the managing director">
+          </div>
+        </div>
+        <div class="chip-group">
+          <label class="chip"><input type="radio" name="budget" value="under10" required><span>Under €10k</span></label>
+          <label class="chip"><input type="radio" name="budget" value="mid" required><span>€10–30k</span></label>
+          <label class="chip"><input type="radio" name="budget" value="over30" required><span>Over €30k</span></label>
+          <label class="chip"><input type="radio" name="budget" value="notset" required><span>Not set</span></label>
+        </div>
+      </fieldset>
+
+          <div class="check-nav">
+            <button type="submit" class="btn-primary" id="check-next">Next <span class="arrow">→</span></button>
+            <p class="check-error" id="check-error" role="alert" hidden></p>
+          </div>
+        </form>
+      </div>
+      <p class="check-fineprint">Please leave out confidential details: a rough description is enough. Your first read is written by a person at Anté, with help from an AI service. It is a first read, not advice. <a href="/privacy/">Privacy policy</a>.</p>
+
+      <div class="check-result" id="check-result" hidden>
+        <span class="eyebrow">Your result</span>
+        <h2>Where your idea stands.</h2>
+        <div class="result-grid">
+          <div class="profile-card">
+            <span class="eyebrow">Readiness profile</span>
+            <div id="profile-rows"></div>
+          </div>
+          <div class="next-card">
+            <span class="eyebrow" id="next-eyebrow">Your next step</span>
+            <h3 id="next-title"></h3>
+            <p id="next-text"></p>
+            <div class="btn-group">
+              <a class="btn-frosted" id="next-primary" href="/contact/"></a>
+              <a class="next-link" id="next-secondary" href="/example/"></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:clamp(16px, 2vw, 24px);">
+          <span class="eyebrow">Your full first read</span>
+          <h3>Get the written first read.</h3>
+          <p>A short report in our structure: your idea in one sentence, where AI could earn its place and where it risks being a gimmick, your three riskiest assumptions, and at least five questions you can't answer yet. Written by a person at Anté, within one working day.</p>
+          <form id="send-form" novalidate>
+            <div class="check-row" style="margin-top:20px;">
+              <div>
+                <label class="form-label" for="email">Your email</label>
+                <input class="form-input" id="email" name="email" type="email" required placeholder="you@company.com" autocomplete="email">
+              </div>
+            </div>
+            <div class="optin-list">
+              <label class="optin"><input type="checkbox" name="optinReport"> <span>Email me my first read. We use your email for this report only.</span></label>
+              <label class="optin"><input type="checkbox" name="optinResearch"> <span>You may use my answers, without my name or company, to improve this check.</span></label>
+              <label class="optin"><input type="checkbox" name="optinMarketing"> <span>Send me two follow-up emails: a teardown that fits my idea, and an invitation to talk. Unsubscribe anytime.</span></label>
+            </div>
+            <button type="submit" class="btn-primary">Send me my first read <span class="arrow">→</span></button>
+            <p class="check-error" id="send-error" role="alert" hidden></p>
+          </form>
+          <div id="send-thanks" hidden>
+            <p style="color:var(--charcoal);margin-top:16px;"><strong>Thank you.</strong> We send your first read to <strong id="send-thanks-email"></strong> within one working day.</p>
+            <p id="send-thanks-mail" hidden>Your mail app opened with your answers filled in. Press send there, and we take it from there. Nothing opened? Email <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>.</p>
+          </div>
+        </div>
+        <button type="button" class="tree-reset" id="check-edit" style="color:var(--spruce);margin-top:20px;">Change my answers</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div>
+          <a href="/" class="footer-logo">
+            <img src="/assets/images/SVG_LOGO_Transparent_Blue.svg" alt="anté">
+          </a>
+          <p class="footer-tagline">Decide before you build.</p>
+          <a href="mailto:hello@antedesign.be" class="footer-email">hello@antedesign.be</a>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/ant%C3%A9-design" class="footer-social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/antedesign.be/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ante.design" class="footer-social-link" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61590565387982" class="footer-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@antedesign.be" class="footer-social-link" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Navigation</span>
+          <ul class="footer-links">
+            <li><a href="/approach/">Approach</a></li>
+            <li><a href="/cases/">Cases</a></li>
+            <li><a href="/insights/">Insights</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/check/">AI Product Check</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Services</span>
+          <ul class="footer-links">
+            <li><a href="/approach/#blocks">AI Opportunity Exploration</a></li>
+            <li><a href="/approach/#blocks">AI Product Definition</a></li>
+            <li><a href="/approach/#blocks">Prototype &amp; Validation</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Legal</span>
+          <ul class="footer-links">
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms of Service</a></li>
+            <li><a href="/cookies/">Cookie Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Anté. All rights reserved. Designed in Antwerp.</p>
+        <p class="footer-vat">Ondernemingsnummer BE 1041.127.724</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/reveal.js"></script>
+  <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/magnetic-buttons.js" defer></script>
+  <script src="/assets/js/check.js" defer></script>
+</body>
+</html>

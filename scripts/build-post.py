@@ -353,10 +353,10 @@ def page_html(root, d, minutes, number):
       <div class="container">
         <div class="green-cta-block reveal">
           <h2>{esc(d.get('cta_heading') or 'Which decision are you about to make?')}</h2>
-          <p>Our 4 minute assessment shows where your concept stands today across 5 key dimensions. No preparation needed. No email required to see results.</p>
+          <p>In 30 minutes we look at your idea, where you stand and where it makes sense to start. Prefer to start on your own? Take the AI Product Check.</p>
           <div class="btn-group">
-            <a href="/scorecard/" class="btn-primary">Take free assessment</a>
-            <a href="/approach/" class="btn-secondary">See the Decision Sprint</a>
+            <a href="/contact/" class="btn-primary">Book a 30-minute call</a>
+            <a href="/check/" class="btn-secondary">Take the AI Product Check</a>
           </div>
         </div>
       </div>
