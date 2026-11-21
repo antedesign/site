@@ -16,9 +16,11 @@
   'use strict';
 
   var FORM = {
-    action: '', // the /formResponse URL of the Google Form
-    fields: {   // 'entry.<number>' for each of the three fields
-      id: '', email: '', answers: ''
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLScurjk-1U6s6atbb2d3-qabHroNIbZ0P8u21CRbia-5thkn0w/formResponse',
+    fields: {   // 'entry.<number>' for each of the three questions of the form, in the order id, email, answers
+      id: 'entry.2041225216',
+      email: 'entry.510587862',
+      answers: 'entry.24848750'
     }
   };
   var MAILTO = 'hello@antedesign.be';
@@ -157,6 +159,7 @@
     av.hidden = !data.avoided;
     document.getElementById('mirror-avoided-text').textContent = data.avoided ? '“' + data.avoided + '”' : '';
     document.getElementById('result-email').textContent = data.email;
+    document.getElementById('result-ref').textContent = data.id;
     document.getElementById('result-mail-note').hidden = !viaMail;
     stage.hidden = true;
     document.querySelector('.check-fineprint').hidden = true;
