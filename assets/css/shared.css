@@ -1453,6 +1453,31 @@ p + h2 {
 }
 
 /* ── Problem card ───────────────────────────────────────── */
+/* Alternatieven in de probleemkaart: een regel per optie */
+.alt-list {
+  display: grid;
+  gap: 14px;
+  margin: 0 0 var(--space-stack);
+}
+.alt-list li {
+  position: relative;
+  padding-left: 22px;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.alt-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--frosted);
+}
+.alt-list strong { color: var(--charcoal); font-weight: 600; }
+
 .problem-card {
   background: rgba(32, 106, 91, 0.04);
   border: 1px solid rgba(32, 106, 91, 0.1);
