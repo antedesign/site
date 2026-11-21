@@ -8,9 +8,11 @@ html.hold *,html.fr *{animation-play-state:paused!important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .skip,.replay{position:fixed;z-index:99;right:20px;top:20px;padding:10px 16px;border:1px solid currentColor;border-radius:var(--radius-btn);background:none;color:var(--white);mix-blend-mode:difference;font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer}
 .replay{top:auto;bottom:20px}
-html.fr .skip,html.fr .replay{display:none}
+html.fr .skip,html.fr .replay,html.emb .skip,html.emb .replay{display:none}
 .L{position:absolute;inset:0;display:grid;place-items:center;padding:calc(var(--u)*6);clip-path:inset(100% 0 0 0);animation:wipe .8s cubic-bezier(.76,0,.24,1) calc(var(--b) - .5s - var(--t)) forwards}
 .L0{clip-path:inset(0);animation:none}
+.Lg{visibility:hidden;clip-path:inset(var(--cT) var(--cR) var(--cB) var(--cL) round var(--radius-card));animation:grow .95s cubic-bezier(.76,0,.24,1) calc(var(--b) - .5s - var(--t)) forwards}
+.Lg .wm{opacity:0;animation:rise .6s ease calc(var(--b) + .5s - var(--t)) forwards}
 .sp{background:var(--spruce);color:var(--white)}.dk{background:var(--charcoal);color:var(--white)}
 .lt{background:var(--white);color:var(--charcoal)}.lf{background:var(--frosted);color:var(--charcoal)}
 .wm{position:absolute;left:calc(var(--u)*4);top:calc(var(--u)*3.4);height:calc(var(--u)*2.6)}
@@ -39,17 +41,15 @@ html.fr .skip,html.fr .replay{display:none}
 .ch:nth-child(2){background:var(--spruce);color:var(--white);--mx:0px;--my:0px}
 .ch:nth-child(3){background:var(--white);color:var(--charcoal);--mx:calc(var(--u)*-26);--my:0px}
 .mc{grid-area:1/1;padding:calc(var(--u)*2.6) calc(var(--u)*4.2);background:var(--spruce);color:var(--white);border-radius:var(--radius-card);font:italic 800 calc(var(--u)*4.4)/1.1 'Plus Jakarta Sans',sans-serif}
-.sh{font-size:calc(var(--u)*6.2)}.cf>*{min-width:0}.cf .ar{width:calc(var(--u)*4.5)}
+.sh{font-size:calc(var(--u)*6.2)}.cf>*{min-width:0}.cf .ar{width:calc(var(--u)*3.5)}
 .bub.pt{background:var(--spruce);color:var(--white);margin:calc(var(--u)*2.4) 0 0}
 .cmb{max-width:calc(var(--u)*94)}
-.cf{display:grid;grid-template-columns:auto auto auto auto auto;justify-content:center;gap:calc(var(--u)*1.8);align-items:center;margin-top:calc(var(--u)*4.5);text-align:left;--c0:inset(calc(var(--u)*-1.5) 100% calc(var(--u)*-1.5) 0);--c1:inset(calc(var(--u)*-1.5) calc(var(--u)*-1.5) calc(var(--u)*-1.5) 0)}
+.cf{display:grid;grid-template-columns:auto auto auto auto auto;justify-content:center;gap:calc(var(--u)*1.2);align-items:center;margin-top:calc(var(--u)*4.5);text-align:left;--c0:inset(calc(var(--u)*-1.5) 100% calc(var(--u)*-1.5) 0);--c1:inset(calc(var(--u)*-1.5) calc(var(--u)*-1.5) calc(var(--u)*-1.5) 0)}
 .ins{display:grid;gap:calc(var(--u)*1.2)}
-.in1{display:block;white-space:nowrap;padding:calc(var(--u)*1.5) calc(var(--u)*2.4);background:var(--white);color:var(--charcoal);border-radius:var(--radius-btn);font:600 calc(var(--u)*2.5)/1.1 'Poppins',sans-serif}
-.mid{display:grid;gap:calc(var(--u)*.8);justify-items:center}
-.kn{width:100%;padding:calc(var(--u)*2.2) calc(var(--u)*2.4);background:var(--charcoal);color:var(--white);border-radius:var(--radius-card)}
-.kn b{font:italic 800 calc(var(--u)*3.2)/1.1 'Plus Jakarta Sans',sans-serif}
-.pl{font:600 calc(var(--u)*3.2)/1 'Poppins',sans-serif;color:var(--spruce)}
-.res{padding:calc(var(--u)*3) calc(var(--u)*3);background:var(--spruce);color:var(--white);border-radius:var(--radius-card);font:italic 800 calc(var(--u)*3.8)/1.1 'Plus Jakarta Sans',sans-serif}
+.in1{display:block;white-space:nowrap;padding:calc(var(--u)*1.4) calc(var(--u)*2);background:var(--white);color:var(--charcoal);border-radius:var(--radius-btn);font:600 calc(var(--u)*2.1)/1.1 'Poppins',sans-serif}
+.b4 .lab{margin-top:calc(var(--u)*1.6)}
+.pl{font:600 calc(var(--u)*4.4)/1 'Poppins',sans-serif;color:var(--spruce)}
+.res{padding:calc(var(--u)*3) calc(var(--u)*3);background:var(--spruce);color:var(--white);border-radius:var(--radius-card);font:italic 800 calc(var(--u)*3.4)/1.1 'Plus Jakarta Sans',sans-serif}
 .lf .pill{background:var(--spruce);color:var(--white)}
 .t3{font:600 calc(var(--u)*3.4)/1.3 'Poppins',sans-serif;color:rgba(40,41,43,.72);margin-bottom:calc(var(--u)*1.6)}
 .t3 .g{color:var(--charcoal)}
@@ -78,10 +78,9 @@ html.fr .skip,html.fr .replay{display:none}
 .ph:nth-child(2){margin-top:calc(var(--u)*3)}
 .ph img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.2);animation:kb 4s linear calc(var(--b) + var(--s) - var(--t)) forwards}
 @media (orientation:portrait){
- .cf{grid-template-columns:1fr;gap:calc(var(--u)*1.4);--c0:inset(100% calc(var(--u)*-1.5) 0 calc(var(--u)*-1.5));--c1:inset(0 calc(var(--u)*-1.5) calc(var(--u)*-1.5) calc(var(--u)*-1.5))}
- .ins{display:flex;flex-wrap:wrap;justify-content:center}.in1{font-size:calc(var(--u)*3.2)}.cf .ar{width:3px}.cf{margin-top:calc(var(--u)*5);gap:calc(var(--u)*2)}
- .mid{grid-template-columns:1fr auto 1fr;gap:calc(var(--u)*1)}.kn{padding:calc(var(--u)*1.8)}.kn b{font-size:calc(var(--u)*2.6)}.mid>*{min-width:0}.sh{font-size:calc(var(--u)*6.4)}.res{font-size:calc(var(--u)*4.4)}.pl{font-size:calc(var(--u)*3.6)}
- .L{padding:calc(var(--u)*5)}.phs{grid-template-columns:1fr}.ph{aspect-ratio:16/7}.ph:nth-child(2){margin-top:0}.b4{max-width:100%}
+ .cf{grid-template-columns:1fr;justify-items:center;gap:calc(var(--u)*1.4);--c0:inset(100% calc(var(--u)*-1.5) 0 calc(var(--u)*-1.5));--c1:inset(0 calc(var(--u)*-1.5) calc(var(--u)*-1.5) calc(var(--u)*-1.5))}
+ .ins{display:flex;flex-wrap:wrap;justify-content:center}.in1{font-size:calc(var(--u)*3)}.cf .ar{width:3px}.res{font-size:calc(var(--u)*4)}.pl{font-size:calc(var(--u)*5)}.sh{font-size:calc(var(--u)*6)}
+ .L{padding:calc(var(--u)*5)}.phs{grid-template-columns:1fr}.ph{aspect-ratio:16/6}.ph:nth-child(2){margin-top:0}.b4{max-width:100%}
  .chs{flex-direction:column;align-items:center}.ch:nth-child(1){--mx:0px;--my:calc(var(--u)*8.6)}.ch:nth-child(3){--mx:0px;--my:calc(var(--u)*-8.6)}
  .bub,.cmb{max-width:100%}
  .flow{grid-template-columns:1fr 1fr;--c0:inset(100% calc(var(--u)*-1.5) 0 calc(var(--u)*-1.5));--c1:inset(0 calc(var(--u)*-1.5) calc(var(--u)*-1.5) calc(var(--u)*-1.5))}
@@ -96,5 +95,6 @@ html.fr .skip,html.fr .replay{display:none}
 @keyframes mrg{from{opacity:1;transform:none}to{opacity:0;transform:translate(var(--mx),var(--my)) scale(.5)}}
 @keyframes draw{from{clip-path:var(--c0)}to{clip-path:var(--c1)}}
 @keyframes out{to{opacity:0;transform:translateY(calc(var(--u)*-1.5))}}
+@keyframes grow{from{visibility:visible}to{visibility:visible;clip-path:inset(0 round 0)}}
 @keyframes wipe{to{clip-path:inset(0)}}
 @keyframes kb{to{transform:scale(1.02)}}

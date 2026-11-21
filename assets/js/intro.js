@@ -1,22 +1,16 @@
 (function () {
-  var h = document.documentElement, q = location.search, o = document.querySelector('.intro'), b = document.querySelector('.intro-skip');
+  var h = document.documentElement, o = document.querySelector('.intro'), b = document.querySelector('.intro-skip'), out = false;
   document.fonts.ready.then(function () { window.__ready = true; });
   if (!o || !h.classList.contains('intro-on')) return;
-  var t = /[?&]t=(-?[\d.]+)/.exec(q), done = false;
-  function end() {
-    if (done) return; done = true;
-    h.classList.add('intro-done'); o.remove(); b.remove(); document.removeEventListener('keydown', key);
+  var m = /[?&]film=(\w+)/.exec(location.search); // ?film=20 plays the short cut
+  o.firstElementChild.src = '/film/?embed=1&cut=' + (m ? m[1] : 'final');
+  function finish() {
+    if (out) return; out = true;
+    h.classList.add('intro-out');
+    setTimeout(function () { h.classList.add('intro-done'); o.remove(); b.remove(); removeEventListener('message', msg); removeEventListener('keydown', key); }, 1100);
   }
-  function skip() {
-    if (done || h.classList.contains('intro-skip')) return;
-    h.classList.add('intro-skip');
-    [].forEach.call(document.querySelectorAll('.hero .hl-line,.hero-subhead,.hero .btn-group'), function (e, i) {
-      e.getAnimations().forEach(function (a) { a.effect.updateTiming({ delay: 150 + i * 80 }); a.currentTime = 0; });
-    });
-    setTimeout(end, 950);
-  }
-  function key(e) { if (e.key === 'Escape') skip(); }
-  if (t) { h.style.setProperty('--t', parseFloat(t[1]) + 's'); h.classList.add('intro-freeze'); }
-  else setTimeout(end, 6400);
-  o.addEventListener('click', skip); b.addEventListener('click', skip); document.addEventListener('keydown', key);
+  function msg(e) { if (e.origin === location.origin && e.data && e.data.film === 'end') finish(); }
+  function key(e) { if (e.key === 'Escape') finish(); }
+  addEventListener('message', msg); addEventListener('keydown', key); b.addEventListener('click', finish);
+  setTimeout(finish, 110000);
 })();
