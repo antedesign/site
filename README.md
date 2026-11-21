@@ -17,6 +17,7 @@ Static website for Anté, an independent studio that defines products with AI at
 │   └── <slug>/index.html   One folder per post
 ├── about/index.html        About page
 ├── contact/index.html      Contact page
+├── film/                   The Anté film: live page, scenes in film.js, see film/README.md
 ├── scorecard/index.html    Old assessment, now a redirect to /check/
 ├── tools/                  Three interactive tools, behind an email layer
 ├── privacy/ terms/ cookies/  Legal pages
@@ -39,7 +40,7 @@ Static website for Anté, an independent studio that defines products with AI at
 │   ├── downloads/          Files offered for download (ICM test folder zips, EN and NL)
 │   └── images/
 │       └── insights/       Post covers (.svg for the page, .png for social)
-├── scripts/                Post builder and checks (see Insights below)
+├── scripts/                Post builder and checks (see Insights below), film-render.js (MP4 of /film/)
 ├── sitemap.xml             Add one <url> block per new post
 ├── robots.txt
 ├── CNAME                   antedesign.be
