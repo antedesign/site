@@ -249,6 +249,14 @@ p + p {
   font-size: clamp(32px, 5vw, 64px);
 }
 
+/* Langere kop van twee zinnen: kleiner, elke zin op een eigen regel */
+.hero-headline--long {
+  font-size: clamp(38px, 5.2vw, 76px);
+  line-height: 1.06;
+  text-wrap: balance;
+}
+.hero-headline--long .hl-line { display: block; }
+
 .hero-subhead {
   font-family: 'Poppins', sans-serif;
   font-size: clamp(17px, 2vw, 20px);
