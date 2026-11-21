@@ -7,21 +7,18 @@
    see 20-marketing/free-tools/ai-product-check/ in ante-base.
 
    Collecting: if FORM.action is set, the answers are posted to a
-   Google Form (see FORMULIER.md in ante-base). If not, the
-   visitor's mail app opens with the answers filled in, addressed to
-   Anté. That is a fallback, not a collection: do not publish the page
-   until FORM is filled in and a test submission has arrived.
+   Google Form with three fields (id, email, answers as one JSON
+   block, see FORMULIER.md in ante-base). If not, the visitor's mail
+   app opens with the answers filled in, addressed to Anté. The daily
+   routine reads either source.
    ============================================================ */
 (function () {
   'use strict';
 
   var FORM = {
     action: '', // the /formResponse URL of the Google Form
-    fields: {   // one 'entry.<number>' per field
-      id: '', idea: '', alternative: '', without_ai: '', payer: '', 'return': '',
-      evidence: '', avoided: '', team_management: '', team_sales: '',
-      team_technical: '', stage: '', blocker: '', name: '', company: '',
-      role: '', email: '', consent: ''
+    fields: {   // 'entry.<number>' for each of the three fields
+      id: '', email: '', answers: ''
     }
   };
   var MAILTO = 'hello@antedesign.be';
@@ -113,13 +110,14 @@
   function send(data) {
     if (FORM.action) {
       var body = new FormData();
-      Object.keys(FORM.fields).forEach(function (k) {
-        if (FORM.fields[k]) body.append(FORM.fields[k], data[k] || '');
-      });
+      body.append(FORM.fields.id, data.id);
+      body.append(FORM.fields.email, data.email);
+      body.append(FORM.fields.answers, JSON.stringify(data));
       fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: body }).catch(function () {});
       return false;
     }
     var text = [
+      'Reference: ' + data.id, '',
       'Idea: ' + data.idea, '', 'Who uses it, and what they do today: ' + data.alternative, '',
       'Best version without AI, and what AI adds: ' + data.without_ai, '',
       'Who pays, how much, why every month: ' + data.payer, '',
@@ -128,7 +126,7 @@
       'The question I hope nobody asks: ' + data.avoided, '',
       'Management would say: ' + data.team_management, 'Sales would say: ' + data.team_sales, 'Engineering would say: ' + data.team_technical, '',
       'Stage: ' + data.stage, 'Blocker: ' + data.blocker, '',
-      'Name: ' + data.name, 'Company: ' + data.company, 'Role: ' + data.role, 'Email: ' + data.email
+      'Name: ' + data.name, 'Company: ' + data.company, 'Role: ' + data.role, 'Email: ' + data.email, 'Consent: ' + (data.consent || 'no')
     ].join('\n');
     window.location.href = 'mailto:' + MAILTO + '?subject=' + encodeURIComponent('AI Product Check: ' + data.id) + '&body=' + encodeURIComponent(text);
     return true;
