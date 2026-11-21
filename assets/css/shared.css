@@ -256,6 +256,7 @@ p + p {
   text-wrap: balance;
 }
 .hero-headline--long .hl-line { display: block; }
+@media (min-width: 640px) { .hero-headline--long .nowrap-lg { white-space: nowrap; } }
 
 .hero-subhead {
   font-family: 'Poppins', sans-serif;
@@ -1968,6 +1969,22 @@ p + h2 {
   object-fit: cover;
   display: block;
 }
+/* Zonder foto: een initialen-tegel in plaats van een leeg vlak. Zodra de foto er is, ligt die erover. */
+.founder-portrait { position: relative; }
+.founder-portrait img { position: relative; z-index: 1; }
+.founder-initials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: clamp(48px, 7vw, 88px);
+  letter-spacing: -0.02em;
+  color: rgba(32, 106, 91, 0.35);
+}
 
 /* ── Responsive additions ───────────────────────────────── */
 @media (max-width: 900px) {
@@ -2812,3 +2829,6 @@ p + h2 {
 .gate-close-form { position: absolute; top: 12px; right: 16px; margin: 0; }
 .gate-close { background: none; border: none; font-size: 26px; line-height: 1; color: var(--ink-muted); cursor: pointer; }
 .gate-fine { font-size: 13px; color: var(--ink-muted); margin: 14px 0 0; }
+
+/* Footer op telefoons: één kolom, anders loopt de pagina horizontaal over (de 2-kolomsregel hierboven wint anders) */
+@media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
