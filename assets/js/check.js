@@ -11,6 +11,15 @@
    block, see FORMULIER.md in ante-base). If not, the visitor's mail
    app opens with the answers filled in, addressed to Anté. The daily
    routine reads either source.
+
+   Saving as you go: the first step asks for the email address and
+   the consent. Nothing leaves the browser before that step is done.
+   From then on the answers so far are posted after every step, and
+   once more when the visitor leaves the page with unsaved typing.
+   Every post carries the same id, a counter (seq), the number of
+   steps completed (step) and complete ('yes' only on the last send),
+   so the routine takes the highest seq per id. The mail path cannot
+   save as you go: it sends once, at the end.
    ============================================================ */
 (function () {
   'use strict';
@@ -37,13 +46,16 @@
   var steps = Array.prototype.slice.call(form.querySelectorAll('.check-q'));
   var current = 0;
   var sent = false;
+  var started = false; // the first step (email and consent) is done: from here on we save
+  var dirty = false;   // typing since the last save
+  var seq = 0;
 
   var MIN = { idea: 60, alternative: 12, without_ai: 12, payer: 12, 'return': 12, evidence: 12, avoided: 8 };
   var MESSAGES = {
     idea: 'A little more detail, please: at least 60 characters.',
     team: 'Please fill in at least two of the three. Short is fine.',
     stage: 'Please pick where you are now.',
-    contact: 'Please add a valid email address and tick the box.'
+    start: 'Please add a valid email address and tick the box.'
   };
 
   function val(name) {
@@ -59,7 +71,7 @@
       return n >= 2;
     }
     if (q === 'stage') return !!val('stage');
-    if (q === 'contact') return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val('email')) && form.elements.consent.checked;
+    if (q === 'start') return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val('email')) && form.elements.consent.checked;
     return true;
   }
 
@@ -84,8 +96,11 @@
       err.hidden = false;
       return;
     }
-    if (current < steps.length - 1) show(current + 1, true);
-    else finish();
+    if (current < steps.length - 1) {
+      show(current + 1, true);
+      if (current === 1) started = true; // the first step has just been completed
+      if (started) save(false);
+    } else finish();
   }
 
   back.addEventListener('click', function () { if (current > 0) show(current - 1, true); });
@@ -97,9 +112,11 @@
     return 'chk-' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + '-' + Math.floor(1000 + Math.random() * 9000);
   }
 
+  var ID = makeId();
+
   function payload() {
     return {
-      id: makeId(),
+      id: ID,
       idea: val('idea'), alternative: val('alternative'), without_ai: val('without_ai'), payer: val('payer'),
       'return': val('return'), evidence: val('evidence'), avoided: val('avoided'),
       team_management: val('team_management'), team_sales: val('team_sales'), team_technical: val('team_technical'),
@@ -109,13 +126,49 @@
     };
   }
 
+  function trapped() { return !!(form.elements.website && form.elements.website.value); }
+
+  // the payload plus the bookkeeping the routine needs to pick the latest row per id
+  function snapshot(complete) {
+    var d = payload();
+    d.seq = ++seq;
+    d.step = complete ? steps.length : current; // steps completed so far
+    d.complete = complete ? 'yes' : '';
+    return d;
+  }
+
+  function formBody(data) {
+    var body = new FormData();
+    body.append(FORM.fields.id, data.id);
+    body.append(FORM.fields.email, data.email);
+    body.append(FORM.fields.answers, JSON.stringify(data));
+    return body;
+  }
+
+  // a partial save: only with the form connected, after the consent, never for a bot
+  function save(complete) {
+    if (!FORM.action || trapped() || sent) return;
+    fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: formBody(snapshot(complete)) }).catch(function () {});
+    dirty = false;
+  }
+
+  // the visitor leaves with typing that was not saved yet
+  function saveOnLeave() {
+    if (!FORM.action || !started || sent || !dirty || trapped()) return;
+    var body = formBody(snapshot(false));
+    dirty = false;
+    var queued = false;
+    try { queued = !!(navigator.sendBeacon && navigator.sendBeacon(FORM.action, body)); } catch (e) { queued = false; }
+    if (!queued) fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: body, keepalive: true }).catch(function () {});
+  }
+  form.addEventListener('input', function () { dirty = true; });
+  form.addEventListener('change', function () { dirty = true; });
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') saveOnLeave(); });
+  window.addEventListener('pagehide', saveOnLeave);
+
   function send(data) {
     if (FORM.action) {
-      var body = new FormData();
-      body.append(FORM.fields.id, data.id);
-      body.append(FORM.fields.email, data.email);
-      body.append(FORM.fields.answers, JSON.stringify(data));
-      fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: body }).catch(function () {});
+      fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: formBody(data) }).catch(function () {});
       return false;
     }
     var text = [
@@ -169,11 +222,10 @@
 
   function finish() {
     if (sent) return;
-    sent = true;
     next.disabled = true;
-    var data = payload();
-    var trap = form.elements.website && form.elements.website.value;
-    var viaMail = trap ? false : send(data); // a filled trap field is a bot: show the thanks, send nothing
+    var data = snapshot(true);
+    var viaMail = trapped() ? false : send(data); // a filled trap field is a bot: show the thanks, send nothing
+    sent = true;
     showResult(data, viaMail);
   }
 

@@ -72,11 +72,23 @@
       <div class="check-stage reveal" id="check-stage">
         <div class="check-top">
           <button type="button" class="check-back" id="check-back" hidden>← Back</button>
-          <span class="check-step-label" id="check-step-label" aria-live="polite">Step 1 of 10</span>
+          <span class="check-step-label" id="check-step-label" aria-live="polite">Step 1 of 11</span>
         </div>
         <div class="check-bar" aria-hidden="true"><span id="check-bar-fill"></span></div>
 
         <form class="check-form" id="check-form" novalidate>
+      <div class="check-q" data-q="start">
+        <span class="check-q-title">Where do we send your questions?</span>
+        <p class="check-hint">A person at Anté reads them first and sends them within one working day. We save your answers as you go, so nothing is lost if you stop halfway.</p>
+        <div style="margin-top:16px;">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com">
+        </div>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
+        <div class="optin-list" style="margin-top:20px;">
+          <label class="optin"><input type="checkbox" id="consent" name="consent"> <span>I agree that Anté saves my answers as I enter them, also if I stop before the end, and may email me once if I do. I agree that Claude (an AI service from Anthropic) helps with the first reading, that a person at Anté checks the report before it is sent, and that Anté keeps my answers until I ask for them to be deleted. See the <a href="/privacy/#ai-product-check" target="_blank" rel="noopener">privacy policy</a>.</span></label>
+        </div>
+      </div>
       <div class="check-q" data-q="idea">
         <label class="check-q-title" for="idea">Describe your product idea in two or three sentences.</label>
         <p class="check-hint">What would it do, and for whom? A rough description is enough. Leave out anything confidential.</p>
@@ -132,32 +144,22 @@
         <label class="form-label" for="blocker" style="margin-top:24px;">What is blocking the next step? <span style="color:var(--ink-muted);">(optional)</span></label>
         <textarea class="form-textarea" id="blocker" name="blocker" rows="3" maxlength="600"></textarea>
       </fieldset>
-      <div class="check-q" data-q="contact">
-        <span class="check-q-title">Where do we send your questions?</span>
-        <p class="check-hint">A person at Anté reads them first and sends them within one working day.</p>
+      <div class="check-q" data-q="about">
+        <span class="check-q-title">Who is asking?</span>
+        <p class="check-hint">All optional. It helps us write to you in the right register.</p>
         <div class="check-row" style="margin-top:16px;">
-          <div>
-            <label class="form-label" for="email">Email</label>
-            <input class="form-input" id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com">
-          </div>
           <div>
             <label class="form-label" for="name">Name <span style="color:var(--ink-muted);">(optional)</span></label>
             <input class="form-input" id="name" name="name" type="text" autocomplete="name" maxlength="80">
           </div>
-        </div>
-        <div class="check-row" style="margin-top:14px;">
           <div>
             <label class="form-label" for="company">Company <span style="color:var(--ink-muted);">(optional)</span></label>
             <input class="form-input" id="company" name="company" type="text" autocomplete="organization" maxlength="80">
           </div>
-          <div>
-            <label class="form-label" for="role">Role <span style="color:var(--ink-muted);">(optional)</span></label>
-            <input class="form-input" id="role" name="role" type="text" maxlength="80">
-          </div>
         </div>
-        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
-        <div class="optin-list" style="margin-top:20px;">
-          <label class="optin"><input type="checkbox" id="consent" name="consent"> <span>I agree that Anté reads my answers, that Claude (an AI service from Anthropic) helps with the first reading, that a person at Anté checks the report before it is sent, and that Anté keeps my answers until I ask for them to be deleted. See the <a href="/privacy/#ai-product-check" target="_blank" rel="noopener">privacy policy</a>.</span></label>
+        <div style="margin-top:14px;">
+          <label class="form-label" for="role">Role <span style="color:var(--ink-muted);">(optional)</span></label>
+          <input class="form-input" id="role" name="role" type="text" maxlength="80">
         </div>
       </div>
           <div class="check-nav">
