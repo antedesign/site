@@ -166,7 +166,7 @@ each bullet citing a rule number and quoting the passage.
 **Agent A, confidentiality and privacy.** Input: the post text (title, lede, sections, FAQ,
 prompt, sources from the JSON), the research file, and GUARDRAILS.md sections A and C.
 > You are a paranoid confidentiality reviewer for the public website of Anté, an independent
-> concept validation consultancy. The post may contain nothing from non-public sources. It must
+> studio that defines products with AI at their core. The post may contain nothing from non-public sources. It must
 > never mention or hint at the AIPPD programme or event, the DesignWorks project, PO-1, any
 > university course, student, teacher, partner, client, meeting, workshop or internal note,
 > not even anonymised or rephrased. Report: (1) any passage that could come from non-public

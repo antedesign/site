@@ -122,7 +122,7 @@ def body_html(d):
               <div class="author-mark"><span>a</span></div>
               <div>
                 <h4>Anté</h4>
-                <p>An independent concept validation consultancy in Antwerp. We do not build, and we take no stake in what you decide, which is the only reason our answer on direction is worth anything. Decide before you build.</p>
+                <p>An independent studio in Antwerp that defines products with AI at their core before they are built. We do not build, and we take no stake in what you decide, which is the only reason our answer on direction is worth anything. Decide before you build.</p>
               </div>
             </div>""")
     return "\n\n            ".join(out)
@@ -422,7 +422,7 @@ def wire_sitemap(root, d):
     block = f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{d['published']}</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.8</priority>\n  </url>\n\n"
     anchor = "  <url>\n    <loc>" + SITE + "/insights/double-diamond-design-process/</loc>"
     if anchor not in s:
-        anchor = "  <url>\n    <loc>" + SITE + "/scorecard/</loc>"
+        anchor = "  <url>\n    <loc>" + SITE + "/check/</loc>"
     s = s.replace(anchor, block + anchor, 1)
     s = re.sub(r"(<loc>" + re.escape(SITE) + r"/insights/</loc>\s*<lastmod>)[^<]+(</lastmod>)", r"\g<1>" + d["published"] + r"\g<2>", s, count=1)
     p.write_text(s, encoding="utf-8")

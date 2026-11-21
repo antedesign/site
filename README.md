@@ -1,6 +1,6 @@
 # Anté — antedesign.be
 
-Static website for Anté, an independent concept validation consultancy. Built as plain HTML/CSS/JS — no build step required.
+Static website for Anté, an independent studio that defines products with AI at their core. Built as plain HTML/CSS/JS — no build step required.
 
 ---
 
@@ -9,13 +9,17 @@ Static website for Anté, an independent concept validation consultancy. Built a
 ```
 /
 ├── index.html              Home page
-├── approach/index.html     Approach page
-├── cases/index.html        Cases page
-├── insights/index.html     Insights (blog) index
+├── approach/index.html     Approach: the three services
+├── cases/index.html        Cases
+├── example/index.html      Example product definition (one A4, prints to one page)
+├── check/index.html        AI Product Check (ten questions, first read)
+├── insights/index.html     Insights (blog) index, teardowns, tools
 │   └── <slug>/index.html   One folder per post
 ├── about/index.html        About page
 ├── contact/index.html      Contact page
-├── tools/                  Standalone interactive tools
+├── scorecard/index.html    Old assessment, now a redirect to /check/
+├── tools/                  Three interactive tools, behind an email layer
+├── privacy/ terms/ cookies/  Legal pages
 ├── assets/
 │   ├── css/
 │   │   ├── shared.css      All design tokens, components, utilities
@@ -24,17 +28,24 @@ Static website for Anté, an independent concept validation consultancy. Built a
 │   ├── js/
 │   │   ├── reveal.js       Scroll fade-in (IntersectionObserver)
 │   │   ├── nav.js          Mobile menu
+│   │   ├── check.js        The AI Product Check flow
+│   │   ├── tree.js         Decision tree on the Approach page
+│   │   ├── services.js     "More info" on the service cards
+│   │   ├── gate.js         Email layer in front of the tools
 │   │   ├── insights.js     Reading progress, TOC, copy-prompt button
 │   │   └── starter-kit.js  EN/NL switch, use-case tabs, multi-prompt copy buttons
 │   ├── downloads/          Files offered for download (ICM test folder zips, EN and NL)
 │   └── images/
 │       └── insights/       Post covers (.svg for the page, .png for social)
+├── scripts/                Post builder and checks (see Insights below)
 ├── sitemap.xml             Add one <url> block per new post
 ├── robots.txt
 ├── CNAME                   antedesign.be
-├── README.md
-└── .gitattributes
+└── README.md
 ```
+
+The site is in English. A Dutch version (`/nl/`, with an EN | NL switch) is planned
+once the English copy is final.
 
 ---
 
@@ -44,12 +55,14 @@ Every page is a plain HTML file. Open it in any text editor, find the text betwe
 
 | Page | File | What's in it |
 |---|---|---|
-| Home | `index.html` | Hero, showcases, trust bar, independence section, failure narrative, testimonials, CTA |
-| Approach | `approach/index.html` | Hero, 5 phases, deliverables, who-for, pricing, availability, closing CTA |
-| Cases | `cases/index.html` | Hero with disclosure note, diagnostic CTA |
-| About | `about/index.html` | Hero, independence section, founders, CTA |
-| Contact | `contact/index.html` | Hero, Calendly card, contact form card, direct contact |
-| Insights | `insights/index.html` | Hero, featured post, what's coming, tools, CTA |
+| Home | `index.html` | Hero, photo strip and proof line, "Product definition, not process automation", problem and alternatives, the example (before and after), closing CTA. The testimonials block is commented out until there are real quotes |
+| Approach | `approach/index.html` | The three services, "Where do you start?" tree, who it is for, how it starts, closing CTA |
+| Cases | `cases/index.html` | The two cases and a photo grid |
+| Example | `example/index.html` | The "what the team started with" block and the full one-page definition |
+| Check | `check/index.html` | The ten-question flow and the result |
+| About | `about/index.html` | Why Anté exists, how we got here, team, how we use AI, CTA |
+| Contact | `contact/index.html` | Calendly card, contact form, direct contact |
+| Insights | `insights/index.html` | Hero, featured post, what's coming, teardowns, tools, CTA |
 
 ---
 
