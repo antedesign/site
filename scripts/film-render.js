@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Renders /film/ to MP4 (and optional per-scene clips). Needs: node, playwright (npm i playwright), ffmpeg.
-//   node scripts/film-render.js --cut=20 --size=1920x1080 --out=/tmp/film [--clips]
-//   --cut=20|full   --scenes=hook,answers,...   --size=WxH (1080x1920 = vertical)   --fps=30
+//   node scripts/film-render.js --cut=final --size=1920x1080 --out=/tmp/film [--clips]
+//   --cut=final|20   --scenes=hook,answers,...   --size=WxH (1080x1920 = vertical)   --fps=30
 const http = require('http'), fs = require('fs'), path = require('path'), { execFileSync } = require('child_process');
 const { chromium } = require('playwright');
 const a = Object.fromEntries(process.argv.slice(2).map(x => x.replace(/^--/, '').split('=')).map(([k, v]) => [k, v === undefined ? true : v]));
@@ -14,16 +14,16 @@ const srv = http.createServer((q, r) => {
 (async () => {
   fs.mkdirSync(out, { recursive: true });
   const b = await chromium.launch(), p = await b.newPage({ viewport: { width: W, height: H } });
-  const qs = new URLSearchParams({ render: 1, ...(a.scenes ? { scenes: a.scenes } : { cut: a.cut || 20 }) });
+  const qs = new URLSearchParams({ render: 1, ...(a.scenes ? { scenes: a.scenes } : { cut: a.cut || 'final' }) });
   await p.goto(`http://localhost:${srv.address().port}/film/?${qs}`);
   await p.waitForFunction('window.__ready'); await p.waitForTimeout(500);
-  const film = await p.evaluate('FILM'), n = Math.round(film.total * fps), fr = path.join(out, `frames-${W}x${H}-${a.scenes ? 'custom' : (a.cut || 20)}`); fs.mkdirSync(fr, { recursive: true });
+  const film = await p.evaluate('FILM'), n = Math.round(film.total * fps), fr = path.join(out, `frames-${W}x${H}-${a.scenes ? 'custom' : (a.cut || 'final')}`); fs.mkdirSync(fr, { recursive: true });
   for (let i = 0; i < n; i++) {
     await p.evaluate(t => setT(t), (i / fps).toFixed(4));
     await p.screenshot({ path: `${fr}/f${String(i).padStart(5, '0')}.png` });
   }
   await b.close(); srv.close();
-  const name = `anteslim-${a.scenes ? 'custom' : (a.cut || 20)}-${W}x${H}`.replace('anteslim', 'ante'), mp4 = path.join(out, name + '.mp4');
+  const name = `anteslim-${a.scenes ? 'custom' : (a.cut || 'final')}-${W}x${H}`.replace('anteslim', 'ante'), mp4 = path.join(out, name + '.mp4');
   const ff = (...x) => execFileSync('ffmpeg', ['-loglevel', 'error', '-y', ...x]);
   ff('-framerate', fps, '-i', `${fr}/f%05d.png`, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', 17, '-movflags', '+faststart', mp4);
   fs.rmSync(fr, { recursive: true });
