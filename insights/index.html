@@ -175,6 +175,7 @@
       <div class="section-head">
         <h2 class="reveal">What's coming next.</h2>
         <p class="reveal">A new piece lands most weeks. Each one takes a finding, a habit or a piece of news about AI in product work, and says what it changes for a team that has to choose a direction.</p>
+        <p class="reveal"><a href="#summary" class="btn-secondary" data-gate-summary>Get a short summary of each new piece by email <span class="arrow">→</span></a></p>
       </div>
 
       <div class="post-grid">
@@ -265,14 +266,15 @@
   <!-- E-maillaag voor de tools -->
   <dialog class="gate" id="tools-gate" aria-labelledby="gate-title">
     <form method="dialog" class="gate-close-form"><button class="gate-close" aria-label="Close">×</button></form>
-    <span class="eyebrow">Free tools</span>
+    <span class="eyebrow" id="gate-eyebrow">Free tools</span>
     <h3 id="gate-title">Open the three tools.</h3>
-    <p>Leave your email and all three tools open right away. We use it to follow up on how the tools work for you, and never share it.</p>
+    <p id="gate-intro">Leave your email and all three tools open right away. We use it to follow up on how the tools work for you, and never share it.</p>
+    <p class="gate-thanks" id="gate-thanks" hidden><strong>Thank you.</strong> The next summary lands in your inbox. You can unsubscribe anytime by writing to <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>.</p>
     <form id="gate-form" novalidate>
       <label class="form-label" for="gate-email">Your email</label>
       <input class="form-input" id="gate-email" name="email" type="email" required placeholder="you@company.com" autocomplete="email">
-      <label class="optin" style="margin-top:14px;"><input type="checkbox" name="news"> <span>Also send me new insights and teardowns, about twice a month. Unsubscribe anytime.</span></label>
-      <button type="submit" class="btn-primary" style="margin-top:18px;">Open the tools <span class="arrow">→</span></button>
+      <label class="optin" id="gate-optin" style="margin-top:14px;"><input type="checkbox" name="news"> <span>Also send me a short summary of each new insight, about twice a month. Unsubscribe anytime.</span></label>
+      <button type="submit" class="btn-primary" id="gate-submit" style="margin-top:18px;">Open the tools <span class="arrow">→</span></button>
       <p class="check-error" id="gate-error" role="alert" hidden></p>
       <p class="gate-fine">See our <a href="/privacy/">privacy policy</a>.</p>
     </form>
