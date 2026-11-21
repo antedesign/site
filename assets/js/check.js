@@ -13,13 +13,18 @@
    routine reads either source.
 
    Saving as you go: the first step asks for the email address and
-   the consent. Nothing leaves the browser before that step is done.
-   From then on the answers so far are posted after every step, and
-   once more when the visitor leaves the page with unsaved typing.
-   Every post carries the same id, a counter (seq), the number of
-   steps completed (step) and complete ('yes' only on the last send),
-   so the routine takes the highest seq per id. The mail path cannot
-   save as you go: it sends once, at the end.
+   the consent. Nothing leaves the browser until the address is valid
+   and confirmed (the field is left or Enter is pressed, never while
+   typing, so a half-typed address is never stored) and the box is
+   ticked. From that moment the address is saved, even if the visitor
+   never presses Next. After that the answers so far are posted after
+   every step, and once more when the visitor leaves the page with
+   unsaved typing. Every post carries the same id, a counter (seq),
+   the number of steps completed (step), complete ('yes' only on the
+   last send) and the time spent (t_total, t_steps, in seconds, only
+   counted while the page is visible), so the routine takes the
+   highest seq per id. The mail path cannot save as you go: it sends
+   once, at the end.
    ============================================================ */
 (function () {
   'use strict';
@@ -46,9 +51,16 @@
   var steps = Array.prototype.slice.call(form.querySelectorAll('.check-q'));
   var current = 0;
   var sent = false;
-  var started = false; // the first step (email and consent) is done: from here on we save
-  var dirty = false;   // typing since the last save
+  var started = false;    // a valid, confirmed email and the consent: from here on we save
+  var confirmedEmail = ''; // the address as it was when the field was left; never a half-typed one
+  var lastSaved = '';     // the content of the last save, to see whether anything changed since
   var seq = 0;
+
+  // time spent, counted only while the page is visible
+  var clock = { active: 0, since: document.visibilityState === 'hidden' ? 0 : Date.now() };
+  var stepMs = [];
+  var stepMark = 0;
+  function activeMs() { return clock.active + (clock.since ? Date.now() - clock.since : 0); }
 
   var MIN = { idea: 60, alternative: 12, without_ai: 12, payer: 12, 'return': 12, evidence: 12, avoided: 8 };
   var MESSAGES = {
@@ -76,6 +88,8 @@
   }
 
   function show(i, focus) {
+    stepMs[current] = (stepMs[current] || 0) + (activeMs() - stepMark);
+    stepMark = activeMs();
     current = i;
     steps.forEach(function (s, n) { s.classList.toggle('is-active', n === i); });
     label.textContent = 'Step ' + (i + 1) + ' of ' + steps.length;
@@ -96,9 +110,12 @@
       err.hidden = false;
       return;
     }
+    if (steps[current].getAttribute('data-q') === 'start') {
+      confirmedEmail = val('email'); // the step is valid, so this is a complete address
+      if (armed()) started = true;   // the save follows below, once, with the step completed
+    }
     if (current < steps.length - 1) {
       show(current + 1, true);
-      if (current === 1) started = true; // the first step has just been completed
       if (started) save(false);
     } else finish();
   }
@@ -121,7 +138,7 @@
       'return': val('return'), evidence: val('evidence'), avoided: val('avoided'),
       team_management: val('team_management'), team_sales: val('team_sales'), team_technical: val('team_technical'),
       stage: val('stage'), blocker: val('blocker'),
-      name: val('name'), company: val('company'), role: val('role'), email: val('email'),
+      name: val('name'), company: val('company'), role: val('role'), email: confirmedEmail,
       consent: form.elements.consent.checked ? 'yes' : ''
     };
   }
@@ -134,6 +151,10 @@
     d.seq = ++seq;
     d.step = complete ? steps.length : current; // steps completed so far
     d.complete = complete ? 'yes' : '';
+    var live = stepMs.slice(0, steps.length);
+    live[current] = (live[current] || 0) + (activeMs() - stepMark);
+    d.t_total = Math.round(activeMs() / 1000);
+    d.t_steps = steps.map(function (_, n) { return Math.round((live[n] || 0) / 1000); });
     return d;
   }
 
@@ -148,22 +169,44 @@
   // a partial save: only with the form connected, after the consent, never for a bot
   function save(complete) {
     if (!FORM.action || trapped() || sent) return;
+    lastSaved = JSON.stringify(payload());
     fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: formBody(snapshot(complete)) }).catch(function () {});
-    dirty = false;
   }
 
   // the visitor leaves with typing that was not saved yet
   function saveOnLeave() {
-    if (!FORM.action || !started || sent || !dirty || trapped()) return;
+    if (!FORM.action || !started || sent || trapped() || JSON.stringify(payload()) === lastSaved) return;
     var body = formBody(snapshot(false));
-    dirty = false;
+    lastSaved = JSON.stringify(payload());
     var queued = false;
     try { queued = !!(navigator.sendBeacon && navigator.sendBeacon(FORM.action, body)); } catch (e) { queued = false; }
     if (!queued) fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: body, keepalive: true }).catch(function () {});
   }
-  form.addEventListener('input', function () { dirty = true; });
-  form.addEventListener('change', function () { dirty = true; });
-  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') saveOnLeave(); });
+  var EMAIL_OK = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+  // the address counts once the field is left (or Enter) and it is valid; then, with the box ticked, we start saving
+  function confirmEmail() {
+    var v = val('email');
+    if (EMAIL_OK.test(v)) confirmedEmail = v;
+    maybeStart();
+  }
+  function armed() { return !started && !!confirmedEmail && form.elements.consent.checked && !!FORM.action && !trapped(); }
+  function maybeStart() {
+    if (!armed()) return;
+    started = true;
+    save(false);
+  }
+  form.elements.email.addEventListener('change', confirmEmail);
+  form.elements.consent.addEventListener('change', maybeStart);
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+      if (clock.since) { clock.active += Date.now() - clock.since; clock.since = 0; }
+      saveOnLeave();
+    } else if (!clock.since) {
+      clock.since = Date.now();
+    }
+  });
   window.addEventListener('pagehide', saveOnLeave);
 
   function send(data) {
