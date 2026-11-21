@@ -23,9 +23,11 @@ Static website for Anté, an independent studio that defines products with AI at
 ├── assets/
 │   ├── css/
 │   │   ├── shared.css      All design tokens, components, utilities
+│   │   ├── intro.css       Home opening (~6 s), only loaded on the home page
 │   │   ├── insights.css    Blog-only styles, layered on shared.css
 │   │   └── starter-kit.css Extras for the ICM starter kit post (language switch, tabs)
 │   ├── js/
+│   │   ├── intro.js        Home opening: skip, clean-up, ?intro=0 and ?t=N
 │   │   ├── reveal.js       Scroll fade-in (IntersectionObserver)
 │   │   ├── nav.js          Mobile menu
 │   │   ├── check.js        The AI Product Check flow

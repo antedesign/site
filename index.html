@@ -16,9 +16,17 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:ital,wght@1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/images/favicon.png">
   <link rel="stylesheet" href="assets/css/shared.css">
+  <script>(function(d,r,q){try{q=location.search;if(/[?&]intro=0/.test(q))return;if(/[?&]t=/.test(q)||!matchMedia('(prefers-reduced-motion:reduce)').matches&&r.indexOf(location.origin+'/')!==0)d.documentElement.className+=' intro-on'}catch(e){}})(document,document.referrer)</script>
+  <link rel="stylesheet" href="assets/css/intro.css">
 </head>
   <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"68ea92b283d5d6d8bad1366116d1438b"})});</script>
 <body>
+  <button class="intro-skip" type="button">Skip</button>
+  <div class="intro" aria-hidden="true">
+    <div class="b b1"><p class="lab"><span class="m"><span style="--s:0.1s">What the team started with</span></span></p><p class="q"><span class="m"><span style="--s:0.3s">&ldquo;We should do something</span></span><span class="m"><span style="--s:0.38s">with AI in our machines.&rdquo;</span></span></p></div>
+    <div class="b cards"><div class="c"><span class="lab">Management</span><p>A new product line we can sell on its own, not just a feature.</p></div><div class="c"><span class="lab">Sales</span><p>Something that beats the competitor's new app. A chatbot, maybe.</p></div><div class="c"><span class="lab">Service</span><p>Fewer visits just to find out why packs get rejected.</p></div><div class="c"><span class="lab">Engineering</span><p>Nothing that can stop or slow the line on its own.</p></div></div>
+    <div class="b card"><p class="lab"><span class="m"><span style="--s:3.6s">AI Product Definition &middot; Fictional example</span></span></p><h2><span class="m"><span style="--s:3.7s">PackSight</span></span></h2><p><span class="m"><span style="--s:3.85s">A camera unit that checks every pack on the line, learns a customer's own defects from a few examples, and shows the operator what it found and why.</span></span></p></div>
+  </div>
 
   <!-- ── Navigation ───────────────────────────────────────── -->
   <nav class="nav">
@@ -337,6 +345,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/intro.js"></script>
   <script src="assets/js/reveal.js"></script>
   <script src="assets/js/nav.js"></script>
   <script src="assets/js/magnetic-buttons.js" defer></script>
