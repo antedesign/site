@@ -1,86 +1,87 @@
 /* ============================================================
-   AI Product Check (v0)
-   Ten questions → a rule-based readiness profile and next step,
-   shown on screen. The full first read is written by a person
-   (with AI help) and sent by email within one working day.
+   AI Product Check (v1): your idea, questioned
+   Nine questions and an email address. On screen you see your own
+   three team answers side by side (no AI). Within one working day a
+   person at Anté sends the questions we would ask, written from your
+   answers. The sending of that report is done by a daily routine,
+   see 20-marketing/free-tools/ai-product-check/ in ante-base.
 
-   Sending: if FORM.action is set, answers are posted to a Google
-   Form (same pattern as the scorecard). If not, the visitor's mail
-   app opens with the answers filled in, addressed to Anté.
+   Collecting: if FORM.action is set, the answers are posted to a
+   Google Form (see FORMULIER.md in ante-base). If not, the
+   visitor's mail app opens with the answers filled in, addressed to
+   Anté. That is a fallback, not a collection: do not publish the page
+   until FORM is filled in and a test submission has arrived.
    ============================================================ */
 (function () {
   'use strict';
 
   var FORM = {
-    action: '', // e.g. 'https://docs.google.com/forms/d/e/<id>/formResponse'
-    fields: {   // Google Form entry IDs, one short-answer question per field
-      email: '', answers: '', profile: '', route: '',
-      optinReport: '', optinResearch: '', optinMarketing: ''
+    action: '', // the /formResponse URL of the Google Form
+    fields: {   // one 'entry.<number>' per field
+      id: '', idea: '', alternative: '', without_ai: '', payer: '', 'return': '',
+      evidence: '', avoided: '', team_management: '', team_sales: '',
+      team_technical: '', stage: '', blocker: '', name: '', company: '',
+      role: '', email: '', consent: ''
     }
   };
   var MAILTO = 'hello@antedesign.be';
 
   var form = document.getElementById('check-form');
   if (!form) return;
-  var result = document.getElementById('check-result');
-  var idea = form.elements.idea;
-  var ideaCount = document.getElementById('idea-count');
-  var MIN_IDEA = 150;
-
-  var LABELS = {
-    type: { new: 'A new product', existing: 'AI in an existing product', internal: 'A tool for our own team', unsure: 'Not sure yet' },
-    size: { s1: '1–10', s2: '11–50', s3: '51–250', s4: '250+' },
-    evidence: { users: 'We talked to users', customers: 'Customers asked for it', competitors: 'Competitors are doing it', gut: 'Gut feeling' },
-    help: { time: 'Save time', decisions: 'Improve decisions', content: 'Personalise or create content', predict: 'Detect or predict', talk: 'Talk with the user', unsure: 'Not sure yet' },
-    data: { own: 'Our own', customers: "Our customers'", public: 'Public', none: 'None yet', unknown: "Don't know" },
-    stage: { idea: 'Idea', concept: 'Concept', quote: 'Quote from a builder in hand', prototype: 'Prototype', live: 'Live' },
-    budget: { under10: 'Under €10k', mid: '€10–30k', over30: 'Over €30k', notset: 'Not set' }
-  };
-
-  function val(name) {
-    var el = form.elements[name];
-    if (!el) return '';
-    return (el.value || '').trim();
-  }
-
-  /* ── Stepper: one question at a time ──────────────────── */
-  var steps = Array.prototype.slice.call(form.querySelectorAll('.check-q'));
-  // Ten questions; question 2 and 10 each have two fields.
-  var QUESTIONS = [['type'], ['size', 'sector'], ['idea'], ['users'], ['evidence'], ['help'], ['data'], ['stage'], ['blocker'], ['decider', 'budget']];
-  var AUTO = { type: 1, evidence: 1, help: 1, data: 1, stage: 1 }; // single choice: advance on click
   var stage = document.getElementById('check-stage');
+  var result = document.getElementById('check-result');
   var back = document.getElementById('check-back');
   var label = document.getElementById('check-step-label');
   var fill = document.getElementById('check-bar-fill');
   var next = document.getElementById('check-next');
   var err = document.getElementById('check-error');
+  var steps = Array.prototype.slice.call(form.querySelectorAll('.check-q'));
   var current = 0;
+  var sent = false;
 
-  function done1(k) { return k === 'idea' ? val(k).length >= MIN_IDEA : !!val(k); }
-  function stepValid(i) { return QUESTIONS[i].every(done1); }
+  var MIN = { idea: 60, alternative: 12, without_ai: 12, payer: 12, 'return': 12, evidence: 12, avoided: 8 };
+  var MESSAGES = {
+    idea: 'A little more detail, please: at least 60 characters.',
+    team: 'Please fill in at least two of the three. Short is fine.',
+    stage: 'Please pick where you are now.',
+    contact: 'Please add a valid email address and tick the box.'
+  };
+
+  function val(name) {
+    var el = form.elements[name];
+    return el && el.value ? el.value.trim() : '';
+  }
+
+  function stepValid(i) {
+    var q = steps[i].getAttribute('data-q');
+    if (MIN[q]) return val(q).length >= MIN[q];
+    if (q === 'team') {
+      var n = ['team_management', 'team_sales', 'team_technical'].filter(function (k) { return val(k).length >= 8; }).length;
+      return n >= 2;
+    }
+    if (q === 'stage') return !!val('stage');
+    if (q === 'contact') return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val('email')) && form.elements.consent.checked;
+    return true;
+  }
 
   function show(i, focus) {
     current = i;
     steps.forEach(function (s, n) { s.classList.toggle('is-active', n === i); });
-    label.textContent = 'Question ' + (i + 1) + ' of ' + steps.length;
+    label.textContent = 'Step ' + (i + 1) + ' of ' + steps.length;
     fill.style.width = ((i + 1) / steps.length * 100) + '%';
     back.hidden = i === 0;
-    var last = i === steps.length - 1;
-    var auto = QUESTIONS[i].length === 1 && AUTO[QUESTIONS[i][0]];
-    next.innerHTML = last ? 'See my profile <span class="arrow">→</span>' : 'Next <span class="arrow">→</span>';
-    next.hidden = auto && !stepValid(i);
+    next.innerHTML = i === steps.length - 1 ? 'Send me my questions <span class="arrow">→</span>' : 'Next <span class="arrow">→</span>';
     err.hidden = true;
     if (focus) {
-      var el = steps[i].querySelector('textarea, input[type=text], select, input[type=radio]');
-      if (el && el.type !== 'radio') el.focus({ preventScroll: true });
+      var el = steps[i].querySelector('textarea, input[type=text], input[type=email]');
+      if (el) el.focus({ preventScroll: true });
     }
   }
 
   function advance() {
     if (!stepValid(current)) {
-      err.textContent = QUESTIONS[current][0] === 'idea' && val('idea')
-        ? 'A little more detail, please: at least ' + MIN_IDEA + ' characters.'
-        : 'Please answer this question to continue.';
+      var q = steps[current].getAttribute('data-q');
+      err.textContent = MESSAGES[q] || 'Please answer this one with at least a sentence.';
       err.hidden = false;
       return;
     }
@@ -89,211 +90,91 @@
   }
 
   back.addEventListener('click', function () { if (current > 0) show(current - 1, true); });
-
-  form.addEventListener('change', function (e) {
-    if (e.target.type !== 'radio') return;
-    var key = e.target.name;
-    if (AUTO[key] && QUESTIONS[current][0] === key) setTimeout(advance, 260);
-    else next.hidden = false;
-  });
-
   form.addEventListener('submit', function (e) { e.preventDefault(); advance(); });
 
-  function updateCount() {
-    var n = idea.value.trim().length;
-    ideaCount.textContent = n >= MIN_IDEA ? 'Enough to work with.' : n + ' / ' + MIN_IDEA + ' characters minimum';
-    ideaCount.classList.toggle('is-ok', n >= MIN_IDEA);
-  }
-  idea.addEventListener('input', updateCount);
-  updateCount();
-
-  var sector = form.elements.sector;
-  var sectorOther = document.getElementById('sector-other-wrap');
-  sector.addEventListener('change', function () { sectorOther.hidden = sector.value !== 'other'; });
-
-  document.getElementById('check-edit').addEventListener('click', function () {
-    result.hidden = true;
-    stage.hidden = false;
-    show(0, false);
-    stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
-  show(0, false);
-
-  /* ── Profile (rules) ──────────────────────────────────── */
-  var TEXT = {
-    users: ['You have not yet described who will use it. That is the first thing to pin down.',
-            'You know roughly who it is for. How they solve this today needs more detail.',
-            'You can describe the user and how they work today. A good base.'],
-    evidence: ['The problem rests on a feeling so far. Worth checking before you spend.',
-               'Competitors show interest in the space, not that your users need it.',
-               'People asked for this or told you about it. Strong evidence.'],
-    ai: ["It is not yet clear what the AI should do. That is normal at this stage, and the first thing to define.",
-         'You know where AI should help, but not yet what the product is.',
-         'You have a clear idea of where AI should help.'],
-    data: ['It is unclear what data the AI would use. Often the deciding question.',
-           'Public data is a start, but rarely what makes a product different.',
-           'You have data of your own or your customers. Check that you may use it.'],
-    decision: ['Who decides and what budget is available is still open.',
-               'Part of the decision is in place.',
-               'Someone decides, there is a budget and the idea has taken shape.']
-  };
-
-  function profile() {
-    var u = val('users').length;
-    var users = u < 25 ? 1 : (u < 90 ? 2 : 3);
-    var ev = { users: 3, customers: 3, competitors: 2, gut: 1 }[val('evidence')] || 1;
-    var ai = val('help') === 'unsure' ? 1 : (val('type') === 'unsure' ? 2 : 3);
-    var data = { own: 3, customers: 3, public: 2, none: 1, unknown: 1 }[val('data')] || 1;
-    var d = 0;
-    if (val('budget') && val('budget') !== 'notset') d++;
-    if (val('decider').length > 2) d++;
-    if (['concept', 'quote', 'prototype', 'live'].indexOf(val('stage')) > -1) d++;
-    var decision = d <= 1 ? 1 : d;
-    return [
-      { key: 'users', label: 'User clarity', level: users },
-      { key: 'evidence', label: 'Problem evidence', level: ev },
-      { key: 'ai', label: 'AI role clarity', level: ai },
-      { key: 'data', label: 'Data', level: data },
-      { key: 'decision', label: 'Decision readiness', level: decision }
-    ];
+  function makeId() {
+    var d = new Date();
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    return 'chk-' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + '-' + Math.floor(1000 + Math.random() * 9000);
   }
 
-  /* ── Routing (rules, in this order) ───────────────────── */
-  var ROUTES = {
-    early: {
-      eyebrow: 'Your next step', title: 'Sharpen the idea first.',
-      text: 'There is no budget yet, and the idea is still early. A call would come too soon. Your first read lists the questions to answer first. The example definition shows what you will need to know.',
-      primary: ['/example/', 'See an example definition'], secondary: ['/insights/', 'Read our insights']
-    },
-    quote: {
-      eyebrow: 'Your next step', title: "Before you sign, let's check the brief.",
-      text: 'You have a quote from a builder. In a 30-minute review call we look at what the quote is based on, and what is still missing before you commit.',
-      primary: ['/contact/', 'Book a 30-minute review call'], secondary: ['/example/', 'See what a full definition looks like']
-    },
-    ready: {
-      eyebrow: 'Your next step', title: 'You may be ready to build.',
-      text: 'You have something live or a prototype, and evidence from real users. You may not need us. If you want a second look before the next investment, a review call is free.',
-      primary: ['/contact/', 'Book a 30-minute review call'], secondary: ['/example/', 'See what a definition covers']
-    },
-    exploration: {
-      eyebrow: 'Your next step', title: 'Start with an AI Opportunity Exploration.',
-      text: 'You know AI could help, but not yet with which idea. In two weeks we map the opportunities and tell you which one is worth it, or that it is better to do nothing.',
-      primary: ['/contact/', 'Book a 30-minute review call'], secondary: ['/approach/#blocks', 'See the three services']
-    },
-    definition: {
-      eyebrow: 'Your next step', title: 'You are ready for an AI Product Definition.',
-      text: 'You have one clear idea and room to invest. A definition tells you exactly what to have built, so you can brief a builder and compare quotes on the same question.',
-      primary: ['/contact/', 'Book a 30-minute review call'], secondary: ['/example/', 'See an example definition']
+  function payload() {
+    return {
+      id: makeId(),
+      idea: val('idea'), alternative: val('alternative'), without_ai: val('without_ai'), payer: val('payer'),
+      'return': val('return'), evidence: val('evidence'), avoided: val('avoided'),
+      team_management: val('team_management'), team_sales: val('team_sales'), team_technical: val('team_technical'),
+      stage: val('stage'), blocker: val('blocker'),
+      name: val('name'), company: val('company'), role: val('role'), email: val('email'),
+      consent: form.elements.consent.checked ? 'yes' : ''
+    };
+  }
+
+  function send(data) {
+    if (FORM.action) {
+      var body = new FormData();
+      Object.keys(FORM.fields).forEach(function (k) {
+        if (FORM.fields[k]) body.append(FORM.fields[k], data[k] || '');
+      });
+      fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: body }).catch(function () {});
+      return false;
     }
-  };
+    var text = [
+      'Idea: ' + data.idea, '', 'Who uses it, and what they do today: ' + data.alternative, '',
+      'Best version without AI, and what AI adds: ' + data.without_ai, '',
+      'Who pays, how much, why every month: ' + data.payer, '',
+      'Why they come back, and what they lose if it disappears: ' + data['return'], '',
+      'What a user did or said: ' + data.evidence, '',
+      'The question I hope nobody asks: ' + data.avoided, '',
+      'Management would say: ' + data.team_management, 'Sales would say: ' + data.team_sales, 'Engineering would say: ' + data.team_technical, '',
+      'Stage: ' + data.stage, 'Blocker: ' + data.blocker, '',
+      'Name: ' + data.name, 'Company: ' + data.company, 'Role: ' + data.role, 'Email: ' + data.email
+    ].join('\n');
+    window.location.href = 'mailto:' + MAILTO + '?subject=' + encodeURIComponent('AI Product Check: ' + data.id) + '&body=' + encodeURIComponent(text);
+    return true;
+  }
 
-  function route() {
-    var stage = val('stage'), budget = val('budget');
-    if (budget === 'notset' && stage === 'idea') return 'early';
-    if (stage === 'quote') return 'quote';
-    if ((stage === 'prototype' || stage === 'live') && (val('evidence') === 'users' || val('evidence') === 'customers')) return 'ready';
-    if (val('type') === 'unsure' || val('help') === 'unsure') return 'exploration';
-    if (budget === 'mid' || budget === 'over30') return 'definition';
-    return 'exploration';
+  function quote(text) {
+    var el = document.createElement('p');
+    el.style.fontStyle = 'italic';
+    el.textContent = '“' + text + '”';
+    return el;
+  }
+
+  function showResult(data, viaMail) {
+    var grid = document.getElementById('mirror-grid');
+    grid.textContent = '';
+    [['Management', data.team_management], ['Sales or marketing', data.team_sales], ['Engineering or production', data.team_technical]].forEach(function (r) {
+      if (!r[1]) return;
+      var card = document.createElement('div');
+      card.className = 'mirror-card';
+      var role = document.createElement('span');
+      role.className = 'mirror-role';
+      role.textContent = r[0];
+      card.appendChild(role);
+      card.appendChild(quote(r[1]));
+      grid.appendChild(card);
+    });
+    var av = document.getElementById('mirror-avoided');
+    av.hidden = !data.avoided;
+    document.getElementById('mirror-avoided-text').textContent = data.avoided ? '“' + data.avoided + '”' : '';
+    document.getElementById('result-email').textContent = data.email;
+    document.getElementById('result-mail-note').hidden = !viaMail;
+    stage.hidden = true;
+    document.querySelector('.check-fineprint').hidden = true;
+    result.hidden = false;
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function finish() {
-    for (var i = 0; i < QUESTIONS.length; i++) { if (!stepValid(i)) { show(i, true); advance(); return; } }
-    stage.hidden = true;
-    document.querySelector('.check-fineprint').hidden = true;
-    render();
+    if (sent) return;
+    sent = true;
+    next.disabled = true;
+    var data = payload();
+    var trap = form.elements.website && form.elements.website.value;
+    var viaMail = trap ? false : send(data); // a filled trap field is a bot: show the thanks, send nothing
+    showResult(data, viaMail);
   }
 
-  /* ── Render result ────────────────────────────────────── */
-  var LEVEL = ['', 'Open', 'Partly clear', 'Clear'];
-  function render() {
-    var p = profile();
-    var rows = document.getElementById('profile-rows');
-    rows.innerHTML = '';
-    p.forEach(function (d) {
-      var row = document.createElement('div');
-      row.className = 'profile-row';
-      var left = document.createElement('div');
-      var s = document.createElement('strong'); s.textContent = d.label;
-      var sm = document.createElement('small'); sm.textContent = TEXT[d.key][d.level - 1];
-      left.appendChild(s); left.appendChild(sm);
-      var meter = document.createElement('div');
-      meter.className = 'profile-meter';
-      meter.setAttribute('data-level', d.level);
-      meter.setAttribute('aria-label', d.label + ': ' + LEVEL[d.level]);
-      meter.innerHTML = '<i></i><i></i><i></i>';
-      var lvl = document.createElement('span'); lvl.className = 'profile-level'; lvl.textContent = LEVEL[d.level];
-      row.appendChild(left); row.appendChild(meter); row.appendChild(lvl);
-      rows.appendChild(row);
-    });
-
-    var r = ROUTES[route()];
-    document.getElementById('next-eyebrow').textContent = r.eyebrow;
-    document.getElementById('next-title').textContent = r.title;
-    document.getElementById('next-text').textContent = r.text;
-    var a1 = document.getElementById('next-primary'); a1.href = r.primary[0]; a1.textContent = r.primary[1];
-    var a2 = document.getElementById('next-secondary'); a2.href = r.secondary[0]; a2.textContent = r.secondary[1];
-
-    result.hidden = false;
-    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    document.querySelector('.check-fineprint').hidden = false;
-  }
-
-  /* ── Send for the first read ──────────────────────────── */
-  function summary() {
-    var lines = [
-      '1. Which describes you best: ' + LABELS.type[val('type')],
-      '2. Company: ' + LABELS.size[val('size')] + ' people, ' + (val('sector') === 'other' ? val('sectorOther') || 'other' : sector.options[sector.selectedIndex].text),
-      '3. Idea: ' + val('idea'),
-      '4. Users and today: ' + val('users'),
-      '5. Evidence: ' + LABELS.evidence[val('evidence')],
-      '6. Where AI should help: ' + LABELS.help[val('help')],
-      '7. Data: ' + LABELS.data[val('data')],
-      '8. Stage: ' + LABELS.stage[val('stage')],
-      '9. Blocking, and why now: ' + val('blocker'),
-      '10. Who decides: ' + val('decider') + '. Budget: ' + LABELS.budget[val('budget')]
-    ];
-    return lines.join('\n');
-  }
-  function profileText() {
-    return profile().map(function (d) { return d.label + ': ' + LEVEL[d.level]; }).join(' · ');
-  }
-
-  var send = document.getElementById('send-form');
-  var sendErr = document.getElementById('send-error');
-  send.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = send.elements.email.value.trim();
-    var okMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!okMail) { sendErr.textContent = 'Please enter a valid email address.'; sendErr.hidden = false; return; }
-    if (!send.elements.optinReport.checked) { sendErr.textContent = 'Tick the first box so we may email you your first read.'; sendErr.hidden = false; return; }
-    sendErr.hidden = true;
-
-    var research = send.elements.optinResearch.checked ? 'yes' : 'no';
-    var marketing = send.elements.optinMarketing.checked ? 'yes' : 'no';
-
-    if (FORM.action) {
-      var data = new FormData();
-      var f = FORM.fields;
-      var put = function (k, v) { if (f[k]) data.append(f[k], v); };
-      put('email', email); put('answers', summary()); put('profile', profileText()); put('route', route());
-      put('optinReport', 'yes'); put('optinResearch', research); put('optinMarketing', marketing);
-      fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: data }).catch(function () {});
-      done(email, false);
-    } else {
-      var body = 'AI Product Check\n\n' + summary() + '\n\nProfile: ' + profileText() + '\nSuggested next step: ' + route() +
-        '\n\nReply to: ' + email + '\nUse answers for research (anonymous): ' + research + '\nOccasional emails: ' + marketing;
-      window.location.href = 'mailto:' + MAILTO + '?subject=' + encodeURIComponent('AI Product Check: first read') + '&body=' + encodeURIComponent(body);
-      done(email, true);
-    }
-  });
-
-  function done(email, viaMail) {
-    send.hidden = true;
-    var t = document.getElementById('send-thanks');
-    document.getElementById('send-thanks-email').textContent = email;
-    document.getElementById('send-thanks-mail').hidden = !viaMail;
-    t.hidden = false;
-  }
+  show(0, false);
 })();

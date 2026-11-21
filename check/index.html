@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Product Check | Anté</title>
-  <meta name="description" content="Ten questions about your AI product idea. See your readiness profile and next step right away, and get a written first read within one working day.">
+  <meta name="description" content="Nine questions about your AI product idea. Within one working day you get the questions we would ask before anyone builds it, written from your own answers.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Anté">
   <meta property="og:title" content="AI Product Check | Anté">
-  <meta property="og:description" content="Ten questions about your AI product idea. See your readiness profile and next step right away, and get a written first read within one working day.">
+  <meta property="og:description" content="Nine questions about your AI product idea. Within one working day you get the questions we would ask before anyone builds it, written from your own answers.">
   <meta property="og:url" content="https://antedesign.be/check/">
   <meta property="og:image" content="https://antedesign.be/assets/images/case-01.jpg">
   <link rel="canonical" href="https://antedesign.be/check/">
@@ -62,8 +62,8 @@
 <main>
   <section class="hero hero--check">
     <div class="container">
-      <h1 class="hero-headline hero-headline--inner reveal"><span class="text-spruce">AI Product Check.</span><br>A first read of your idea.</h1>
-      <p class="hero-subhead reveal">Ten short questions, about five minutes. You see right away where your idea stands. We send you a written first read within one working day.</p>
+      <h1 class="hero-headline hero-headline--inner reveal"><span class="text-spruce">AI Product Check.</span><br>Your idea, questioned.</h1>
+      <p class="hero-subhead reveal">Nine questions about your product idea, about ten minutes. Within one working day you get the questions we would ask before anyone builds it, written from your own answers.</p>
     </div>
   </section>
 
@@ -72,187 +72,123 @@
       <div class="check-stage reveal" id="check-stage">
         <div class="check-top">
           <button type="button" class="check-back" id="check-back" hidden>← Back</button>
-          <span class="check-step-label" id="check-step-label" aria-live="polite">Question 1 of 10</span>
+          <span class="check-step-label" id="check-step-label" aria-live="polite">Step 1 of 10</span>
         </div>
         <div class="check-bar" aria-hidden="true"><span id="check-bar-fill"></span></div>
 
         <form class="check-form" id="check-form" novalidate>
-      <fieldset class="check-q" data-q="type">
-        <legend>Which describes you best?</legend>
-        <div class="chip-group">
-          <label class="chip"><input type="radio" name="type" value="new" required><span>A new product</span></label>
-          <label class="chip"><input type="radio" name="type" value="existing" required><span>AI in an existing product</span></label>
-          <label class="chip"><input type="radio" name="type" value="internal" required><span>A tool for our own team</span></label>
-          <label class="chip"><input type="radio" name="type" value="unsure" required><span>Not sure yet</span></label>
-        </div>
-      </fieldset>
-
-      <fieldset class="check-q" data-q="size">
-        <legend>Your company.</legend>
-        <p class="check-hint">How many people work there, and in which sector?</p>
-        <div class="chip-group">
-          <label class="chip"><input type="radio" name="size" value="s1" required><span>1–10</span></label>
-          <label class="chip"><input type="radio" name="size" value="s2" required><span>11–50</span></label>
-          <label class="chip"><input type="radio" name="size" value="s3" required><span>51–250</span></label>
-          <label class="chip"><input type="radio" name="size" value="s4" required><span>250+</span></label>
-        </div>
-        <div class="check-row" style="margin-top:20px;" data-q="sector">
-          <div>
-            <label class="form-label" for="sector">Sector</label>
-            <select class="form-input" id="sector" name="sector" required>
-            <option value="">Choose a sector</option>
-            <option value="manufacturing">Manufacturing and industry</option>
-            <option value="consumer">Consumer products</option>
-            <option value="health">Health and care</option>
-            <option value="agrifood">Agriculture and food</option>
-            <option value="education">Education and training</option>
-            <option value="software">Software and digital services</option>
-            <option value="retail">Retail and e-commerce</option>
-            <option value="construction">Construction and real estate</option>
-            <option value="other">Other</option>
-            </select>
-          </div>
-          <div id="sector-other-wrap" hidden>
-            <label class="form-label" for="sectorOther">Which sector?</label>
-            <input class="form-input" id="sectorOther" name="sectorOther" type="text" maxlength="80">
-          </div>
-        </div>
-      </fieldset>
-
       <div class="check-q" data-q="idea">
         <label class="check-q-title" for="idea">Describe your product idea in two or three sentences.</label>
-        <p class="check-hint">A rough description is enough. Leave out anything confidential.</p>
-        <textarea class="form-textarea" id="idea" name="idea" rows="5" maxlength="1200" required placeholder="What would the product do, and for whom?"></textarea>
-        <p class="check-count" id="idea-count" aria-live="polite"></p>
+        <p class="check-hint">What would it do, and for whom? A rough description is enough. Leave out anything confidential.</p>
+        <textarea class="form-textarea" id="idea" name="idea" rows="5" maxlength="1200" placeholder="We make… and we want a product that…"></textarea>
       </div>
-
-      <div class="check-q" data-q="users">
-        <label class="check-q-title" for="users">Who will use it, and how do they solve this today?</label>
-        <textarea class="form-textarea" id="users" name="users" rows="3" maxlength="600" required placeholder="For example: planners at our customers, who now do this in a spreadsheet."></textarea>
+      <div class="check-q" data-q="alternative">
+        <label class="check-q-title" for="alternative">Who would use it, and what do they do today instead?</label>
+        <textarea class="form-textarea" id="alternative" name="alternative" rows="3" maxlength="900" placeholder="For example: planners at our customers, who now do this in a spreadsheet."></textarea>
       </div>
-
-      <fieldset class="check-q" data-q="evidence">
-        <legend>How do you know this is a real problem?</legend>
-        <div class="chip-group">
-          <label class="chip"><input type="radio" name="evidence" value="users" required><span>We talked to users</span></label>
-          <label class="chip"><input type="radio" name="evidence" value="customers" required><span>Customers asked for it</span></label>
-          <label class="chip"><input type="radio" name="evidence" value="competitors" required><span>Competitors are doing it</span></label>
-          <label class="chip"><input type="radio" name="evidence" value="gut" required><span>Gut feeling</span></label>
-        </div>
-      </fieldset>
-
-      <fieldset class="check-q" data-q="help">
-        <legend>Where should the AI help?</legend>
-        <p class="check-hint">Pick the one that matters most.</p>
-        <div class="chip-group">
-          <label class="chip"><input type="radio" name="help" value="time" required><span>Save time</span></label>
-          <label class="chip"><input type="radio" name="help" value="decisions" required><span>Improve decisions</span></label>
-          <label class="chip"><input type="radio" name="help" value="content" required><span>Personalise or create content</span></label>
-          <label class="chip"><input type="radio" name="help" value="predict" required><span>Detect or predict</span></label>
-          <label class="chip"><input type="radio" name="help" value="talk" required><span>Talk with the user</span></label>
-          <label class="chip"><input type="radio" name="help" value="unsure" required><span>Not sure yet</span></label>
-        </div>
-      </fieldset>
-
-      <fieldset class="check-q" data-q="data">
-        <legend>What data or content would it rely on?</legend>
-        <div class="chip-group">
-          <label class="chip"><input type="radio" name="data" value="own" required><span>Our own</span></label>
-          <label class="chip"><input type="radio" name="data" value="customers" required><span>Our customers'</span></label>
-          <label class="chip"><input type="radio" name="data" value="public" required><span>Public</span></label>
-          <label class="chip"><input type="radio" name="data" value="none" required><span>None yet</span></label>
-          <label class="chip"><input type="radio" name="data" value="unknown" required><span>Don't know</span></label>
-        </div>
-      </fieldset>
-
+      <div class="check-q" data-q="without_ai">
+        <label class="check-q-title" for="without_ai">Describe the best version of this product without AI. What does AI add that it cannot?</label>
+        <p class="check-hint">Be concrete. If you cannot name anything, say so. That is an answer too.</p>
+        <textarea class="form-textarea" id="without_ai" name="without_ai" rows="3" maxlength="900" placeholder=""></textarea>
+      </div>
+      <div class="check-q" data-q="payer">
+        <label class="check-q-title" for="payer">Who pays, how much, and why would they keep paying every month?</label>
+        <p class="check-hint">A rough number is fine. “We have not worked it out” is fine too.</p>
+        <textarea class="form-textarea" id="payer" name="payer" rows="3" maxlength="900" placeholder=""></textarea>
+      </div>
+      <div class="check-q" data-q="return">
+        <label class="check-q-title" for="return">What makes someone come back a tenth time? What would they lose if it disappeared tomorrow?</label>
+        <textarea class="form-textarea" id="return" name="return" rows="3" maxlength="900" placeholder=""></textarea>
+      </div>
+      <div class="check-q" data-q="team">
+        <span class="check-q-title" id="team-title">What does your product do? Write the answer as each of them would give it.</span>
+        <p class="check-hint">Short, in their words. It is fine if they differ. That is the point.</p>
+        <label class="form-label" for="team_management" style="margin-top:16px;">Management</label>
+        <textarea class="form-textarea" id="team_management" name="team_management" rows="2" maxlength="500" placeholder="What would the owner or the directors say?"></textarea>
+        <label class="form-label" for="team_sales" style="margin-top:14px;">Sales or marketing</label>
+        <textarea class="form-textarea" id="team_sales" name="team_sales" rows="2" maxlength="500" placeholder="What would they tell a customer?"></textarea>
+        <label class="form-label" for="team_technical" style="margin-top:14px;">Engineering or production</label>
+        <textarea class="form-textarea" id="team_technical" name="team_technical" rows="2" maxlength="500" placeholder="What would they say it is?"></textarea>
+      </div>
+      <div class="check-q" data-q="evidence">
+        <label class="check-q-title" for="evidence">Name one thing a user or customer did or said that supports this idea.</label>
+        <p class="check-hint">Something that happened, not an opinion.</p>
+        <textarea class="form-textarea" id="evidence" name="evidence" rows="3" maxlength="900" placeholder=""></textarea>
+      </div>
+      <div class="check-q" data-q="avoided">
+        <label class="check-q-title" for="avoided">Which question about this idea do you hope nobody asks?</label>
+        <p class="check-hint">The honest answer makes the sharpest questions.</p>
+        <textarea class="form-textarea" id="avoided" name="avoided" rows="3" maxlength="900" placeholder=""></textarea>
+      </div>
       <fieldset class="check-q" data-q="stage">
         <legend>Where are you now?</legend>
         <div class="chip-group">
-          <label class="chip"><input type="radio" name="stage" value="idea" required><span>Idea</span></label>
-          <label class="chip"><input type="radio" name="stage" value="concept" required><span>Concept</span></label>
-          <label class="chip"><input type="radio" name="stage" value="quote" required><span>Quote from a builder in hand</span></label>
-          <label class="chip"><input type="radio" name="stage" value="prototype" required><span>Prototype</span></label>
-          <label class="chip"><input type="radio" name="stage" value="live" required><span>Live</span></label>
+          <label class="chip"><input type="radio" name="stage" value="idea"><span>Idea</span></label>
+          <label class="chip"><input type="radio" name="stage" value="concept"><span>Concept</span></label>
+          <label class="chip"><input type="radio" name="stage" value="quote"><span>Quote from a builder in hand</span></label>
+          <label class="chip"><input type="radio" name="stage" value="prototype"><span>Prototype</span></label>
+          <label class="chip"><input type="radio" name="stage" value="live"><span>Live</span></label>
         </div>
+        <label class="form-label" for="blocker" style="margin-top:24px;">What is blocking the next step? <span style="color:var(--ink-muted);">(optional)</span></label>
+        <textarea class="form-textarea" id="blocker" name="blocker" rows="3" maxlength="600"></textarea>
       </fieldset>
-
-      <div class="check-q" data-q="blocker">
-        <label class="check-q-title" for="blocker">What's blocking the next step, and why now?</label>
-        <textarea class="form-textarea" id="blocker" name="blocker" rows="3" maxlength="600" required></textarea>
-      </div>
-
-      <fieldset class="check-q" data-q="budget">
-        <legend>Who decides, and what budget is set aside for the next step?</legend>
-        <div class="check-row" data-q="decider" style="margin:12px 0 20px;">
+      <div class="check-q" data-q="contact">
+        <span class="check-q-title">Where do we send your questions?</span>
+        <p class="check-hint">A person at Anté reads them first and sends them within one working day.</p>
+        <div class="check-row" style="margin-top:16px;">
           <div>
-            <label class="form-label" for="decider">Who decides</label>
-            <input class="form-input" id="decider" name="decider" type="text" maxlength="120" required placeholder="For example: the managing director">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com">
+          </div>
+          <div>
+            <label class="form-label" for="name">Name <span style="color:var(--ink-muted);">(optional)</span></label>
+            <input class="form-input" id="name" name="name" type="text" autocomplete="name" maxlength="80">
           </div>
         </div>
-        <div class="chip-group">
-          <label class="chip"><input type="radio" name="budget" value="under10" required><span>Under €10k</span></label>
-          <label class="chip"><input type="radio" name="budget" value="mid" required><span>€10–30k</span></label>
-          <label class="chip"><input type="radio" name="budget" value="over30" required><span>Over €30k</span></label>
-          <label class="chip"><input type="radio" name="budget" value="notset" required><span>Not set</span></label>
+        <div class="check-row" style="margin-top:14px;">
+          <div>
+            <label class="form-label" for="company">Company <span style="color:var(--ink-muted);">(optional)</span></label>
+            <input class="form-input" id="company" name="company" type="text" autocomplete="organization" maxlength="80">
+          </div>
+          <div>
+            <label class="form-label" for="role">Role <span style="color:var(--ink-muted);">(optional)</span></label>
+            <input class="form-input" id="role" name="role" type="text" maxlength="80">
+          </div>
         </div>
-      </fieldset>
-
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
+        <div class="optin-list" style="margin-top:20px;">
+          <label class="optin"><input type="checkbox" id="consent" name="consent"> <span>I agree that Anté reads my answers, that an AI service helps with the first reading, and that a person at Anté checks the result before it is sent. See the <a href="/privacy/" target="_blank" rel="noopener">privacy policy</a>.</span></label>
+        </div>
+      </div>
           <div class="check-nav">
             <button type="submit" class="btn-primary" id="check-next">Next <span class="arrow">→</span></button>
             <p class="check-error" id="check-error" role="alert" hidden></p>
           </div>
         </form>
       </div>
-      <p class="check-fineprint">Please leave out confidential details: a rough description is enough. Your first read is written by a person at Anté, with help from an AI service. It is a first read, not advice. <a href="/privacy/">Privacy policy</a>.</p>
+      <p class="check-fineprint">Leave out anything confidential: a rough description is enough. We read the answers once, write you the questions, and do not sell or share them. You get no score and no verdict, only questions.</p>
 
       <div class="check-result" id="check-result" hidden>
-        <span class="eyebrow">Your result</span>
-        <h2>Where your idea stands.</h2>
-        <div class="result-grid">
-          <div class="profile-card">
-            <span class="eyebrow">Readiness profile</span>
-            <div id="profile-rows"></div>
-          </div>
-          <div class="next-card">
-            <span class="eyebrow" id="next-eyebrow">Your next step</span>
-            <h3 id="next-title"></h3>
-            <p id="next-text"></p>
-            <div class="btn-group">
-              <a class="btn-frosted" id="next-primary" href="/contact/"></a>
-              <a class="next-link" id="next-secondary" href="/example/"></a>
-            </div>
-          </div>
+        <h2>Thank you. Here is what you already wrote.</h2>
+        <p id="result-intro">Read the three answers side by side. Where they differ, three people would build three different products.</p>
+        <div class="mirror-grid" id="mirror-grid"></div>
+        <div class="card" id="mirror-avoided" style="margin-top:clamp(16px, 2vw, 24px);" hidden>
+          <h3>The question you hoped nobody would ask</h3>
+          <p id="mirror-avoided-text" style="font-style:italic;"></p>
+          <p>It comes back in your questions, with a follow-up.</p>
         </div>
-
         <div class="card" style="margin-top:clamp(16px, 2vw, 24px);">
-          <span class="eyebrow">Your full first read</span>
-          <h3>Get the written first read.</h3>
-          <p>A short report in our structure: your idea in one sentence, where AI could earn its place and where it risks being a gimmick, your three riskiest assumptions, and at least five questions you can't answer yet. Written by a person at Anté, within one working day.</p>
-          <form id="send-form" novalidate>
-            <div class="check-row" style="margin-top:20px;">
-              <div>
-                <label class="form-label" for="email">Your email</label>
-                <input class="form-input" id="email" name="email" type="email" required placeholder="you@company.com" autocomplete="email">
-              </div>
-            </div>
-            <div class="optin-list">
-              <label class="optin"><input type="checkbox" name="optinReport"> <span>Email me my first read. We use your email for this report only.</span></label>
-              <label class="optin"><input type="checkbox" name="optinResearch"> <span>You may use my answers, without my name or company, to improve this check.</span></label>
-              <label class="optin"><input type="checkbox" name="optinMarketing"> <span>Send me two follow-up emails: a teardown that fits my idea, and an invitation to talk. Unsubscribe anytime.</span></label>
-            </div>
-            <button type="submit" class="btn-primary">Send me my first read <span class="arrow">→</span></button>
-            <p class="check-error" id="send-error" role="alert" hidden></p>
-          </form>
-          <div id="send-thanks" hidden>
-            <p style="color:var(--charcoal);margin-top:16px;"><strong>Thank you.</strong> We send your first read to <strong id="send-thanks-email"></strong> within one working day.</p>
-            <p id="send-thanks-mail" hidden>Your mail app opened with your answers filled in. Press send there, and we take it from there. Nothing opened? Email <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>.</p>
+          <h3>What happens next</h3>
+          <p>Within one working day we send the questions we would ask, as a short report, to <strong id="result-email"></strong>. A person at Anté reads it before it goes out. If you would rather talk it through now, book a call.</p>
+          <p id="result-mail-note" hidden>Your mail app opened with your answers filled in. Press send there, and we take it from there. Nothing opened? Email <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>.</p>
+          <div class="btn-group">
+            <a class="btn-primary" href="/contact/">Book a 30-minute call</a>
+            <a class="btn-secondary" href="/example/">See an example product definition</a>
           </div>
         </div>
-        <button type="button" class="tree-reset" id="check-edit" style="color:var(--spruce);margin-top:20px;">Change my answers</button>
       </div>
     </div>
   </section>
-
 </main>
 
   <!-- ── Footer ────────────────────────────────────────────── -->

@@ -59,7 +59,7 @@ Every page is a plain HTML file. Open it in any text editor, find the text betwe
 | Approach | `approach/index.html` | The three services, "Where do you start?" tree, who it is for, how it starts, closing CTA |
 | Cases | `cases/index.html` | The two cases and a photo grid |
 | Example | `example/index.html` | The "what the team started with" block and the full one-page definition |
-| Check | `check/index.html` | The ten-question flow and the result |
+| Check | `check/index.html` | The nine-question flow, the team answers side by side, and the thanks. The engine is private: ante-base `20-marketing/free-tools/ai-product-check/` |
 | About | `about/index.html` | Why Anté exists, how we got here, team, how we use AI, CTA |
 | Contact | `contact/index.html` | Calendly card, contact form, direct contact |
 | Insights | `insights/index.html` | Hero, featured post, what's coming, teardowns, tools, CTA |

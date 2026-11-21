@@ -2832,3 +2832,10 @@ p + h2 {
 
 /* Footer op telefoons: één kolom, anders loopt de pagina horizontaal over (de 2-kolomsregel hierboven wint anders) */
 @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ── Check v1: de drie teamantwoorden naast elkaar ───────── */
+.mirror-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.6vw, 20px); margin: clamp(20px, 3vw, 32px) 0 0; }
+.mirror-card { border: 1.5px solid var(--spruce); border-radius: var(--radius-card); padding: clamp(18px, 2.4vw, 28px); background: var(--white); }
+.mirror-role { display: block; font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--spruce); margin-bottom: 10px; }
+.mirror-card p { margin: 0; color: var(--charcoal); }
+@media (max-width: 800px) { .mirror-grid { grid-template-columns: 1fr; } }
