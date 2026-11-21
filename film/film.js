@@ -62,11 +62,13 @@
       [['T', r.top], ['R', w - r.right], ['B', h - r.bottom], ['L', r.left]].forEach(function (v) { L[i].style.setProperty('--c' + v[0], Math.max(0, v[1]).toFixed(1) + 'px'); });
     });
   }
+  addEventListener('resize', place);
   var need = [document.fonts.ready].concat([].filter.call(document.images, function (i) { return R || /wordmark/.test(i.src); }).map(function (i) { return i.decode().catch(function () {}); }));
   Promise.all(need).then(function () {
     place(); window.__ready = true;
     if (R) return;
     H.classList.remove('hold');
+    if (E) parent.postMessage({ film: 'start' }, location.origin);
     setTimeout(function () {
       if (E) parent.postMessage({ film: 'end' }, location.origin); else document.querySelector('.replay').hidden = false;
     }, (t0 + 1.2) * 1000);

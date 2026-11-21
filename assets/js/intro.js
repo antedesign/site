@@ -12,5 +12,7 @@
   function msg(e) { if (e.origin === location.origin && e.data && e.data.film === 'end') finish(); }
   function key(e) { if (e.key === 'Escape') finish(); }
   addEventListener('message', msg); addEventListener('keydown', key); b.addEventListener('click', finish);
+  var wait = setTimeout(finish, 8000); // film never started (offline, blocked): show the site instead
+  addEventListener('message', function (e) { if (e.origin === location.origin && e.data && e.data.film === 'start') clearTimeout(wait); });
   setTimeout(finish, 110000);
 })();
