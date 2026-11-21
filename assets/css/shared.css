@@ -258,6 +258,16 @@ p + p {
 .hero-headline--long .hl-line { display: block; }
 @media (min-width: 640px) { .hero-headline--long .nowrap-lg { white-space: nowrap; } }
 
+/* Kop van twee korte zinnen: elke zin op een eigen regel, samen twee regels op een laptopscherm */
+.hero-headline--pair {
+  font-size: clamp(34px, 4.4vw, 62px);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+.hero-headline--pair .hl-line { display: block; }
+@media (min-width: 900px) { .hero-headline--pair .hl-line { white-space: nowrap; } }
+@media (max-width: 600px) { .hero-headline--pair { font-size: clamp(32px, 9vw, 44px); } }
+
 .hero-subhead {
   font-family: 'Poppins', sans-serif;
   font-size: clamp(17px, 2vw, 20px);
@@ -490,6 +500,7 @@ p + p {
   display: block;
   margin: var(--space-stack) 0 8px;
 }
+.pricing-central .price { margin-bottom: var(--space-stack); }
 
 .duration-label {
   font-family: 'JetBrains Mono', monospace;
@@ -510,23 +521,6 @@ p + p {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   max-width: 680px;
   margin: var(--space-block) auto 0;
-}
-
-.pricing-specs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 28px;
-  margin: 20px 0 var(--space-stack);
-}
-
-.pricing-specs span {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--charcoal);
-  opacity: 0.65;
 }
 
 /* ── Availability slots ─────────────────────────────────── */
