@@ -43,14 +43,14 @@
       [1, 2, 3].map(function (m, i) { return '<div class="ph" style="--s:' + n(1.9 + i * .35) + 's"><img src="img/p' + m + '.jpg" alt=""></div>'; }).join('') + '</div></div>' }; },
     why: function () { return { d: 6.4, bg: 'lf', h: '<div class="b why">' + X('div', 'wy', .3, '<b>Independent advice</b><p>We don\'t build the final product, so our advice stays objective.</p>') +
       X('div', 'wy', 1.9, '<b>Fresh eyes on your product</b><p>We are the generation that will use tomorrow\'s products.</p>') + X('div', 'wy', 3.5, '<b>Everyone feels heard</b><p>We know enough about every field to understand users, stakeholders and your team.</p>') + '</div>' }; },
-    cta: function () { return { d: 6, bg: 'sp', h: '<div class="b cta"><h1 class="h">' + W('We define your *next *AI *product.', .3, .12) + '</h1><p class="sub">' +
+    cta: function () { return { d: 6, bg: 'sp', h: '<div class="b cta"><h1 class="h">' + W('We help you define your *next *AI *product.', .3, .1) + '</h1><p class="sub">' +
       W('Contact us for more info, or take the free AI Product Check to see where you stand.', 1.6, .05) + '</p>' + X('p', 'url', 3.2, 'antedesign.be') + '</div>' }; }
   };
   var CUTS = {
     final: 'hook,voices,combine,agencies,cost,notauto,timeline,photos,why,cta',
     20: 'hook:.57,combine:.56,agencies:.5,notauto:.46,timeline:.43,photos:.39,cta:.5'
   };
-  var K0 = parseFloat(Q.get('k')) || .85, spec = (Q.get('scenes') || CUTS[Q.get('cut') || 'final'] || CUTS.final).split(','), t0 = 0, meta = [], html = '', grows = [];
+  var K0 = parseFloat(Q.get('k')) || .95, spec = (Q.get('scenes') || CUTS[Q.get('cut') || 'final'] || CUTS.final).split(','), t0 = 0, meta = [], html = '', grows = [];
   spec.forEach(function (x, i) {
     var p = x.split(':'), id = p[0], last = i === spec.length - 1;
     k = p[1] ? parseFloat(p[1]) : (Q.get('cut') === '20' && !Q.get('scenes') ? .6 : K0);

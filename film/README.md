@@ -1,7 +1,7 @@
 # Anté film
 
 One page that plays the Anté story as a film, built from CSS animation and real text (no video file).
-Live: `/film/` (the full film, about 55 s). `/film/?cut=20` is a shorter cut.
+Live: `/film/` (the full film, about 58 s). `/film/?cut=20` is a shorter cut.
 `/film/?scenes=hook,answers,check` plays any sequence. `?render=1` pauses it for the renderer.
 
 ## Scenes (`film.js`, object `S`)
@@ -19,9 +19,9 @@ Order follows the landing page: the problem, what we do, why us, what you get. W
 | timeline | 6.2 | The three services of the approach page as a timeline: left to right on landscape, top to bottom on portrait |
 | photos | 4.6 | The green "AI Product Definition" card grows into this screen, so the workshop photos read as part of that step. `img/p1-3.jpg` (case-01 to 03, resized) |
 | why | 6.4 | Home: Independent advice, Fresh eyes on your product, Everyone feels heard, with the site's own sentences |
-| cta | 6.0 | "We define your next AI product." then contact or the free AI Product Check, as text only (buttons do not work in a video) |
+| cta | 6.0 | "We help you define your next AI product." (we guide the client through the choice, we do not decide for them) then contact or the free AI Product Check, as text only (buttons do not work in a video) |
 
-Every start time and duration is multiplied by a speed factor k (full film: .85, about 55 s; higher = slower).
+Every start time and duration is multiplied by a speed factor k (full film: .95, about 58 s; higher = slower).
 Per scene: `?scenes=hook:.7,combine:.6`. `?cut=20` is the 20 s essence (hook, combine, agencies, notauto, timeline, photos, cta) with its own k per scene.
 If the site copy changes, change the scene text here too. Tone rules: no em dashes, no exclamation marks.
 
