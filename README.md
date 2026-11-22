@@ -18,7 +18,8 @@ Static website for Anté, an independent studio that defines products with AI at
 ├── about/index.html        About page
 ├── contact/index.html      Contact page
 ├── film/                   The Anté film: live page, scenes in film.js, see film/README.md
-├── scorecard/index.html    Old assessment, now a redirect to /check/
+├── scorecard/index.html    Old assessment, now a redirect to /check/ (not in the sitemap)
+├── 404.html                Page not found (GitHub Pages serves it for every unknown address, so all paths are absolute, noindex)
 ├── tools/                  Three interactive tools, behind an email layer
 ├── privacy/ terms/ cookies/  Legal pages
 ├── assets/
@@ -29,20 +30,27 @@ Static website for Anté, an independent studio that defines products with AI at
 │   │   └── starter-kit.css Extras for the ICM starter kit post (language switch, tabs)
 │   ├── js/
 │   │   ├── intro.js        Home opening: skip, clean-up, ?intro=0 and ?t=N
-│   │   ├── reveal.js       Scroll fade-in (IntersectionObserver)
+│   │   ├── reveal.js       Scroll fade-in (IntersectionObserver), for .reveal and .reveal-group (a group animates its children, e.g. the advantage cards and the cost graph)
+│   │   ├── timeline.js     Approach: the phase timeline that fills while you scroll; re-scrolls to #phase-N once the fonts have loaded
+│   │   ├── tab-title.js    Home: a calm tab title while the visitor is on another tab (data-away attribute)
 │   │   ├── nav.js          Mobile menu
 │   │   ├── check.js        The AI Product Check flow
 │   │   ├── tree.js         Decision tree on the Approach page
-│   │   ├── services.js     "More info" on the service cards
 │   │   ├── gate.js         Email layer in front of the tools
 │   │   ├── insights.js     Reading progress, TOC, copy-prompt button
 │   │   └── starter-kit.js  EN/NL switch, use-case tabs, multi-prompt copy buttons
 │   ├── downloads/          Files offered for download (ICM test folder zips, EN and NL)
 │   └── images/
-│       └── insights/       Post covers (.svg for the page, .png for social)
+│       ├── web/            Web-sized photos (1400 px cases, 900 px portraits) used by the pages
+│       ├── timeline-*.jpg  The three photos in the Approach timeline
+│       ├── og-default.jpg  Default social image, 1200x630, for every page without its own cover
+│       ├── apple-touch-icon.png  180x180 icon, made from favicon.png
+│       ├── insights/       Post covers (.svg for the page, .png for social)
+│       └── (originals)     phase-0*.jpg and founder-*.JPG are full-size originals, not referenced by any page
 ├── scripts/                Post builder and checks (see Insights below), film-render.js (MP4 of /film/)
 ├── sitemap.xml             Add one <url> block per new post
-├── robots.txt
+├── robots.txt              Open to all crawlers; AI crawlers are named explicitly as allowed
+├── llms.txt                Plain summary of Anté and its key pages for AI assistants (only facts that are on the site)
 ├── CNAME                   antedesign.be
 └── README.md
 ```
@@ -58,14 +66,23 @@ Every page is a plain HTML file. Open it in any text editor, find the text betwe
 
 | Page | File | What's in it |
 |---|---|---|
-| Home | `index.html` | Hero, photo strip and proof line, "Product definition, not process automation", problem and alternatives, the example (before and after), closing CTA. The testimonials block is commented out until there are real quotes |
-| Approach | `approach/index.html` | The three services, "Where do you start?" tree, who it is for, how it starts, closing CTA |
+| Home | `index.html` | Hero, photo strip and proof line, "Product definition, not process automation" with three advantage cards, "From early idea to clear product definition" with the cost card, closing CTA. The testimonials block is commented out until there are real quotes. JSON-LD: Organization and WebSite |
+| Approach | `approach/index.html` | The three services (numbered cards), "Where do you start?" tree, who it is for, "Scaled to fit", "This is what you get" (the example), the timeline "One phase, or all three." (`#phase-1` to `#phase-3`), closing CTA. JSON-LD: one Service per service |
 | Cases | `cases/index.html` | The two cases and a photo grid |
 | Example | `example/index.html` | The "what the team started with" block and the full one-page definition |
 | Check | `check/index.html` | The nine-question flow, the team answers side by side, and the thanks. The engine is private: ante-base `20-marketing/free-tools/ai-product-check/` |
-| About | `about/index.html` | Why Anté exists, how we got here, team, how we use AI, CTA |
+| About | `about/index.html` | Why Anté exists, team, "Why we know AI from the inside.", CTA. JSON-LD: one Person per team member |
 | Contact | `contact/index.html` | Calendly card, contact form, direct contact |
 | Insights | `insights/index.html` | Hero, featured post, what's coming, teardowns, tools, CTA |
+
+
+### Page head, search and AI findability
+
+Every page has a unique `<title>` and meta description, a `canonical` link, `og:` and `twitter:` tags
+(default image `assets/images/og-default.jpg`), the favicon and the apple-touch-icon. The Metricool
+script sits at the end of `<head>`. When you add a page: give it the same set, add it to
+`sitemap.xml` and, if it is a key page, to `llms.txt`. A page that should not be found gets
+`<meta name="robots" content="noindex">` and stays out of the sitemap.
 
 ---
 
@@ -251,10 +268,8 @@ Spacing tokens are also in the `:root` block of `assets/css/shared.css`:
 
 Search the HTML files for these strings:
 
-- `[CALENDLY_URL_PLACEHOLDER]` in `contact/index.html`
 - `[FORM_ACTION_PLACEHOLDER]` in `contact/index.html`
-- `[TESTIMONIAL 1-3]` in `index.html`
-- `[Month 1-3]` in `approach/index.html`
+- `[TESTIMONIAL 1-3]` in `index.html` (commented out)
 
 ---
 
