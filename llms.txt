@@ -1,0 +1,45 @@
+# Anté
+
+> Anté (antedesign.be, also written Ante or Ante Design) is an independent studio in Belgium that defines products with AI at their core, before they are built. Tagline: "Decide before you build."
+
+## What Anté is, who it is for, what it does
+
+Anté works for companies that bring products to market, digital or physical, B2B or B2C, with a small R&D team or none at all, that want AI at the core of their next product but do not yet know what it should do.
+
+Anté writes a product definition: who the next product is for, what it does, what role AI plays and what comes first. It makes clear what to build and puts the whole team on the same page, before time and money go into development. Anté combines AI knowledge with product development. It does not build the final product.
+
+Three services, each scaled to the project:
+
+- AI Opportunity Exploration: for when you are torn between ideas, or don't know yet where AI fits. Ends with an opportunity map of scored opportunities and a clear go or no-go.
+- AI Product Definition: for when you know which idea and want it built right. Conversations with stakeholders, a working session with the team, then a product definition on one page, with appendices and a brief a builder can quote on.
+- Prototype & Validation: for when you have a definition and want it tested with real users.
+
+Every project starts with a free 30-minute call.
+
+Team: Justin Lefebvre (co-founder), Jolan Dijkmans (co-founder), Margot Barajas Colpaert (strategic designer).
+
+Selected work: KU Leuven (a patented AI technology for pest detection, shaped into a product growers can use) and Novare (an AI tool for learning transfer).
+
+Company: Anté VOF, company number BE 1041.127.724. Contact: https://antedesign.be/contact/
+
+## Key pages
+
+- [Home](https://antedesign.be/): what Anté does, in short
+- [Approach](https://antedesign.be/approach/): the three services, who they are for, how a project starts
+- [Example product definition](https://antedesign.be/example/): a fictional one-page AI product definition
+- [AI Product Check](https://antedesign.be/check/): nine questions about a product idea, answered with the questions Anté would ask
+- [Cases](https://antedesign.be/cases/): KU Leuven and Novare
+- [About](https://antedesign.be/about/): why Anté exists and the team
+- [Contact](https://antedesign.be/contact/): book a 30-minute call or send a message
+
+## Insights
+
+- [Insights](https://antedesign.be/insights/): short, sourced writing on making products with AI
+- [The Double Diamond is two decisions, not four phases](https://antedesign.be/insights/double-diamond-design-process/)
+- [Agents made simple: build AI agents in plain language](https://antedesign.be/insights/icm-starter-kit/)
+
+## Optional
+
+- [Privacy policy](https://antedesign.be/privacy/)
+- [Terms of service](https://antedesign.be/terms/)
+- [Cookie policy](https://antedesign.be/cookies/)
