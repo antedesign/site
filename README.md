@@ -47,7 +47,7 @@ Static website for Anté, an independent studio that helps companies define prod
 │       ├── apple-touch-icon.png  180x180 icon, made from favicon.png
 │       ├── insights/       Post covers (.svg for the page, .png for social)
 │       └── (originals)     phase-0*.jpg and founder-*.JPG are full-size originals, not referenced by any page
-├── scripts/                Post builder and checks (see Insights below), film-render.js (MP4 of /film/)
+├── scripts/                Post builder and checks (see Insights below), film-render.js (MP4 of /film/), contact-mail.gs (contact form, see below), og-image/ (share image)
 ├── sitemap.xml             Add one <url> block per new post
 ├── robots.txt              Open to all crawlers; AI crawlers are named explicitly as allowed
 ├── llms.txt                Plain summary of Anté and its key pages for AI assistants (only facts that are on the site)
@@ -83,6 +83,16 @@ Every page has a unique `<title>` and meta description, a `canonical` link, `og:
 script sits at the end of `<head>`. When you add a page: give it the same set, add it to
 `sitemap.xml` and, if it is a key page, to `llms.txt`. A page that should not be found gets
 `<meta name="robots" content="noindex">` and stays out of the sitemap.
+
+**The home headline lives in more places than the hero.** When it changes, search the site for the old
+wording: the `<title>`, `og:` and `twitter:` titles and description of `index.html`, the `og:image:alt`
+on every page, the JSON-LD description, `llms.txt`, and the one-line company description ("helps companies
+define products with AI at their core", repeated in the privacy page, the cookie and terms descriptions, the
+two Insights author blocks and `scripts/build-post.py`). The headline is also drawn into the share image:
+edit `scripts/og-image/og.html`, then run `node scripts/og-image/og.js` (needs Playwright and internet for the
+fonts; pass a path to write elsewhere first). The film closes on the same line (`film/film.js`). The wording
+is a decision, not a style choice: "We help you define", never "We define", because the product is defined
+with the client and Anté guides the process (ante-base `10-admin/beslissingen.md`, 2026-11-22).
 
 ---
 
