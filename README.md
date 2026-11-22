@@ -55,8 +55,36 @@ Static website for Anté, an independent studio that helps companies define prod
 └── README.md
 ```
 
-The site is in English. A Dutch version (`/nl/`, with an EN | NL switch) is planned
-once the English copy is final.
+The site is in English, with a Dutch version of the key pages under `/nl/`.
+
+### Dutch version (`/nl/`)
+
+| EN | NL |
+|---|---|
+| `/` | `/nl/` |
+| `/approach/` | `/nl/aanpak/` |
+| `/cases/` | `/nl/cases/` |
+| `/example/` | `/nl/voorbeeld/` |
+| `/check/` | `/nl/check/` |
+| `/about/` | `/nl/over-ons/` |
+| `/contact/` | `/nl/contact/` |
+
+Insights, the tools and the legal pages are English only; the Dutch pages link to them.
+
+- **Every pair is two files.** Change the text of one, change the other. The markup is the same.
+- **`hreflang`**: both pages of a pair carry the same three lines (`en`, `nl`, `x-default` = EN)
+  under the canonical, and `sitemap.xml` lists the same three per URL. That is how Google shows
+  a Dutch searcher the Dutch page. There is no automatic redirect on browser language: Google
+  advises against it, because its crawler would never see the other version.
+- **The switch**: `.nav-lang` in the nav (`NL` on English pages, `EN` on Dutch ones) and
+  `.mobile-menu-lang` in the mobile menu, both pointing at the same page in the other language.
+  English pages without a Dutch version point at `/nl/`.
+- **Scripts**: `tree.js`, `check.js` and `contact-form.js` read `<html lang>`; with `lang="nl"` they
+  use their Dutch strings. The Check stores `lang` with the answers for reference; the review in
+  ante-base reads the language from the answers themselves and writes the report in it.
+- **Paths** on `/nl/` pages are absolute (`/assets/...`).
+- **Tone**: `je`-vorm (a proposal, not yet decided), service names stay English as proper names,
+  the tagline "Decide before you build." stays English.
 
 ---
 

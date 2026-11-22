@@ -9,6 +9,7 @@
 
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw_ErQseu_VXnVbTl-THyuH3fmOZwlGD7SpRVYpUba9ZHGMfRX21gWORWTcXTFKl-ENfg/exec';
 
+  var NL = document.documentElement.lang === 'nl';
   var button = form.querySelector('button[type="submit"]');
   var label = button.textContent;
 
@@ -22,7 +23,7 @@
     e.preventDefault();
     if (form.querySelector('[name="_honey"]').value) return;      // a bot filled the hidden field
     button.disabled = true;
-    button.textContent = 'Sending...';
+    button.textContent = NL ? 'Bezig met versturen...' : 'Sending...';
     status.hidden = true;
 
     var params = new URLSearchParams();
@@ -35,12 +36,12 @@
         form.hidden = true;
         var intro = form.previousElementSibling;                  // "Fill out the form below ..."
         if (intro && intro.tagName === 'P') intro.hidden = true;
-        say('ok', '<strong>Thank you.</strong> Your message is on its way. We respond within one working day.');
+        say('ok', NL ? '<strong>Bedankt.</strong> Je bericht is onderweg. We antwoorden binnen één werkdag.' : '<strong>Thank you.</strong> Your message is on its way. We respond within one working day.');
       })
       .catch(function () {
         button.disabled = false;
         button.textContent = label;
-        say('error', 'That did not go through. Please email us at <a href="mailto:hello@antedesign.be">hello@antedesign.be</a> or <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener">book a call</a>.');
+        say('error', NL ? 'Dat is niet gelukt. Mail ons op <a href="mailto:hello@antedesign.be">hello@antedesign.be</a> of <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener">plan een gesprek</a>.' : 'That did not go through. Please email us at <a href="mailto:hello@antedesign.be">hello@antedesign.be</a> or <a href="https://cal.com/ante-design/30min" target="_blank" rel="noopener">book a call</a>.');
       });
   });
 })();
