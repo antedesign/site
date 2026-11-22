@@ -76,9 +76,10 @@ Insights, the tools and the legal pages are English only; the Dutch pages link t
   under the canonical, and `sitemap.xml` lists the same three per URL. That is how Google shows
   a Dutch searcher the Dutch page. There is no automatic redirect on browser language: Google
   advises against it, because its crawler would never see the other version.
-- **The switch**: `.nav-lang` in the nav (`NL` on English pages, `EN` on Dutch ones) and
-  `.mobile-menu-lang` in the mobile menu, both pointing at the same page in the other language.
-  English pages without a Dutch version point at `/nl/`.
+- **The switch**: `.lang-switch`, a small EN | NL pill just below the nav bar at its right edge,
+  inside `<nav>` so it moves with it. The active language is filled (`is-active`); the other links to
+  the same page in that language. English pages without a Dutch version link to `/nl/`. The mobile
+  menu also has a plain link (`.mobile-menu-lang`).
 - **Scripts**: `tree.js`, `check.js` and `contact-form.js` read `<html lang>`; with `lang="nl"` they
   use their Dutch strings. The Check stores `lang` with the answers for reference; the review in
   ante-base reads the language from the answers themselves and writes the report in it.

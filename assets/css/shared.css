@@ -2984,21 +2984,44 @@ p + h2 {
 .form-status--error { background: rgba(40, 41, 43, 0.05); border: 1px solid var(--rule); }
 
 /* ── Language switch (EN | NL) ─────────────────────────────
-   One small link in the nav to the same page in the other
-   language. Pages without a translation link to the home of
-   the other language. */
-.nav-lang {
+   A small two-way switch just below the nav bar, at its right edge.
+   It moves with the fixed nav. The active language is filled; the
+   other one links to the same page in that language (pages without
+   a translation link to the home of the other language). */
+.lang-switch {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 12px;
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(40, 41, 43, 0.12);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+}
+.lang-switch a {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.06em;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 999px;
   color: var(--charcoal);
   text-decoration: none;
-  padding: 6px 4px;
-  opacity: 0.7;
-  transition: opacity 200ms ease, color 200ms ease;
+  opacity: 0.65;
+  transition: opacity 200ms ease, background 200ms ease, color 200ms ease;
 }
-.nav-lang:hover { opacity: 1; color: var(--spruce); }
+.lang-switch a:hover { opacity: 1; }
+.lang-switch a.is-active {
+  background: var(--spruce);
+  color: #fff;
+  opacity: 1;
+  pointer-events: none;
+}
 .mobile-menu-links li.mobile-menu-lang a {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
