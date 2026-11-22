@@ -72,7 +72,7 @@ Every page is a plain HTML file. Open it in any text editor, find the text betwe
 | Example | `example/index.html` | The "what the team started with" block and the full one-page definition |
 | Check | `check/index.html` | The nine-question flow, the team answers side by side, and the thanks. The engine is private: ante-base `20-marketing/free-tools/ai-product-check/` |
 | About | `about/index.html` | Why Anté exists, team, "Why we know AI from the inside.", CTA. JSON-LD: one Person per team member |
-| Contact | `contact/index.html` | Booking card (cal.com link) and an email line |
+| Contact | `contact/index.html` | Booking card (cal.com link), contact form (sent as an email, see below) |
 | Insights | `insights/index.html` | Hero, featured post, what's coming, teardowns, tools, CTA |
 
 
@@ -261,6 +261,17 @@ Spacing tokens are also in the `:root` block of `assets/css/shared.css`:
   --hero-pad-bottom: clamp(96px, 12vw, 160px);
 }
 ```
+
+---
+
+## Contact form
+
+The form on `/contact/` is delivered as an email to `hello@antedesign.be` through FormSubmit (formsubmit.co), so no server of our own is needed. `assets/js/contact-form.js` posts it without leaving the page and shows a thank-you or an error with the email address and the booking link as alternatives. Without JavaScript the form posts to FormSubmit's own thank-you page.
+
+- **First use: activate once.** The first message ever sent makes FormSubmit email an activation link to `hello@antedesign.be`. Click it, otherwise nothing is delivered. Send one test message after each change of address.
+- **Change the recipient:** the address appears in `contact/index.html` (form `action`) and in `assets/js/contact-form.js` (`ENDPOINT`).
+- **Spam:** a hidden honeypot field (`_honey`) is in place. If spam still arrives, set `_captcha` to `true` in the form.
+- **Privacy:** FormSubmit is named in `privacy/index.html` as a provider. Have `60-legal/` confirm it before relying on it long term.
 
 ---
 

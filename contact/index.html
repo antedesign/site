@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Anté | Book a 30-minute call</title>
-  <meta name="description" content="Book a free 30-minute call about your product idea or AI ambition, or email us. We respond within one working day.">
+  <meta name="description" content="Book a free 30-minute call about your product idea or AI ambition, or send a message. We respond within one working day.">
   <link rel="canonical" href="https://antedesign.be/contact/">
   <meta property="og:locale" content="en_GB">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact Anté | Book a 30-minute call">
-  <meta name="twitter:description" content="Book a free 30-minute call about your product idea or AI ambition, or email us. We respond within one working day.">
+  <meta name="twitter:description" content="Book a free 30-minute call about your product idea or AI ambition, or send a message. We respond within one working day.">
   <meta name="twitter:image" content="https://antedesign.be/assets/images/og-default.jpg">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Anté">
   <meta property="og:title" content="Contact Anté | Book a 30-minute call">
-  <meta property="og:description" content="Book a free 30-minute call about your product idea or AI ambition, or email us. We respond within one working day.">
+  <meta property="og:description" content="Book a free 30-minute call about your product idea or AI ambition, or send a message. We respond within one working day.">
   <meta property="og:url" content="https://antedesign.be/contact/">
   <meta property="og:image" content="https://antedesign.be/assets/images/og-default.jpg">
   <meta property="og:image:width" content="1200">
@@ -72,7 +72,7 @@
   <section class="hero">
     <div class="container">
       <h1 class="hero-headline hero-headline--inner reveal"><span class="text-spruce">Let's</span> talk.</h1>
-      <p class="hero-subhead reveal">Two ways to start: book a free 30-minute call about your product idea, or email us and we'll respond within one working day.</p>
+      <p class="hero-subhead reveal">Two ways to start: book a free 30-minute call about your product idea, or send a message and we'll respond within one working day.</p>
     </div>
   </section>
 
@@ -89,8 +89,38 @@
           <div class="btn-group">
             <a href="https://cal.com/ante-design/30min" class="btn-primary" target="_blank" rel="noopener">Book a 30-minute call <span class="arrow">→</span></a>
           </div>
-          <p class="contact-write">Prefer to write? Email <a href="mailto:hello@antedesign.be">hello@antedesign.be</a>.</p>
         </div>
+
+        <!-- Secondary: Send a message -->
+        <div class="card reveal">
+          <h3>Send a message</h3>
+          <p>Prefer to write? Fill out the form below and we'll get back to you within one working day.</p>
+          <!-- Sent as an email to the shared mailbox through FormSubmit (see README, "Contact form"). -->
+          <form action="https://formsubmit.co/hello@antedesign.be" method="POST" class="contact-form" id="contact-form">
+            <input type="hidden" name="_subject" value="New message via antedesign.be">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form-group">
+              <label class="form-label" for="name">Name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Tell us about your product, your idea or your question." required></textarea>
+            </div>
+            <div class="btn-group">
+              <button type="submit" class="btn-primary">Send message</button>
+            </div>
+            <p class="form-note">We only use your details to reply. <a href="/privacy/">Privacy policy</a>.</p>
+          </form>
+          <div class="form-status" id="contact-status" role="status" aria-live="polite" hidden></div>
+        </div>
+
       </div>
 
     </div>
@@ -167,5 +197,6 @@
   <script src="../assets/js/reveal.js"></script>
   <script src="../assets/js/nav.js"></script>
   <script src="../assets/js/magnetic-buttons.js" defer></script>
+  <script src="../assets/js/contact-form.js" defer></script>
 </body>
 </html>
