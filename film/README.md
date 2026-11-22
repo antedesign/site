@@ -1,28 +1,29 @@
 # Anté film
 
 One page that plays the Anté story as a film, built from CSS animation and real text (no video file).
-Live: `/film/` (the full film, about 71 s). `/film/?cut=20` is a shorter cut.
+Live: `/film/` (the full film, about 58 s). `/film/?cut=20` is a shorter cut.
 `/film/?scenes=hook,answers,check` plays any sequence. `?render=1` pauses it for the renderer.
 
 ## Scenes (`film.js`, object `S`)
 
-Colour changes every scene: spruce, charcoal, frosted, white. Texts are short on purpose, no sub-headings.
+Order follows the landing page: the problem, what we do, why us, what you get. Wording is taken from the live site (home, approach, about, cases) and from `ante-base/30-sales/doelgroep.md` for the stakeholder voices. Colour changes every scene.
 
 | Scene | base s | What and where the wording comes from |
 |---|---|---|
-| hook | 3.9 | "Do you recognise this?" and “We should do something with AI.” (all blue) |
-| quotes | 6.2 | Three bubbles: engineering "A service chatbot.", client "Some AI can fix this, right?", partner "We can implement the AI structure." (partner line is a proposal) |
-| combine | 8.2 | "We translate and combine." User needs, Team ideas, Partner vision, plus Product development and AI technology, into "One clear product definition". Not "everyone backs": we define what is best, not the middle way |
-| builders | 7.6 | Home: AI agency and builder lines, shortened, slow reveal |
-| checkmid | 3.6 | "Not sure where your idea stands?" with a link to the AI Product Check |
+| hook | 3.9 | "Do you recognise this?" and “We should do something with AI.” |
+| voices | 6.6 | Five roles, each wants something else: Engineering, Sales, Marketing, Partners, The board (lines from the approach example and the buyer profile). Then "Everyone has a different vision." |
+| combine | 8.2 | "We translate and combine." User needs, Team ideas, Partner vision, plus Product development, plus AI knowledge (about page), into "One clear product definition" |
+| agencies | 6.6 | Home: "An AI agency knows the technology but not your product. A design agency knows your product but not enough about AI." and "We bring both." |
+| cost | 8.0 | Home: "The earlier you define it, the less it costs." Animated cost curve, a cross where the product definition sits, then "A clear product definition costs less than the wrong product." |
 | notauto | 5.2 | Home: "Product definition, not process automation." plus who it is for, what it does, what role AI plays, what comes first |
-| process | 6.6 | Opportunities, Product definition (centre), MVP, and the handoff to your team or a builder (home: lead paragraph) |
-| photos | 4.6 | The green "Product definition" box grows into this screen, so the workshop photos read as part of that step. `img/p1-3.jpg` (case-01 to 03, resized) |
-| hard | 5.0 | Home: "Three things are hard to copy", shortened to one word each, no sub-heading |
-| close | 3.8 | "We design your next generation of AI-driven products." |
+| timeline | 6.2 | The three services of the approach page as a timeline: left to right on landscape, top to bottom on portrait |
+| photos | 4.6 | The green "AI Product Definition" card grows into this screen, so the workshop photos read as part of that step. `img/p1-3.jpg` (case-01 to 03, resized) |
+| why | 6.4 | Home: Independent advice, Fresh eyes on your product, Everyone feels heard, with the site's own sentences |
+| cta | 6.0 | "We help you define your next AI product." (we guide the client through the choice, we do not decide for them) then contact or the free AI Product Check, as text only (buttons do not work in a video) |
 
-Every start time and duration is multiplied by a speed factor k (full film: 1.3, so about 71 s; higher = slower).
-Per scene: `?scenes=hook:.7,combine:.6` . `?cut=20` is the 20 s essence (hook, combine, checkmid, notauto, process, photos, close) with its own k per scene.
+Every start time and duration is multiplied by a speed factor k (full film: .95, about 58 s; higher = slower).
+Per scene: `?scenes=hook:.7,combine:.6`. `?cut=20` is the 20 s essence (hook, combine, agencies, notauto, timeline, photos, cta) with its own k per scene.
+If the site copy changes, change the scene text here too. Tone rules: no em dashes, no exclamation marks.
 
 ## Home opening
 
