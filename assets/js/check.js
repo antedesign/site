@@ -63,7 +63,13 @@
   function activeMs() { return clock.active + (clock.since ? Date.now() - clock.since : 0); }
 
   var MIN = { idea: 60, alternative: 12, without_ai: 12, payer: 12, 'return': 12, evidence: 12, avoided: 8 };
-  var MESSAGES = {
+  var NL = document.documentElement.lang === 'nl'; // /nl/check/: Dutch strings
+  var MESSAGES = NL ? {
+    idea: 'Iets meer detail graag: minstens 60 tekens.',
+    team: 'Vul er minstens twee van de drie in. Kort mag.',
+    stage: 'Kies waar je nu staat.',
+    start: 'Vul een geldig e-mailadres in en vink het vakje aan.'
+  } : {
     idea: 'A little more detail, please: at least 60 characters.',
     team: 'Please fill in at least two of the three. Short is fine.',
     stage: 'Please pick where you are now.',
@@ -92,10 +98,10 @@
     stepMark = activeMs();
     current = i;
     steps.forEach(function (s, n) { s.classList.toggle('is-active', n === i); });
-    label.textContent = 'Step ' + (i + 1) + ' of ' + steps.length;
+    label.textContent = (NL ? 'Stap ' : 'Step ') + (i + 1) + (NL ? ' van ' : ' of ') + steps.length;
     fill.style.width = ((i + 1) / steps.length * 100) + '%';
     back.hidden = i === 0;
-    next.innerHTML = i === steps.length - 1 ? 'Send me my questions <span class="arrow">→</span>' : 'Next <span class="arrow">→</span>';
+    next.innerHTML = i === steps.length - 1 ? (NL ? 'Stuur me mijn vragen' : 'Send me my questions') + ' <span class="arrow">→</span>' : (NL ? 'Volgende' : 'Next') + ' <span class="arrow">→</span>';
     err.hidden = true;
     if (focus) {
       var el = steps[i].querySelector('textarea, input[type=text], input[type=email]');
@@ -106,7 +112,7 @@
   function advance() {
     if (!stepValid(current)) {
       var q = steps[current].getAttribute('data-q');
-      err.textContent = MESSAGES[q] || 'Please answer this one with at least a sentence.';
+      err.textContent = MESSAGES[q] || (NL ? 'Beantwoord deze met minstens één zin.' : 'Please answer this one with at least a sentence.');
       err.hidden = false;
       return;
     }
@@ -139,7 +145,8 @@
       team_management: val('team_management'), team_sales: val('team_sales'), team_technical: val('team_technical'),
       stage: val('stage'), blocker: val('blocker'),
       name: val('name'), company: val('company'), role: val('role'), email: confirmedEmail,
-      consent: form.elements.consent.checked ? 'yes' : ''
+      consent: form.elements.consent.checked ? 'yes' : '',
+      lang: NL ? 'nl' : 'en' // the page language, stored for reference; the review reads the language from the answers themselves
     };
   }
 
@@ -240,7 +247,7 @@
   function showResult(data, viaMail) {
     var grid = document.getElementById('mirror-grid');
     grid.textContent = '';
-    [['Management', data.team_management], ['Sales or marketing', data.team_sales], ['Engineering or production', data.team_technical]].forEach(function (r) {
+    [[NL ? 'Directie' : 'Management', data.team_management], [NL ? 'Sales of marketing' : 'Sales or marketing', data.team_sales], [NL ? 'Engineering of productie' : 'Engineering or production', data.team_technical]].forEach(function (r) {
       if (!r[1]) return;
       var card = document.createElement('div');
       card.className = 'mirror-card';

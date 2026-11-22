@@ -32,6 +32,18 @@ Company: Anté VOF, company number BE 1041.127.724. Contact: https://antedesign.
 - [About](https://antedesign.be/about/): why Anté exists and the team
 - [Contact](https://antedesign.be/contact/): book a 30-minute call or send a message
 
+## In het Nederlands
+
+Anté werkt in het Nederlands en het Engels. De belangrijkste pagina's bestaan in beide talen.
+
+- [Home (NL)](https://antedesign.be/nl/): wat Anté doet
+- [Aanpak](https://antedesign.be/nl/aanpak/): de drie diensten, voor wie, hoe een project start
+- [Voorbeeld van een productdefinitie](https://antedesign.be/nl/voorbeeld/): een fictieve AI-productdefinitie op één pagina
+- [AI Product Check (NL)](https://antedesign.be/nl/check/): negen vragen over een productidee
+- [Cases (NL)](https://antedesign.be/nl/cases/): KU Leuven en Novare
+- [Over ons](https://antedesign.be/nl/over-ons/): waarom Anté bestaat, en het team
+- [Contact (NL)](https://antedesign.be/nl/contact/): plan een gesprek van 30 minuten
+
 ## Insights
 
 - [Insights](https://antedesign.be/insights/): short, sourced writing on making products with AI

@@ -2982,3 +2982,29 @@ p + h2 {
 .form-status { margin-top: var(--space-stack); padding: 18px 22px; border-radius: 16px; font-size: 16px; line-height: 1.6; color: var(--charcoal); }
 .form-status--ok { background: rgba(32, 106, 91, 0.08); border: 1px solid rgba(32, 106, 91, 0.25); }
 .form-status--error { background: rgba(40, 41, 43, 0.05); border: 1px solid var(--rule); }
+
+/* ── Language switch (EN | NL) ─────────────────────────────
+   One small link in the nav to the same page in the other
+   language. Pages without a translation link to the home of
+   the other language. */
+.nav-lang {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--charcoal);
+  text-decoration: none;
+  padding: 6px 4px;
+  opacity: 0.7;
+  transition: opacity 200ms ease, color 200ms ease;
+}
+.nav-lang:hover { opacity: 1; color: var(--spruce); }
+.mobile-menu-links li.mobile-menu-lang a {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+  letter-spacing: 0;
+  border-bottom: none;
+  opacity: 0.7;
+}

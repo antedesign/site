@@ -10,8 +10,14 @@
   var cta = document.getElementById('tree-cta');
   var reset = document.getElementById('tree-reset');
   var initial = { t: title.textContent, p: text.textContent };
+  var NL = document.documentElement.lang === 'nl'; // /nl/ pages: Dutch strings
 
-  var OUT = {
+  var OUT = NL ? {
+    exploration: ['Begin met een AI Opportunity Exploration.', 'In twee weken brengen we in kaart waar AI waarde toevoegt, en zeggen we welk idee het waard is om verder te gaan, of dat je beter niets doet.'],
+    definition: ['Begin met een AI Product Definition.', 'Het idee heb je. Wij helpen je vastleggen wat het product doet, voor wie, welke rol AI speelt en welke functies eerst komen, zodat je een bouwer kunt briefen.'],
+    prototype: ['Begin met Prototype & Validation.', 'Je weet wat je wilt bouwen. Zet een eerste versie voor echte gebruikers en meet de eerste tractie, voor de volledige bouw.'],
+    ready: ['Misschien ben je klaar om te bouwen.', 'Je weet wat je bouwt, en gebruikers hebben het gezien. Wil je een tweede blik voor je je vastlegt, dan is het gesprek gratis.']
+  } : {
     exploration: ['Start with an AI Opportunity Exploration.', 'In two weeks we map where AI can add value, and tell you which idea is worth pursuing, or that it is better to do nothing.'],
     definition: ['Start with an AI Product Definition.', 'You have the idea. We help you define what the product does, for whom, what role AI plays and which features come first, so you can brief a builder.'],
     prototype: ['Start with Prototype & Validation.', 'You know what to build. Put a first version in front of real users and measure early traction, before the full build.'],
@@ -27,7 +33,7 @@
     });
   }
   function show(key) {
-    eyebrow.textContent = 'Your starting point';
+    eyebrow.textContent = NL ? 'Jouw startpunt' : 'Your starting point';
     title.textContent = OUT[key][0];
     text.textContent = OUT[key][1];
     cta.hidden = false;

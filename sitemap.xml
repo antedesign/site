@@ -2,15 +2,31 @@
 <!--
   antedesign.be sitemap.
   Add one <url> block per new Insights post. Keep <lastmod> honest:
-  only change it when the page content actually changed.
+  only change it when the page content actually changed. A page that exists
+  in English and in Dutch gets one <url> block per language, each listing
+  both versions as xhtml:link (the same three lines as the hreflang tags).
 -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
     <loc>https://antedesign.be/</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/"/>
+  </url>
+
+  <url>
+    <loc>https://antedesign.be/nl/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/"/>
   </url>
 
   <url>
@@ -18,6 +34,19 @@
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/approach/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/aanpak/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/approach/"/>
+  </url>
+
+  <url>
+    <loc>https://antedesign.be/nl/aanpak/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/approach/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/aanpak/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/approach/"/>
   </url>
 
   <url>
@@ -25,6 +54,19 @@
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/check/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/check/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/check/"/>
+  </url>
+
+  <url>
+    <loc>https://antedesign.be/nl/check/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/check/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/check/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/check/"/>
   </url>
 
   <url>
@@ -32,6 +74,19 @@
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/example/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/voorbeeld/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/example/"/>
+  </url>
+
+  <url>
+    <loc>https://antedesign.be/nl/voorbeeld/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/example/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/voorbeeld/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/example/"/>
   </url>
 
   <url>
@@ -60,6 +115,19 @@
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/cases/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/cases/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/cases/"/>
+  </url>
+
+  <url>
+    <loc>https://antedesign.be/nl/cases/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/cases/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/cases/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/cases/"/>
   </url>
 
   <url>
@@ -67,6 +135,19 @@
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/about/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/over-ons/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/about/"/>
+  </url>
+
+  <url>
+    <loc>https://antedesign.be/nl/over-ons/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/about/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/over-ons/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/about/"/>
   </url>
 
   <url>
@@ -74,6 +155,19 @@
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/contact/"/>
+  </url>
+
+  <url>
+    <loc>https://antedesign.be/nl/contact/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antedesign.be/contact/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://antedesign.be/nl/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://antedesign.be/contact/"/>
   </url>
 
   <url>
