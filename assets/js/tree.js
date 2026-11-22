@@ -13,7 +13,7 @@
 
   var OUT = {
     exploration: ['Start with an AI Opportunity Exploration.', 'In two weeks we map where AI can add value, and tell you which idea is worth pursuing, or that it is better to do nothing.'],
-    definition: ['Start with an AI Product Definition.', 'You have the idea. We define what the product does, for whom, what role AI plays and which features come first, so you can brief a builder.'],
+    definition: ['Start with an AI Product Definition.', 'You have the idea. We help you define what the product does, for whom, what role AI plays and which features come first, so you can brief a builder.'],
     prototype: ['Start with Prototype & Validation.', 'You know what to build. Put a first version in front of real users and measure early traction, before the full build.'],
     ready: ['You may be ready to build.', 'You know what to build, and users have seen it. If you want a second look before you commit, the review call is free.']
   };

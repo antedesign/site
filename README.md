@@ -1,6 +1,6 @@
 # Anté — antedesign.be
 
-Static website for Anté, an independent studio that defines products with AI at their core. Built as plain HTML/CSS/JS — no build step required.
+Static website for Anté, an independent studio that helps companies define products with AI at their core. Built as plain HTML/CSS/JS — no build step required.
 
 ---
 
