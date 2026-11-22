@@ -72,7 +72,7 @@ Every page is a plain HTML file. Open it in any text editor, find the text betwe
 | Example | `example/index.html` | The "what the team started with" block and the full one-page definition |
 | Check | `check/index.html` | The nine-question flow, the team answers side by side, and the thanks. The engine is private: ante-base `20-marketing/free-tools/ai-product-check/` |
 | About | `about/index.html` | Why Anté exists, team, "Why we know AI from the inside.", CTA. JSON-LD: one Person per team member |
-| Contact | `contact/index.html` | Calendly card, contact form, direct contact |
+| Contact | `contact/index.html` | Booking card (cal.com link), contact form (sent as an email, see below) |
 | Insights | `insights/index.html` | Hero, featured post, what's coming, teardowns, tools, CTA |
 
 
@@ -264,11 +264,22 @@ Spacing tokens are also in the `:root` block of `assets/css/shared.css`:
 
 ---
 
+## Contact form
+
+The form on `/contact/` is delivered as an email to `hello@antedesign.be`, sent from our own Google account by a Google Apps Script (`scripts/contact-mail.gs`), so it does not land in spam and no third party is involved. `assets/js/contact-form.js` posts the form without leaving the page and shows a thank-you, or an error with the email address and the booking link as alternatives. A hidden honeypot field (`_honey`) keeps bots out. Without JavaScript the form posts to the same address and Google shows a thank-you page.
+
+- **Where it runs:** the script is deployed from the Google account that sends the mail, as a Web app (execute as: me, access: anyone). Its `/exec` URL is in two places: `ENDPOINT` in `assets/js/contact-form.js` and the `action` of the form in `contact/index.html`.
+- **Change the recipient:** `RECIPIENT` at the top of the script. After any change in the script, deploy a new version (Deploy > Manage deployments > pencil > New version); the URL stays the same.
+- **Limits and copies:** the script drops messages beyond `DAILY_LIMIT` a day and can keep a copy of every message in a Google Sheet (`SHEET_ID`).
+- **Silent failures:** the page cannot read Google's answer (`no-cors`), so a broken deployment would still show the thank-you. After redeploying, send one test message.
+- **Privacy:** Google is the only processor for this form and is named in `privacy/index.html`.
+
+---
+
 ## Placeholders to replace before launch
 
 Search the HTML files for these strings:
 
-- `[FORM_ACTION_PLACEHOLDER]` in `contact/index.html`
 - `[TESTIMONIAL 1-3]` in `index.html` (commented out)
 
 ---
