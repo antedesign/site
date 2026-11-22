@@ -16,10 +16,10 @@ Order follows the landing page: the problem, what we do, why us, what you get. W
 | agencies | 6.6 | Home: "An AI agency knows the technology but not your product. A design agency knows your product but not enough about AI." and "We bring both." |
 | cost | 8.0 | Home: "The earlier you define it, the less it costs." Animated cost curve, a cross where the product definition sits, then "A clear product definition costs less than the wrong product." |
 | notauto | 5.2 | Home: "Product definition, not process automation." plus who it is for, what it does, what role AI plays, what comes first |
-| timeline | 7.4 | The three services of the approach page as a timeline: left to right on landscape, bottom to top on portrait (one flex-direction in `film.css`, search `column-reverse`). Handoff to your team or a builder hangs under step 2 |
+| timeline | 6.2 | The three services of the approach page as a timeline: left to right on landscape, top to bottom on portrait |
 | photos | 4.6 | The green "AI Product Definition" card grows into this screen, so the workshop photos read as part of that step. `img/p1-3.jpg` (case-01 to 03, resized) |
 | why | 6.4 | Home: Independent advice, Fresh eyes on your product, Everyone feels heard, with the site's own sentences |
-| cta | 7.6 | "We define your next AI product." then contact or the free AI Product Check. The two pills link to `/contact/` and `/check/` on the live page |
+| cta | 6.0 | "We define your next AI product." then contact or the free AI Product Check, as text only (buttons do not work in a video) |
 
 Every start time and duration is multiplied by a speed factor k (full film: .85, about 55 s; higher = slower).
 Per scene: `?scenes=hook:.7,combine:.6`. `?cut=20` is the 20 s essence (hook, combine, agencies, notauto, timeline, photos, cta) with its own k per scene.

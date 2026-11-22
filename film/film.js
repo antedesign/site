@@ -17,7 +17,7 @@
   function nd(cls, s, t, small) { return P('div', 'nd ' + cls, s, '<b>' + t + '</b><small>' + small + '</small>'); }
   var VO = [['Engineering', 'Nothing that can slow down the line.'], ['Sales', 'Something that beats the competitor\'s new app.'], ['Marketing', 'Something we can launch.'], ['Partners', 'We can implement the AI structure.'], ['The board', 'A new product line, not just a feature.']];
   function step(i, s, name, small, extra, def) {
-    var ab = ['--la:50%;--lb:0%;--ta:0;--tb:50%', '--la:0%;--lb:0%;--ta:0;--tb:0', '--la:0%;--lb:50%;--ta:50%;--tb:0'][i];
+    var ab = ['--la:50%;--lb:0%;--ta:50%;--tb:0', '--la:0%;--lb:0%;--ta:0;--tb:0', '--la:0%;--lb:50%;--ta:0;--tb:50%'][i];
     return '<div class="st" style="' + ab + '"><i class="lk" style="--s:' + n(s) + 's"></i>' + P('i', 'dt', s + .2, '') + P('div', 'stc' + (def ? ' def' : ''), s + .3, '<small>0' + (i + 1) + '</small><b>' + name + '</b><i>' + small + '</i>') + (extra || '') + '</div>';
   }
   var S = {
@@ -36,19 +36,19 @@
       '<p class="sub">' + W('A clear product definition costs less than the wrong product.', 5.1, .06) + '</p></div>' }; },
     notauto: function () { return { d: 5.2, bg: 'sp', h: '<div class="b"><h2 class="h">' + W('*Product *definition, not process automation.', .3, .1) + '</h2><div class="tags">' +
       ['Who it is for', 'What it does', 'What role AI plays', 'What comes first'].map(function (t, i) { return P('span', 'tg', 1.9 + i * .45, t); }).join('') + '</div></div>' }; },
-    timeline: function () { return { d: 7.4, bg: 'lt', h: '<div class="b tl">' + step(0, .3, 'AI Opportunity Exploration', 'Find where AI fits') +
-      step(1, 1.5, 'AI Product Definition', 'Define what to build', P('span', 'ho2', 4, 'Or hand off to your team or a builder'), true) + step(2, 2.7, 'Prototype &amp; Validation', 'MVP tested with real users') + '</div>' }; },
+    timeline: function () { return { d: 6.2, bg: 'lt', h: '<div class="b tl">' + step(0, .3, 'AI Opportunity Exploration', 'Find where AI fits') +
+      step(1, 1.5, 'AI Product Definition', 'Define what to build', '', true) + step(2, 2.7, 'Prototype &amp; Validation', 'MVP tested with real users') + '</div>' }; },
     // the green "AI Product Definition" card of the timeline grows into this screen: the workshop is part of that step
     photos: function () { return { d: 4.6, bg: 'sp', grow: '.def', h: '<div class="b b4"><h2 class="h sh">' + W('*AI *Product *Definition', .9, .15) + '</h2>' + X('p', 'lab', 1.5, 'User research · interviews · workshops') + '<div class="phs">' +
       [1, 2, 3].map(function (m, i) { return '<div class="ph" style="--s:' + n(1.9 + i * .35) + 's"><img src="img/p' + m + '.jpg" alt=""></div>'; }).join('') + '</div></div>' }; },
     why: function () { return { d: 6.4, bg: 'lf', h: '<div class="b why">' + X('div', 'wy', .3, '<b>Independent advice</b><p>We don\'t build the final product, so our advice stays objective.</p>') +
       X('div', 'wy', 1.9, '<b>Fresh eyes on your product</b><p>We are the generation that will use tomorrow\'s products.</p>') + X('div', 'wy', 3.5, '<b>Everyone feels heard</b><p>We know enough about every field to understand users, stakeholders and your team.</p>') + '</div>' }; },
-    cta: function () { return { d: 7.6, bg: 'sp', h: '<div class="b cta"><h1 class="h">' + W('We define your *next *AI *product.', .3, .12) + '</h1><p class="sub">' +
-      W('Contact us for more info, or take the free AI Product Check to see where you stand.', 1.6, .05) + '</p><div class="pills">' + X('a', 'pill', 3.7, 'Get in touch &rarr;', ' href="/contact/"') + X('a', 'pill o', 4.1, 'Free AI Product Check &rarr;', ' href="/check/"') + '</div>' + X('p', 'url', 4.7, 'antedesign.be') + '</div>' }; }
+    cta: function () { return { d: 6, bg: 'sp', h: '<div class="b cta"><h1 class="h">' + W('We define your *next *AI *product.', .3, .12) + '</h1><p class="sub">' +
+      W('Contact us for more info, or take the free AI Product Check to see where you stand.', 1.6, .05) + '</p>' + X('p', 'url', 3.2, 'antedesign.be') + '</div>' }; }
   };
   var CUTS = {
     final: 'hook,voices,combine,agencies,cost,notauto,timeline,photos,why,cta',
-    20: 'hook:.57,combine:.56,agencies:.5,notauto:.46,timeline:.43,photos:.39,cta:.46'
+    20: 'hook:.57,combine:.56,agencies:.5,notauto:.46,timeline:.43,photos:.39,cta:.5'
   };
   var K0 = parseFloat(Q.get('k')) || .85, spec = (Q.get('scenes') || CUTS[Q.get('cut') || 'final'] || CUTS.final).split(','), t0 = 0, meta = [], html = '', grows = [];
   spec.forEach(function (x, i) {
