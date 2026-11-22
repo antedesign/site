@@ -38,6 +38,12 @@ Company: Anté VOF, company number BE 1041.127.724. Contact: https://antedesign.
 - [The Double Diamond is two decisions, not four phases](https://antedesign.be/insights/double-diamond-design-process/)
 - [Agents made simple: build AI agents in plain language](https://antedesign.be/insights/icm-starter-kit/)
 
+## Tools
+
+- [The Decide Before Build Checklist](https://antedesign.be/tools/111-decide-before-build-checklist/): decide what AI should automate, what it should only prepare, and what only a human can validate
+- [The Double Diamond Blueprint](https://antedesign.be/tools/222-double-diamond-blueprint/): a guided workbook to find the right problem before you commit to a solution
+- [The Idea Generation Toolkit](https://antedesign.be/tools/333-idea-generation-toolkit/): generate more directions and compare them with a clear head
+
 ## Optional
 
 - [Privacy policy](https://antedesign.be/privacy/)

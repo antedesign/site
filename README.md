@@ -66,12 +66,12 @@ Every page is a plain HTML file. Open it in any text editor, find the text betwe
 
 | Page | File | What's in it |
 |---|---|---|
-| Home | `index.html` | Hero, photo strip and proof line, "Product definition, not process automation" with three advantage cards, "From early idea to clear product definition" with the cost card, closing CTA. The testimonials block is commented out until there are real quotes. JSON-LD: Organization and WebSite |
-| Approach | `approach/index.html` | The three services (numbered cards), "Where do you start?" tree, who it is for, "Scaled to fit", "This is what you get" (the example), the timeline "One phase, or all three." (`#phase-1` to `#phase-3`), closing CTA. JSON-LD: one Service per service |
+| Home | `index.html` | Hero, photo strip and proof line, "Product definition, not process automation" with three advantage cards, "From early idea to clear product definition" with the cost card, closing CTA. The testimonials block is commented out until there are real quotes. JSON-LD: Organization (with `knowsAbout`, `contactPoint`, `makesOffer`) and WebSite |
+| Approach | `approach/index.html` | The three services (numbered cards), "Where do you start?" tree, who it is for, "Scaled to fit", "This is what you get" (the example), the timeline "One phase, or all three." (`#phase-1` to `#phase-3`), closing CTA. JSON-LD: WebPage, breadcrumb, one Service per service (with `audience`) |
 | Cases | `cases/index.html` | The two cases and a photo grid |
 | Example | `example/index.html` | The "what the team started with" block and the full one-page definition |
 | Check | `check/index.html` | The nine-question flow, the team answers side by side, and the thanks. The engine is private: ante-base `20-marketing/free-tools/ai-product-check/` |
-| About | `about/index.html` | Why Anté exists, team, "Why we know AI from the inside.", CTA. JSON-LD: one Person per team member |
+| About | `about/index.html` | Why Anté exists, team, "Why we know AI from the inside.", CTA. JSON-LD: one Person per team member (`description` and `knowsAbout` follow the text on the page), breadcrumb |
 | Contact | `contact/index.html` | Booking card (cal.com link), contact form (sent as an email, see below) |
 | Insights | `insights/index.html` | Hero, featured post, what's coming, teardowns, tools, CTA |
 
@@ -80,7 +80,12 @@ Every page is a plain HTML file. Open it in any text editor, find the text betwe
 
 Every page has a unique `<title>` and meta description, a `canonical` link, `og:` and `twitter:` tags
 (default image `assets/images/og-default.jpg`), the favicon and the apple-touch-icon. The Metricool
-script sits at the end of `<head>`. When you add a page: give it the same set, add it to
+script sits at the end of `<head>`. Every indexable page also carries JSON-LD: a page type (`WebPage`, `CollectionPage`,
+`ContactPage`), a `BreadcrumbList`, and a link to `#organization` on the home page. Cases, Example,
+Check, Contact and the three tools got theirs on 2026-11-22. Rule: the schema only says what the
+page itself says. When the text changes, change the schema with it.
+
+When you add a page: give it the same set, add it to
 `sitemap.xml` and, if it is a key page, to `llms.txt`. A page that should not be found gets
 `<meta name="robots" content="noindex">` and stays out of the sitemap.
 
