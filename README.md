@@ -25,11 +25,11 @@ Static website for Anté, an independent studio that defines products with AI at
 ├── assets/
 │   ├── css/
 │   │   ├── shared.css      All design tokens, components, utilities
-│   │   ├── intro.css       Home opening (~6 s), only loaded on the home page
+│   │   ├── intro.css       Home opening: the film full screen, only loaded on the home page
 │   │   ├── insights.css    Blog-only styles, layered on shared.css
 │   │   └── starter-kit.css Extras for the ICM starter kit post (language switch, tabs)
 │   ├── js/
-│   │   ├── intro.js        Home opening: skip, clean-up, ?intro=0 and ?t=N
+│   │   ├── intro.js        Home opening: iframe with /film/, skip, ?intro=0 and ?film=20
 │   │   ├── reveal.js       Scroll fade-in (IntersectionObserver), for .reveal and .reveal-group (a group animates its children, e.g. the advantage cards and the cost graph)
 │   │   ├── timeline.js     Approach: the phase timeline that fills while you scroll; re-scrolls to #phase-N once the fonts have loaded
 │   │   ├── tab-title.js    Home: a calm tab title while the visitor is on another tab (data-away attribute)
