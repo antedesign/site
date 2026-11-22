@@ -95,11 +95,8 @@
         <div class="card reveal">
           <h3>Send a message</h3>
           <p>Prefer to write? Fill out the form below and we'll get back to you within one working day.</p>
-          <!-- Sent as an email to the shared mailbox through FormSubmit (see README, "Contact form"). -->
-          <form action="https://formsubmit.co/hello@antedesign.be" method="POST" class="contact-form" id="contact-form">
-            <input type="hidden" name="_subject" value="New message via antedesign.be">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
+          <!-- Sent as an email from our own Google account by the Apps Script in scripts/contact-mail.gs (see README, "Contact form"). -->
+          <form action="https://script.google.com/macros/s/AKfycbw_ErQseu_VXnVbTl-THyuH3fmOZwlGD7SpRVYpUba9ZHGMfRX21gWORWTcXTFKl-ENfg/exec" method="POST" class="contact-form" id="contact-form">
             <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-group">
               <label class="form-label" for="name">Name</label>

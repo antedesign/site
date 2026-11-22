@@ -1,16 +1,13 @@
 /* Contact form: sends the message as an email without leaving the page.
-   Two ways, chosen by APPS_SCRIPT_URL:
-   - empty:  through FormSubmit (formsubmit.co), the set-up that is live now;
-   - filled: through the Google Apps Script in scripts/contact-mail.gs, which mails from our own
-             Google account (does not land in spam, no third party).
-   Without JavaScript the form posts to the address in the form's action attribute. */
+   The form posts to the Google Apps Script in scripts/contact-mail.gs, which emails it from our own
+   Google account to hello@antedesign.be (so it does not land in spam). Without JavaScript the form
+   posts to the same address and Google shows a thank-you page. */
 (function () {
   var form = document.getElementById('contact-form');
   var status = document.getElementById('contact-status');
-  if (!form || !status || !window.fetch || !window.FormData) return;
+  if (!form || !status || !window.fetch || !window.FormData || !window.URLSearchParams) return;
 
-  var APPS_SCRIPT_URL = '';   /* paste the Web app URL (ends in /exec), see scripts/contact-mail.gs */
-  var FORMSUBMIT_URL = 'https://formsubmit.co/ajax/hello@antedesign.be';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw_ErQseu_VXnVbTl-THyuH3fmOZwlGD7SpRVYpUba9ZHGMfRX21gWORWTcXTFKl-ENfg/exec';
 
   var button = form.querySelector('button[type="submit"]');
   var label = button.textContent;
@@ -21,26 +18,6 @@
     status.hidden = false;
   }
 
-  function viaAppsScript(fields) {
-    var params = new URLSearchParams();
-    params.append('ajax', '1');
-    Object.keys(fields).forEach(function (key) { params.append(key, fields[key]); });
-    /* no-cors: the answer cannot be read, but the request is delivered. A network failure still rejects. */
-    return fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params });
-  }
-
-  function viaFormSubmit(fields) {
-    return fetch(FORMSUBMIT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(fields)
-    }).then(function (r) {
-      return r.json().catch(function () { return {}; }).then(function (j) {
-        if (!r.ok || String(j.success) === 'false') throw new Error('not sent');
-      });
-    });
-  }
-
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (form.querySelector('[name="_honey"]').value) return;      // a bot filled the hidden field
@@ -48,10 +25,12 @@
     button.textContent = 'Sending...';
     status.hidden = true;
 
-    var fields = {};
-    new FormData(form).forEach(function (value, key) { fields[key] = value; });
+    var params = new URLSearchParams();
+    params.append('ajax', '1');
+    new FormData(form).forEach(function (value, key) { params.append(key, value); });
 
-    (APPS_SCRIPT_URL ? viaAppsScript(fields) : viaFormSubmit(fields))
+    /* no-cors: Google's answer cannot be read, but the request is delivered. A network failure still rejects. */
+    fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: params })
       .then(function () {
         form.hidden = true;
         var intro = form.previousElementSibling;                  // "Fill out the form below ..."

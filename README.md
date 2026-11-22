@@ -266,14 +266,13 @@ Spacing tokens are also in the `:root` block of `assets/css/shared.css`:
 
 ## Contact form
 
-The form on `/contact/` is delivered as an email to `hello@antedesign.be`. `assets/js/contact-form.js` posts it without leaving the page and shows a thank-you, or an error with the email address and the booking link as alternatives. A hidden honeypot field (`_honey`) keeps bots out.
+The form on `/contact/` is delivered as an email to `hello@antedesign.be`, sent from our own Google account by a Google Apps Script (`scripts/contact-mail.gs`), so it does not land in spam and no third party is involved. `assets/js/contact-form.js` posts the form without leaving the page and shows a thank-you, or an error with the email address and the booking link as alternatives. A hidden honeypot field (`_honey`) keeps bots out. Without JavaScript the form posts to the same address and Google shows a thank-you page.
 
-There are two ways to send, chosen by `APPS_SCRIPT_URL` at the top of `assets/js/contact-form.js`:
-
-- **Empty (live until the switch): FormSubmit** (formsubmit.co). Needs no account, but its mail comes from another domain and tends to land in spam. Activate once: the first message makes FormSubmit email an activation link to `hello@antedesign.be`.
-- **Filled (preferred): Google Apps Script** (`scripts/contact-mail.gs`). The mail is sent from our own Google account, so it does not land in spam, and no third party is involved. Deploy the script as described at the top of that file, then paste its `/exec` URL in two places: `APPS_SCRIPT_URL` in `assets/js/contact-form.js` and the `action` of the form in `contact/index.html`. Afterwards remove FormSubmit from `privacy/index.html` (the sentence in "What we collect" and the provider list). Google stays listed there as a provider.
-
-Without JavaScript the form posts to the address in its `action`. Change the recipient in `RECIPIENT` in the script (and in the FormSubmit address in `contact/index.html` and `contact-form.js` while that route is in use). The script drops messages beyond `DAILY_LIMIT` a day and can keep a copy of every message in a Google Sheet (`SHEET_ID`). After changing the script, deploy a new version; the URL stays the same.
+- **Where it runs:** the script is deployed from the Google account that sends the mail, as a Web app (execute as: me, access: anyone). Its `/exec` URL is in two places: `ENDPOINT` in `assets/js/contact-form.js` and the `action` of the form in `contact/index.html`.
+- **Change the recipient:** `RECIPIENT` at the top of the script. After any change in the script, deploy a new version (Deploy > Manage deployments > pencil > New version); the URL stays the same.
+- **Limits and copies:** the script drops messages beyond `DAILY_LIMIT` a day and can keep a copy of every message in a Google Sheet (`SHEET_ID`).
+- **Silent failures:** the page cannot read Google's answer (`no-cors`), so a broken deployment would still show the thank-you. After redeploying, send one test message.
+- **Privacy:** Google is the only processor for this form and is named in `privacy/index.html`.
 
 ---
 
