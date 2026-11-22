@@ -72,7 +72,7 @@ Every page is a plain HTML file. Open it in any text editor, find the text betwe
 | Example | `example/index.html` | The "what the team started with" block and the full one-page definition |
 | Check | `check/index.html` | The nine-question flow, the team answers side by side, and the thanks. The engine is private: ante-base `20-marketing/free-tools/ai-product-check/` |
 | About | `about/index.html` | Why Anté exists, team, "Why we know AI from the inside.", CTA. JSON-LD: one Person per team member |
-| Contact | `contact/index.html` | Calendly card, contact form, direct contact |
+| Contact | `contact/index.html` | Booking card (cal.com link) and an email line |
 | Insights | `insights/index.html` | Hero, featured post, what's coming, teardowns, tools, CTA |
 
 
@@ -268,7 +268,6 @@ Spacing tokens are also in the `:root` block of `assets/css/shared.css`:
 
 Search the HTML files for these strings:
 
-- `[FORM_ACTION_PLACEHOLDER]` in `contact/index.html`
 - `[TESTIMONIAL 1-3]` in `index.html` (commented out)
 
 ---

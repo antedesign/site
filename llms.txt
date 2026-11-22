@@ -30,7 +30,7 @@ Company: Anté VOF, company number BE 1041.127.724. Contact: https://antedesign.
 - [AI Product Check](https://antedesign.be/check/): nine questions about a product idea, answered with the questions Anté would ask
 - [Cases](https://antedesign.be/cases/): KU Leuven and Novare
 - [About](https://antedesign.be/about/): why Anté exists and the team
-- [Contact](https://antedesign.be/contact/): book a 30-minute call or send a message
+- [Contact](https://antedesign.be/contact/): book a 30-minute call or email hello@antedesign.be
 
 ## Insights
 
