@@ -290,7 +290,7 @@ def page_html(root, d, minutes, number):
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:ital,wght@1,800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/images/favicon.png">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/shared.css">
+  <link rel="stylesheet" href="/assets/css/shared.css?v=70336e4815">
   <link rel="stylesheet" href="/assets/css/insights.css">
 
   <script type="application/ld+json">

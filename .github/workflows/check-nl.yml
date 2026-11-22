@@ -1,0 +1,18 @@
+# Every push and pull request: the English pages and their Dutch counterparts must still match.
+# See scripts/check-nl.py. A red check means one version changed and the other did not.
+name: EN en NL gelijk
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check-nl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 scripts/check-nl.py

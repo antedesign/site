@@ -71,7 +71,10 @@ The site is in English, with a Dutch version of the key pages under `/nl/`.
 
 Insights, the tools and the legal pages are English only; the Dutch pages link to them.
 
-- **Every pair is two files.** Change the text of one, change the other. The markup is the same.
+- **Every pair is one page in two languages.** Change one, change the other in the same commit:
+  text, order, sections, images, buttons. `python3 scripts/check-nl.py` compares the structure of
+  every pair, the switch, the hreflang lines and the sitemap, and runs on GitHub on every push
+  (`.github/workflows/check-nl.yml`). The rules are in `CLAUDE.md`.
 - **`hreflang`**: both pages of a pair carry the same three lines (`en`, `nl`, `x-default` = EN)
   under the canonical, and `sitemap.xml` lists the same three per URL. That is how Google shows
   a Dutch searcher the Dutch page. There is no automatic redirect on browser language: Google
