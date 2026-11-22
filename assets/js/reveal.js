@@ -2,7 +2,8 @@
   'use strict';
 
   var SELECTOR = [
-    '.reveal'
+    '.reveal',
+    '.reveal-group'
   ].join(', ');
 
   function init() {
