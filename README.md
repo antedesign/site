@@ -266,12 +266,14 @@ Spacing tokens are also in the `:root` block of `assets/css/shared.css`:
 
 ## Contact form
 
-The form on `/contact/` is delivered as an email to `hello@antedesign.be` through FormSubmit (formsubmit.co), so no server of our own is needed. `assets/js/contact-form.js` posts it without leaving the page and shows a thank-you or an error with the email address and the booking link as alternatives. Without JavaScript the form posts to FormSubmit's own thank-you page.
+The form on `/contact/` is delivered as an email to `hello@antedesign.be`. `assets/js/contact-form.js` posts it without leaving the page and shows a thank-you, or an error with the email address and the booking link as alternatives. A hidden honeypot field (`_honey`) keeps bots out.
 
-- **First use: activate once.** The first message ever sent makes FormSubmit email an activation link to `hello@antedesign.be`. Click it, otherwise nothing is delivered. Send one test message after each change of address.
-- **Change the recipient:** the address appears in `contact/index.html` (form `action`) and in `assets/js/contact-form.js` (`ENDPOINT`).
-- **Spam:** a hidden honeypot field (`_honey`) is in place. If spam still arrives, set `_captcha` to `true` in the form.
-- **Privacy:** FormSubmit is named in `privacy/index.html` as a provider. Have `60-legal/` confirm it before relying on it long term.
+There are two ways to send, chosen by `APPS_SCRIPT_URL` at the top of `assets/js/contact-form.js`:
+
+- **Empty (live until the switch): FormSubmit** (formsubmit.co). Needs no account, but its mail comes from another domain and tends to land in spam. Activate once: the first message makes FormSubmit email an activation link to `hello@antedesign.be`.
+- **Filled (preferred): Google Apps Script** (`scripts/contact-mail.gs`). The mail is sent from our own Google account, so it does not land in spam, and no third party is involved. Deploy the script as described at the top of that file, then paste its `/exec` URL in two places: `APPS_SCRIPT_URL` in `assets/js/contact-form.js` and the `action` of the form in `contact/index.html`. Afterwards remove FormSubmit from `privacy/index.html` (the sentence in "What we collect" and the provider list). Google stays listed there as a provider.
+
+Without JavaScript the form posts to the address in its `action`. Change the recipient in `RECIPIENT` in the script (and in the FormSubmit address in `contact/index.html` and `contact-form.js` while that route is in use). The script drops messages beyond `DAILY_LIMIT` a day and can keep a copy of every message in a Google Sheet (`SHEET_ID`). After changing the script, deploy a new version; the URL stays the same.
 
 ---
 
