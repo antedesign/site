@@ -122,7 +122,7 @@ def body_html(d):
               <div class="author-mark"><span>a</span></div>
               <div>
                 <h4>Anté</h4>
-                <p>An independent studio in Antwerp that defines products with AI at their core before they are built. We build prototypes to test an idea, never the final product, and we take no stake in what you decide, which is the only reason our answer on direction is worth anything. Decide before you build.</p>
+                <p>An independent studio in Antwerp that helps companies define products with AI at their core before they are built. We build prototypes to test an idea, never the final product, and we take no stake in what you decide, which is the only reason our answer on direction is worth anything. Decide before you build.</p>
               </div>
             </div>""")
     return "\n\n            ".join(out)

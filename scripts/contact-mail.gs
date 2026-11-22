@@ -1,34 +1,35 @@
 /**
- * Anté contact form -> email, sent from this Google account (Google Apps Script).
+ * Anté contact form -> email in our own inbox (Google Apps Script).
  *
- * Why: mail relayed by a third-party form service often lands in spam. Mail sent from
- * the Google account itself, to our own address, does not.
+ * The message is placed straight into the inbox of the Google account that runs this script, as
+ * new, unread mail from the visitor (name and address as typed in the form), so it looks like any
+ * other mail someone sent us, and "Reply" goes to the visitor. It never travels over the internet,
+ * so it cannot land in spam. If that is not possible (see step 2 below) the script falls back to a
+ * normal email from this account to RECIPIENT, which Gmail files under "Sent" when both are the
+ * same address.
  *
- * Set up (about 5 minutes, once):
- *  1. Open https://script.google.com while signed in to the account that should send the
- *     mail (best: hello@antedesign.be). Click "New project" and paste this whole file over
- *     the default code. Save (name it "Anté contact form").
- *  2. Click Deploy > New deployment > type "Web app".
- *       Execute as: Me
- *       Who has access: Anyone
- *     Click Deploy. Google asks for permission to send email: choose your account,
- *     "Advanced", "Go to Anté contact form (unsafe)", "Allow". (The warning appears
- *     because the script is not published as an app. It only runs in your own account.)
- *  3. Copy the "Web app" URL (it ends in /exec) and send it to whoever maintains the site.
- *     It goes into assets/js/contact-form.js (APPS_SCRIPT_URL) and into the form action
- *     in contact/index.html.
+ * FIRST TIME (about 5 minutes):
+ *  1. Open https://script.google.com while signed in to the account that receives the mail
+ *     (hello@antedesign.be). "New project", paste this whole file over the default code, save.
+ *  2. In the left sidebar click "Services" (+), choose "Gmail API", click "Add".
+ *  3. In the toolbar pick the function "testDelivery" and click "Run". Allow the permissions
+ *     (Advanced > Go to ... (unsafe) > Allow). A test message appears in the inbox.
+ *  4. Deploy > New deployment > type "Web app". Execute as: Me. Who has access: Anyone. Deploy.
+ *     Copy the "Web app" URL (ends in /exec) into assets/js/contact-form.js (ENDPOINT) and the
+ *     form action in contact/index.html.
  *
- * After changing this code, deploy again: Deploy > Manage deployments > pencil > Version:
- * New version > Deploy. The /exec URL stays the same.
+ * UPDATING THIS CODE LATER: paste it over the old code, do steps 2 and 3 if they are new, then
+ * Deploy > Manage deployments > pencil > Version: New version > Deploy. The /exec URL stays the same.
  *
- * What it does: it takes name, email and message from the form, checks them, and emails
- * them to RECIPIENT with the visitor as reply-to. It can only ever email RECIPIENT, so it
- * cannot be used to mail anyone else.
+ * What it does: it takes name, email and message from the form, checks them, and delivers them to
+ * RECIPIENT. It can only ever deliver to RECIPIENT, so it cannot be used to mail anyone else.
  */
 
 var RECIPIENT = 'hello@antedesign.be';
-var SHEET_ID = '';        // optional: id of a Google Sheet that keeps a copy of every message (empty = off)
-var DAILY_LIMIT = 60;     // more messages than this in a day are dropped, so nobody can flood the inbox
+var INSERT_INTO_OWN_INBOX = true;   // true: put the message straight into this account's inbox as new mail
+var LABEL_NAME = 'Website contact'; // label added to every message (empty = no label)
+var SHEET_ID = '';                  // optional: id of a Google Sheet that keeps a copy of every message (empty = off)
+var DAILY_LIMIT = 60;               // more messages than this in a day are dropped, so nobody can flood the inbox
 
 function doPost(e) {
   var p = (e && e.parameter) || {};
@@ -41,19 +42,7 @@ function doPost(e) {
     if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return reply(wantsJson, false);
     if (!underLimit()) return reply(wantsJson, false);
 
-    MailApp.sendEmail({
-      to: RECIPIENT,
-      replyTo: email,
-      name: 'antedesign.be',
-      subject: 'New message via antedesign.be from ' + name,
-      body: 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message,
-      htmlBody:
-        '<table cellpadding="6" style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">' +
-        '<tr><td><b>Name</b></td><td>' + esc(name) + '</td></tr>' +
-        '<tr><td><b>Email</b></td><td><a href="mailto:' + esc(email) + '">' + esc(email) + '</a></td></tr>' +
-        '<tr><td valign="top"><b>Message</b></td><td>' + esc(message).replace(/\n/g, '<br>') + '</td></tr>' +
-        '</table>'
-    });
+    deliver(name, email, message);
     if (SHEET_ID) SpreadsheetApp.openById(SHEET_ID).getSheets()[0].appendRow([new Date(), name, email, message]);
     return reply(wantsJson, true);
   } catch (err) {
@@ -63,6 +52,98 @@ function doPost(e) {
 
 function doGet() {
   return ContentService.createTextOutput('The Anté contact form is running.');
+}
+
+/** Run this once from the editor (pick "testDelivery" in the toolbar, click Run): it asks for permission and a test message arrives. */
+function testDelivery() {
+  deliver('Test Persoon', 'test@example.com', 'This is a test message sent from the script editor.');
+}
+
+function deliver(name, email, message) {
+  if (INSERT_INTO_OWN_INBOX) {
+    try {
+      insertIntoInbox(name, email, message);
+      return;
+    } catch (err) {
+      // The Gmail API service is not added yet, or not allowed: fall back to a normal email below.
+    }
+  }
+  MailApp.sendEmail({
+    to: RECIPIENT,
+    replyTo: email,
+    name: 'antedesign.be',
+    subject: subjectFor(name),
+    body: plainBody(name, email, message),
+    htmlBody: htmlBody(name, email, message)
+  });
+}
+
+function insertIntoInbox(name, email, message) {
+  var labelIds = ['INBOX', 'UNREAD'];
+  try {
+    var id = labelId(LABEL_NAME);
+    if (id) labelIds.push(id);
+  } catch (err) {
+    // the label is a nicety, the message is not
+  }
+  Gmail.Users.Messages.insert(
+    { raw: Utilities.base64EncodeWebSafe(rawMessage(name, email, message), Utilities.Charset.UTF_8), labelIds: labelIds },
+    'me'
+  );
+}
+
+function labelId(name) {
+  if (!name) return null;
+  var labels = Gmail.Users.Labels.list('me').labels || [];
+  for (var i = 0; i < labels.length; i++) if (labels[i].name === name) return labels[i].id;
+  return Gmail.Users.Labels.create({ name: name, labelListVisibility: 'labelShow', messageListVisibility: 'show' }, 'me').id;
+}
+
+function rawMessage(name, email, message) {
+  var CRLF = '\r\n';
+  var boundary = 'ante-' + Utilities.getUuid();
+  function b64(s) { return Utilities.base64Encode(s, Utilities.Charset.UTF_8); }
+  function word(s) { return '=?UTF-8?B?' + b64(s) + '?='; }
+  function wrap(s) { return s.replace(/(.{76})/g, '$1' + CRLF); }
+  return [
+    'From: ' + word(name) + ' <' + email + '>',
+    'To: ' + RECIPIENT,
+    'Reply-To: ' + email,
+    'Subject: ' + word(subjectFor(name)),
+    'Date: ' + new Date().toUTCString(),
+    'Message-ID: <' + Utilities.getUuid() + '@antedesign.be>',
+    'MIME-Version: 1.0',
+    'Content-Type: multipart/alternative; boundary="' + boundary + '"',
+    '',
+    '--' + boundary,
+    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Transfer-Encoding: base64',
+    '',
+    wrap(b64(plainBody(name, email, message))),
+    '--' + boundary,
+    'Content-Type: text/html; charset=UTF-8',
+    'Content-Transfer-Encoding: base64',
+    '',
+    wrap(b64(htmlBody(name, email, message))),
+    '--' + boundary + '--',
+    ''
+  ].join(CRLF);
+}
+
+function subjectFor(name) {
+  return 'New message via antedesign.be from ' + name;
+}
+
+function plainBody(name, email, message) {
+  return 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message + '\n\n(Sent through the contact form on antedesign.be)';
+}
+
+function htmlBody(name, email, message) {
+  return '<table cellpadding="6" style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">' +
+    '<tr><td><b>Name</b></td><td>' + esc(name) + '</td></tr>' +
+    '<tr><td><b>Email</b></td><td><a href="mailto:' + esc(email) + '">' + esc(email) + '</a></td></tr>' +
+    '<tr><td valign="top"><b>Message</b></td><td>' + esc(message).replace(/\n/g, '<br>') + '</td></tr>' +
+    '</table><p style="font-family:Arial,sans-serif;font-size:12px;color:#777">Sent through the contact form on antedesign.be</p>';
 }
 
 function clean(value, max, singleLine) {

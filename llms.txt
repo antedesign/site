@@ -1,6 +1,6 @@
 # Anté
 
-> Anté (antedesign.be, also written Ante or Ante Design) is an independent studio in Belgium that defines products with AI at their core, before they are built. Tagline: "Decide before you build."
+> Anté (antedesign.be, also written Ante or Ante Design) is an independent studio in Belgium that helps companies define products with AI at their core, before they are built. Tagline: "Decide before you build."
 
 ## What Anté is, who it is for, what it does
 

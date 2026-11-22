@@ -1,6 +1,6 @@
 # Anté — antedesign.be
 
-Static website for Anté, an independent studio that defines products with AI at their core. Built as plain HTML/CSS/JS — no build step required.
+Static website for Anté, an independent studio that helps companies define products with AI at their core. Built as plain HTML/CSS/JS — no build step required.
 
 ---
 
@@ -47,7 +47,7 @@ Static website for Anté, an independent studio that defines products with AI at
 │       ├── apple-touch-icon.png  180x180 icon, made from favicon.png
 │       ├── insights/       Post covers (.svg for the page, .png for social)
 │       └── (originals)     phase-0*.jpg and founder-*.JPG are full-size originals, not referenced by any page
-├── scripts/                Post builder and checks (see Insights below), film-render.js (MP4 of /film/)
+├── scripts/                Post builder and checks (see Insights below), film-render.js (MP4 of /film/), contact-mail.gs (contact form, see below), og-image/ (share image)
 ├── sitemap.xml             Add one <url> block per new post
 ├── robots.txt              Open to all crawlers; AI crawlers are named explicitly as allowed
 ├── llms.txt                Plain summary of Anté and its key pages for AI assistants (only facts that are on the site)
@@ -88,6 +88,16 @@ page itself says. When the text changes, change the schema with it.
 When you add a page: give it the same set, add it to
 `sitemap.xml` and, if it is a key page, to `llms.txt`. A page that should not be found gets
 `<meta name="robots" content="noindex">` and stays out of the sitemap.
+
+**The home headline lives in more places than the hero.** When it changes, search the site for the old
+wording: the `<title>`, `og:` and `twitter:` titles and description of `index.html`, the `og:image:alt`
+on every page, the JSON-LD description, `llms.txt`, and the one-line company description ("helps companies
+define products with AI at their core", repeated in the privacy page, the cookie and terms descriptions, the
+two Insights author blocks and `scripts/build-post.py`). The headline is also drawn into the share image:
+edit `scripts/og-image/og.html`, then run `node scripts/og-image/og.js` (needs Playwright and internet for the
+fonts; pass a path to write elsewhere first). The film closes on the same line (`film/film.js`). The wording
+is a decision, not a style choice: "We help you define", never "We define", because the product is defined
+with the client and Anté guides the process (ante-base `10-admin/beslissingen.md`, 2026-11-22).
 
 ---
 
@@ -271,10 +281,11 @@ Spacing tokens are also in the `:root` block of `assets/css/shared.css`:
 
 ## Contact form
 
-The form on `/contact/` is delivered as an email to `hello@antedesign.be`, sent from our own Google account by a Google Apps Script (`scripts/contact-mail.gs`), so it does not land in spam and no third party is involved. `assets/js/contact-form.js` posts the form without leaving the page and shows a thank-you, or an error with the email address and the booking link as alternatives. A hidden honeypot field (`_honey`) keeps bots out. Without JavaScript the form posts to the same address and Google shows a thank-you page.
+The form on `/contact/` ends up in the inbox of `hello@antedesign.be`. A Google Apps Script (`scripts/contact-mail.gs`) places each message straight into that inbox as new, unread mail from the visitor, labelled "Website contact", so "Reply" goes to the visitor. It never travels over the internet, so it cannot land in spam, and no third party is involved. (Sending a mail from `hello@` to `hello@` would only show up under "Sent", which is why the script inserts the message instead.) `assets/js/contact-form.js` posts the form without leaving the page and shows a thank-you, or an error with the email address and the booking link as alternatives. A hidden honeypot field (`_honey`) keeps bots out. Without JavaScript the form posts to the same address and Google shows a thank-you page.
 
-- **Where it runs:** the script is deployed from the Google account that sends the mail, as a Web app (execute as: me, access: anyone). Its `/exec` URL is in two places: `ENDPOINT` in `assets/js/contact-form.js` and the `action` of the form in `contact/index.html`.
-- **Change the recipient:** `RECIPIENT` at the top of the script. After any change in the script, deploy a new version (Deploy > Manage deployments > pencil > New version); the URL stays the same.
+- **Where it runs:** the script is deployed from the Google account that owns the inbox, as a Web app (execute as: me, access: anyone). Its `/exec` URL is in two places: `ENDPOINT` in `assets/js/contact-form.js` and the `action` of the form in `contact/index.html`.
+- **One-time setup in the script editor:** add the "Gmail API" service (Services +), run `testDelivery` once to give permission, then deploy a new version. The steps are at the top of the script file. Without the Gmail API service the script falls back to a normal email from the account to `RECIPIENT`, which Gmail files under "Sent".
+- **Change the recipient or label:** `RECIPIENT` and `LABEL_NAME` at the top of the script. After any change in the script, deploy a new version (Deploy > Manage deployments > pencil > New version); the URL stays the same.
 - **Limits and copies:** the script drops messages beyond `DAILY_LIMIT` a day and can keep a copy of every message in a Google Sheet (`SHEET_ID`).
 - **Silent failures:** the page cannot read Google's answer (`no-cors`), so a broken deployment would still show the thank-you. After redeploying, send one test message.
 - **Privacy:** Google is the only processor for this form and is named in `privacy/index.html`.
